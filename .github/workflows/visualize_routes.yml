@@ -40,7 +40,10 @@ on:
         description: '攀岩者身高(厘米，或不填)'
         required: false
         default: ''
-
+permissions:
+  contents: write
+  issues: write
+  
 jobs:
   visualize:
     runs-on: ubuntu-latest
