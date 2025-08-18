@@ -1,0 +1,29 @@
+{
+  "routeName": "入门之道 (The First Way)",
+  "difficulty": "V1-V2",
+  "author": "Copilot & ying-ge",
+  "setter": "ying-ge",
+  "dateCreated": "2025-08-18",
+  "holds": {
+    "start": [
+      101,
+      103
+    ],
+    "hand": [
+      "21",
+      "17",
+      "18",
+      "23",
+      "25",
+      "72",
+      "71",
+      "85",
+      "88",
+      "119"
+    ],
+    "finish": [
+      114
+    ]
+  },
+  "description": "一条流畅的右手动态路线，以顶部的大点结束。"
+}
