@@ -8,7 +8,7 @@ on:
       - 'routes/**.json'
       - 'images/with_mark.png'
       - '.github/workflows/**'
-      - 'scripts/**.py'
+      - '.github/scripts/**.py'
   workflow_dispatch:
 
 jobs:
@@ -39,7 +39,7 @@ jobs:
         id: generate_coords
         run: |
           echo "Running OCR script to generate coordinates..."
-          python scripts/generate_coords.py
+          python ./github/scripts/generate_coords.py
 
       - name: '步骤 2: 为每条路线绘制图片 (Draw Route Images)'
         id: draw_routes
@@ -48,7 +48,7 @@ jobs:
           for route_file in routes/*.json; do
             if [ -f "$route_file" ]; then
               echo ">>> Processing route: $route_file"
-              python scripts/draw_route.py "$route_file"
+              python .github/scripts/draw_route.py "$route_file"
             fi
           done
           echo "All routes have been processed."
