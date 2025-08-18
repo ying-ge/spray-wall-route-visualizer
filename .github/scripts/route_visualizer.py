@@ -30,9 +30,11 @@ def visualize_route(image_path, config, output_path=None):
     font = cv2.FONT_HERSHEY_SIMPLEX
     circle_color = config.get('circle_color', (0, 255, 0))  # 绿色圆圈
     text_color = config.get('text_color', (255, 255, 255))  # 白色文本
+    shadow_color = config.get('shadow_color', (0, 0, 0))    # 黑色阴影
     arrow_color = config.get('arrow_color', (0, 0, 255))    # 红色箭头
     circle_thickness = config.get('circle_thickness', 3)
     text_thickness = config.get('text_thickness', 2)
+    shadow_thickness = text_thickness + 2  # 阴影比文本粗一些
     arrow_thickness = config.get('arrow_thickness', 2)
     
     # 计算合适的圆圈大小和字体大小（基于图像尺寸）
@@ -48,11 +50,17 @@ def visualize_route(image_path, config, output_path=None):
             # 绘制圆圈
             cv2.circle(result, (x, y), circle_radius, circle_color, circle_thickness)
             
-            # 添加序号
+            # 添加序号（先绘制阴影，再绘制文本）
             text = str(i + 1)
             text_size = cv2.getTextSize(text, font, font_scale, text_thickness)[0]
             text_x = x - text_size[0] // 2
             text_y = y + text_size[1] // 2
+            
+            # 绘制黑色阴影/轮廓（在文本下方多个位置绘制以形成轮廓效果）
+            for dx, dy in [(1,1), (1,-1), (-1,1), (-1,-1), (0,1), (1,0), (0,-1), (-1,0)]:
+                cv2.putText(result, text, (text_x+dx, text_y+dy), font, font_scale, shadow_color, shadow_thickness)
+            
+            # 绘制白色文本
             cv2.putText(result, text, (text_x, text_y), font, font_scale, text_color, text_thickness)
     
     # 绘制攀爬路径（箭头）
