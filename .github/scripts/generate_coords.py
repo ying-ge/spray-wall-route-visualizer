@@ -76,7 +76,7 @@ def generate_holds_coordinates(marked_image_path, output_json_path, debug_image_
         print(f"调试图片已保存到: {debug_image_path}")
 
 if __name__ == '__main__':
-    marked_image = Path('image/with_mark.png')
+    marked_image = Path('images/with_mark.png')
     output_json = Path('data/holds.json')
     debug_image = Path('generated_routes/debug_ocr.png')
     
