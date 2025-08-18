@@ -1,4 +1,4 @@
-name: Generate Route Images
+name: Generate Route Images with mark
 
 # --- 触发工作流的条件 ---
 on:
