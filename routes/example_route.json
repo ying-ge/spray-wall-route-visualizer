@@ -6,6 +6,7 @@
   "date_created": "2025-08-18",
   "circle_color": [0, 255, 0],
   "text_color": [255, 255, 255],
+  "shadow_color": [0, 0, 0],
   "arrow_color": [0, 0, 255],
   "holds": [
     {"x": 450, "y": 820, "description": "起始点，桃红色大抓点"},
