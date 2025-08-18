@@ -8,7 +8,7 @@ on:
       - 'routes/**.json'
       - 'images/with_mark.png'
       - '.github/workflows/**'
-      - '.github/scripts/**.py'
+      - '.github/scripts/**.py' # <-- 修正路径
   workflow_dispatch:
 
 jobs:
@@ -29,29 +29,24 @@ jobs:
       - name: '安装依赖库 (Install dependencies)'
         run: |
           python -m pip install --upgrade pip
-          echo "Installing PyTorch..."
-          pip install torch torchvision torchaudio
-          echo "Installing easyocr and Pillow..."
+          pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
           pip install easyocr Pillow
-          echo "Installation complete."
 
       - name: '步骤 1: 从图片生成岩点坐标 (Generate Hold Coordinates)'
-        id: generate_coords
         run: |
-          echo "Running OCR script to generate coordinates..."
-          python ./github/scripts/generate_coords.py
+          # 使用正确的脚本路径
+          python .github/scripts/generate_coords.py
 
       - name: '步骤 2: 为每条路线绘制图片 (Draw Route Images)'
-        id: draw_routes
         run: |
           # 查找 routes 目录下的所有 .json 文件，并为每一个生成图片
           for route_file in routes/*.json; do
             if [ -f "$route_file" ]; then
               echo ">>> Processing route: $route_file"
+              # 使用正确的脚本路径
               python .github/scripts/draw_route.py "$route_file"
             fi
           done
-          echo "All routes have been processed."
 
       - name: '步骤 3: 提交生成的文件 (Commit generated files)'
         uses: stefanzweifel/git-auto-commit-action@v5
