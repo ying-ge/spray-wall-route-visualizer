@@ -5,9 +5,9 @@ import requests
 import time
 from pathlib import Path
 
-def create_ai_route(holds_json_path, repo_owner, repo_name, difficulty=None, climber_height=None, github_token=None):
+def create_ai_route_request(holds_json_path, repo_owner, repo_name, difficulty=None, climber_height=None, github_token=None):
     """
-    创建AI定线请求并获取结果
+    创建AI定线请求Issue
     
     参数:
     holds_json_path - 岩点坐标JSON文件路径
@@ -18,7 +18,7 @@ def create_ai_route(holds_json_path, repo_owner, repo_name, difficulty=None, cli
     github_token - GitHub个人访问令牌（可选）
     
     返回:
-    生成的路线配置文件路径
+    输出模板路径
     """
     # 加载岩点数据
     with open(holds_json_path, 'r', encoding='utf-8') as f:
@@ -40,16 +40,15 @@ def create_ai_route(holds_json_path, repo_owner, repo_name, difficulty=None, cli
     routes_dir.mkdir(exist_ok=True)
     
     # 输出文件路径
-    output_path = routes_dir / f"{image_name}_ai_route.json"
+    output_path = routes_dir / f"{image_name}_ai_route_template.json"
     
-    # 如果有GitHub令牌，创建一个Discussion或Issue来请求AI定线
     if github_token:
         # 创建一个新的Issue来请求AI定线
-        issue_url = create_route_request_issue(request_data, repo_owner, repo_name, github_token)
+        issue_url = create_github_issue(request_data, repo_owner, repo_name, github_token)
         print(f"已创建AI定线请求: {issue_url}")
         print("请等待AI回复，然后将生成的路线配置保存到routes目录。")
     else:
-        # 本地模式：直接保存带注释的模板，供用户手动完成
+        # 本地模式：直接保存模板
         template_route = {
             "route_name": f"AI设计的路线 - {image_name}",
             "difficulty": difficulty or "待定",
@@ -60,8 +59,7 @@ def create_ai_route(holds_json_path, repo_owner, repo_name, difficulty=None, cli
             "text_color": [255, 255, 255],
             "arrow_color": [0, 0, 255],
             "holds": [
-                # 建议选择5-10个岩点组成有挑战性但可完成的路线
-                # AI将从下面的岩点列表中选择合适的子集并排序
+                # 建议选择6-12个岩点组成有挑战性但可完成的路线
             ],
             "detected_holds": holds_data.get("holds", [])
         }
@@ -75,7 +73,7 @@ def create_ai_route(holds_json_path, repo_owner, repo_name, difficulty=None, cli
     
     return output_path
 
-def create_route_request_issue(request_data, repo_owner, repo_name, github_token):
+def create_github_issue(request_data, repo_owner, repo_name, github_token):
     """创建GitHub Issue来请求AI定线"""
     api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues"
     
@@ -92,7 +90,7 @@ def create_route_request_issue(request_data, repo_owner, repo_name, github_token
     # 创建Issue正文
     body = f"""## AI路线设计请求
 
-请根据以下岩点位置设计一条攀岩路线:
+请为我设计一条攀岩路线，基于以下参数:
 
 ### 图片名称
 {request_data['image_name']}
@@ -106,3 +104,72 @@ def create_route_request_issue(request_data, repo_owner, repo_name, github_token
 ### 岩点位置数据（前10个）
 ```json
 {holds_json}
+
+### 请求
+请设计一条合理的攀岩路线，选择适当的岩点子集，并按照从下到上的顺序排列。
+路线应具有良好的流畅性、适当的难度和明确的动作。
+
+请以JSON格式回复完整的路线配置，格式如下:
+```json
+{{
+  "route_name": "路线名称",
+  "difficulty": "难度等级",
+  "description": "路线描述",
+  "author": "AI路线设计器",
+  "date_created": "2025-08-18",
+  "circle_color": [0, 255, 0],
+  "text_color": [255, 255, 255],
+  "arrow_color": [0, 0, 255],
+  "holds": [
+    {{"x": 100, "y": 800, "description": "起始点"}},
+    {{"x": 200, "y": 700, "description": "第二点"}},
+    ...
+  ]
+}}
+```
+"""
+    
+    # 发送请求创建Issue
+    headers = {
+        "Authorization": f"token {github_token}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    
+    payload = {
+        "title": title,
+        "body": body
+    }
+    
+    response = requests.post(api_url, headers=headers, json=payload)
+    
+    if response.status_code == 201:
+        return response.json()["html_url"]
+    else:
+        print(f"创建Issue失败: {response.status_code}")
+        print(response.text)
+        return None
+
+def main():
+    parser = argparse.ArgumentParser(description='AI攀岩路线设计器')
+    parser.add_argument('--holds', type=str, required=True, help='岩点坐标JSON文件路径')
+    parser.add_argument('--owner', type=str, help='GitHub仓库所有者')
+    parser.add_argument('--repo', type=str, help='GitHub仓库名称')
+    parser.add_argument('--difficulty', type=str, help='期望的路线难度')
+    parser.add_argument('--height', type=str, help='攀岩者身高')
+    parser.add_argument('--token', type=str, help='GitHub个人访问令牌')
+    
+    args = parser.parse_args()
+    
+    create_ai_route_request(args.holds, args.owner, args.repo, args.difficulty, args.height, args.token)
+
+if __name__ == "__main__":
+    main()
+```
+
+## 修复的关键点
+
+1. 确保 f-string 中的三引号字符串正确闭合
+2. 检查花括号的转义（在 f-string 中显示花括号需要使用双花括号 `{{` 和 `}}`）
+3. 确保整个 `body` 变量的格式正确
+
+请将这个修复后的代码替换您现有的 `.github/scripts/ai_route_designer.py` 文件，然后重新运行工作流。这应该可以解决当前的语法错误问题。
