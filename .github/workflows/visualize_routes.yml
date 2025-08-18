@@ -73,16 +73,35 @@ jobs:
       - name: 自动检测岩点(推送新图片时)
         if: ${{ github.event_name == 'push' }}
         run: |
-          # 检查是否有新的图片文件
-          git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep -E "^gallery/.*\.(jpg|jpeg|png)$" > changed_images.txt
+          # 安全处理 git diff，支持首次提交
+          if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+            # 首次提交，处理所有图片
+            find gallery -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \) > changed_images.txt
+          else
+            # 尝试获取更改的文件
+            if git rev-parse --verify "${{ github.event.before }}" >/dev/null 2>&1; then
+              git diff --name-only "${{ github.event.before }}" "${{ github.event.after }}" | grep -E "^gallery/.*\.(jpg|jpeg|png)$" > changed_images.txt || true
+            else
+              # 前一个 commit 无效，使用最新的提交和之前的提交进行比较
+              git diff --name-only HEAD^ HEAD | grep -E "^gallery/.*\.(jpg|jpeg|png)$" > changed_images.txt || true
+              # 如果仍然失败，处理所有图片
+              if [ ! -s changed_images.txt ]; then
+                find gallery -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \) -not -path "gallery/output/*" > changed_images.txt
+              fi
+            fi
+          fi
+          
+          # 处理图片
           if [ -s changed_images.txt ]; then
             while IFS= read -r image_path; do
-              echo "处理新图片: $image_path"
+              echo "处理图片: $image_path"
               # 提取文件名(不包括扩展名)
               filename=$(basename "$image_path" | sed 's/\.[^.]*$//')
               # 运行岩点检测
               python .github/scripts/hold_detector.py --image "$image_path" --output "detections/${filename}_holds.json" --debug "gallery/output/${filename}_detected.jpg"
             done < changed_images.txt
+          else
+            echo "没有发现新图片，跳过检测步骤"
           fi
           
       - name: 请求AI定线(手动触发)
