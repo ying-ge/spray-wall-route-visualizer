@@ -182,13 +182,13 @@ jobs:
           done
           
       - name: 上传生成的图片
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: route-visualizations
           path: gallery/output/
           
       - name: 上传检测到的岩点数据
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: detected-holds
           path: detections/
