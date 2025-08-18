@@ -6,20 +6,6 @@ import time
 from pathlib import Path
 
 def create_ai_route_request(holds_json_path, repo_owner, repo_name, difficulty=None, climber_height=None, github_token=None):
-    """
-    创建AI定线请求Issue
-    
-    参数:
-    holds_json_path - 岩点坐标JSON文件路径
-    repo_owner - GitHub仓库所有者
-    repo_name - GitHub仓库名称
-    difficulty - 期望的路线难度（可选）
-    climber_height - 攀岩者身高（可选）
-    github_token - GitHub个人访问令牌（可选）
-    
-    返回:
-    输出模板路径
-    """
     # 加载岩点数据
     with open(holds_json_path, 'r', encoding='utf-8') as f:
         holds_data = json.load(f)
@@ -74,7 +60,6 @@ def create_ai_route_request(holds_json_path, repo_owner, repo_name, difficulty=N
     return output_path
 
 def create_github_issue(request_data, repo_owner, repo_name, github_token):
-    """创建GitHub Issue来请求AI定线"""
     api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues"
     
     # 准备Issue标题和正文
@@ -104,6 +89,7 @@ def create_github_issue(request_data, repo_owner, repo_name, github_token):
 ### 岩点位置数据（前10个）
 ```json
 {holds_json}
+```
 
 ### 请求
 请设计一条合理的攀岩路线，选择适当的岩点子集，并按照从下到上的顺序排列。
@@ -164,12 +150,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-```
-
-## 修复的关键点
-
-1. 确保 f-string 中的三引号字符串正确闭合
-2. 检查花括号的转义（在 f-string 中显示花括号需要使用双花括号 `{{` 和 `}}`）
-3. 确保整个 `body` 变量的格式正确
-
-请将这个修复后的代码替换您现有的 `.github/scripts/ai_route_designer.py` 文件，然后重新运行工作流。这应该可以解决当前的语法错误问题。
