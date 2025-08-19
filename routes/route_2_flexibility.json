@@ -1,0 +1,10 @@
+{
+  "routeName": "线路二：柔韧性与身体姿态",
+  "difficulty": "V3/V4",
+  "author": "Copilot",
+  "holds": {
+    "start": [15, 14],
+    "hand": [55, 56, 67, 66],
+    "finish": [81]
+  }
+}
