@@ -8,7 +8,7 @@ on:
       - 'routes/**.json'
       - 'images/with_mark.png'
       - '.github/workflows/**'
-      - '.github/scripts/**.py' # <-- 修正路径
+      - '.github/scripts/**.py'
   workflow_dispatch:
 
 jobs:
@@ -34,16 +34,13 @@ jobs:
 
       - name: '步骤 1: 从图片生成岩点坐标 (Generate Hold Coordinates)'
         run: |
-          # 使用正确的脚本路径
           python .github/scripts/generate_coords.py
 
       - name: '步骤 2: 为每条路线绘制图片 (Draw Route Images)'
         run: |
-          # 查找 routes 目录下的所有 .json 文件，并为每一个生成图片
           for route_file in routes/*.json; do
             if [ -f "$route_file" ]; then
               echo ">>> Processing route: $route_file"
-              # 使用正确的脚本路径
               python .github/scripts/draw_route.py "$route_file"
             fi
           done
@@ -52,7 +49,8 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "feat(routes): 自动生成路线图和坐标"
-          file_pattern: "data/holds.json generated_routes/*.png"
+          # 修正：将所有生成的文件都包含进来
+          file_pattern: "data/holds.json generated_routes/*.png generated_routes/*.json"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
           commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
