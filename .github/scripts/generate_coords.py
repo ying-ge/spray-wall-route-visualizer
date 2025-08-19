@@ -1,12 +1,15 @@
 import easyocr
 import json
 import cv2
-import re  # 引入正则表达式库用于精确匹配
+import numpy as np # 需要 numpy
 from pathlib import Path
 
 def generate_holds_coordinates(marked_image_path, output_json_path, debug_image_path=None):
     """使用 OCR 从带标记的图片中识别岩点ID及其坐标。"""
     print("正在初始化 OCR 读取器 (这可能需要一些时间)...")
+    # --- 改进1: 添加字符白名单 ---
+    # 只识别数字和26个小写字母
+    allowed_chars = '0123456789abcdefghijklmnopqrstuvwxyz'
     reader = easyocr.Reader(['en'])
 
     print(f"正在读取图片: {marked_image_path}")
@@ -14,31 +17,48 @@ def generate_holds_coordinates(marked_image_path, output_json_path, debug_image_
     if image is None:
         raise FileNotFoundError(f"无法找到或读取图片: {marked_image_path}")
 
+    # --- 改进2: 图像预处理 ---
+    print("正在对图片进行预处理以提升OCR准确率...")
+    # 1. 转为灰度图
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    
+    # 2. 应用自适应阈值，使其在不同光照下效果更好
+    # blockSize 必须是奇数, C 是从均值或加权均值中减去的常数
+    binary = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, 
+                                   cv2.THRESH_BINARY_INV, 25, 10)
+
+    # 3. 形态学操作来去噪和连接字符
+    kernel = np.ones((2,2), np.uint8)
+    processed_image = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
+    
+    # (可选) 如果需要调试预处理效果，可以保存中间图片
+    # cv2.imwrite('generated_routes/debug_preprocessed.png', processed_image)
+
     debug_image = image.copy()
-    print("正在使用 OCR 识别图片中的文本...")
-    results = reader.readtext(image)
+    print("正在使用 OCR 识别处理后的图片中的文本...")
+    # 在 readtext 中传入白名单
+    results = reader.readtext(processed_image, allowlist=allowed_chars)
 
     holds_data = {}
     print(f"识别到 {len(results)} 个可能的标记。正在处理和过滤...")
 
     for (bbox, text, prob) in results:
-        if prob < 0.6: # 可以适当提高置信度门槛
+        # --- 改进3: 调整置信度阈值 ---
+        if prob < 0.4: # 预处理后可以适当放宽标准
             print(f"  - (忽略) 低置信度: '{text}' (置信度: {prob:.2f})")
             continue
 
-        hold_id = text.strip().lower() # 统一转为小写，以防识别出大写字母
+        hold_id = text.strip().lower()
         
         if not hold_id:
             continue
 
-        # --- **新增的严格格式验证** ---
-        # 规则：ID 必须是纯数字 (例如 '101') 或单个小写字母 (例如 'a')
+        # 格式验证 (这个依然保留，非常重要)
         is_valid_format = hold_id.isdigit() or (len(hold_id) == 1 and 'a' <= hold_id <= 'z')
         
         if not is_valid_format:
             print(f"  - (过滤) 格式错误: '{text}' -> '{hold_id}' (不符合'纯数字'或'单个字母'的规则)")
             continue
-        # --- 验证结束 ---
 
         (tl, tr, br, bl) = bbox
         tl = (int(tl[0]), int(tl[1]))
@@ -82,6 +102,6 @@ if __name__ == '__main__':
     
     if not marked_image.exists():
         print(f"错误: 找不到标记图片 '{marked_image}'。")
-        print("请确保你已经将 with_mark.png 上传到了 'image' 目录下。")
+        print("请确保你已经将 with_mark.png 上传到了 'images' 目录下。")
     else:
         generate_holds_coordinates(marked_image, output_json, debug_image)
