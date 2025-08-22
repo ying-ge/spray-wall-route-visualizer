@@ -1,0 +1,6 @@
+<view>
+  <camera device-position="back" flash="auto" style="width: 100vw; height: 300px;"></camera>
+  <button bindtap="takePhoto">拍照</button>
+  <image wx:if="{{photoUrl}}" src="{{photoUrl}}" style="width:200px;height:200px;"></image>
+  <image wx:if="{{resultUrl}}" src="{{resultUrl}}" style="width:200px;height:200px;"></image>
+</view>
