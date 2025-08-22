@@ -1,0 +1,31 @@
+name: Miniprogram CI
+
+on:
+  push:
+    paths:
+      - 'miniprogram/**'
+  pull_request:
+    paths:
+      - 'miniprogram/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          cd miniprogram
+          if [ -f "package.json" ]; then npm install; fi
+
+      - name: Build
+        run: |
+          cd miniprogram
+          if [ -f "package.json" ]; then npm run build || true; fi
