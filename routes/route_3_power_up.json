@@ -1,0 +1,17 @@
+{
+  "routeName": "Route 3: Power-Up",
+  "difficulty": "Basic Power & Dyno",
+  "author": "ClimbingKoala@xhs",
+  "holds": {
+    "foot": [26, 5, 138, 23, 19, "w"]
+  },
+  "moves": [
+    { "hold_id": 28, "hand": "both", "type": "start", "text": "S" },
+    { "hold_id": 24, "hand": "right", "text": "R1" },
+    { "hold_id": 134, "hand": "left", "text": "L1" },
+    { "hold_id": 68, "hand": "left", "text": "L2 Dyno" },
+    { "hold_id": 67, "hand": "right", "text": "R2" },
+    { "hold_id": "p", "hand": "left", "text": "L3" },
+    { "hold_id": 66, "hand": "both", "type": "finish", "text": "F" }
+  ]
+}
