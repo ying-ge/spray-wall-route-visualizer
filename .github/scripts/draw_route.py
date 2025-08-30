@@ -4,7 +4,6 @@ from pathlib import Path
 import argparse
 
 # --- 样式配置 ---
-# 为不同类型的岩点定义颜色、形状和文字颜色
 STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
@@ -27,19 +26,16 @@ def draw_hold(draw, center_xy, style, text=None, font=None):
     x, y = center_xy
     radius = STYLE_CONFIG['radius']
     
-    # 绘制外框
     box = [x - radius, y - radius, x + radius, y + radius]
     if style.get('shape') == 'rectangle':
         draw.rectangle(box, outline=style['outline'], width=STYLE_CONFIG['outline_width'])
-    else: # 默认是圆形
+    else:
         draw.ellipse(box, outline=style['outline'], width=STYLE_CONFIG['outline_width'])
 
-    # 绘制中心白点
     dot_radius = STYLE_CONFIG['center_dot_radius']
     dot_box = [x - dot_radius, y - dot_radius, x + dot_radius, y + dot_radius]
     draw.ellipse(dot_box, fill=STYLE_CONFIG['center_dot_color'])
 
-    # 绘制文字
     if text and font:
         text_pos_x = x + STYLE_CONFIG['text_offset']
         text_pos_y = y - STYLE_CONFIG['text_offset']
@@ -75,7 +71,7 @@ def draw_route(route_path, holds_coords_path, base_image_path, output_image_path
     try:
         font = ImageFont.truetype(str(font_path) if font_path else "arial.ttf", STYLE_CONFIG['font_size'])
     except IOError:
-        print("警告: 找不到字体，使用默认字体。")
+        print("警告: 找不到用于岩点标签的字体，将使用默认字体。")
         font = ImageFont.load_default()
 
     # 1. 绘制所有可用脚点
@@ -99,7 +95,6 @@ def draw_route(route_path, holds_coords_path, base_image_path, output_image_path
             coords = holds_coords[hold_id]
             text_to_draw = move.get('text', '')
 
-            # 根据类型选择样式
             if move.get('type') == 'start':
                 style = STYLE_CONFIG['start']
             elif move.get('type') == 'finish':
@@ -117,7 +112,14 @@ def draw_route(route_path, holds_coords_path, base_image_path, output_image_path
 
     # 3. 绘制路线标题信息
     route_info_text = f"{route_data.get('routeName', '未命名')} | {route_data.get('difficulty', '未知')} | by {route_data.get('author', '匿名')}"
-    title_font = ImageFont.truetype(str(font_path) if font_path else "arial.ttf", 60)
+    
+    # --- **修改点：为标题字体加载添加错误处理** ---
+    try:
+        title_font = ImageFont.truetype(str(font_path) if font_path else "arial.ttf", 60)
+    except IOError:
+        print("警告: 找不到用于标题的字体，将使用默认字体。")
+        title_font = ImageFont.load_default() # 回退到默认字体
+
     draw_text_with_outline(draw, (50, 50), route_info_text, title_font, (255, 255, 255), (0, 0, 0), 2)
     
     # 保存图片
@@ -132,15 +134,12 @@ if __name__ == '__main__':
 
     route_to_draw = Path(args.route_file)
     
-    # 如下路径均是相对于项目根目录
     holds_json = Path('data/holds.json')
     original_image = Path('images/ori_image.png') 
     
     output_filename = f"{route_to_draw.stem}.png"
-    # 输出目录也将在项目根目录下创建
     output_image = Path('generated_routes') / output_filename
 
-    # 检查文件是否存在
     if not route_to_draw.exists():
         print(f"错误: 路线文件不存在 '{route_to_draw}'")
     elif not holds_json.exists():
