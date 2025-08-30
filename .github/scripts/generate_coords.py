@@ -8,10 +8,12 @@ import easyocr
 import json
 import cv2
 from pathlib import Path
+import re
 
 def generate_holds_coordinates(marked_image_path, output_json_path, debug_image_path=None):
     print("正在初始化 OCR 读取器...")
-    reader = easyocr.Reader(['en'])
+    # 设置只允许识别#, a-z, 0-9
+    reader = easyocr.Reader(['en'], allowlist='#abcdefghijklmnopqrstuvwxyz0123456789')
 
     print(f"正在读取图片: {marked_image_path}")
     image = cv2.imread(str(marked_image_path))
@@ -26,6 +28,14 @@ def generate_holds_coordinates(marked_image_path, output_json_path, debug_image_
 
     for (bbox, text, prob) in results:
         clean_text = text.strip().lower()
+        # 去掉前缀 #，只保留字母或数字部分
+        if clean_text.startswith('#'):
+            clean_text = clean_text[1:]
+        # 判断是否为合法岩点编号
+        is_letter = len(clean_text) == 1 and ('a' <= clean_text <= 'z')
+        is_number = clean_text.isdigit() and (1 <= int(clean_text) <= 140)
+        is_valid = (is_letter or is_number) and prob >= 0.5
+
         (tl, tr, br, bl) = bbox
         tl_int = (int(tl[0]), int(tl[1]))
         br_int = (int(br[0]), int(br[1]))
@@ -33,9 +43,7 @@ def generate_holds_coordinates(marked_image_path, output_json_path, debug_image_
         cY = int((tl[1] + br[1]) / 2.0)
 
         # 所有识别结果都画出来
-        label = f"{clean_text} ({prob:.2f})"
-        # 合格的用绿色，不合格的用红色
-        is_valid = (clean_text.isdigit() or (len(clean_text) == 1 and 'a' <= clean_text <= 'z')) and prob >= 0.5
+        label = f"{text.strip()} ({prob:.2f})"
         color = (0, 255, 0) if is_valid else (0, 0, 255)
         cv2.rectangle(debug_image, tl_int, br_int, color, 2)
         cv2.putText(debug_image, label, (tl_int[0], tl_int[1] - 10),
@@ -58,7 +66,7 @@ def generate_holds_coordinates(marked_image_path, output_json_path, debug_image_
         print(f"调试图片已保存到: {debug_image_path}")
 
 if __name__ == '__main__':
-    marked_image = Path('images/with_mark.png')
+    marked_image = Path('images/with_markplus.png')
     output_json = Path('data/holds.json')
     debug_image = Path('generated_routes/debug_ocr.png')
 
