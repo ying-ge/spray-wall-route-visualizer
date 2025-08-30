@@ -1,3 +1,9 @@
+import os
+
+if os.path.exists("data/holds.json"):
+    print("data/holds.json 已存在，跳过自动生成。")
+    exit(0)
+    
 import easyocr
 import json
 import cv2
