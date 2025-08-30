@@ -1,0 +1,22 @@
+{
+  "routeName": "Route 4: The Challenger",
+  "difficulty": "Mixed Technique",
+  "author": "ClimbingKoala@xhs",
+  "holds": {
+    "foot": [105, 1, 21, "b", "c", "e", "f"]
+  },
+  "moves": [
+    { "hold_id": 34, "hand": "both", "type": "start", "text": "S" },
+    { "hold_id": 30, "hand": "left", "text": "L1" },
+    { "hold_id": 22, "hand": "right", "text": "R1" },
+    { "hold_id": 18, "hand": "left", "text": "L2" },
+    { "hold_id": "w", "hand": "right", "text": "R2" },
+    { "hold_id": "d", "hand": "left", "text": "L3" },
+    { "hold_id": "g", "hand": "right", "text": "R3" },
+    { "hold_id": "h", "hand": "left", "text": "L4" },
+    { "hold_id": "q", "hand": "right", "text": "R4" },
+    { "hold_id": "s", "hand": "left", "text": "L5" },
+    { "hold_id": 139, "hand": "right", "text": "R5" },
+    { "hold_id": 80, "hand": "both", "type": "finish", "text": "F" }
+  ]
+}
