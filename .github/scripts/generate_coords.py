@@ -12,8 +12,7 @@ import re
 
 def generate_holds_coordinates(marked_image_path, output_json_path, debug_image_path=None):
     print("正在初始化 OCR 读取器...")
-    # 设置只允许识别#, a-z, 0-9
-    reader = easyocr.Reader(['en'], allowlist='#abcdefghijklmnopqrstuvwxyz0123456789')
+    reader = easyocr.Reader(['en'])
 
     print(f"正在读取图片: {marked_image_path}")
     image = cv2.imread(str(marked_image_path))
@@ -21,7 +20,8 @@ def generate_holds_coordinates(marked_image_path, output_json_path, debug_image_
         raise FileNotFoundError(f"无法找到或读取图片: {marked_image_path}")
 
     debug_image = image.copy()
-    results = reader.readtext(image)
+    # 只识别 #、a-z、0-9
+    results = reader.readtext(image, allowlist='#abcdefghijklmnopqrstuvwxyz0123456789')
 
     holds_data = {}
     print(f"识别到 {len(results)} 个文本块。")
