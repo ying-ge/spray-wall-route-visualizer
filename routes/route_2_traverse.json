@@ -1,0 +1,19 @@
+{
+  "routeName": "Route 2: The Traverse",
+  "difficulty": "Traverse & Balance",
+  "author": "ClimbingKoala@xhs",
+  "holds": {
+    "foot": [43, 47, 41, 53, 27, 138, 26, "d"]
+  },
+  "moves": [
+    { "hold_id": 93, "hand": "both", "type": "start", "text": "S" },
+    { "hold_id": 92, "hand": "left", "text": "L1" },
+    { "hold_id": 48, "hand": "right", "text": "R1" },
+    { "hold_id": 82, "hand": "left", "text": "L2" },
+    { "hold_id": 50, "hand": "right", "text": "R2" },
+    { "hold_id": 72, "hand": "left", "text": "L3" },
+    { "hold_id": 71, "hand": "right", "text": "R3" },
+    { "hold_id": 140, "hand": "left", "text": "L4" },
+    { "hold_id": 69, "hand": "both", "type": "finish", "text": "F" }
+  ]
+}
