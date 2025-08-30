@@ -12,7 +12,7 @@ def main():
     found_ids = set(holds.keys())
 
     # 生成标准id集合
-    expected_ids = {str(i) for i in range(1, 127)}
+    expected_ids = {str(i) for i in range(1, 141)}
     expected_ids.update({chr(c) for c in range(ord("a"), ord("z")+1)})
 
     missing_ids = sorted(expected_ids - found_ids, key=lambda x: (x.isdigit(), int(x) if x.isdigit() else x))
