@@ -54,3 +54,7 @@ jobs:
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
           commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+
+      - name: '检查未识别的岩点'
+        run: |
+          python .github/scripts/check_missing_holds.py
