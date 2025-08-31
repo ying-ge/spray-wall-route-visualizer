@@ -37,6 +37,14 @@ jobs:
         run: |
           python .github/scripts/generate_coords.py
 
+      - name: '检查未识别的岩点'
+        run: |
+          python .github/scripts/check_missing_holds.py
+
+      - name: '标注所有岩点坐标到 debug_mark.png'
+        run: |
+          python .github/scripts/mark_all_holds.py
+
       - name: '步骤 2: 为每条路线绘制图片 (Draw Route Images)'
         run: |
           for route_file in routes/*.json; do
@@ -54,11 +62,3 @@ jobs:
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
           commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
-
-      - name: '检查未识别的岩点'
-        run: |
-          python .github/scripts/check_missing_holds.py
-
-      - name: '步骤 1.5: 标注所有岩点坐标到 debug_mark.png'
-        run: |
-          python .github/scripts/mark_all_holds.py
