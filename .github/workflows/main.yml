@@ -55,22 +55,22 @@ jobs:
           echo ">>> Processing all routes from routes/all_routes.json"
           python .github/scripts/draw_route.py "routes/all_routes.json"
 
+      # --- **修改点: 从文件列表中移除了 debug_mark.png** ---
       - name: '步骤 4: 提交生成的文件 (Commit generated files)'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "feat(routes): 自动生成所有路线图"
-          file_pattern: "data/holds.json generated_routes/*.png debug_mark.png"
+          # 只提交实际生成的核心文件
+          file_pattern: "data/holds.json generated_routes/*.png"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
           commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
 
-      # --- 新增步骤 5: 压缩所有路线图 ---
       - name: '步骤 5: 压缩所有路线图为ZIP包 (Compress all route images into a ZIP)'
         if: always()
         run: |
           zip -r climbing_routes.zip generated_routes
 
-      # --- 新增步骤 6: 上传ZIP压缩包作为产物 ---
       - name: '步骤 6: 上传路线图压缩包 (Upload Route Images Artifact)'
         if: always()
         uses: actions/upload-artifact@v4
