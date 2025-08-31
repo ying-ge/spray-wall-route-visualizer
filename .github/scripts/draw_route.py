@@ -9,15 +9,17 @@ STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'left_hand':   {'outline': (33, 150, 243, 255), 'shape': 'circle',    'text_color': (255, 255, 255)},
-    'right_hand':  {'outline': (255, 193, 7, 255),  'shape': 'circle',    'text_color': (0, 0, 0)},
+    'right_hand':  {'outline': (255, 193, 7, 255),  'shape': 'circle',    'text_color': (255, 255, 255)},
     'both_hands':  {'outline': (156, 39, 176, 255), 'shape': 'circle',    'text_color': (255, 255, 255)},
     'foot':        {'outline': (205, 220, 57, 180), 'shape': 'circle'},
     
     'radius': 18,
     'outline_width': 6,
-    # --- **修改点：减小文字偏移量，使其更贴近岩点** ---
     'text_offset': 25,
-    'font_size': 70,
+    # --- **修改点 1: 增大字号** ---
+    'font_size': 85,
+    # --- **修改点 2: 增加文字描边宽度以加粗** ---
+    'text_outline_width': 3,
     'center_dot_radius': 4,
     'center_dot_color': (255, 255, 255, 220),
 
@@ -26,7 +28,6 @@ STYLE_CONFIG = {
     'arrowhead_length': 25,
     'arrowhead_angle': 25,
 
-    # 全局偏移量已重置为 0
     'center_offset_x': 0,
     'center_offset_y': 0,
 }
@@ -70,7 +71,7 @@ def draw_hold(draw, center_xy, style, text=None, font=None):
         draw_text_with_outline(draw, (text_pos_x, text_pos_y), text, font,
                                fill_color=style['text_color'],
                                outline_color=(0, 0, 0, 255),
-                               outline_width=2)
+                               outline_width=STYLE_CONFIG['text_outline_width'])
 
 def draw_text_with_outline(draw, position, text, font, fill_color, outline_color, outline_width):
     """在图片上绘制带有描边的文字。"""
@@ -96,11 +97,20 @@ def draw_route(route_path, holds_coords_path, base_image_path, output_image_path
     image = Image.open(base_image_path).convert("RGBA")
     draw = ImageDraw.Draw(image, "RGBA")
 
+    # --- **修改点 3: 优先加载粗体字库** ---
     try:
-        font = ImageFont.truetype(str(font_path) if font_path else "arial.ttf", STYLE_CONFIG['font_size'])
+        # 优先尝试加载 Arial Bold 字体
+        font = ImageFont.truetype("arialbd.ttf", STYLE_CONFIG['font_size'])
+        print("成功加载 Arial Bold 粗体。")
     except IOError:
-        print("警告: 找不到用于岩点标签的字体，将使用默认字体。")
-        font = ImageFont.load_default()
+        try:
+            # 如果粗体失败，回退到普通 Arial
+            font = ImageFont.truetype("arial.ttf", STYLE_CONFIG['font_size'])
+            print("警告: 找不到 Arial Bold, 已回退到普通 Arial。")
+        except IOError:
+            # 如果都失败，使用默认字体
+            print("警告: 找不到 Arial 字体，将使用默认字体。")
+            font = ImageFont.load_default()
     
     offset_x = STYLE_CONFIG.get('center_offset_x', 0)
     offset_y = STYLE_CONFIG.get('center_offset_y', 0)
@@ -155,10 +165,13 @@ def draw_route(route_path, holds_coords_path, base_image_path, output_image_path
     route_info_text = f"{route_data.get('routeName', '未命名')} | {route_data.get('difficulty', '未知')} | by {route_data.get('author', '匿名')}"
     
     try:
-        title_font = ImageFont.truetype(str(font_path) if font_path else "arial.ttf", 60)
+        title_font = ImageFont.truetype("arialbd.ttf", 60)
     except IOError:
-        print("警告: 找不到用于标题的字体，将使用默认字体。")
-        title_font = ImageFont.load_default()
+        try:
+            title_font = ImageFont.truetype("arial.ttf", 60)
+        except IOError:
+            print("警告: 找不到用于标题的字体，将使用默认字体。")
+            title_font = ImageFont.load_default()
 
     draw_text_with_outline(draw, (50, 50), route_info_text, title_font, (255, 255, 255), (0, 0, 0), 2)
     
