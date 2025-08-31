@@ -1,76 +1,84 @@
 import os
-
 if os.path.exists("data/holds.json"):
     print("data/holds.json 已存在，跳过自动生成。")
     exit(0)
     
+import cv2
 import easyocr
 import json
-import cv2
-from pathlib import Path
+import numpy as np
+import argparse
+import os
 import re
 
-def generate_holds_coordinates(marked_image_path, output_json_path, debug_image_path=None):
-    print("正在初始化 OCR 读取器...")
-    reader = easyocr.Reader(['en'])
+def extract_hold_coordinates(image_path, output_path):
+    """
+    从给定的图片中识别岩点标记，并将其中心坐标保存为 JSON 文件。
 
-    print(f"正在读取图片: {marked_image_path}")
-    image = cv2.imread(str(marked_image_path))
+    Args:
+        image_path (str): 输入图片的路径。
+        output_path (str): 输出 JSON 文件的路径。
+    """
+    # 1. 初始化 EasyOCR 读取器
+    # 我们只关心英文和数字，所以指定 'en'
+    print("正在初始化 EasyOCR...")
+    reader = easyocr.Reader(['en'], gpu=False) # 在 GitHub Actions 环境中使用 CPU
+
+    # 2. 读取图片
+    print(f"正在读取图片: {image_path}")
+    if not os.path.exists(image_path):
+        print(f"错误: 图片文件未找到 at {image_path}")
+        return
+    
+    image = cv2.imread(image_path)
     if image is None:
-        raise FileNotFoundError(f"无法找到或读取图片: {marked_image_path}")
+        print(f"错误: 无法加载图片 at {image_path}")
+        return
 
-    debug_image = image.copy()
-    # 只识别 #、a-z、0-9
-    results = reader.readtext(image, allowlist='#abcdefghijklmnopqrstuvwxyz0123456789')
+    # 3. 使用 EasyOCR 进行文字识别
+    print("正在识别图片中的文字...")
+    results = reader.readtext(image)
 
-    holds_data = {}
-    print(f"识别到 {len(results)} 个文本块。")
+    # 4. 处理识别结果并提取坐标
+    holds_coords = {}
+    print(f"识别到 {len(results)} 个文本框，正在处理...")
+
+    # 正则表达式匹配 #a, #b, ..., #z 和 #1, #2, ..., #140
+    pattern = re.compile(r'^#([a-z]|[1-9][0-9]?|1[0-3][0-9]|140)$')
 
     for (bbox, text, prob) in results:
+        # 清理识别出的文本
         clean_text = text.strip().lower()
-        # 去掉前缀 #，只保留字母或数字部分
-        if clean_text.startswith('#'):
-            clean_text = clean_text[1:]
-        # 判断是否为合法岩点编号
-        is_letter = len(clean_text) == 1 and ('a' <= clean_text <= 'z')
-        is_number = clean_text.isdigit() and (1 <= int(clean_text) <= 140)
-        is_valid = (is_letter or is_number) and prob >= 0.5
+        
+        match = pattern.match(clean_text)
+        if match:
+            hold_id = match.group(1) # 获取括号内的内容 (例如 'a' or '25')
+            
+            # bbox 是一个包含四个点的列表 [[x1, y1], [x2, y2], [x3, y3], [x4, y4]]
+            # 计算边界框的中心点
+            center_x = int(np.mean([point[0] for point in bbox]))
+            center_y = int(np.mean([point[1] for point in bbox]))
 
-        (tl, tr, br, bl) = bbox
-        tl_int = (int(tl[0]), int(tl[1]))
-        br_int = (int(br[0]), int(br[1]))
-        cX = int((tl[0] + br[0]) / 2.0)
-        cY = int((tl[1] + br[1]) / 2.0)
+            holds_coords[hold_id] = {'x': center_x, 'y': center_y}
+            print(f"找到岩点: {hold_id} -> 坐标: ({center_x}, {center_y})")
 
-        # 所有识别结果都画出来
-        label = f"{text.strip()} ({prob:.2f})"
-        color = (0, 255, 0) if is_valid else (0, 0, 255)
-        cv2.rectangle(debug_image, tl_int, br_int, color, 2)
-        cv2.putText(debug_image, label, (tl_int[0], tl_int[1] - 10),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, color, 2)
-        cv2.circle(debug_image, (cX, cY), 5, color, -1)
+    # 5. 确保输出目录存在
+    output_dir = os.path.dirname(output_path)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
-        # 只保存合格的点
-        if is_valid:
-            holds_data[clean_text] = {"x": cX, "y": cY}
-
-    output_path = Path(output_json_path)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+    # 6. 将结果写入 JSON 文件
+    print(f"处理完成，正在将 {len(holds_coords)} 个岩点坐标写入: {output_path}")
     with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(holds_data, f, indent=4, ensure_ascii=False)
+        json.dump(holds_coords, f, indent=2, sort_keys=True)
 
-    if debug_image_path:
-        debug_path = Path(debug_image_path)
-        debug_path.parent.mkdir(parents=True, exist_ok=True)
-        cv2.imwrite(str(debug_path), debug_image)
-        print(f"调试图片已保存到: {debug_image_path}")
+    print("岩点坐标生成完毕！")
 
 if __name__ == '__main__':
-    marked_image = Path('images/with_markplus.png')
-    output_json = Path('data/holds.json')
-    debug_image = Path('generated_routes/debug_ocr.png')
-
-    if not marked_image.exists():
-        print(f"错误: 找不到标记图片 '{marked_image}'。")
-    else:
-        generate_holds_coordinates(marked_image, output_json, debug_image)
+    parser = argparse.ArgumentParser(description="从图片中生成岩点坐标。")
+    parser.add_argument('--image_path', type=str, required=True, help='输入图片的路径。')
+    parser.add_argument('--output_path', type=str, required=True, help='输出 JSON 文件的路径。')
+    
+    args = parser.parse_args()
+    
+    extract_hold_coordinates(args.image_path, args.output_path)
