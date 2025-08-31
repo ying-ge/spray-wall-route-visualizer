@@ -15,7 +15,8 @@ STYLE_CONFIG = {
     
     'radius': 18,
     'outline_width': 6,
-    'text_offset': 45,
+    # --- **修改点：减小文字偏移量，使其更贴近岩点** ---
+    'text_offset': 25,
     'font_size': 70,
     'center_dot_radius': 4,
     'center_dot_color': (255, 255, 255, 220),
@@ -25,8 +26,7 @@ STYLE_CONFIG = {
     'arrowhead_length': 25,
     'arrowhead_angle': 25,
 
-    # --- **修改点：将全局偏移量重置为 0** ---
-    # 既然 generate_coords.py 已经能准确定位中心，就不再需要手动偏移了。
+    # 全局偏移量已重置为 0
     'center_offset_x': 0,
     'center_offset_y': 0,
 }
@@ -102,7 +102,6 @@ def draw_route(route_path, holds_coords_path, base_image_path, output_image_path
         print("警告: 找不到用于岩点标签的字体，将使用默认字体。")
         font = ImageFont.load_default()
     
-    # 应用全局偏移量 (现在是 0, 0)
     offset_x = STYLE_CONFIG.get('center_offset_x', 0)
     offset_y = STYLE_CONFIG.get('center_offset_y', 0)
 
