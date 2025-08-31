@@ -25,11 +25,10 @@ STYLE_CONFIG = {
     'arrowhead_length': 25,
     'arrowhead_angle': 25,
 
-    # --- **新增：中心点全局偏移量 (请在此处微调)** ---
-    # 根据数字标记和岩点的实际位置关系进行调整
-    # 负数向左/上，正数向右/下
-    'center_offset_x': -25, # 建议值: -25 (将标记中心向左移动25像素)
-    'center_offset_y': -5,  # 建议值: -5 (将标记中心向上移动5像素)
+    # --- **修改点：将全局偏移量重置为 0** ---
+    # 既然 generate_coords.py 已经能准确定位中心，就不再需要手动偏移了。
+    'center_offset_x': 0,
+    'center_offset_y': 0,
 }
 
 def draw_arrow(draw, start_xy, end_xy):
@@ -103,7 +102,7 @@ def draw_route(route_path, holds_coords_path, base_image_path, output_image_path
         print("警告: 找不到用于岩点标签的字体，将使用默认字体。")
         font = ImageFont.load_default()
     
-    # --- **修改点：应用全局偏移量** ---
+    # 应用全局偏移量 (现在是 0, 0)
     offset_x = STYLE_CONFIG.get('center_offset_x', 0)
     offset_y = STYLE_CONFIG.get('center_offset_y', 0)
 
