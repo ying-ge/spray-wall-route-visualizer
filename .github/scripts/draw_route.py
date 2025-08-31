@@ -5,7 +5,7 @@ from pathlib import Path
 import argparse
 import re
 
-# --- 样式配置 ---
+# --- 样式配置 (保持不变) ---
 STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
@@ -17,7 +17,7 @@ STYLE_CONFIG = {
     'radius': 18,
     'outline_width': 6,
     'text_offset': 25,
-    'font_size': 85,
+    'font_size': 100,
     'text_outline_width': 3,
     'center_dot_radius': 4,
     'center_dot_color': (255, 255, 255, 220),
@@ -67,7 +67,7 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     offset_x = STYLE_CONFIG.get('center_offset_x', 0)
     offset_y = STYLE_CONFIG.get('center_offset_y', 0)
 
-    # --- 修改点: 只绘制JSON中明确指定的脚点 ---
+    # 绘制JSON中明确指定的脚点
     if 'holds' in route_data and 'foot' in route_data['holds']:
         style = STYLE_CONFIG['foot']
         for hold_id in route_data['holds']['foot']:
@@ -80,7 +80,6 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     # 绘制手点和箭头
     prev_coords = None
     if 'moves' in route_data:
-        # 绘制箭头
         for move in route_data['moves']:
             hold_id = str(move['hold_id'])
             if hold_id not in holds_coords: continue
@@ -89,7 +88,6 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
             if prev_coords: draw_arrow(draw, prev_coords, current_coords)
             prev_coords = current_coords
         
-        # 绘制手点标记
         for move in route_data['moves']:
             hold_id = str(move['hold_id'])
             if hold_id not in holds_coords: continue
@@ -97,7 +95,6 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
             center_xy = (coords_raw['x'] + offset_x, coords_raw['y'] + offset_y)
             style_key = 'start' if move.get('type') == 'start' else 'finish' if move.get('type') == 'finish' else f"{move.get('hand')}_hand"
             style = STYLE_CONFIG.get(style_key)
-            # 自动添加L/R/S/F文字
             text_to_draw = move.get('text')
             if not text_to_draw:
                 if move.get('type') == 'start': text_to_draw = 'S'
@@ -111,18 +108,23 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     route_info_text = f"{route_data.get('routeName', 'N/A')} | {route_data.get('difficulty', 'N/A')} | by {route_data.get('author', 'N/A')}"
     draw_text_with_outline(draw, (50, 50), route_info_text, fonts['title'], (255, 255, 255), (0, 0, 0), 2)
     
-    # 生成安全的文件名并保存
+    # --- **修改点: 压缩图片** ---
+    # 1. 将图片转换为256色的调色板模式 (P)，这会极大减小文件大小
+    #    `dither=Image.Dither.NONE` 禁用了颜色抖动，以保持纯色块的清晰度
+    quantized_image = image.quantize(colors=256, dither=Image.Dither.NONE)
+    
+    # 生成安全的文件名
     safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_data.get('routeName', 'untitled'))
     difficulty = route_data.get('difficulty', 'V_')
     output_filename = f"{difficulty}_{safe_filename.replace(' ', '_')}.png"
     output_image_path = output_dir / output_filename
     
-    image.save(output_image_path, 'PNG')
-    print(f"  ✓ Saved: {output_image_path}")
+    # 2. 保存优化后的PNG文件
+    quantized_image.save(output_image_path, 'PNG', optimize=True)
+    print(f"  ✓ Saved (and compressed): {output_image_path}")
 
-# --- 主函数 (已更新) ---
+# --- 主函数 (保持不变) ---
 def process_all_routes(routes_db_path, holds_coords_path, base_image_path, output_dir):
-    """读取包含所有路线的JSON文件，并为每一条路线生成图片。"""
     print(f"Loading routes database: {routes_db_path}")
     with open(routes_db_path, 'r', encoding='utf-8') as f:
         routes_json = json.load(f)
