@@ -127,3 +127,9 @@ STYLE_CONFIG = {
     # ...
 }
 ```
+
+## 🖼️ 路线图示例 (Example Route Image)
+
+下面是一张由本系统自动生成的V3路线图：
+
+![V4 Pinch_Block_Power 路线图示例](generated_routes/V4_Pinch_Block_Power.png)
