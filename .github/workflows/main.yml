@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'routes/**.json'
+      - 'routes/all_routes.json' 
       - 'images/with_markplus.png'
       - '.github/workflows/**'
       - '.github/scripts/**.py'
@@ -41,7 +41,6 @@ jobs:
           pip install numpy opencv-python-headless easyocr Pillow
 
       - name: '步骤 1: 从图片生成岩点坐标 (Generate Hold Coordinates)'
-        id: generate_coords
         run: |
           python .github/scripts/generate_coords.py \
             --image_path "images/with_markplus.png" \
@@ -49,30 +48,37 @@ jobs:
 
       - name: '步骤 2: 标注所有岩点坐标用于调试 (Mark all holds for debugging)'
         run: |
-          # 假设此脚本会生成 generated_routes/debug_mark.png
           python .github/scripts/mark_all_holds.py
 
-      - name: '步骤 3: 为每条路线绘制图片 (Draw Route Images)'
+      - name: '步骤 3: 为所有路线绘制图片 (Draw All Route Images)'
         run: |
-          for route_file in routes/*.json; do
-            if [ -f "$route_file" ]; then
-              echo ">>> Processing route: $route_file"
-              python .github/scripts/draw_route.py "$route_file"
-            fi
-          done
+          echo ">>> Processing all routes from routes/all_routes.json"
+          python .github/scripts/draw_route.py "routes/all_routes.json"
 
       - name: '步骤 4: 提交生成的文件 (Commit generated files)'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "feat(routes): 自动生成路线图、坐标和调试图"
-          # 修正 file_pattern：现在它能正确匹配所有生成的文件
-          # generated_routes/*.png 会同时匹配路线图和 debug_mark.png
-          file_pattern: "data/holds.json generated_routes/*.png"
+          commit_message: "feat(routes): 自动生成所有路线图"
+          file_pattern: "data/holds.json generated_routes/*.png debug_mark.png"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
           commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
 
-      - name: '步骤 5: 检查未识别的岩点 (Check for missing holds)'
+      # --- 新增步骤 5: 压缩所有路线图 ---
+      - name: '步骤 5: 压缩所有路线图为ZIP包 (Compress all route images into a ZIP)'
+        if: always()
+        run: |
+          zip -r climbing_routes.zip generated_routes
+
+      # --- 新增步骤 6: 上传ZIP压缩包作为产物 ---
+      - name: '步骤 6: 上传路线图压缩包 (Upload Route Images Artifact)'
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: climbing-routes-images
+          path: climbing_routes.zip
+
+      - name: '步骤 7: 检查未识别的岩点 (Check for missing holds)'
         if: always()
         run: |
           python .github/scripts/check_missing_holds.py
