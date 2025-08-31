@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'routes/**.json'
-      - 'images/with_mark.png'
+      - 'images/with_markplus.png' # 触发工作流的源图片
       - '.github/workflows/**'
       - '.github/scripts/**.py'
   workflow_dispatch:
@@ -26,26 +26,34 @@ jobs:
         with:
           python-version: 3.9
 
+      - name: '缓存 Pip 依赖 (Cache Pip dependencies)'
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: '安装依赖库 (Install dependencies)'
         run: |
           python -m pip install --upgrade pip
           pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
-          # 确保 numpy, opencv, easyocr 和 pillow 都被安装
           pip install numpy opencv-python-headless easyocr Pillow
 
       - name: '步骤 1: 从图片生成岩点坐标 (Generate Hold Coordinates)'
+        id: generate_coords
         run: |
-          python .github/scripts/generate_coords.py
+          # 运行脚本，从 with_markplus.png 图片中识别岩点并生成 data/holds.json
+          python .github/scripts/generate_coords.py \
+            --image_path "images/with_markplus.png" \
+            --output_path "data/holds.json"
 
-      - name: '检查未识别的岩点'
-        run: |
-          python .github/scripts/check_missing_holds.py
-
-      - name: '标注所有岩点坐标到 debug_mark.png'
+      - name: '步骤 2: 标注所有岩点坐标用于调试 (Mark all holds for debugging)'
+        # 此步骤读取生成的 holds.json，并在新图片上标记所有识别出的点，方便可视化检查
         run: |
           python .github/scripts/mark_all_holds.py
 
-      - name: '步骤 2: 为每条路线绘制图片 (Draw Route Images)'
+      - name: '步骤 3: 为每条路线绘制图片 (Draw Route Images)'
         run: |
           for route_file in routes/*.json; do
             if [ -f "$route_file" ]; then
@@ -54,11 +62,18 @@ jobs:
             fi
           done
 
-      - name: '步骤 3: 提交生成的文件 (Commit generated files)'
+      - name: '步骤 4: 提交生成的文件 (Commit generated files)'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "feat(routes): 自动生成路线图和坐标"
-          file_pattern: "data/holds.json generated_routes/*.png"
+          commit_message: "feat(routes): 自动生成路线图、坐标和调试图"
+          # 更新文件匹配模式，以包含新生成的调试图片
+          file_pattern: "data/holds.json generated_routes/*.png debug_mark.png"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
           commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+
+      - name: '步骤 5: 检查未识别的岩点 (Check for missing holds)'
+        # 无论前面的步骤是否成功，都运行此检查，以输出诊断信息
+        if: always()
+        run: |
+          python .github/scripts/check_missing_holds.py
