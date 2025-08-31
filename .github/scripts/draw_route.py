@@ -1,4 +1,5 @@
 import json
+import math
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
 import argparse
@@ -12,17 +13,45 @@ STYLE_CONFIG = {
     'both_hands':  {'outline': (156, 39, 176, 255), 'shape': 'circle',    'text_color': (255, 255, 255)},
     'foot':        {'outline': (205, 220, 57, 180), 'shape': 'circle'},
     
-    # --- **修改点：调整尺寸和文字大小，但保留边框和中心点大小** ---
-    'radius': 18,               # 圈和方框的半径 (原为 35)
-    'outline_width': 6,         # 边框宽度 (恢复为 6)
-    'text_offset': 45,          # 文字偏移量，以适应更大的字体
-    'font_size': 70,            # 标记文字大小 (原为 35)
-    'center_dot_radius': 4,     # 中心圆点半径 (恢复为 4)
-    'center_dot_color': (255, 255, 255, 220)
+    'radius': 18,
+    'outline_width': 6,
+    'text_offset': 45,
+    'font_size': 70,
+    'center_dot_radius': 4,
+    'center_dot_color': (255, 255, 255, 220),
+
+    'arrow_color': (255, 255, 255, 200),
+    'arrow_width': 5,
+    'arrowhead_length': 25,
+    'arrowhead_angle': 25,
+
+    # --- **新增：中心点全局偏移量 (请在此处微调)** ---
+    # 根据数字标记和岩点的实际位置关系进行调整
+    # 负数向左/上，正数向右/下
+    'center_offset_x': -25, # 建议值: -25 (将标记中心向左移动25像素)
+    'center_offset_y': -5,  # 建议值: -5 (将标记中心向上移动5像素)
 }
 
+def draw_arrow(draw, start_xy, end_xy):
+    """从起点到终点绘制一个箭头。"""
+    x1, y1 = start_xy
+    x2, y2 = end_xy
+
+    draw.line([start_xy, end_xy], fill=STYLE_CONFIG['arrow_color'], width=STYLE_CONFIG['arrow_width'])
+
+    angle = math.atan2(y2 - y1, x2 - x1)
+    length = STYLE_CONFIG['arrowhead_length']
+    head_angle = math.radians(STYLE_CONFIG['arrowhead_angle'])
+
+    p1_angle = angle + math.pi - head_angle
+    p2_angle = angle + math.pi + head_angle
+    p1 = (x2 + length * math.cos(p1_angle), y2 + length * math.sin(p1_angle))
+    p2 = (x2 + length * math.cos(p2_angle), y2 + length * math.sin(p2_angle))
+
+    draw.polygon([end_xy, p1, p2], fill=STYLE_CONFIG['arrow_color'])
+
 def draw_hold(draw, center_xy, style, text=None, font=None):
-    """在给定的坐标上绘制岩点标记，并可选择性地添加文字。"""
+    """在给定的坐标上绘制岩点标记。"""
     x, y = center_xy
     radius = STYLE_CONFIG['radius']
     
@@ -45,7 +74,7 @@ def draw_hold(draw, center_xy, style, text=None, font=None):
                                outline_width=2)
 
 def draw_text_with_outline(draw, position, text, font, fill_color, outline_color, outline_width):
-    """在图片上绘制带有描边的文字，以确保可读性。"""
+    """在图片上绘制带有描边的文字。"""
     x, y = position
     for i in range(-outline_width, outline_width + 1, outline_width):
         for j in range(-outline_width, outline_width + 1, outline_width):
@@ -55,7 +84,7 @@ def draw_text_with_outline(draw, position, text, font, fill_color, outline_color
 
 
 def draw_route(route_path, holds_coords_path, base_image_path, output_image_path, font_path=None):
-    """根据路线定义，在基础图片上绘制出整条路线。"""
+    """根据路线定义，在基础图片上绘制出整条路线，并用箭头连接顺序。"""
     print(f"加载路线: {route_path}")
     with open(route_path, 'r', encoding='utf-8') as f:
         route_data = json.load(f)
@@ -73,6 +102,10 @@ def draw_route(route_path, holds_coords_path, base_image_path, output_image_path
     except IOError:
         print("警告: 找不到用于岩点标签的字体，将使用默认字体。")
         font = ImageFont.load_default()
+    
+    # --- **修改点：应用全局偏移量** ---
+    offset_x = STYLE_CONFIG.get('center_offset_x', 0)
+    offset_y = STYLE_CONFIG.get('center_offset_y', 0)
 
     # 1. 绘制所有可用脚点
     if 'foot' in route_data.get('holds', {}):
@@ -80,35 +113,45 @@ def draw_route(route_path, holds_coords_path, base_image_path, output_image_path
         for hold_id in route_data['holds']['foot']:
             if str(hold_id) in holds_coords:
                 coords = holds_coords[str(hold_id)]
-                draw_hold(draw, (coords['x'], coords['y']), style)
-            else:
-                print(f"警告: 脚点ID '{hold_id}' 未在坐标文件中找到。")
+                center_xy = (coords['x'] + offset_x, coords['y'] + offset_y)
+                draw_hold(draw, center_xy, style)
 
-    # 2. 绘制手点序列 (moves)
+    # 2. 绘制手点序列 (moves) 和箭头
+    prev_coords = None
     if 'moves' in route_data:
+        # 首先绘制所有箭头
         for move in route_data['moves']:
             hold_id = str(move['hold_id'])
             if hold_id not in holds_coords:
-                print(f"警告: 手点ID '{hold_id}' 未在坐标文件中找到。")
+                print(f"警告: 手点ID '{hold_id}' 未在坐标文件中找到，跳过。")
                 continue
             
-            coords = holds_coords[hold_id]
+            current_coords_raw = holds_coords[hold_id]
+            current_coords = (current_coords_raw['x'] + offset_x, current_coords_raw['y'] + offset_y)
+            
+            if prev_coords:
+                draw_arrow(draw, prev_coords, current_coords)
+            
+            prev_coords = current_coords
+
+        # 然后在箭头上层绘制所有手点标记
+        for move in route_data['moves']:
+            hold_id = str(move['hold_id'])
+            if hold_id not in holds_coords:
+                continue
+            
+            coords_raw = holds_coords[hold_id]
+            center_xy = (coords_raw['x'] + offset_x, coords_raw['y'] + offset_y)
             text_to_draw = move.get('text', '')
 
-            if move.get('type') == 'start':
-                style = STYLE_CONFIG['start']
-            elif move.get('type') == 'finish':
-                style = STYLE_CONFIG['finish']
-            elif move.get('hand') == 'left':
-                style = STYLE_CONFIG['left_hand']
-            elif move.get('hand') == 'right':
-                style = STYLE_CONFIG['right_hand']
-            elif move.get('hand') == 'both':
-                style = STYLE_CONFIG['both_hands']
-            else:
-                continue
+            if move.get('type') == 'start': style = STYLE_CONFIG['start']
+            elif move.get('type') == 'finish': style = STYLE_CONFIG['finish']
+            elif move.get('hand') == 'left': style = STYLE_CONFIG['left_hand']
+            elif move.get('hand') == 'right': style = STYLE_CONFIG['right_hand']
+            elif move.get('hand') == 'both': style = STYLE_CONFIG['both_hands']
+            else: continue
             
-            draw_hold(draw, (coords['x'], coords['y']), style, text_to_draw, font)
+            draw_hold(draw, center_xy, style, text_to_draw, font)
 
     # 3. 绘制路线标题信息
     route_info_text = f"{route_data.get('routeName', '未命名')} | {route_data.get('difficulty', '未知')} | by {route_data.get('author', '匿名')}"
@@ -121,7 +164,6 @@ def draw_route(route_path, holds_coords_path, base_image_path, output_image_path
 
     draw_text_with_outline(draw, (50, 50), route_info_text, title_font, (255, 255, 255), (0, 0, 0), 2)
     
-    # 保存图片
     output_image_path.parent.mkdir(parents=True, exist_ok=True)
     image.save(output_image_path, 'PNG')
     print(f"成功！路线图已保存至: {output_image_path}")
@@ -132,10 +174,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     route_to_draw = Path(args.route_file)
-    
     holds_json = Path('data/holds.json')
     original_image = Path('images/ori_image.png') 
-    
     output_filename = f"{route_to_draw.stem}.png"
     output_image = Path('generated_routes') / output_filename
 
