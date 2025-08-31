@@ -1,0 +1,336 @@
+{
+  "routes": [
+    {
+      "routeName": "Green Highway",
+      "difficulty": "V0",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "13", "type": "start", "hand": "left" },
+        { "hold_id": "14", "type": "start", "hand": "right" },
+        { "hold_id": "54", "hand": "left" },
+        { "hold_id": "62", "hand": "right" },
+        { "hold_id": "64", "hand": "left" },
+        { "hold_id": "112", "hand": "right" },
+        { "hold_id": "114", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Pink Party",
+      "difficulty": "V0",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "22", "type": "start", "hand": "left" },
+        { "hold_id": "30", "type": "start", "hand": "right" },
+        { "hold_id": "35", "hand": "left" },
+        { "hold_id": "72", "hand": "right" },
+        { "hold_id": "86", "hand": "left" },
+        { "hold_id": "92", "hand": "right" },
+        { "hold_id": "99", "hand": "left" },
+        { "hold_id": "97", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Right-Side Ladder",
+      "difficulty": "V0",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "38", "type": "start", "hand": "left" },
+        { "hold_id": "39", "type": "start", "hand": "right" },
+        { "hold_id": "42", "hand": "left" },
+        { "hold_id": "47", "hand": "right" },
+        { "hold_id": "51", "hand": "left" },
+        { "hold_id": "83", "hand": "right" },
+        { "hold_id": "89", "hand": "left" },
+        { "hold_id": "118", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Banana Boat",
+      "difficulty": "V1",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "17", "type": "start", "hand": "left" },
+        { "hold_id": "b", "type": "start", "hand": "right" },
+        { "hold_id": "d", "hand": "left" },
+        { "hold_id": "3", "hand": "right" },
+        { "hold_id": "g", "hand": "left" },
+        { "hold_id": "68", "hand": "right" },
+        { "hold_id": "70", "hand": "left" },
+        { "hold_id": "131", "hand": "right" },
+        { "hold_id": "66", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Yellow Diagonal",
+      "difficulty": "V1",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "45", "type": "start", "hand": "left" },
+        { "hold_id": "46", "type": "start", "hand": "right" },
+        { "hold_id": "93", "hand": "left" },
+        { "hold_id": "95", "hand": "right" },
+        { "hold_id": "87", "hand": "left" },
+        { "hold_id": "88", "hand": "right" },
+        { "hold_id": "89", "hand": "left" },
+        { "hold_id": "90", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Central Line",
+      "difficulty": "V1",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "27", "type": "start", "hand": "left" },
+        { "hold_id": "28", "type": "start", "hand": "right" },
+        { "hold_id": "138", "hand": "left" },
+        { "hold_id": "71", "hand": "right" },
+        { "hold_id": "85", "hand": "left" },
+        { "hold_id": "76", "hand": "right" },
+        { "hold_id": "80", "hand": "left" },
+        { "hold_id": "115", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Blue Adventure",
+      "difficulty": "V2",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "25", "type": "start", "hand": "left" },
+        { "hold_id": "z", "type": "start", "hand": "right" },
+        { "hold_id": "132", "hand": "left" },
+        { "hold_id": "u", "hand": "right" },
+        { "hold_id": "7", "hand": "left" },
+        { "hold_id": "130", "hand": "right" },
+        { "hold_id": "129", "hand": "left" },
+        { "hold_id": "s", "hand": "right" },
+        { "hold_id": "n", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Cross-Color Combo",
+      "difficulty": "V2",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "19", "type": "start", "hand": "left" },
+        { "hold_id": "24", "type": "start", "hand": "right" },
+        { "hold_id": "134", "hand": "left" },
+        { "hold_id": "23", "hand": "right" },
+        { "hold_id": "69", "hand": "left" },
+        { "hold_id": "132", "hand": "right" },
+        { "hold_id": "8", "hand": "left" },
+        { "hold_id": "9", "hand": "right" },
+        { "hold_id": "81", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Green Goblin",
+      "difficulty": "V2",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "36", "type": "start", "hand": "left" },
+        { "hold_id": "40", "type": "start", "hand": "right" },
+        { "hold_id": "53", "hand": "left" },
+        { "hold_id": "41", "hand": "right" },
+        { "hold_id": "52", "hand": "left" },
+        { "hold_id": "83", "hand": "right" },
+        { "hold_id": "120", "hand": "left" },
+        { "hold_id": "121", "hand": "right" },
+        { "hold_id": "119", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Polygon Puzzle",
+      "difficulty": "V3",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "e", "type": "start", "hand": "left" },
+        { "hold_id": "f", "type": "start", "hand": "right" },
+        { "hold_id": "h", "hand": "left" },
+        { "hold_id": "g", "hand": "right" },
+        { "hold_id": "4", "hand": "left" },
+        { "hold_id": "67", "hand": "right" },
+        { "hold_id": "p", "hand": "left" },
+        { "hold_id": "60", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Purple Valor",
+      "difficulty": "V3",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "61", "type": "start", "hand": "left" },
+        { "hold_id": "k", "type": "start", "hand": "right" },
+        { "hold_id": "m", "hand": "left" },
+        { "hold_id": "128", "hand": "right" },
+        { "hold_id": "111", "hand": "left" },
+        { "hold_id": "110", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Right-Side Strike",
+      "difficulty": "V3",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "48", "type": "start", "hand": "left" },
+        { "hold_id": "49", "type": "start", "hand": "right" },
+        { "hold_id": "92", "hand": "left" },
+        { "hold_id": "96", "hand": "right" },
+        { "hold_id": "98", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Crimpy Concerto",
+      "difficulty": "V4",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "a", "type": "start", "hand": "left" },
+        { "hold_id": "21", "type": "start", "hand": "right" },
+        { "hold_id": "16", "hand": "left" },
+        { "hold_id": "j", "hand": "right" },
+        { "hold_id": "55", "hand": "left" },
+        { "hold_id": "56", "hand": "right" },
+        { "hold_id": "67", "hand": "left" },
+        { "hold_id": "q", "hand": "right" },
+        { "hold_id": "r", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Core Challenge",
+      "difficulty": "V4",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "31", "type": "start", "hand": "left" },
+        { "hold_id": "34", "type": "start", "hand": "right" },
+        { "hold_id": "29", "hand": "left" },
+        { "hold_id": "x", "hand": "right" },
+        { "hold_id": "35", "hand": "left" },
+        { "hold_id": "5", "hand": "right" },
+        { "hold_id": "y", "hand": "left" },
+        { "hold_id": "z", "hand": "right" },
+        { "hold_id": "25", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Pinch Block Power",
+      "difficulty": "V4",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "32", "type": "start", "hand": "left" },
+        { "hold_id": "33", "type": "start", "hand": "right" },
+        { "hold_id": "x", "hand": "left" },
+        { "hold_id": "35", "hand": "right" },
+        { "hold_id": "140", "hand": "left" },
+        { "hold_id": "72", "hand": "right" },
+        { "hold_id": "82", "hand": "left" },
+        { "hold_id": "85", "hand": "right" },
+        { "hold_id": "75", "hand": "left" },
+        { "hold_id": "74", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Finger-Tip Summit",
+      "difficulty": "V5",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "124", "type": "start", "hand": "left" },
+        { "hold_id": "125", "type": "start", "hand": "right" },
+        { "hold_id": "37", "hand": "left" },
+        { "hold_id": "40", "hand": "right" },
+        { "hold_id": "53", "hand": "left" },
+        { "hold_id": "41", "hand": "right" },
+        { "hold_id": "50", "hand": "left" },
+        { "hold_id": "82", "hand": "right" },
+        { "hold_id": "85", "hand": "left" },
+        { "hold_id": "75", "hand": "right" },
+        { "hold_id": "t", "hand": "left" },
+        { "hold_id": "139", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Black Ops",
+      "difficulty": "V5",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "126", "type": "start", "hand": "left" },
+        { "hold_id": "44", "type": "start", "hand": "right" },
+        { "hold_id": "43", "hand": "left" },
+        { "hold_id": "48", "hand": "right" },
+        { "hold_id": "51", "hand": "left" },
+        { "hold_id": "95", "hand": "right" },
+        { "hold_id": "120", "hand": "left" },
+        { "hold_id": "88", "hand": "right" },
+        { "hold_id": "76", "type": "finish", "hand": "both" }
+      ]
+    },
+    {
+      "routeName": "Campus Master",
+      "difficulty": "V5",
+      "author": "ClimbingKoala@xhs",
+      "holds": {
+        "foot": []
+      },
+      "moves": [
+        { "hold_id": "2", "type": "start", "hand": "left" },
+        { "hold_id": "18", "type": "start", "hand": "right" },
+        { "hold_id": "d", "hand": "left" },
+        { "hold_id": "3", "hand": "right" },
+        { "hold_id": "68", "hand": "left" },
+        { "hold_id": "131", "hand": "right", "note": "Campus move to this hold" },
+        { "hold_id": "r", "hand": "left" },
+        { "hold_id": "s", "hand": "right" },
+        { "hold_id": "128", "type": "finish", "hand": "both" }
+      ]
+    }
+  ]
+}
