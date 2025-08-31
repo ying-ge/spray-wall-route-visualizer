@@ -3,6 +3,7 @@ import math
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
 import argparse
+import re
 
 # --- 样式配置 ---
 STYLE_CONFIG = {
@@ -16,9 +17,7 @@ STYLE_CONFIG = {
     'radius': 18,
     'outline_width': 6,
     'text_offset': 25,
-    # --- **修改点 1: 增大字号** ---
     'font_size': 85,
-    # --- **修改点 2: 增加文字描边宽度以加粗** ---
     'text_outline_width': 3,
     'center_dot_radius': 4,
     'center_dot_color': (255, 255, 255, 220),
@@ -32,169 +31,137 @@ STYLE_CONFIG = {
     'center_offset_y': 0,
 }
 
+# --- 辅助函数 (保持不变) ---
 def draw_arrow(draw, start_xy, end_xy):
-    """从起点到终点绘制一个箭头。"""
-    x1, y1 = start_xy
-    x2, y2 = end_xy
-
+    x1, y1 = start_xy; x2, y2 = end_xy
     draw.line([start_xy, end_xy], fill=STYLE_CONFIG['arrow_color'], width=STYLE_CONFIG['arrow_width'])
-
-    angle = math.atan2(y2 - y1, x2 - x1)
-    length = STYLE_CONFIG['arrowhead_length']
-    head_angle = math.radians(STYLE_CONFIG['arrowhead_angle'])
-
-    p1_angle = angle + math.pi - head_angle
-    p2_angle = angle + math.pi + head_angle
-    p1 = (x2 + length * math.cos(p1_angle), y2 + length * math.sin(p1_angle))
-    p2 = (x2 + length * math.cos(p2_angle), y2 + length * math.sin(p2_angle))
-
+    angle = math.atan2(y2 - y1, x2 - x1); length = STYLE_CONFIG['arrowhead_length']; head_angle = math.radians(STYLE_CONFIG['arrowhead_angle'])
+    p1 = (x2 + length * math.cos(angle + math.pi - head_angle), y2 + length * math.sin(angle + math.pi - head_angle))
+    p2 = (x2 + length * math.cos(angle + math.pi + head_angle), y2 + length * math.sin(angle + math.pi + head_angle))
     draw.polygon([end_xy, p1, p2], fill=STYLE_CONFIG['arrow_color'])
 
-def draw_hold(draw, center_xy, style, text=None, font=None):
-    """在给定的坐标上绘制岩点标记。"""
-    x, y = center_xy
-    radius = STYLE_CONFIG['radius']
-    
-    box = [x - radius, y - radius, x + radius, y + radius]
-    if style.get('shape') == 'rectangle':
-        draw.rectangle(box, outline=style['outline'], width=STYLE_CONFIG['outline_width'])
-    else:
-        draw.ellipse(box, outline=style['outline'], width=STYLE_CONFIG['outline_width'])
-
-    dot_radius = STYLE_CONFIG['center_dot_radius']
-    dot_box = [x - dot_radius, y - dot_radius, x + dot_radius, y + dot_radius]
-    draw.ellipse(dot_box, fill=STYLE_CONFIG['center_dot_color'])
-
-    if text and font:
-        text_pos_x = x + STYLE_CONFIG['text_offset']
-        text_pos_y = y - STYLE_CONFIG['text_offset']
-        draw_text_with_outline(draw, (text_pos_x, text_pos_y), text, font,
-                               fill_color=style['text_color'],
-                               outline_color=(0, 0, 0, 255),
-                               outline_width=STYLE_CONFIG['text_outline_width'])
-
 def draw_text_with_outline(draw, position, text, font, fill_color, outline_color, outline_width):
-    """在图片上绘制带有描边的文字。"""
     x, y = position
     for i in range(-outline_width, outline_width + 1, outline_width):
         for j in range(-outline_width, outline_width + 1, outline_width):
-            if i != 0 or j != 0:
-                draw.text((x + i, y + j), text, font=font, fill=outline_color)
+            if i != 0 or j != 0: draw.text((x + i, y + j), text, font=font, fill=outline_color)
     draw.text(position, text, font=font, fill=fill_color)
 
+def draw_hold(draw, center_xy, style, text=None, font=None):
+    x, y = center_xy; radius = STYLE_CONFIG['radius']
+    box = [x - radius, y - radius, x + radius, y + radius]
+    if style.get('shape') == 'rectangle': draw.rectangle(box, outline=style['outline'], width=STYLE_CONFIG['outline_width'])
+    else: draw.ellipse(box, outline=style['outline'], width=STYLE_CONFIG['outline_width'])
+    dot_radius = STYLE_CONFIG['center_dot_radius']; dot_box = [x - dot_radius, y - dot_radius, x + dot_radius, y + dot_radius]
+    draw.ellipse(dot_box, fill=STYLE_CONFIG['center_dot_color'])
+    if text and font:
+        text_pos_x = x + STYLE_CONFIG['text_offset']; text_pos_y = y - STYLE_CONFIG['text_offset']
+        draw_text_with_outline(draw, (text_pos_x, text_pos_y), text, font, fill_color=style['text_color'], outline_color=(0, 0, 0, 255), outline_width=STYLE_CONFIG['text_outline_width'])
 
-def draw_route(route_path, holds_coords_path, base_image_path, output_image_path, font_path=None):
-    """根据路线定义，在基础图片上绘制出整条路线，并用箭头连接顺序。"""
-    print(f"加载路线: {route_path}")
-    with open(route_path, 'r', encoding='utf-8') as f:
-        route_data = json.load(f)
-
-    print(f"加载坐标: {holds_coords_path}")
-    with open(holds_coords_path, 'r', encoding='utf-8') as f:
-        holds_coords = json.load(f)
-
-    print(f"加载图片: {base_image_path}")
-    image = Image.open(base_image_path).convert("RGBA")
+# --- 绘制单条路线的核心逻辑 (已更新) ---
+def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_dir):
+    """根据单条路线数据，在基础图片上绘制出路线图。"""
+    image = base_image.copy()
     draw = ImageDraw.Draw(image, "RGBA")
-
-    # --- **修改点 3: 优先加载粗体字库** ---
-    try:
-        # 优先尝试加载 Arial Bold 字体
-        font = ImageFont.truetype("arialbd.ttf", STYLE_CONFIG['font_size'])
-        print("成功加载 Arial Bold 粗体。")
-    except IOError:
-        try:
-            # 如果粗体失败，回退到普通 Arial
-            font = ImageFont.truetype("arial.ttf", STYLE_CONFIG['font_size'])
-            print("警告: 找不到 Arial Bold, 已回退到普通 Arial。")
-        except IOError:
-            # 如果都失败，使用默认字体
-            print("警告: 找不到 Arial 字体，将使用默认字体。")
-            font = ImageFont.load_default()
     
     offset_x = STYLE_CONFIG.get('center_offset_x', 0)
     offset_y = STYLE_CONFIG.get('center_offset_y', 0)
 
-    # 1. 绘制所有可用脚点
-    if 'foot' in route_data.get('holds', {}):
+    # --- 修改点: 只绘制JSON中明确指定的脚点 ---
+    if 'holds' in route_data and 'foot' in route_data['holds']:
         style = STYLE_CONFIG['foot']
         for hold_id in route_data['holds']['foot']:
-            if str(hold_id) in holds_coords:
-                coords = holds_coords[str(hold_id)]
+            str_hold_id = str(hold_id)
+            if str_hold_id in holds_coords:
+                coords = holds_coords[str_hold_id]
                 center_xy = (coords['x'] + offset_x, coords['y'] + offset_y)
                 draw_hold(draw, center_xy, style)
 
-    # 2. 绘制手点序列 (moves) 和箭头
+    # 绘制手点和箭头
     prev_coords = None
     if 'moves' in route_data:
-        # 首先绘制所有箭头
+        # 绘制箭头
         for move in route_data['moves']:
             hold_id = str(move['hold_id'])
-            if hold_id not in holds_coords:
-                print(f"警告: 手点ID '{hold_id}' 未在坐标文件中找到，跳过。")
-                continue
-            
+            if hold_id not in holds_coords: continue
             current_coords_raw = holds_coords[hold_id]
             current_coords = (current_coords_raw['x'] + offset_x, current_coords_raw['y'] + offset_y)
-            
-            if prev_coords:
-                draw_arrow(draw, prev_coords, current_coords)
-            
+            if prev_coords: draw_arrow(draw, prev_coords, current_coords)
             prev_coords = current_coords
-
-        # 然后在箭头上层绘制所有手点标记
+        
+        # 绘制手点标记
         for move in route_data['moves']:
             hold_id = str(move['hold_id'])
-            if hold_id not in holds_coords:
-                continue
-            
+            if hold_id not in holds_coords: continue
             coords_raw = holds_coords[hold_id]
             center_xy = (coords_raw['x'] + offset_x, coords_raw['y'] + offset_y)
-            text_to_draw = move.get('text', '')
+            style_key = 'start' if move.get('type') == 'start' else 'finish' if move.get('type') == 'finish' else f"{move.get('hand')}_hand"
+            style = STYLE_CONFIG.get(style_key)
+            # 自动添加L/R/S/F文字
+            text_to_draw = move.get('text')
+            if not text_to_draw:
+                if move.get('type') == 'start': text_to_draw = 'S'
+                elif move.get('type') == 'finish': text_to_draw = 'F'
+                elif move.get('hand') == 'left': text_to_draw = 'L'
+                elif move.get('hand') == 'right': text_to_draw = 'R'
+                elif move.get('hand') == 'both': text_to_draw = 'B'
+            if style: draw_hold(draw, center_xy, style, text_to_draw, fonts['main'])
 
-            if move.get('type') == 'start': style = STYLE_CONFIG['start']
-            elif move.get('type') == 'finish': style = STYLE_CONFIG['finish']
-            elif move.get('hand') == 'left': style = STYLE_CONFIG['left_hand']
-            elif move.get('hand') == 'right': style = STYLE_CONFIG['right_hand']
-            elif move.get('hand') == 'both': style = STYLE_CONFIG['both_hands']
-            else: continue
-            
-            draw_hold(draw, center_xy, style, text_to_draw, font)
-
-    # 3. 绘制路线标题信息
-    route_info_text = f"{route_data.get('routeName', '未命名')} | {route_data.get('difficulty', '未知')} | by {route_data.get('author', '匿名')}"
+    # 绘制标题
+    route_info_text = f"{route_data.get('routeName', 'N/A')} | {route_data.get('difficulty', 'N/A')} | by {route_data.get('author', 'N/A')}"
+    draw_text_with_outline(draw, (50, 50), route_info_text, fonts['title'], (255, 255, 255), (0, 0, 0), 2)
     
-    try:
-        title_font = ImageFont.truetype("arialbd.ttf", 60)
-    except IOError:
-        try:
-            title_font = ImageFont.truetype("arial.ttf", 60)
-        except IOError:
-            print("警告: 找不到用于标题的字体，将使用默认字体。")
-            title_font = ImageFont.load_default()
-
-    draw_text_with_outline(draw, (50, 50), route_info_text, title_font, (255, 255, 255), (0, 0, 0), 2)
+    # 生成安全的文件名并保存
+    safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_data.get('routeName', 'untitled'))
+    difficulty = route_data.get('difficulty', 'V_')
+    output_filename = f"{difficulty}_{safe_filename.replace(' ', '_')}.png"
+    output_image_path = output_dir / output_filename
     
-    output_image_path.parent.mkdir(parents=True, exist_ok=True)
     image.save(output_image_path, 'PNG')
-    print(f"成功！路线图已保存至: {output_image_path}")
+    print(f"  ✓ Saved: {output_image_path}")
+
+# --- 主函数 (已更新) ---
+def process_all_routes(routes_db_path, holds_coords_path, base_image_path, output_dir):
+    """读取包含所有路线的JSON文件，并为每一条路线生成图片。"""
+    print(f"Loading routes database: {routes_db_path}")
+    with open(routes_db_path, 'r', encoding='utf-8') as f:
+        routes_json = json.load(f)
+        all_routes_data = routes_json.get('routes', [])
+
+    print(f"Loading hold coordinates: {holds_coords_path}")
+    with open(holds_coords_path, 'r', encoding='utf-8') as f:
+        holds_coords = json.load(f)
+
+    print(f"Loading base image: {base_image_path}")
+    base_image = Image.open(base_image_path).convert("RGBA")
+    
+    fonts = {'main': ImageFont.load_default(), 'title': ImageFont.load_default()}
+    try: fonts['main'] = ImageFont.truetype("arialbd.ttf", STYLE_CONFIG['font_size'])
+    except IOError: print("Warning: Main font not found, using default.")
+    try: fonts['title'] = ImageFont.truetype("arialbd.ttf", 60)
+    except IOError: print("Warning: Title font not found, using default.")
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    print(f"\nProcessing {len(all_routes_data)} routes...")
+    for i, route_data in enumerate(all_routes_data):
+        print(f"[{i+1}/{len(all_routes_data)}] Drawing route: '{route_data.get('routeName', 'N/A')}'")
+        draw_single_route_image(route_data, holds_coords, base_image, fonts, output_dir)
+    
+    print("\nAll routes processed successfully!")
+
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="在攀岩墙图片上绘制路线。请在项目根目录下运行此脚本。")
-    parser.add_argument("route_file", help="要绘制的路线JSON文件的路径 (例如 routes/route_1_ladder.json)")
+    parser = argparse.ArgumentParser(description="从一个JSON数据库文件为所有攀岩路线生成图片。")
+    parser.add_argument("routes_database_file", help="包含所有路线的JSON文件的路径 (例如 routes/all_routes.json)")
     args = parser.parse_args()
 
-    route_to_draw = Path(args.route_file)
+    routes_db = Path(args.routes_database_file)
     holds_json = Path('data/holds.json')
     original_image = Path('images/ori_image.png') 
-    output_filename = f"{route_to_draw.stem}.png"
-    output_image = Path('generated_routes') / output_filename
+    output_folder = Path('generated_routes')
 
-    if not route_to_draw.exists():
-        print(f"错误: 路线文件不存在 '{route_to_draw}'")
-    elif not holds_json.exists():
-        print(f"错误: 岩点坐标文件 '{holds_json}' 不存在。")
-    elif not original_image.exists():
-        print(f"错误: 原始图片 '{original_image}' 不存在。")
-    else:
-        draw_route(route_to_draw, holds_json, original_image, output_image, font_path=None)
+    if not routes_db.exists(): print(f"错误: 路线数据库文件不存在 '{routes_db}'")
+    elif not holds_json.exists(): print(f"错误: 岩点坐标文件 '{holds_json}' 不存在。")
+    elif not original_image.exists(): print(f"错误: 原始图片 '{original_image}' 不存在。")
+    else: process_all_routes(routes_db, holds_json, original_image, output_folder)
