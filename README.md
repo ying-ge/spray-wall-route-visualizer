@@ -1,147 +1,129 @@
-# 攀岩路线可视化工具 (Climbing Route Visualizer)
+# 🧗‍♂️ 攀岩路线图自动生成器 (Automated Climbing Route Generator)
 
-这个工具用于在攀岩墙照片上可视化攀爬路线，标记攀爬点并显示攀爬顺序。现在集成了AI自动定线功能！
+这是一个基于 GitHub Actions 的全自动攀岩路线图（Topo）生成系统。你只需要在一张攀岩墙的图片上标记出岩点，并在一个JSON文件中定义路线，系统就会自动为你绘制出所有精美的路线图、提交到仓库，并打包成一个ZIP文件方便下载。
 
-## 功能
+## ✨ 核心功能
 
-- 上传攀岩墙照片（推荐PNG格式）
-- **自动检测照片中的岩点位置和坐标**
-- **使用AI设计攀爬路线**（根据难度和攀岩者身高）
-- 定义攀爬路线（岩点坐标）
-- 自动在照片上标记岩点位置
-- 用数字标注攀爬顺序
-- 用箭头指示攀爬路径
+- **自动化**：只需修改路线定义文件并推送到 `main` 分支，所有图片的生成、压缩和提交过程将自动完成。
+- **集中管理**：所有路线都定义在单一的 `routes/all_routes.json` 文件中，管理和维护极为方便。
+- **智能识别**：自动从攀岩墙图片中识别岩点编号，并生成坐标文件。
+- **精美绘图**：为每条路线生成带起止点、手点顺序、脚点、路线信息和动作流箭头的图片。
+- **高效压缩**：生成的PNG图片经过优化和压缩，体积更小，加载更快。
+- **方便下载**：所有生成的路线图会自动打包成一个 `.zip` 文件，作为工作流的产物(Artifact)，可一键下载。
 
-## 使用方法
+## 🚀 工作流程 (How it Works)
 
-### 1. 添加新照片
+本项目的核心是一个 GitHub Actions 工作流 (`.github/workflows/main.yml`)，当 `routes/all_routes.json` 文件或相关脚本被修改并推送到 `main` 分支时，该工作流会被自动触发。
 
-将攀岩墙的照片（PNG格式）放入 `gallery` 目录中。
+整个流程如下：
 
-### 2. 自动检测岩点
+1.  **岩点坐标生成 (`generate_coords.py`)**
+    -   工作流首先会运行脚本，读取 `images/with_markplus.png` 这张带有标记的攀岩墙图片。
+    -   利用 `easyocr` 库识别图片上每个岩点的编号/字母。
+    -   生成一份包含所有岩点ID及其(x, y)坐标的 `data/holds.json` 文件。这是后续所有绘图步骤的基础。
 
-有两种方式使用自动岩点检测功能：
+2.  **路线图绘制 (`draw_route.py`)**
+    -   脚本读取 `routes/all_routes.json` 文件，获取所有路线的定义列表。
+    -   对于列表中的**每一条路线**：
+        -   在 `images/ori_image.png` (原始底图) 的副本上开始绘制。
+        -   根据路线定义中的 `moves` 数组，查找 `data/holds.json` 中对应的手点坐标。
+        -   使用不同颜色和形状的圆圈/方框标记出手点、起始点(S)和结束点(F)。
+        -   在手点右上角标注清晰的文字（L/R/S/F/B）。
+        -   如果定义了 `holds.foot`，则标记出指定的脚点。
+        -   绘制箭头，清晰地指示出动作的顺序和方向。
+        -   在图片左上角添加标题，包含路线名、难度和作者。
+        -   将最终生成的图片进行**量化压缩**，以减小文件体积。
+        -   以 `[难度]_[路线名称].png` 的格式 (例如 `V3_Polygon_Puzzle.png`) 保存到 `generated_routes/` 目录下。
 
-#### 方式1：手动触发
+3.  **自动提交 (`git-auto-commit-action`)**
+    -   工作流会自动将新生成的 `data/holds.json` 文件和 `generated_routes/` 目录下的所有 `.png` 图片提交到你的GitHub仓库。
+    -   提交信息为 `"feat(routes): 自动生成所有路线图"`。
 
-1. 在GitHub仓库页面，点击"Actions"标签
-2. 选择"Visualize Climbing Routes"工作流
-3. 点击"Run workflow"
-4. 输入图片路径（如 `gallery/spray_wall.png`）
-5. 将"是否自动检测岩点"设置为"true"
-6. 点击"Run workflow"开始执行
+4.  **打包与上传 (`zip` & `upload-artifact`)**
+    -   将 `generated_routes/` 目录下的所有图片压缩成一个名为 `climbing_routes.zip` 的文件。
+    -   将这个ZIP文件作为工作流的**产物 (Artifact)** 上传。
 
-#### 方式2：推送新图片
+## 📖 如何使用：添加或修改路线
 
-当您推送新图片到 `gallery` 目录时，自动检测功能会自动运行，并生成岩点坐标文件。
+你唯一需要关心和修改的文件就是 `routes/all_routes.json`。
 
-### 3. 使用AI自动定线
+1.  **打开 `routes/all_routes.json` 文件。**
+2.  **添加或修改路线**：在 `routes` 数组中，添加一个新的JSON对象，或者修改一个已有的对象。
 
-#### 方式1：通过工作流定线
-
-1. 在GitHub仓库页面，点击"Actions"标签
-2. 选择"Visualize Climbing Routes"工作流
-3. 点击"Run workflow"
-4. 输入图片路径
-5. 将"是否自动检测岩点"和"是否请求AI定线"都设置为"true"
-6. 可选：指定期望的路线难度（如V5）和攀岩者身高（厘米）
-7. 点击"Run workflow"开始执行
-
-#### 方式2：通过Issue定线
-
-工作流会自动创建一个GitHub Issue，包含岩点数据和定线请求。AI将会分析数据并在Issue中回复一个完整的路线设计。您可以将回复中的JSON保存到`routes`目录中。
-
-### 4. 创建自定义路线配置
-
-您可以手动创建路线配置，或者修改自动检测或AI生成的配置。在 `routes` 目录中创建一个JSON配置文件，定义路线信息，包括每个岩点的坐标。例如：
+### 路线JSON结构示例
 
 ```json
 {
-  "route_name": "我的攀爬路线",
-  "difficulty": "V5",
-  "description": "一条有挑战性的路线",
-  "author": "您的名字",
-  "date_created": "2025-08-18",
-  "holds": [
-    {"x": 450, "y": 820, "description": "起始点，红色大抓点"},
-    {"x": 380, "y": 750, "description": "左手小抓点"},
-    {"x": 520, "y": 680, "description": "右手抓点"}
-    // ... 更多岩点
+  "routeName": "Purple Valor",
+  "difficulty": "V3",
+  "author": "ClimbingKoala@xhs",
+  "holds": {
+    "foot": ["a", "b", "c"]
+  },
+  "moves": [
+    { "hold_id": "61", "type": "start", "hand": "left" },
+    { "hold_id": "k", "type": "start", "hand": "right" },
+    { "hold_id": "m", "hand": "left" },
+    { "hold_id": "128", "hand": "right" },
+    { "hold_id": "111", "hand": "left" },
+    { "hold_id": "110", "type": "finish", "hand": "both" }
   ]
 }
 ```
 
-坐标系是以图片的左上角为原点(0,0)，向右为x轴正方向，向下为y轴正方向。
+-   `routeName`: **(必需)** 路线名称，会显示在图片标题上。
+-   `difficulty`: **(必需)** 路线难度，如 "V0", "V1", "V3"。
+-   `author`: **(必需)** 定线员或作者的名字。
+-   `holds.foot`: 一个数组，包含所有**仅用于这条路线**的额外脚点ID。如果为空 `[]`，则不绘制任何特定脚点。
+-   `moves`: **(必需)** 一个包含所有手点动作的数组，**请按顺序排列**。
+    -   `hold_id`: **(必需)** 岩点的ID（必须与 `data/holds.json` 中的ID对应）。
+    -   `type`: (可选) 标记点的特殊类型。`"start"` 用于起始点，`"finish"` 用于结束点。
+    -   `hand`: **(必需)** 指定用哪只手。`"left"` (左手), `"right"` (右手), `"both"` (双手)。
 
-### 5. 运行可视化
+3.  **提交并推送 (Commit & Push)**：将你对 `routes/all_routes.json` 的修改提交并推送到 `main` 分支。
+4.  **完成！** GitHub Actions 会接管剩下的一切。稍等片刻，你就可以在仓库的 `generated_routes/` 目录下看到新的路线图，或者在Actions的运行记录页面下载包含所有图片的ZIP压缩包。
 
-有两种方式可以运行可视化：
+## 📂 项目文件结构
 
-#### 方式1：手动触发GitHub Actions工作流
+```
+.
+├── .github/
+│   ├── scripts/               # 存放所有Python脚本
+│   │   ├── generate_coords.py   # 1. 识别岩点坐标
+│   │   ├── mark_all_holds.py    # (调试用) 标记所有岩点
+│   │   ├── draw_route.py        # 2. 绘制路线图
+│   │   └── check_missing_holds.py # (检查用) 检查缺失的岩点
+│   └── workflows/
+│       └── main.yml           # 核心工作流配置文件
+├── data/
+│   └── holds.json             # 自动生成的岩点坐标数据
+├── generated_routes/          # 自动生成的路线图存放处
+│   ├── V0_Green_Highway.png
+│   └── ...
+├── images/
+│   ├── ori_image.png          # 用于绘图的原始底图
+│   └── with_markplus.png      # 用于OCR识别的带标记图片
+├── routes/
+│   └── all_routes.json        # 唯一需要你手动编辑的路线定义文件
+└── README.md                  # 就是你正在看的这个文件
+```
 
-1. 在GitHub仓库页面，点击"Actions"标签
-2. 选择"Visualize Climbing Routes"工作流
-3. 点击"Run workflow"
-4. 输入图片路径和配置文件路径
-5. 点击"Run workflow"开始执行
+## 🎨 外观定制
 
-#### 方式2：推送更改到仓库
+想要修改路线图的样式（如颜色、大小、字体）？
 
-当您推送对`gallery`或`routes`目录中文件的更改时，工作流将自动运行。
+所有样式都定义在 `.github/scripts/draw_route.py` 文件顶部的 `STYLE_CONFIG` 字典中。你可以直接修改里面的值来改变最终图片的视觉效果。
 
-### 6. 查看结果
+```python
+# .github/scripts/draw_route.py
 
-生成的路线可视化图片将被保存到`gallery/output`目录中，并作为Actions运行的工件(artifacts)提供下载。自动检测的岩点坐标将保存在`detections`目录中。
-
-## AI路线设计说明
-
-AI路线设计功能使用GitHub Issues与AI进行交互，您可以：
-
-1. 工作流自动创建一个设计请求Issue
-2. AI分析岩点数据并回复路线设计
-3. 您将路线配置保存到仓库中
-4. 系统自动生成路线可视化
-
-AI设计考虑了岩点分布、难度要求、攀岩者身高和动作流畅度，通常会选择6-12个岩点创建一条合理的路线。
-
-## 自动岩点检测说明
-
-自动岩点检测功能使用计算机视觉技术来识别攀岩墙上的岩点。它通过以下步骤工作：
-
-1. 颜色分割：识别不同颜色的岩点
-2. 边缘检测：找出岩点的轮廓
-3. 形状分析：计算每个岩点的中心位置
-4. 生成坐标：输出所有检测到的岩点坐标
-
-请注意，自动检测的准确性取决于照片的质量、光线条件和岩点与背景的对比度。
-
-## 配置文件参数说明
-
-- `route_name`: 路线名称
-- `difficulty`: 难度等级（例如V1-V17，5.8-5.15等）
-- `description`: 路线描述
-- `author`: 路线作者
-- `date_created`: 创建日期
-- `circle_color`: 圆圈颜色，RGB格式的数组，例如`[0, 255, 0]`代表绿色
-- `text_color`: 文本颜色，RGB格式
-- `arrow_color`: 箭头颜色，RGB格式
-- `holds`: 岩点列表，每个岩点包含：
-  - `x`: x坐标（横坐标）
-  - `y`: y坐标（纵坐标）
-  - `description`: 岩点描述（可选）
-  - `area`: 岩点面积（仅自动检测时有，可选）
-
-## 文件结构说明
-
-- `.github/scripts/`: 包含所有Python脚本
-- `gallery/`: 存放攀岩墙照片
-- `gallery/output/`: 存放生成的路线可视化图片
-- `routes/`: 存放路线配置文件
-- `detections/`: 存放自动检测的岩点数据
-
-## 注意事项
-
-- 图片应该是从距离墙面5米、与墙面平行的位置拍摄的
-- 推荐使用PNG格式的高清图片以便更准确地标记岩点
-- 坐标系以图片的左上角为原点
-- AI定线功能依赖于GitHub Issue进行交互，请确保仓库的Issue功能已启用
+STYLE_CONFIG = {
+    'start':       {'outline': (76, 175, 80, 255), ...},
+    'finish':      {'outline': (244, 67, 54, 255), ...},
+    # ...
+    'radius': 18,
+    'outline_width': 6,
+    'font_size': 100, # 岩点文字大小
+    # ...
+}
+```
