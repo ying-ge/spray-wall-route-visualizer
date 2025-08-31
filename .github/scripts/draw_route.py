@@ -7,17 +7,17 @@ import argparse
 STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
-    'left_hand':   {'outline': (33, 150, 243, 255), 'shape': 'circle',    'text_color': (255, 255, 255)}, # 蓝色
-    'right_hand':  {'outline': (255, 193, 7, 255),  'shape': 'circle',    'text_color': (0, 0, 0)},     # 黄色
-    'both_hands':  {'outline': (156, 39, 176, 255), 'shape': 'circle',    'text_color': (255, 255, 255)}, # 紫色
-    'foot':        {'outline': (205, 220, 57, 180), 'shape': 'circle'}, # 半透明酸橙色
+    'left_hand':   {'outline': (33, 150, 243, 255), 'shape': 'circle',    'text_color': (255, 255, 255)},
+    'right_hand':  {'outline': (255, 193, 7, 255),  'shape': 'circle',    'text_color': (0, 0, 0)},
+    'both_hands':  {'outline': (156, 39, 176, 255), 'shape': 'circle',    'text_color': (255, 255, 255)},
+    'foot':        {'outline': (205, 220, 57, 180), 'shape': 'circle'},
     
-    # --- 全局样式 ---
-    'radius': 35,
-    'outline_width': 6,
-    'text_offset': 40,
-    'font_size': 35,
-    'center_dot_radius': 4,
+    # --- **修改点：调整尺寸和文字大小，但保留边框和中心点大小** ---
+    'radius': 18,               # 圈和方框的半径 (原为 35)
+    'outline_width': 6,         # 边框宽度 (恢复为 6)
+    'text_offset': 45,          # 文字偏移量，以适应更大的字体
+    'font_size': 70,            # 标记文字大小 (原为 35)
+    'center_dot_radius': 4,     # 中心圆点半径 (恢复为 4)
     'center_dot_color': (255, 255, 255, 220)
 }
 
@@ -113,12 +113,11 @@ def draw_route(route_path, holds_coords_path, base_image_path, output_image_path
     # 3. 绘制路线标题信息
     route_info_text = f"{route_data.get('routeName', '未命名')} | {route_data.get('difficulty', '未知')} | by {route_data.get('author', '匿名')}"
     
-    # --- **修改点：为标题字体加载添加错误处理** ---
     try:
         title_font = ImageFont.truetype(str(font_path) if font_path else "arial.ttf", 60)
     except IOError:
         print("警告: 找不到用于标题的字体，将使用默认字体。")
-        title_font = ImageFont.load_default() # 回退到默认字体
+        title_font = ImageFont.load_default()
 
     draw_text_with_outline(draw, (50, 50), route_info_text, title_font, (255, 255, 255), (0, 0, 0), 2)
     
