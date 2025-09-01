@@ -43,7 +43,7 @@ jobs:
       - name: '步骤 1: 从图片生成岩点坐标 (Generate Hold Coordinates)'
         run: |
           python .github/scripts/generate_coords.py \
-            --image_path "images/with_markplus.png" \
+            --image_path "images/with_mark.png" \
             --output_path "data/holds.json"
 
       - name: '步骤 2: 标注所有岩点坐标用于调试 (Mark all holds for debugging)'
