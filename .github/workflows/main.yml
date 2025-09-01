@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'routes/all_routes.json' 
-      - 'images/with_markplus.png'
+      - 'images/with_mark.png'
       - '.github/workflows/**'
       - '.github/scripts/**.py'
   workflow_dispatch:
