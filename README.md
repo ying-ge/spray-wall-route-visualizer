@@ -4,9 +4,11 @@
 
 ## ✨ 核心功能
 
+- **AI辅助定线**：可使用大语言模型（如ChatGPT, Copilot等）辅助创造路线，并直接生成标准JSON格式。
 - **自动化**：只需修改路线定义文件并推送到 `main` 分支，所有图片的生成、压缩和提交过程将自动完成。
 - **集中管理**：所有路线都定义在单一的 `routes/all_routes.json` 文件中，管理和维护极为方便。
 - **智能识别**：自动从攀岩墙图片中识别岩点编号，并生成坐标文件。
+- **交互式补充**：提供本地工具，通过简单的鼠标点击即可轻松补充未被自动识别的岩点。
 - **精美绘图**：为每条路线生成带起止点、手点顺序、脚点、路线信息和动作流箭头的图片。
 - **高效压缩**：生成的PNG图片经过优化和压缩，体积更小，加载更快。
 - **方便下载**：所有生成的路线图会自动打包成一个 `.zip` 文件，作为工作流的产物(Artifact)，可一键下载。
@@ -18,7 +20,7 @@
 整个流程如下：
 
 1.  **岩点坐标生成 (`generate_coords.py`)**
-    -   工作流首先会运行脚本，读取 `images/with_markplus.png` 这张带有标记的攀岩墙图片。
+    -   工作流首先会运行脚本，读取 `images/with_mark.png` 这张带有标记的攀岩墙图片。
     -   利用 `easyocr` 库识别图片上每个岩点的编号/字母。
     -   生成一份包含所有岩点ID及其(x, y)坐标的 `data/holds.json` 文件。这是后续所有绘图步骤的基础。
 
@@ -43,45 +45,93 @@
     -   将 `generated_routes/` 目录下的所有图片压缩成一个名为 `climbing_routes.zip` 的文件。
     -   将这个ZIP文件作为工作流的**产物 (Artifact)** 上传。
 
-## 📖 如何使用：添加或修改路线
+## 📖 如何使用
 
-你唯一需要关心和修改的文件就是 `routes/all_routes.json`。
+### 第0步 (可选): 使用AI辅助定线
 
-1.  **打开 `routes/all_routes.json` 文件。**
-2.  **添加或修改路线**：在 `routes` 数组中，添加一个新的JSON对象，或者修改一个已有的对象。
+你可以利用大语言模型（LLM）来激发灵感、设计路线，并让它直接生成符合我们系统要求的JSON代码。这比手动编写JSON要快得多。
 
-### 路线JSON结构示例
+将下面的模板复制到任何一个大语言模型（如ChatGPT, Copilot, 文心一言等），修改其中的粗体部分，然后运行即可。
 
-```json
+#### 提示 (Prompt) 模板
+
+```text
+你是一名专业的攀岩定线员。请为我设计一条难度为 **V4** 的攀岩路线，风格偏向**动态和核心力量 (dynamic and core-intensive)**。
+路线名称定为 **'Crimpy Concerto'**，作者是 **'ying-ge'**。
+
+请遵循以下规则：
+1. 起始点 (start) 应该有两个，左右手各一个。
+2. 结束点 (finish) 应该是一个双手合并的点。
+3. 路线的动作序列 (moves) 应该包含 5 到 8 个手点。
+4. 你可以自由选择岩点ID (例如 '61', 'k', '128')。
+5. 你可以为这条路线指定 3 个额外的脚点 (foot holds)。
+
+最后，请**严格按照**以下JSON格式输出你的定线方案，不要添加任何额外的解释或文字，直接给出JSON代码块：
+
 {
-  "routeName": "Purple Valor",
-  "difficulty": "V3",
-  "author": "ClimbingKoala@xhs",
+  "routeName": "路线名称",
+  "difficulty": "难度",
+  "author": "作者",
   "holds": {
-    "foot": ["a", "b", "c"]
+    "foot": ["脚点1", "脚点2", "..."]
   },
   "moves": [
-    { "hold_id": "61", "type": "start", "hand": "left" },
-    { "hold_id": "k", "type": "start", "hand": "right" },
-    { "hold_id": "m", "hand": "left" },
-    { "hold_id": "128", "hand": "right" },
-    { "hold_id": "111", "hand": "left" },
-    { "hold_id": "110", "type": "finish", "hand": "both" }
+    { "hold_id": "岩点ID", "type": "start", "hand": "left" },
+    { "hold_id": "岩点ID", "type": "start", "hand": "right" },
+    { "hold_id": "岩点ID", "hand": "left" },
+    { "hold_id": "岩点ID", "hand": "right" },
+    { "hold_id": "岩点ID", "type": "finish", "hand": "both" }
   ]
 }
 ```
 
--   `routeName`: **(必需)** 路线名称，会显示在图片标题上。
--   `difficulty`: **(必需)** 路线难度，如 "V0", "V1", "V3"。
--   `author`: **(必需)** 定线员或作者的名字。
--   `holds.foot`: 一个数组，包含所有**仅用于这条路线**的额外脚点ID。如果为空 `[]`，则不绘制任何特定脚点。
--   `moves`: **(必需)** 一个包含所有手点动作的数组，**请按顺序排列**。
-    -   `hold_id`: **(必需)** 岩点的ID（必须与 `data/holds.json` 中的ID对应）。
-    -   `type`: (可选) 标记点的特殊类型。`"start"` 用于起始点，`"finish"` 用于结束点。
-    -   `hand`: **(必需)** 指定用哪只手。`"left"` (左手), `"right"` (右手), `"both"` (双手)。
+### 第1步：添加或修改路线定义
 
-3.  **提交并推送 (Commit & Push)**：将你对 `routes/all_routes.json` 的修改提交并推送到 `main` 分支。
-4.  **完成！** GitHub Actions 会接管剩下的一切。稍等片刻，你就可以在仓库的 `generated_routes/` 目录下看到新的路线图，或者在Actions的运行记录页面下载包含所有图片的ZIP压缩包。
+将AI生成的JSON代码，或者你自己手动编写的路线，添加到 `routes/all_routes.json` 文件的 `routes` 数组中。
+
+---
+
+### 第2步：修正缺失的岩点 (本地工作流)
+
+自动的岩点识别 (`generate_coords.py`) 非常方便，但它可能无法100%识别出图片上所有的岩点。当路线定义中使用了未被识别的岩点时，你需要手动补充它们的坐标。为了简化这个过程，我们提供了一个交互式坐标拾取工具：`add_missing_coords.py`。
+
+**注意：** 以下步骤需要在你的**本地计算机**上完成，因为它需要一个图形界面。
+
+1.  **安装依赖 (首次运行)**:
+    确保你已经安装了 `opencv-python`。
+    ```bash
+    pip install opencv-python
+    ```
+2.  **运行自动识别**:
+    首先，像往常一样运行自动识别脚本，让它完成大部分工作。
+    ```bash
+    python .github/scripts/generate_coords.py
+    ```
+3.  **运行交互式补充工具**:
+    现在，运行新的 `add_missing_coords.py` 脚本来处理所有缺失的岩点。
+    ```bash
+    python .github/scripts/add_missing_coords.py
+    ```
+4.  **根据提示点击岩点**:
+    -   脚本会自动分析出哪些在路线中被使用、但未被识别的岩点。
+    -   一个图片窗口会弹出，上面有提示信息，例如 "Please CLICK on hold: '139'"。
+    -   在该图片上找到 '139' 号岩点，并用鼠标左键**点击它的中心**。
+    -   点击后，窗口会自动刷新，并提示你点击下一个缺失的岩点，直到全部处理完毕。
+
+5.  **完成！**
+    `data/holds.json` 文件现在已经包含了所有必需的岩点坐标。
+
+---
+
+### 第3步：提交并推送
+
+将你修改过的 `routes/all_routes.json` 和 `data/holds.json` 文件提交并推送到 `main` 分支。
+```bash
+git add routes/all_routes.json data/holds.json
+git commit -m "feat: 添加或更新路线"
+git push
+```
+GitHub Actions 会接管剩下的一切。稍等片刻，你就可以在仓库的 `generated_routes/` 目录下看到新的路线图，或者在Actions的运行记录页面下载包含所有图片的ZIP压缩包。
 
 ## 📂 项目文件结构
 
@@ -89,14 +139,15 @@
 .
 ├── .github/
 │   ├── scripts/               # 存放所有Python脚本
-│   │   ├── generate_coords.py   # 1. 识别岩点坐标
-│   │   ├── mark_all_holds.py    # (调试用) 标记所有岩点
-│   │   ├── draw_route.py        # 2. 绘制路线图
-│   │   └── check_missing_holds.py # (检查用) 检查缺失的岩点
+│   │   ├── generate_coords.py   # 1. 自动识别岩点坐标
+│   │   ├── add_missing_coords.py  # 2. (本地)交互式补充缺失坐标
+│   │   ├── draw_route.py        # 3. 绘制路线图
+│   │   ├── check_missing_holds.py # (检查用) 检查缺失的岩点
+│   │   └── mark_all_holds.py    # (调试用) 标记所有岩点
 │   └── workflows/
 │       └── main.yml           # 核心工作流配置文件
 ├── data/
-│   └── holds.json             # 自动生成的岩点坐标数据
+│   └── holds.json             # 岩点坐标数据 (部分自动生成，部分手动补充)
 ├── generated_routes/          # 自动生成的路线图存放处
 │   ├── V0_Green_Highway.png
 │   └── ...
@@ -130,6 +181,6 @@ STYLE_CONFIG = {
 
 ## 🖼️ 路线图示例 (Example Route Image)
 
-下面是一张由本系统自动生成的V3路线图：
+下面是一张由本系统自动生成的V4路线图：
 
 ![V4 Pinch_Block_Power 路线图示例](generated_routes/V4_Pinch_Block_Power.png)
