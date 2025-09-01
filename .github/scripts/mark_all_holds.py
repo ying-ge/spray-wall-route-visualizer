@@ -4,13 +4,13 @@ from pathlib import Path
 
 def main():
     holds_file = Path("data/holds.json")
-    img_file = Path("images/with_markplus.png")
+    img_file = Path("images/with_mark.png")
     output_file = Path("generated_routes/debug_mark.png")
     if not holds_file.exists():
         print("holds.json 不存在")
         return
     if not img_file.exists():
-        print("with_markplus.png 不存在")
+        print("with_mark.png 不存在")
         return
 
     with open(holds_file, "r", encoding="utf-8") as f:
