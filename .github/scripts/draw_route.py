@@ -5,7 +5,7 @@ from pathlib import Path
 import argparse
 import re
 
-# --- 样式配置 (保持不变) ---
+# --- 样式配置 (添加了title_style) ---
 STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
@@ -29,6 +29,15 @@ STYLE_CONFIG = {
 
     'center_offset_x': 0,
     'center_offset_y': 0,
+    
+    # --- 新增: 标题样式 ---
+    'title_style': {
+        'font_size': 120, # <--- 放大字号
+        'fill_color': (255, 255, 255),
+        'outline_color': (0, 0, 0),
+        'outline_width': 3,
+        'margin': 50 # <--- 右下角边距
+    }
 }
 
 # --- 辅助函数 (保持不变) ---
@@ -104,26 +113,45 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
                 elif move.get('hand') == 'both': text_to_draw = 'B'
             if style: draw_hold(draw, center_xy, style, text_to_draw, fonts['main'])
 
-    # 绘制标题
+    # --- **核心修改点: 绘制标题到右下角** ---
+    title_style = STYLE_CONFIG['title_style']
     route_info_text = f"{route_data.get('routeName', 'N/A')} | {route_data.get('difficulty', 'N/A')} | by {route_data.get('author', 'N/A')}"
-    draw_text_with_outline(draw, (50, 50), route_info_text, fonts['title'], (255, 255, 255), (0, 0, 0), 2)
     
-    # --- **修改点: 压缩图片** ---
-    # 1. 将图片转换为256色的调色板模式 (P)，这会极大减小文件大小
-    #    `dither=Image.Dither.NONE` 禁用了颜色抖动，以保持纯色块的清晰度
+    # 获取文本尺寸
+    # text_bbox = fonts['title'].getbbox(route_info_text) # Pillow < 10.0.0
+    # For Pillow >= 10.0.0, use draw.textbbox
+    try:
+        text_bbox = draw.textbbox((0, 0), route_info_text, font=fonts['title'])
+    except AttributeError: # Fallback for older Pillow
+        text_bbox = fonts['title'].getbbox(route_info_text)
+        
+    text_width = text_bbox[2] - text_bbox[0]
+    text_height = text_bbox[3] - text_bbox[1]
+    
+    # 计算右下角位置
+    img_width, img_height = image.size
+    margin = title_style['margin']
+    text_x = img_width - text_width - margin
+    text_y = img_height - text_height - margin
+    
+    draw_text_with_outline(draw, (text_x, text_y), route_info_text, fonts['title'], 
+                           fill_color=title_style['fill_color'], 
+                           outline_color=title_style['outline_color'], 
+                           outline_width=title_style['outline_width'])
+    # --- 结束修改 ---
+    
+    # 压缩图片
     quantized_image = image.quantize(colors=256, dither=Image.Dither.NONE)
     
-    # 生成安全的文件名
     safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_data.get('routeName', 'untitled'))
     difficulty = route_data.get('difficulty', 'V_')
     output_filename = f"{difficulty}_{safe_filename.replace(' ', '_')}.png"
     output_image_path = output_dir / output_filename
     
-    # 2. 保存优化后的PNG文件
     quantized_image.save(output_image_path, 'PNG', optimize=True)
     print(f"  ✓ Saved (and compressed): {output_image_path}")
 
-# --- 主函数 (保持不变) ---
+# --- 主函数 (更新了字体大小) ---
 def process_all_routes(routes_db_path, holds_coords_path, base_image_path, output_dir):
     print(f"Loading routes database: {routes_db_path}")
     with open(routes_db_path, 'r', encoding='utf-8') as f:
@@ -140,7 +168,8 @@ def process_all_routes(routes_db_path, holds_coords_path, base_image_path, outpu
     fonts = {'main': ImageFont.load_default(), 'title': ImageFont.load_default()}
     try: fonts['main'] = ImageFont.truetype("arialbd.ttf", STYLE_CONFIG['font_size'])
     except IOError: print("Warning: Main font not found, using default.")
-    try: fonts['title'] = ImageFont.truetype("arialbd.ttf", 60)
+    # --- **修改点: 使用新配置加载标题字体** ---
+    try: fonts['title'] = ImageFont.truetype("arialbd.ttf", STYLE_CONFIG['title_style']['font_size'])
     except IOError: print("Warning: Title font not found, using default.")
 
     output_dir.mkdir(parents=True, exist_ok=True)
