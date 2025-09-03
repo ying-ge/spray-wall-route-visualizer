@@ -32,7 +32,7 @@ STYLE_CONFIG = {
     
     # --- 新增: 标题样式 ---
     'title_style': {
-        'font_size': 120, # <--- 放大字号
+        'font_size': 1200, # <--- 放大字号
         'fill_color': (255, 255, 255),
         'outline_color': (0, 0, 0),
         'outline_width': 3,
