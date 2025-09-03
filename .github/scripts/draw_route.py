@@ -18,7 +18,7 @@ STYLE_CONFIG = {
     'radius': 18,
     'outline_width': 6,
     'text_offset': 25,
-    'font_size': 100,
+    'font_size': 50,
     'text_outline_width': 3,
     'center_dot_radius': 4,
     'center_dot_color': (255, 255, 255, 220),
@@ -33,7 +33,7 @@ STYLE_CONFIG = {
     
     'title_style': {
         'font_path': "fonts/Oswald-Variable.ttf", 
-        'font_size': 150,
+        'font_size': 75,
         'font_variation': 700, 
         'fill_color': (255, 255, 255),
         'outline_color': (0, 0, 0),
@@ -42,7 +42,7 @@ STYLE_CONFIG = {
     },
     'main_font_style': {
         'font_path': "fonts/Oswald-Variable.ttf", 
-        'font_size': 100,
+        'font_size': 50,
         'font_variation': 700 
     }
 }
