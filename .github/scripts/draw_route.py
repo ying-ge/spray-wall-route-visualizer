@@ -1,12 +1,12 @@
 import json
 import math
-from PIL import Image, ImageDraw, ImageFont, ImageFont_v2
+from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
 import argparse
 import re
 import sys
 
-# --- 样式配置 (字体路径已更新) ---
+# --- 样式配置 (保持不变) ---
 STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
@@ -32,18 +32,18 @@ STYLE_CONFIG = {
     'center_offset_y': 0,
     
     'title_style': {
-        'font_path': "fonts/Oswald-Variable.ttf", # <--- 使用新的文件名
+        'font_path': "fonts/Oswald-Variable.ttf", 
         'font_size': 150,
-        'font_variation': 700, # <--- 指定字重为 "Bold" (700)
+        'font_variation': 700, 
         'fill_color': (255, 255, 255),
         'outline_color': (0, 0, 0),
         'outline_width': 4,
         'margin': 60
     },
     'main_font_style': {
-        'font_path': "fonts/Oswald-Variable.ttf", # <--- 使用新的文件名
+        'font_path': "fonts/Oswald-Variable.ttf", 
         'font_size': 100,
-        'font_variation': 700 # <--- 指定字重为 "Bold" (700)
+        'font_variation': 700 
     }
 }
 
@@ -74,7 +74,6 @@ def draw_hold(draw, center_xy, style, text=None, font=None):
         text_pos_x = x + STYLE_CONFIG['text_offset']; text_pos_y = y - STYLE_CONFIG['text_offset']
         draw_text_with_outline(draw, (text_pos_x, text_pos_y), text, font, fill_color=style['text_color'], outline_color=(0, 0, 0, 255), outline_width=STYLE_CONFIG['text_outline_width'])
 
-# --- 绘制单条路线的核心逻辑 (保持不变) ---
 def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_dir):
     image = base_image.copy()
     draw = ImageDraw.Draw(image, "RGBA")
@@ -140,19 +139,15 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     quantized_image.save(output_path, 'PNG', optimize=True)
     print(f"  ✓ Saved (and compressed): {output_path}")
 
-# --- 主函数 (已更新字体加载逻辑) ---
 def get_variational_font(path, size, variation):
-    """加载可变字体并设置字重"""
     font = ImageFont.truetype(path, size)
     try:
-        font.set_variation_by_name("Bold") # 尝试按名称设置
+        font.set_variation_by_name("Bold")
     except (AttributeError, TypeError):
         try:
-            # Pillow >= 9.2.0
             font.set_variation_by_axis_name('wght', variation)
         except (AttributeError, TypeError):
-             # Pillow < 9.2.0 (可能不支持)
-             pass # 无法设置字重，使用默认字重
+             pass 
     return font
 
 def process_all_routes(routes_db_path, holds_coords_path, base_image_path, output_dir):
