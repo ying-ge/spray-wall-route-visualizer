@@ -40,6 +40,17 @@ jobs:
           pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
           pip install numpy opencv-python-headless easyocr Pillow
 
+      # --- **核心修改点: 新增下载字体的步骤** ---
+      - name: '下载并准备字体文件 (Download and Prepare Font)'
+        run: |
+          # 1. 创建 fonts 文件夹
+          mkdir -p fonts
+          # 2. 使用 curl 下载字体文件，并重命名
+          #    -L 选项用于处理重定向
+          #    -o 指定输出路径和文件名
+          curl -L "https://github.com/google/fonts/raw/main/ofl/oswald/Oswald%5Bwght%5D.ttf" -o "fonts/Oswald-Variable.ttf"
+          echo "Font Oswald-Variable.ttf downloaded to fonts/ directory."
+
       - name: '步骤 1: 从图片生成岩点坐标 (Generate Hold Coordinates)'
         run: |
           python .github/scripts/generate_coords.py \
@@ -55,7 +66,6 @@ jobs:
           echo ">>> Processing all routes from routes/all_routes.json"
           python .github/scripts/draw_route.py "routes/all_routes.json"
 
-      # --- **修改点: 从文件列表中移除了 debug_mark.png** ---
       - name: '步骤 4: 提交生成的文件 (Commit generated files)'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
