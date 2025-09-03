@@ -1,11 +1,12 @@
 import json
 import math
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFont_v2
 from pathlib import Path
 import argparse
 import re
+import sys
 
-# --- 样式配置 (添加了title_style) ---
+# --- 样式配置 (字体路径已更新) ---
 STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
@@ -30,13 +31,19 @@ STYLE_CONFIG = {
     'center_offset_x': 0,
     'center_offset_y': 0,
     
-    # --- 新增: 标题样式 ---
     'title_style': {
-        'font_size': 1200, # <--- 放大字号
+        'font_path': "fonts/Oswald-Variable.ttf", # <--- 使用新的文件名
+        'font_size': 150,
+        'font_variation': 700, # <--- 指定字重为 "Bold" (700)
         'fill_color': (255, 255, 255),
         'outline_color': (0, 0, 0),
-        'outline_width': 3,
-        'margin': 50 # <--- 右下角边距
+        'outline_width': 4,
+        'margin': 60
+    },
+    'main_font_style': {
+        'font_path': "fonts/Oswald-Variable.ttf", # <--- 使用新的文件名
+        'font_size': 100,
+        'font_variation': 700 # <--- 指定字重为 "Bold" (700)
     }
 }
 
@@ -67,41 +74,35 @@ def draw_hold(draw, center_xy, style, text=None, font=None):
         text_pos_x = x + STYLE_CONFIG['text_offset']; text_pos_y = y - STYLE_CONFIG['text_offset']
         draw_text_with_outline(draw, (text_pos_x, text_pos_y), text, font, fill_color=style['text_color'], outline_color=(0, 0, 0, 255), outline_width=STYLE_CONFIG['text_outline_width'])
 
-# --- 绘制单条路线的核心逻辑 (已更新) ---
+# --- 绘制单条路线的核心逻辑 (保持不变) ---
 def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_dir):
-    """根据单条路线数据，在基础图片上绘制出路线图。"""
     image = base_image.copy()
     draw = ImageDraw.Draw(image, "RGBA")
     
     offset_x = STYLE_CONFIG.get('center_offset_x', 0)
     offset_y = STYLE_CONFIG.get('center_offset_y', 0)
 
-    # 绘制JSON中明确指定的脚点
     if 'holds' in route_data and 'foot' in route_data['holds']:
         style = STYLE_CONFIG['foot']
         for hold_id in route_data['holds']['foot']:
             str_hold_id = str(hold_id)
             if str_hold_id in holds_coords:
-                coords = holds_coords[str_hold_id]
-                center_xy = (coords['x'] + offset_x, coords['y'] + offset_y)
+                center_xy = (holds_coords[str_hold_id]['x'] + offset_x, holds_coords[str_hold_id]['y'] + offset_y)
                 draw_hold(draw, center_xy, style)
 
-    # 绘制手点和箭头
     prev_coords = None
     if 'moves' in route_data:
         for move in route_data['moves']:
             hold_id = str(move['hold_id'])
             if hold_id not in holds_coords: continue
-            current_coords_raw = holds_coords[hold_id]
-            current_coords = (current_coords_raw['x'] + offset_x, current_coords_raw['y'] + offset_y)
+            current_coords = (holds_coords[hold_id]['x'] + offset_x, holds_coords[hold_id]['y'] + offset_y)
             if prev_coords: draw_arrow(draw, prev_coords, current_coords)
             prev_coords = current_coords
         
         for move in route_data['moves']:
             hold_id = str(move['hold_id'])
             if hold_id not in holds_coords: continue
-            coords_raw = holds_coords[hold_id]
-            center_xy = (coords_raw['x'] + offset_x, coords_raw['y'] + offset_y)
+            center_xy = (holds_coords[hold_id]['x'] + offset_x, holds_coords[hold_id]['y'] + offset_y)
             style_key = 'start' if move.get('type') == 'start' else 'finish' if move.get('type') == 'finish' else f"{move.get('hand')}_hand"
             style = STYLE_CONFIG.get(style_key)
             text_to_draw = move.get('text')
@@ -113,64 +114,67 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
                 elif move.get('hand') == 'both': text_to_draw = 'B'
             if style: draw_hold(draw, center_xy, style, text_to_draw, fonts['main'])
 
-    # --- **核心修改点: 绘制标题到右下角** ---
     title_style = STYLE_CONFIG['title_style']
     route_info_text = f"{route_data.get('routeName', 'N/A')} | {route_data.get('difficulty', 'N/A')} | by {route_data.get('author', 'N/A')}"
     
-    # 获取文本尺寸
-    # text_bbox = fonts['title'].getbbox(route_info_text) # Pillow < 10.0.0
-    # For Pillow >= 10.0.0, use draw.textbbox
-    try:
-        text_bbox = draw.textbbox((0, 0), route_info_text, font=fonts['title'])
-    except AttributeError: # Fallback for older Pillow
-        text_bbox = fonts['title'].getbbox(route_info_text)
+    try: text_bbox = draw.textbbox((0, 0), route_info_text, font=fonts['title'])
+    except AttributeError: text_bbox = fonts['title'].getbbox(route_info_text)
         
-    text_width = text_bbox[2] - text_bbox[0]
-    text_height = text_bbox[3] - text_bbox[1]
+    text_width, text_height = text_bbox[2] - text_bbox[0], text_bbox[3] - text_bbox[1]
     
-    # 计算右下角位置
     img_width, img_height = image.size
     margin = title_style['margin']
-    text_x = img_width - text_width - margin
-    text_y = img_height - text_height - margin
+    text_x, text_y = img_width - text_width - margin, img_height - text_height - margin
     
     draw_text_with_outline(draw, (text_x, text_y), route_info_text, fonts['title'], 
                            fill_color=title_style['fill_color'], 
                            outline_color=title_style['outline_color'], 
                            outline_width=title_style['outline_width'])
-    # --- 结束修改 ---
     
-    # 压缩图片
     quantized_image = image.quantize(colors=256, dither=Image.Dither.NONE)
     
     safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_data.get('routeName', 'untitled'))
-    difficulty = route_data.get('difficulty', 'V_')
-    output_filename = f"{difficulty}_{safe_filename.replace(' ', '_')}.png"
-    output_image_path = output_dir / output_filename
+    output_filename = f"{route_data.get('difficulty', 'V_')}_{safe_filename.replace(' ', '_')}.png"
+    output_path = output_dir / output_filename
     
-    quantized_image.save(output_image_path, 'PNG', optimize=True)
-    print(f"  ✓ Saved (and compressed): {output_image_path}")
+    quantized_image.save(output_path, 'PNG', optimize=True)
+    print(f"  ✓ Saved (and compressed): {output_path}")
 
-# --- 主函数 (更新了字体大小) ---
+# --- 主函数 (已更新字体加载逻辑) ---
+def get_variational_font(path, size, variation):
+    """加载可变字体并设置字重"""
+    font = ImageFont.truetype(path, size)
+    try:
+        font.set_variation_by_name("Bold") # 尝试按名称设置
+    except (AttributeError, TypeError):
+        try:
+            # Pillow >= 9.2.0
+            font.set_variation_by_axis_name('wght', variation)
+        except (AttributeError, TypeError):
+             # Pillow < 9.2.0 (可能不支持)
+             pass # 无法设置字重，使用默认字重
+    return font
+
 def process_all_routes(routes_db_path, holds_coords_path, base_image_path, output_dir):
     print(f"Loading routes database: {routes_db_path}")
-    with open(routes_db_path, 'r', encoding='utf-8') as f:
-        routes_json = json.load(f)
-        all_routes_data = routes_json.get('routes', [])
-
+    with open(routes_db_path, 'r', encoding='utf-8') as f: all_routes_data = json.load(f).get('routes', [])
     print(f"Loading hold coordinates: {holds_coords_path}")
-    with open(holds_coords_path, 'r', encoding='utf-8') as f:
-        holds_coords = json.load(f)
-
+    with open(holds_coords_path, 'r', encoding='utf-8') as f: holds_coords = json.load(f)
     print(f"Loading base image: {base_image_path}")
     base_image = Image.open(base_image_path).convert("RGBA")
     
-    fonts = {'main': ImageFont.load_default(), 'title': ImageFont.load_default()}
-    try: fonts['main'] = ImageFont.truetype("arialbd.ttf", STYLE_CONFIG['font_size'])
-    except IOError: print("Warning: Main font not found, using default.")
-    # --- **修改点: 使用新配置加载标题字体** ---
-    try: fonts['title'] = ImageFont.truetype("arialbd.ttf", STYLE_CONFIG['title_style']['font_size'])
-    except IOError: print("Warning: Title font not found, using default.")
+    fonts = {}
+    try:
+        main_style = STYLE_CONFIG['main_font_style']
+        fonts['main'] = get_variational_font(main_style['font_path'], main_style['font_size'], main_style['font_variation'])
+    except IOError:
+        print(f"错误: 主要字体 '{main_style['font_path']}' 未在项目中找到!", file=sys.stderr); sys.exit(1)
+
+    try:
+        title_style = STYLE_CONFIG['title_style']
+        fonts['title'] = get_variational_font(title_style['font_path'], title_style['font_size'], title_style['font_variation'])
+    except IOError:
+        print(f"错误: 标题字体 '{title_style['font_path']}' 未在项目中找到!", file=sys.stderr); sys.exit(1)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     
@@ -187,12 +191,11 @@ if __name__ == '__main__':
     parser.add_argument("routes_database_file", help="包含所有路线的JSON文件的路径 (例如 routes/all_routes.json)")
     args = parser.parse_args()
 
-    routes_db = Path(args.routes_database_file)
-    holds_json = Path('data/holds.json')
-    original_image = Path('images/ori_image.png') 
-    output_folder = Path('generated_routes')
+    project_root = Path(__file__).resolve().parents[2]
+    routes_db, holds_json = project_root / args.routes_database_file, project_root / 'data/holds.json'
+    original_image, output_folder = project_root / 'images/ori_image.png', project_root / 'generated_routes'
 
-    if not routes_db.exists(): print(f"错误: 路线数据库文件不存在 '{routes_db}'")
-    elif not holds_json.exists(): print(f"错误: 岩点坐标文件 '{holds_json}' 不存在。")
-    elif not original_image.exists(): print(f"错误: 原始图片 '{original_image}' 不存在。")
+    if not routes_db.exists(): print(f"错误: 路线数据库文件不存在 '{routes_db}'", file=sys.stderr)
+    elif not holds_json.exists(): print(f"错误: 岩点坐标文件 '{holds_json}' 不存在。", file=sys.stderr)
+    elif not original_image.exists(): print(f"错误: 原始图片 '{original_image}' 不存在。", file=sys.stderr)
     else: process_all_routes(routes_db, holds_json, original_image, output_folder)
