@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import re
 
 # --- 全局常量 ---
-# 字体设置
+# 字体设置 (已恢复)
 try:
     FONT = ImageFont.truetype("fonts/Oswald-Variable.ttf", 40)
     FONT_GRADE = ImageFont.truetype("fonts/Oswald-Variable.ttf", 30)
@@ -14,7 +14,7 @@ except IOError:
     FONT = ImageFont.load_default()
     FONT_GRADE = ImageFont.load_default()
 
-# 颜色定义 (R, G, B)
+# 颜色定义 (R, G, B, A)
 COLORS = {
     "start": (0, 255, 0, 255),       # 绿色
     "finish": (255, 0, 0, 255),      # 红色
@@ -72,16 +72,27 @@ def draw_route(route_info: dict, holds_coords: dict, base_image: Image.Image) ->
                 coords = holds_coords[str_hold_id]
                 draw_hold(draw, coords["x"], coords["y"], hold_type)
 
-    # 在图像顶部添加线路名称和等级
+    # --- 核心修复点: 恢复绘制标题和等级的代码 ---
     route_name = route_info.get("name", "未命名线路")
     grade = route_info.get("grade", "")
     
+    # 绘制带有白色描边的黑色文字，以确保在任何背景下都清晰可见
+    def draw_text_with_outline(draw_obj, position, text, font, fill_color, outline_color):
+        x, y = position
+        # 绘制描边
+        draw_obj.text((x-1, y-1), text, font=font, fill=outline_color)
+        draw_obj.text((x+1, y-1), text, font=font, fill=outline_color)
+        draw_obj.text((x-1, y+1), text, font=font, fill=outline_color)
+        draw_obj.text((x+1, y+1), text, font=font, fill=outline_color)
+        # 绘制主文字
+        draw_obj.text(position, text, font=font, fill=fill_color)
+
     # 绘制线路名称
-    draw.text((10, 10), route_name, font=FONT, fill=(255, 255, 255, 255))
+    draw_text_with_outline(draw, (10, 10), route_name, FONT, (255, 255, 255), (0, 0, 0))
     
     # 如果有等级信息，绘制在名称下方
     if grade:
-        draw.text((10, 55), f"等级: {grade}", font=FONT_GRADE, fill=(200, 200, 200, 255))
+        draw_text_with_outline(draw, (10, 55), f"等级: {grade}", FONT_GRADE, (220, 220, 220), (0, 0, 0))
 
     return route_image
 
@@ -89,44 +100,33 @@ def main(routes_db_path: str, holds_coords_path: str, base_image_path: str, outp
     """
     主函数，加载数据并为每条线路生成图片。
     """
-    # 创建输出目录
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
-    # --- 核心修复点 ---
-    # 1. 加载线路数据库
     print(f"正在加载线路数据库: {routes_db_path}")
     try:
         with open(routes_db_path, 'r', encoding='utf-8') as f:
             raw_data = json.load(f)
         
-        # 智能判断数据结构
         if isinstance(raw_data, dict):
-            # 格式为 {"routes": [...]}
             all_routes_data = raw_data.get('routes', [])
         elif isinstance(raw_data, list):
-            # 格式为 [...]
             all_routes_data = raw_data
         else:
-            print(f"警告: '{routes_db_path}' 的格式无法识别，应为列表或包含'routes'键的字典。")
+            print(f"警告: '{routes_db_path}' 的格式无法识别。")
             all_routes_data = []
-
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"错误: 无法加载或解析线路数据库 '{routes_db_path}': {e}")
         return
-    # --- 修复结束 ---
 
-    # 2. 加载岩点坐标
     print(f"正在加载岩点坐标: {holds_coords_path}")
     try:
         with open(holds_coords_path, 'r', encoding='utf-8') as f:
-            # 将所有键转为小写，以便不区分大小写匹配
             holds_coords = {k.lower(): v for k, v in json.load(f).items()}
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"错误: 无法加载或解析岩点坐标文件 '{holds_coords_path}': {e}")
         return
 
-    # 3. 加载底图
     print(f"正在加载底图: {base_image_path}")
     try:
         base_image = Image.open(base_image_path).convert("RGBA")
@@ -134,7 +134,6 @@ def main(routes_db_path: str, holds_coords_path: str, base_image_path: str, outp
         print(f"错误: 底图文件 '{base_image_path}' 未找到。")
         return
 
-    # 4. 为每条线路生成图片
     if not all_routes_data:
         print("数据库中没有找到任何线路。")
         return
@@ -146,7 +145,6 @@ def main(routes_db_path: str, holds_coords_path: str, base_image_path: str, outp
         
         route_image = draw_route(route_info, holds_coords, base_image)
         
-        # 生成并保存图片
         grade = route_info.get("grade", "NoGrade")
         sanitized_grade = sanitize_filename(grade)
         sanitized_name = sanitize_filename(route_name)
@@ -155,7 +153,7 @@ def main(routes_db_path: str, holds_coords_path: str, base_image_path: str, outp
         final_path = output_path / output_filename
         
         route_image.save(final_path, "PNG", optimize=True)
-        print(f"  ✓ 已保存 (并压缩): {final_path}")
+        print(f"  ✓ 已保存: {final_path}")
 
     print("\n所有线路处理完毕！")
 
