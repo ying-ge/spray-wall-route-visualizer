@@ -66,12 +66,19 @@ jobs:
           python .github/scripts/mark_all_holds.py --wall_dir "${{ matrix.wall_dir }}"
           python .github/scripts/check_missing_holds.py "${{ matrix.wall_dir }}"
 
+      # --- 核心修复点 1: 新增步骤，生成合法的产物名称 ---
+      - name: 'Create sanitized artifact name'
+        id: sanitize_name
+        run: |
+          # 使用 Bash 的参数扩展功能，将所有的 '/' 替换为 '-'
+          ARTIFACT_NAME="generated-output-${{ matrix.wall_dir }}"
+          echo "name=${ARTIFACT_NAME//\//-}" >> $GITHUB_OUTPUT
+
+      # --- 核心修复点 2: 使用上一步生成的名称 ---
       - name: 'Upload generated output for ${{ matrix.wall_dir }}'
         uses: actions/upload-artifact@v4
         with:
-          # --- 核心修复点: 替换斜杠 ---
-          # 将 'walls/spray_wall' 替换为 'walls-spray_wall'
-          name: generated-output-${{ replace(matrix.wall_dir, '/', '-') }}
+          name: ${{ steps.sanitize_name.outputs.name }}
           path: ${{ matrix.wall_dir }}/output/
 
   commit_and_package:
@@ -88,7 +95,6 @@ jobs:
       - name: 'Download all generated outputs'
         uses: actions/download-artifact@v4
         with:
-          # --- 核心修复点: 更新下载模式 ---
           pattern: generated-output-walls-*
           path: walls/
           merge-multiple: true
