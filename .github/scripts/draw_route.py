@@ -1,202 +1,171 @@
 import json
-import math
-from PIL import Image, ImageDraw, ImageFont
-from pathlib import Path
 import argparse
+from pathlib import Path
+from PIL import Image, ImageDraw, ImageFont
 import re
-import sys
 
-# --- 样式配置 (来自您的版本) ---
-STYLE_CONFIG = {
-    'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
-    'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
-    'left_hand':   {'outline': (33, 150, 243, 255), 'shape': 'circle',    'text_color': (255, 255, 255)},
-    'right_hand':  {'outline': (255, 193, 7, 255),  'shape': 'circle',    'text_color': (255, 255, 255)},
-    'both_hands':  {'outline': (156, 39, 176, 255), 'shape': 'circle',    'text_color': (255, 255, 255)},
-    'foot':        {'outline': (205, 220, 57, 180), 'shape': 'circle'},
-    
-    'radius': 18,
-    'outline_width': 6,
-    'text_offset': 25,
-    'text_outline_width': 3,
-    'center_dot_radius': 4,
-    'center_dot_color': (255, 255, 255, 220),
+# --- 全局常量 ---
+# 字体设置
+try:
+    FONT = ImageFont.truetype("fonts/Oswald-Variable.ttf", 40)
+    FONT_GRADE = ImageFont.truetype("fonts/Oswald-Variable.ttf", 30)
+except IOError:
+    print("警告: Oswald 字体未找到。将使用默认字体。")
+    FONT = ImageFont.load_default()
+    FONT_GRADE = ImageFont.load_default()
 
-    'arrow_color': (255, 255, 255, 200),
-    'arrow_width': 5,
-    'arrowhead_length': 25,
-    'arrowhead_angle': 25,
-
-    'center_offset_x': 0,
-    'center_offset_y': 0,
-    
-    'title_style': {
-        'font_path': "fonts/Oswald-Variable.ttf", 
-        'font_size': 70,
-        'font_variation': 700, 
-        'fill_color': (255, 255, 255),
-        'outline_color': (0, 0, 0),
-        'outline_width': 4,
-        'margin': 60
-    },
-    'main_font_style': {
-        'font_path': "fonts/Oswald-Variable.ttf", 
-        'font_size': 50,
-        'font_variation': 700 
-    }
+# 颜色定义 (R, G, B)
+COLORS = {
+    "start": (0, 255, 0, 255),       # 绿色
+    "finish": (255, 0, 0, 255),      # 红色
+    "hand": (0, 0, 255, 255),        # 蓝色
+    "foot": (255, 255, 0, 255),      # 黄色
+    "hand_foot": (0, 191, 255, 255)  # 天蓝色
 }
 
-# --- 辅助函数 (来自您的版本) ---
-def draw_arrow(draw, start_xy, end_xy):
-    x1, y1 = start_xy; x2, y2 = end_xy
-    draw.line([start_xy, end_xy], fill=STYLE_CONFIG['arrow_color'], width=STYLE_CONFIG['arrow_width'])
-    angle = math.atan2(y2 - y1, x2 - x1); length = STYLE_CONFIG['arrowhead_length']; head_angle = math.radians(STYLE_CONFIG['arrowhead_angle'])
-    p1 = (x2 + length * math.cos(angle + math.pi - head_angle), y2 + length * math.sin(angle + math.pi - head_angle))
-    p2 = (x2 + length * math.cos(angle + math.pi + head_angle), y2 + length * math.sin(angle + math.pi + head_angle))
-    draw.polygon([end_xy, p1, p2], fill=STYLE_CONFIG['arrow_color'])
+# 标记点半径
+RADIUS = 25
 
-def draw_text_with_outline(draw, position, text, font, fill_color, outline_color, outline_width):
-    x, y = position
-    for i in range(-outline_width, outline_width + 1, outline_width):
-        for j in range(-outline_width, outline_width + 1, outline_width):
-            if i != 0 or j != 0: draw.text((x + i, y + j), text, font=font, fill=outline_color)
-    draw.text(position, text, font=font, fill=fill_color)
+def sanitize_filename(name: str) -> str:
+    """
+    清理字符串，使其成为有效的文件名。
+    """
+    # 移除无效字符
+    name = re.sub(r'[\\/*?:"<>|]', "", name)
+    # 将空格替换为下划线
+    name = name.replace(" ", "_")
+    return name
 
-def draw_hold(draw, center_xy, style, text=None, font=None):
-    x, y = center_xy; radius = STYLE_CONFIG['radius']
-    box = [x - radius, y - radius, x + radius, y + radius]
-    if style.get('shape') == 'rectangle': draw.rectangle(box, outline=style['outline'], width=STYLE_CONFIG['outline_width'])
-    else: draw.ellipse(box, outline=style['outline'], width=STYLE_CONFIG['outline_width'])
-    dot_radius = STYLE_CONFIG['center_dot_radius']; dot_box = [x - dot_radius, y - dot_radius, x + dot_radius, y + dot_radius]
-    draw.ellipse(dot_box, fill=STYLE_CONFIG['center_dot_color'])
-    if text and font:
-        text_pos_x = x + STYLE_CONFIG['text_offset']; text_pos_y = y - STYLE_CONFIG['text_offset']
-        draw_text_with_outline(draw, (text_pos_x, text_pos_y), text, font, fill_color=style['text_color'], outline_color=(0, 0, 0, 255), outline_width=STYLE_CONFIG['text_outline_width'])
-
-def get_variational_font(path, size, variation):
-    try:
-        font = ImageFont.truetype(path, size)
-        try:
-            font.set_variation_by_name("Bold")
-        except (AttributeError, TypeError):
-            try:
-                font.set_variation_by_axis_name('wght', variation)
-            except (AttributeError, TypeError):
-                 pass 
-        return font
-    except IOError:
-        print(f"错误: 字体 '{path}' 未在项目中找到! 将使用默认字体。", file=sys.stderr)
-        return ImageFont.load_default()
-
-# --- 核心绘图逻辑 (来自您的版本) ---
-def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_dir):
-    image = base_image.copy()
-    draw = ImageDraw.Draw(image, "RGBA")
+def draw_hold(draw: ImageDraw.ImageDraw, center_x: int, center_y: int, hold_type: str):
+    """
+    根据岩点类型在指定位置绘制标记。
+    """
+    color = COLORS.get(hold_type, COLORS["hand"])
     
-    offset_x = STYLE_CONFIG.get('center_offset_x', 0)
-    offset_y = STYLE_CONFIG.get('center_offset_y', 0)
+    # 绘制一个带边框的透明圆形
+    outline_color = (color[0], color[1], color[2], 255) # 边框不透明
+    fill_color = (color[0], color[1], color[2], 80) # 填充半透明
+    
+    draw.ellipse(
+        (center_x - RADIUS, center_y - RADIUS, center_x + RADIUS, center_y + RADIUS),
+        fill=fill_color,
+        outline=outline_color,
+        width=4
+    )
 
-    if 'holds' in route_data and 'foot' in route_data['holds']:
-        style = STYLE_CONFIG['foot']
-        for hold_id in route_data['holds']['foot']:
+def draw_route(route_info: dict, holds_coords: dict, base_image: Image.Image) -> Image.Image:
+    """
+    在底图上绘制单条线路。
+    """
+    # 创建一个可以在其上绘制的图像副本
+    route_image = base_image.copy()
+    draw = ImageDraw.Draw(route_image, "RGBA")
+
+    # 绘制所有岩点
+    for hold_type, hold_ids in route_info.get("holds", {}).items():
+        if hold_type not in COLORS:
+            continue
+        for hold_id in hold_ids:
+            # 统一将岩点ID转为小写字符串进行匹配
             str_hold_id = str(hold_id).lower()
             if str_hold_id in holds_coords:
-                center_xy = (holds_coords[str_hold_id]['x'] + offset_x, holds_coords[str_hold_id]['y'] + offset_y)
-                draw_hold(draw, center_xy, style)
+                coords = holds_coords[str_hold_id]
+                draw_hold(draw, coords["x"], coords["y"], hold_type)
 
-    prev_coords = None
-    if 'moves' in route_data:
-        for move in route_data['moves']:
-            hold_id = str(move['hold_id']).lower()
-            if hold_id not in holds_coords: continue
-            current_coords = (holds_coords[hold_id]['x'] + offset_x, holds_coords[hold_id]['y'] + offset_y)
-            if prev_coords: draw_arrow(draw, prev_coords, current_coords)
-            prev_coords = current_coords
+    # 在图像顶部添加线路名称和等级
+    route_name = route_info.get("name", "未命名线路")
+    grade = route_info.get("grade", "")
+    
+    # 绘制线路名称
+    draw.text((10, 10), route_name, font=FONT, fill=(255, 255, 255, 255))
+    
+    # 如果有等级信息，绘制在名称下方
+    if grade:
+        draw.text((10, 55), f"等级: {grade}", font=FONT_GRADE, fill=(200, 200, 200, 255))
+
+    return route_image
+
+def main(routes_db_path: str, holds_coords_path: str, base_image_path: str, output_dir: str):
+    """
+    主函数，加载数据并为每条线路生成图片。
+    """
+    # 创建输出目录
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    # --- 核心修复点 ---
+    # 1. 加载线路数据库
+    print(f"正在加载线路数据库: {routes_db_path}")
+    try:
+        with open(routes_db_path, 'r', encoding='utf-8') as f:
+            raw_data = json.load(f)
         
-        for move in route_data['moves']:
-            hold_id = str(move['hold_id']).lower()
-            if hold_id not in holds_coords: continue
-            center_xy = (holds_coords[hold_id]['x'] + offset_x, holds_coords[hold_id]['y'] + offset_y)
-            style_key = 'start' if move.get('type') == 'start' else 'finish' if move.get('type') == 'finish' else f"{move.get('hand')}_hand"
-            style = STYLE_CONFIG.get(style_key)
-            text_to_draw = move.get('text')
-            if not text_to_draw:
-                if move.get('type') == 'start': text_to_draw = 'S'
-                elif move.get('type') == 'finish': text_to_draw = 'F'
-                elif move.get('hand') == 'left': text_to_draw = 'L'
-                elif move.get('hand') == 'right': text_to_draw = 'R'
-                elif move.get('hand') == 'both': text_to_draw = 'B'
-            if style: draw_hold(draw, center_xy, style, text_to_draw, fonts['main'])
+        # 智能判断数据结构
+        if isinstance(raw_data, dict):
+            # 格式为 {"routes": [...]}
+            all_routes_data = raw_data.get('routes', [])
+        elif isinstance(raw_data, list):
+            # 格式为 [...]
+            all_routes_data = raw_data
+        else:
+            print(f"警告: '{routes_db_path}' 的格式无法识别，应为列表或包含'routes'键的字典。")
+            all_routes_data = []
 
-    title_style = STYLE_CONFIG['title_style']
-    route_info_text = f"{route_data.get('routeName', 'N/A')} | {route_data.get('difficulty', 'N/A')} | by {route_data.get('author', 'N/A')}"
-    
-    try: text_bbox = draw.textbbox((0, 0), route_info_text, font=fonts['title'])
-    except AttributeError: text_bbox = fonts['title'].getbbox(route_info_text)
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        print(f"错误: 无法加载或解析线路数据库 '{routes_db_path}': {e}")
+        return
+    # --- 修复结束 ---
+
+    # 2. 加载岩点坐标
+    print(f"正在加载岩点坐标: {holds_coords_path}")
+    try:
+        with open(holds_coords_path, 'r', encoding='utf-8') as f:
+            # 将所有键转为小写，以便不区分大小写匹配
+            holds_coords = {k.lower(): v for k, v in json.load(f).items()}
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        print(f"错误: 无法加载或解析岩点坐标文件 '{holds_coords_path}': {e}")
+        return
+
+    # 3. 加载底图
+    print(f"正在加载底图: {base_image_path}")
+    try:
+        base_image = Image.open(base_image_path).convert("RGBA")
+    except FileNotFoundError:
+        print(f"错误: 底图文件 '{base_image_path}' 未找到。")
+        return
+
+    # 4. 为每条线路生成图片
+    if not all_routes_data:
+        print("数据库中没有找到任何线路。")
+        return
+
+    print(f"正在处理 {len(all_routes_data)} 条线路...")
+    for i, route_info in enumerate(all_routes_data):
+        route_name = route_info.get("name", f"线路_{i+1}")
+        print(f"  [{i+1}/{len(all_routes_data)}] 正在绘制线路: '{route_name}'")
         
-    text_width, text_height = text_bbox[2] - text_bbox[0], text_bbox[3] - text_bbox[1]
-    
-    img_width, img_height = image.size
-    margin = title_style['margin']
-    text_x, text_y = img_width - text_width - margin, img_height - text_height - margin
-    
-    draw_text_with_outline(draw, (text_x, text_y), route_info_text, fonts['title'], 
-                           fill_color=title_style['fill_color'], 
-                           outline_color=title_style['outline_color'], 
-                           outline_width=title_style['outline_width'])
-    
-    quantized_image = image.quantize(colors=256, dither=Image.Dither.NONE)
-    
-    safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_data.get('routeName', 'untitled'))
-    output_filename = f"{route_data.get('difficulty', 'V_')}_{safe_filename.replace(' ', '_')}.png"
-    output_path = output_dir / output_filename
-    
-    quantized_image.save(output_path, 'PNG', optimize=True)
-    print(f"  ✓ Saved (and compressed): {output_path}")
+        route_image = draw_route(route_info, holds_coords, base_image)
+        
+        # 生成并保存图片
+        grade = route_info.get("grade", "NoGrade")
+        sanitized_grade = sanitize_filename(grade)
+        sanitized_name = sanitize_filename(route_name)
+        
+        output_filename = f"{sanitized_grade}_{sanitized_name}.png"
+        final_path = output_path / output_filename
+        
+        route_image.save(final_path, "PNG", optimize=True)
+        print(f"  ✓ 已保存 (并压缩): {final_path}")
 
-# --- 主函数 (重构以适配多墙结构) ---
-def main(routes_db_path_str, holds_coords_path_str, base_image_path_str, output_dir_str):
-    routes_db_path = Path(routes_db_path_str)
-    holds_coords_path = Path(holds_coords_path_str)
-    base_image_path = Path(base_image_path_str)
-    output_dir = Path(output_dir_str)
+    print("\n所有线路处理完毕！")
 
-    # 检查输入文件是否存在
-    for p in [routes_db_path, holds_coords_path, base_image_path]:
-        if not p.exists():
-            print(f"错误: 输入文件不存在 '{p}'", file=sys.stderr)
-            sys.exit(1)
 
-    print(f"Loading routes database: {routes_db_path}")
-    with open(routes_db_path, 'r', encoding='utf-8') as f: all_routes_data = json.load(f).get('routes', [])
-    print(f"Loading hold coordinates: {holds_coords_path}")
-    with open(holds_coords_path, 'r', encoding='utf-8') as f: holds_coords = {k.lower(): v for k, v in json.load(f).items()}
-    print(f"Loading base image: {base_image_path}")
-    base_image = Image.open(base_image_path).convert("RGBA")
-    
-    # 加载字体
-    fonts = {}
-    main_style = STYLE_CONFIG['main_font_style']
-    title_style = STYLE_CONFIG['title_style']
-    fonts['main'] = get_variational_font(main_style['font_path'], main_style['font_size'], main_style['font_variation'])
-    fonts['title'] = get_variational_font(title_style['font_path'], title_style['font_size'], title_style['font_variation'])
-
-    output_dir.mkdir(parents=True, exist_ok=True)
-    
-    print(f"\nProcessing {len(all_routes_data)} routes...")
-    for i, route_data in enumerate(all_routes_data):
-        print(f"[{i+1}/{len(all_routes_data)}] Drawing route: '{route_data.get('routeName', 'N/A')}'")
-        draw_single_route_image(route_data, holds_coords, base_image, fonts, output_dir)
-    
-    print("\nAll routes processed successfully!")
-
-# --- 命令行接口 (重构以适配多墙结构) ---
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="为指定墙体生成所有路线图。")
-    parser.add_argument("--routes_database_file", required=True, help="路线定义JSON文件的路径。")
-    parser.add_argument("--holds_coords_path", required=True, help="岩点坐标JSON文件的路径。")
-    parser.add_argument("--base_image_path", required=True, help="用于绘制的底图路径。")
-    parser.add_argument("--output_dir", required=True, help="生成的路线图的输出目录。")
+    parser = argparse.ArgumentParser(description="在攀岩墙底图上绘制线路并保存为图片。")
+    parser.add_argument("--routes_database_file", required=True, help="包含所有线路定义的 JSON 文件路径。")
+    parser.add_argument("--holds_coords_path", required=True, help="包含岩点坐标的 JSON 文件路径。")
+    parser.add_argument("--base_image_path", required=True, help="作为背景的攀岩墙图片路径。")
+    parser.add_argument("--output_dir", required=True, help="保存生成线路图片的目录。")
+    
     args = parser.parse_args()
-
     main(args.routes_database_file, args.holds_coords_path, args.base_image_path, args.output_dir)
