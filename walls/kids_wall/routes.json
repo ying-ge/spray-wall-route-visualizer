@@ -1,0 +1,16 @@
+{
+    "routes": [
+        {
+          "routeName": "My First Route",
+          "difficulty": "VB",
+          "author": "Admin",
+          "holds": {
+            "foot": []
+          },
+          "moves": [
+            { "hold_id": "1", "type": "start", "hand": "both" },
+            { "hold_id": "10", "type": "finish", "hand": "both" }
+          ]
+        }
+    ]
+}
