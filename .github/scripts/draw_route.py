@@ -84,7 +84,7 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     if 'holds' in route_data and 'foot' in route_data['holds']:
         style = STYLE_CONFIG['foot']
         for hold_id in route_data['holds']['foot']:
-            str_hold_id = str(hold_id)
+            str_hold_id = str(hold_id).lower() # 增加 .lower()
             if str_hold_id in holds_coords:
                 center_xy = (holds_coords[str_hold_id]['x'] + offset_x, holds_coords[str_hold_id]['y'] + offset_y)
                 draw_hold(draw, center_xy, style)
@@ -92,14 +92,14 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     prev_coords = None
     if 'moves' in route_data:
         for move in route_data['moves']:
-            hold_id = str(move['hold_id'])
+            hold_id = str(move['hold_id']).lower() # 增加 .lower()
             if hold_id not in holds_coords: continue
             current_coords = (holds_coords[hold_id]['x'] + offset_x, holds_coords[hold_id]['y'] + offset_y)
             if prev_coords: draw_arrow(draw, prev_coords, current_coords)
             prev_coords = current_coords
         
         for move in route_data['moves']:
-            hold_id = str(move['hold_id'])
+            hold_id = str(move['hold_id']).lower() # 增加 .lower()
             if hold_id not in holds_coords: continue
             center_xy = (holds_coords[hold_id]['x'] + offset_x, holds_coords[hold_id]['y'] + offset_y)
             style_key = 'start' if move.get('type') == 'start' else 'finish' if move.get('type') == 'finish' else f"{move.get('hand')}_hand"
@@ -114,7 +114,10 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
             if style: draw_hold(draw, center_xy, style, text_to_draw, fonts['main'])
 
     title_style = STYLE_CONFIG['title_style']
-    route_info_text = f"{route_data.get('routeName', 'N/A')} | {route_data.get('difficulty', 'N/A')} | by {route_data.get('author', 'N/A')}"
+    route_name = route_data.get('routeName', route_data.get('name', 'N/A')) # 兼容两种 key
+    difficulty = route_data.get('difficulty', route_data.get('grade', 'N/A')) # 兼容两种 key
+    author = route_data.get('author', 'N/A')
+    route_info_text = f"{route_name} | {difficulty} | by {author}"
     
     try: text_bbox = draw.textbbox((0, 0), route_info_text, font=fonts['title'])
     except AttributeError: text_bbox = fonts['title'].getbbox(route_info_text)
@@ -132,8 +135,8 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     
     quantized_image = image.quantize(colors=256, dither=Image.Dither.NONE)
     
-    safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_data.get('routeName', 'untitled'))
-    output_filename = f"{route_data.get('difficulty', 'V_')}_{safe_filename.replace(' ', '_')}.png"
+    safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_name)
+    output_filename = f"{difficulty.replace(' ', '_')}_{safe_filename.replace(' ', '_')}.png"
     output_path = output_dir / output_filename
     
     quantized_image.save(output_path, 'PNG', optimize=True)
@@ -153,10 +156,21 @@ def get_variational_font(path, size, variation):
 def process_all_routes(routes_db_path, holds_coords_path, base_image_path, output_dir):
     try:
         print(f"Loading routes database: {routes_db_path}")
-        with open(routes_db_path, 'r', encoding='utf-8') as f: all_routes_data = json.load(f).get('routes', [])
+        with open(routes_db_path, 'r', encoding='utf-8') as f: 
+            raw_data = json.load(f)
         
+        # 兼容旧的 "routes" key 和新的直接是列表的格式
+        if isinstance(raw_data, dict):
+            all_routes_data = raw_data.get('routes', [])
+        elif isinstance(raw_data, list):
+            all_routes_data = raw_data
+        else:
+            all_routes_data = []
+
         print(f"Loading hold coordinates: {holds_coords_path}")
-        with open(holds_coords_path, 'r', encoding='utf-8') as f: holds_coords = json.load(f)
+        # 将所有岩点ID转为小写，以便不区分大小写匹配
+        with open(holds_coords_path, 'r', encoding='utf-8') as f: 
+            holds_coords = {k.lower(): v for k, v in json.load(f).items()}
         
         print(f"Loading base image: {base_image_path}")
         base_image = Image.open(base_image_path).convert("RGBA")
@@ -185,13 +199,14 @@ def process_all_routes(routes_db_path, holds_coords_path, base_image_path, outpu
 
     print(f"\nProcessing {len(all_routes_data)} routes...")
     for i, route_data in enumerate(all_routes_data):
-        print(f"[{i+1}/{len(all_routes_data)}] Drawing route: '{route_data.get('routeName', 'N/A')}'")
+        route_name = route_data.get('routeName', route_data.get('name', 'N/A'))
+        print(f"[{i+1}/{len(all_routes_data)}] Drawing route: '{route_name}'")
         draw_single_route_image(route_data, holds_coords, base_image, fonts, output_dir)
     
     print("\nAll routes processed successfully!")
 
 
-# --- 核心修改点: 恢复与 GitHub Actions 兼容的命令行参数 ---
+# --- 核心修复点: 修正了之前版本中的语法错误 ---
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="在攀岩墙底图上绘制线路并保存为图片。")
     parser.add_argument("--routes_database_file", required=True, help="包含所有线路定义的 JSON 文件路径。")
@@ -201,13 +216,11 @@ if __name__ == '__main__':
     
     args = parser.parse_args()
 
-    # 将字符串路径转换为 Path 对象，以便与脚本的其余部分兼容
     routes_db_path = Path(args.routes_database_file)
     holds_coords_path = Path(args.holds_coords_path)
     base_image_path = Path(args.base_image_path)
     output_dir = Path(args.output_dir)
 
-    # 检查文件是否存在
     if not routes_db_path.exists():
         print(f"错误: 路线数据库文件不存在 '{routes_db_path}'", file=sys.stderr)
         sys.exit(1)
@@ -215,7 +228,7 @@ if __name__ == '__main__':
         print(f"错误: 岩点坐标文件 '{holds_coords_path}' 不存在。", file=sys.stderr)
         sys.exit(1)
     if not base_image_path.exists():
-        print(f"错误: 原始图片 '{base_image_path}' 不存在。", file=sys.exit(1)
+        print(f"错误: 原始图片 '{base_image_path}' 不存在。", file=sys.stderr)
+        sys.exit(1)
     
-    # 调用主处理函数
     process_all_routes(routes_db_path, holds_coords_path, base_image_path, output_dir)
