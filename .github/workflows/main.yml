@@ -47,12 +47,21 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
+            
+      # --- 核心修改点 1: 在 build 作业中安装 imagemagick ---
       - name: 'Install dependencies'
         run: |
+          # 安装 Python 依赖
           python -m pip install --upgrade pip
           pip install --upgrade "Pillow>=9.2.0"
           pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
           pip install numpy opencv-python-headless easyocr
+          # 安装系统依赖
+          echo "Installing ImageMagick..."
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          echo "ImageMagick installed."
+
       - name: 'Download and Prepare Font'
         run: |
           mkdir -p fonts
@@ -63,20 +72,27 @@ jobs:
           HOLDS_FILE="${{ matrix.wall_dir }}/output/data/holds.json"
           if [ ! -f "$HOLDS_FILE" ]; then
             echo "File '$HOLDS_FILE' not found. Generating..."
-            python .github/scripts/generate_coords.py \
-              --image_path "${{ matrix.wall_dir }}/image_marked.png" \
-              --output_path "$HOLDS_FILE"
+            python .github/scripts/generate_coords.py --image_path "${{ matrix.wall_dir }}/image_marked.png" --output_path "$HOLDS_FILE"
           else
             echo "File '$HOLDS_FILE' already exists. Skipping generation."
           fi
 
       - name: 'Step 2: Draw All Route Images'
         run: |
-          python .github/scripts/draw_route.py \
-            --routes_database_file "${{ matrix.wall_dir }}/routes.json" \
-            --holds_coords_path "${{ matrix.wall_dir }}/output/data/holds.json" \
-            --base_image_path "${{ matrix.wall_dir }}/image_base.png" \
-            --output_dir "${{ matrix.wall_dir }}/output/generated_routes"
+          python .github/scripts/draw_route.py --routes_database_file "${{ matrix.wall_dir }}/routes.json" --holds_coords_path "${{ matrix.wall_dir }}/output/data/holds.json" --base_image_path "${{ matrix.wall_dir }}/image_base.png" --output_dir "${{ matrix.wall_dir }}/output/generated_routes"
+
+      # --- 核心修改点 2: 生成后立刻缩放图片 ---
+      - name: 'Step 2.1: Resize generated route images'
+        run: |
+          ROUTE_DIR="${{ matrix.wall_dir }}/output/generated_routes"
+          if [ -d "$ROUTE_DIR" ] && [ -n "$(ls -A "$ROUTE_DIR")" ]; then
+            echo "Resizing images in $ROUTE_DIR to 50%..."
+            # -quality 85 会在缩放的同时进行有损压缩，进一步减小文件体积
+            find "$ROUTE_DIR" -name "*.png" -exec mogrify -resize 50% -quality 85 {} +
+            echo "Image resizing and compression complete."
+          else
+            echo "No images found in $ROUTE_DIR to resize."
+          fi
 
       - name: 'Step 3: Generate debug image'
         run: python .github/scripts/mark_all_holds.py --wall_dir "${{ matrix.wall_dir }}"
@@ -107,9 +123,7 @@ jobs:
       - name: 'Checkout Repository'
         uses: actions/checkout@v4
         with:
-          # 检出完整的历史，以便进行合并
           fetch-depth: 0
-          # 使用一个 token，确保我们有权限推送
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 'Download all generated outputs'
@@ -123,14 +137,12 @@ jobs:
             if [ -d "$dir" ]; then
               dirty_path=$(basename "$dir" | sed -e 's/generated-output-for-//')
               original_path=$(echo "$dirty_path" | sed 's/-/\//')
-              
               echo "Merging files from $dir to $original_path/output"
               mkdir -p "$original_path/output"
               cp -a "$dir"/. "$original_path/output/"
             fi
           done
 
-      # --- 核心修复点 ---
       - name: 'Pull latest changes from main'
         run: |
           git config --global user.name 'github-actions[bot]'
@@ -144,6 +156,7 @@ jobs:
           commit_message: "feat(walls): Auto-generate route and debug images"
           file_pattern: "walls/"
           
+      # --- 核心修改点 3: 简化打包步骤，不再需要图片处理 ---
       - name: 'Step 6: Compress all route images into a single ZIP'
         if: steps.auto-commit-action.outputs.changes_detected == 'true'
         run: |
@@ -154,11 +167,12 @@ jobs:
               cp -r "$dir" "all_routes_packaged/${wall_name}_routes"
             fi
           done
+          
           if [ -n "$(ls -A "all_routes_packaged")" ]; then
             zip -r climbing_routes_all_walls.zip all_routes_packaged
             echo "ZIP_CREATED=true" >> $GITHUB_ENV
           else
-            echo "No routes to package."
+            echo "No routes to package for zipping."
             echo "ZIP_CREATED=false" >> $GITHUB_ENV
           fi
           
