@@ -184,3 +184,20 @@ STYLE_CONFIG = {
 下面是一张由本系统自动生成的V4路线图：
 
 ![V4 Pinch_Block_Power 路线图示例](generated_routes/V4_Pinch_Block_Power.png)
+
+## 许可协议 (License)
+
+本项目采用 [知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议 (Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License)](http://creativecommons.org/licenses/by-nc-sa/4.0/) 进行许可。
+
+您可以自由地：
+*   **共享** — 在任何媒介以任何形式复制、发行本作品
+*   **演绎** — 修改、转换或以本作品为基础进行创作
+
+只要你遵守以下许可协议条款：
+*   **署名 (Attribution)** — 您必须给出适当的署名，提供指向本许可协议的链接，同时标明是否对原始作品作了修改。
+*   **非商业性使用 (NonCommercial)** — 您不得将本作品用于商业目的。
+*   **相同方式共享 (ShareAlike)** — 如果您再混合、转换、或者基于本作品进行创作，您必须基于与原先许可协议相同的许可协议分发您贡献的作品。
+
+### 商业授权
+
+如果您希望将此项目用于商业目的（包括但不限于在闭源软件中使用、提供商业化服务、或作为公司内部工具等），您必须获得商业授权。请通过电子邮件联系 **geying.tju@gmail.com]** 以洽谈商业合作事宜。
