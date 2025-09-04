@@ -66,11 +66,12 @@ jobs:
           python .github/scripts/mark_all_holds.py --wall_dir "${{ matrix.wall_dir }}"
           python .github/scripts/check_missing_holds.py "${{ matrix.wall_dir }}"
 
-      # --- 核心修复点 1: 上传每个墙的产出 ---
       - name: 'Upload generated output for ${{ matrix.wall_dir }}'
         uses: actions/upload-artifact@v4
         with:
-          name: generated-output-${{ matrix.wall_dir }}
+          # --- 核心修复点: 替换斜杠 ---
+          # 将 'walls/spray_wall' 替换为 'walls-spray_wall'
+          name: generated-output-${{ replace(matrix.wall_dir, '/', '-') }}
           path: ${{ matrix.wall_dir }}/output/
 
   commit_and_package:
@@ -84,14 +85,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      # --- 核心修复点 2: 下载所有产出 ---
       - name: 'Download all generated outputs'
         uses: actions/download-artifact@v4
         with:
-          # 使用通配符下载所有以 'generated-output-' 开头的产物
+          # --- 核心修复点: 更新下载模式 ---
           pattern: generated-output-walls-*
           path: walls/
-          merge-multiple: true # 将所有下载的产物合并到 walls/ 目录下
+          merge-multiple: true
 
       - name: 'Step 5: Commit all generated files'
         uses: stefanzweifel/git-auto-commit-action@v5
