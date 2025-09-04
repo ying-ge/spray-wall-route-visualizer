@@ -1,6 +1,6 @@
 {
   "wall_name": "Kids Wall",
   "valid_hold_ranges": [
-    [10, 280]
+    [1, 281]
   ]
 }
