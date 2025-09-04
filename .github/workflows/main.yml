@@ -25,7 +25,7 @@ jobs:
         id: get_walls
         run: |
           # 使用 find 和 jq 命令生成一个包含所有墙目录的JSON数组
-          WALLS=$(find walls -mindepth 1 -maxdepth 1 -type d | jq -R . | jq -s .)
+          WALLS=$(find walls -mindepth 1 -maxdepth 1 -type d | jq -R . | jq -cs .)
           echo "Found walls: $WALLS"
           echo "walls_json=$WALLS" >> $GITHUB_OUTPUT
 
