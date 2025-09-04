@@ -125,7 +125,7 @@ jobs:
               # 确保目标目录存在
               mkdir -p "$original_path/output"
               # 将下载的内容移动到它本该在的位置
-              mv "$dir"/* "$original_path/output/"
+              cp -a "$dir"/* "$original_path/output/"
             fi
           done
       - name: 'Step 5: Commit all generated files'
