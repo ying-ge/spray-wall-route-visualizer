@@ -1,6 +1,5 @@
 name: Generate Route Images for All Walls
 
-# 1. 触发器更新: 监控整个 walls/ 目录
 on:
   push:
     branches:
@@ -11,9 +10,7 @@ on:
       - '.github/scripts/**'
   workflow_dispatch:
 
-# 2. 结构升级: 从一个作业变成三个协同作业
 jobs:
-  # 作业一: 动态发现所有需要处理的墙
   list_walls:
     runs-on: ubuntu-latest
     outputs:
@@ -24,22 +21,16 @@ jobs:
       - name: 'List all wall directories'
         id: get_walls
         run: |
-          # 使用 find 和 jq 命令生成一个包含所有墙目录的JSON数组
           WALLS=$(find walls -mindepth 1 -maxdepth 1 -type d | jq -R . | jq -cs .)
           echo "Found walls: $WALLS"
           echo "walls_json=$WALLS" >> $GITHUB_OUTPUT
 
-  # 作业二: 为每一面墙并行地生成图片
   build_and_draw_per_wall:
     needs: list_walls
-    # 如果没有找到任何墙，则不运行此作业
     if: fromJson(needs.list_walls.outputs.walls_json)[0] != null
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    # 3. 核心机制: 使用 strategy:matrix 实现并行处理
     strategy:
-      fail-fast: false # 一个墙失败不影响其他墙
+      fail-fast: false
       matrix:
         wall_dir: ${{ fromJson(needs.list_walls.outputs.walls_json) }}
         
@@ -68,44 +59,23 @@ jobs:
           mkdir -p fonts
           curl -L "https://github.com/google/fonts/raw/main/ofl/oswald/Oswald%5Bwght%5D.ttf" -o "fonts/Oswald-Variable.ttf"
       
-      # 4. 路径动态化: 所有脚本调用都使用 matrix.wall_dir 变量
-      - name: 'Step 1: Generate Hold Coordinates for ${{ matrix.wall_dir }}'
+      - name: 'Step 1-4: Generate all files for ${{ matrix.wall_dir }}'
         run: |
-          python .github/scripts/generate_coords.py \
-            --image_path "${{ matrix.wall_dir }}/image_marked.png" \
-            --output_path "${{ matrix.wall_dir }}/output/data/holds.json"
-
-      - name: 'Step 2: Draw All Route Images for ${{ matrix.wall_dir }}'
-        run: |
-          python .github/scripts/draw_route.py \
-            --routes_database_file "${{ matrix.wall_dir }}/routes.json" \
-            --holds_coords_path "${{ matrix.wall_dir }}/output/data/holds.json" \
-            --base_image_path "${{ matrix.wall_dir }}/image_base.png" \
-            --output_dir "${{ matrix.wall_dir }}/output/generated_routes"
-
-      # 5. 功能增强: 智能生成调试图
-      - name: 'Step 3.1: Check cache for debug image'
-        id: cache-debug-image
-        uses: actions/cache@v3
-        with:
-          path: ${{ matrix.wall_dir }}/output/debug_all_holds_marked.png
-          key: ${{ runner.os }}-debug-image-${{ matrix.wall_dir }}-${{ hashFiles(format('{0}/image_marked.png', matrix.wall_dir), '.github/scripts/mark_all_holds.py') }}
-
-      - name: 'Step 3.2: Generate debug image if cache missed'
-        if: steps.cache-debug-image.outputs.cache-hit != 'true'
-        run: |
-          echo "Cache missed for debug image. Regenerating..."
+          python .github/scripts/generate_coords.py --image_path "${{ matrix.wall_dir }}/image_marked.png" --output_path "${{ matrix.wall_dir }}/output/data/holds.json"
+          python .github/scripts/draw_route.py --routes_database_file "${{ matrix.wall_dir }}/routes.json" --holds_coords_path "${{ matrix.wall_dir }}/output/data/holds.json" --base_image_path "${{ matrix.wall_dir }}/image_base.png" --output_dir "${{ matrix.wall_dir }}/output/generated_routes"
           python .github/scripts/mark_all_holds.py --wall_dir "${{ matrix.wall_dir }}"
-        
-      - name: 'Step 4: Check for missing holds in ${{ matrix.wall_dir }}'
-        run: |
           python .github/scripts/check_missing_holds.py "${{ matrix.wall_dir }}"
 
-  # 作业三: 统一提交和打包所有墙的产物
+      # --- 核心修复点 1: 上传每个墙的产出 ---
+      - name: 'Upload generated output for ${{ matrix.wall_dir }}'
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-output-${{ matrix.wall_dir }}
+          path: ${{ matrix.wall_dir }}/output/
+
   commit_and_package:
     needs: build_and_draw_per_wall
     runs-on: ubuntu-latest
-    if: always() # 确保即使有墙失败，也尝试提交成功的部分
     permissions:
       contents: write
     steps:
@@ -113,22 +83,32 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      # --- 核心修复点 2: 下载所有产出 ---
+      - name: 'Download all generated outputs'
+        uses: actions/download-artifact@v4
+        with:
+          # 使用通配符下载所有以 'generated-output-' 开头的产物
+          pattern: generated-output-walls-*
+          path: walls/
+          merge-multiple: true # 将所有下载的产物合并到 walls/ 目录下
+
       - name: 'Step 5: Commit all generated files'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "feat(walls): Auto-generate route and debug images"
-          # 6. 提交范围扩大: 使用通配符提交所有墙的所有输出图片
-          file_pattern: "walls/**/output/**/*.png"
+          file_pattern: "walls/**/output/"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
           commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          
       - name: 'Step 6: Compress all route images into a single ZIP'
         run: |
           mkdir -p all_routes_packaged
-          find walls -mindepth 3 -maxdepth 3 -type d -name "generated_routes" | while read -r dir; do
-            wall_name=$(basename "$(dirname "$(dirname "$dir")")")
+          find walls -type d -name "generated_routes" | while read -r dir; do
             if [ -n "$(ls -A "$dir")" ]; then
-                cp -r "$dir" "all_routes_packaged/${wall_name}_routes"
+              wall_name=$(basename "$(dirname "$(dirname "$dir")")")
+              cp -r "$dir" "all_routes_packaged/${wall_name}_routes"
             fi
           done
           if [ -n "$(ls -A "all_routes_packaged")" ]; then
@@ -138,6 +118,7 @@ jobs:
             echo "No routes to package."
             echo "ZIP_CREATED=false" >> $GITHUB_ENV
           fi
+          
       - name: 'Step 7: Upload All-Walls Route Images Artifact'
         if: env.ZIP_CREATED == 'true'
         uses: actions/upload-artifact@v4
