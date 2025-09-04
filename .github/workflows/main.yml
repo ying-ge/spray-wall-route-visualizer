@@ -66,20 +66,12 @@ jobs:
           python .github/scripts/mark_all_holds.py --wall_dir "${{ matrix.wall_dir }}"
           python .github/scripts/check_missing_holds.py "${{ matrix.wall_dir }}"
 
-      # --- 核心修复点 1: 新增步骤，生成合法的产物名称 ---
-      - name: 'Create sanitized artifact name'
-        id: sanitize_name
-        run: |
-          # 使用 Bash 的参数扩展功能，将所有的 '/' 替换为 '-'
-          ARTIFACT_NAME="generated-output-${{ matrix.wall_dir }}"
-          echo "name=${ARTIFACT_NAME//\//-}" >> $GITHUB_OUTPUT
-
-      # --- 核心修复点 2: 使用上一步生成的名称 ---
-      - name: 'Upload generated output for ${{ matrix.wall_dir }}'
+      # --- 核心修复点 1: 上传整个 `walls` 目录 ---
+      - name: 'Upload entire walls directory'
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.sanitize_name.outputs.name }}
-          path: ${{ matrix.wall_dir }}/output/
+          name: walls-with-output-${{ matrix.wall_dir }}
+          path: walls/
 
   commit_and_package:
     needs: build_and_draw_per_wall
@@ -92,18 +84,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 'Download all generated outputs'
+      # --- 核心修复点 2: 仅下载最后一个作业的产物 ---
+      - name: 'Download the final walls directory'
         uses: actions/download-artifact@v4
         with:
-          pattern: generated-output-walls-*
-          path: walls/
-          merge-multiple: true
+          # 下载最后一个完成的 `build_and_draw_per_wall` 作业的产物
+          # 这包含了所有先前作业的更改，以及它自己的更改
+          name: walls-with-output-${{ needs.build_and_draw_per_wall.outputs.last_wall_dir }}
+          path: ./ # 下载到根目录，会覆盖现有的 `walls` 目录
 
       - name: 'Step 5: Commit all generated files'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "feat(walls): Auto-generate route and debug images"
-          file_pattern: "walls/**/output/"
+          file_pattern: "walls/" # 监控整个 walls 目录
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
           commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
