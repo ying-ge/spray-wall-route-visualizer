@@ -1,6 +1,9 @@
 {
   "wall_name": "Kids Wall",
-  "valid_hold_ranges": [
-    [1, 280]
-  ]
+  "valid_hold_ranges": {
+    "numeric_ranges": [
+      [1, 280]
+    ],
+    "alphabetic_ranges": []
+  }
 }
