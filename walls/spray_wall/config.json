@@ -2,7 +2,7 @@
   "wall_name": "Spray Wall",
   "valid_hold_ranges": {
     "numeric_ranges": [
-      [1, 140]
+      [1, 128]
     ],
     "alphabetic_ranges": [
       ["a", "z"]
