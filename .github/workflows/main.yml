@@ -23,8 +23,7 @@ jobs:
         run: |
           WALLS=$(find walls -mindepth 1 -maxdepth 1 -type d | jq -R . | jq -cs .)
           echo "Found walls: $WALLS"
-          echo "walls_json=$GITHUB_OUTPUT"
-
+          echo "walls_json=$WALLS" >> $GITHUB_OUTPUT
   build:
     needs: list_walls
     if: fromJson(needs.list_walls.outputs.walls_json)[0] != null
@@ -70,7 +69,6 @@ jobs:
           else
             echo "File '$HOLDS_FILE' already exists. Skipping generation."
           fi
-
       - name: 'Step 2: Draw All Route Images'
         run: |
           python .github/scripts/draw_route.py \
@@ -78,7 +76,6 @@ jobs:
             --holds_coords_path "${{ matrix.wall_dir }}/output/data/holds.json" \
             --base_image_path "${{ matrix.wall_dir }}/image_base.png" \
             --output_dir "${{ matrix.wall_dir }}/output/generated_routes"
-
       - name: 'Step 3: Generate debug image'
         run: python .github/scripts/mark_all_holds.py --wall_dir "${{ matrix.wall_dir }}"
 
@@ -90,7 +87,6 @@ jobs:
         run: |
           ARTIFACT_NAME="generated-output-for-${{ matrix.wall_dir }}"
           echo "name=${ARTIFACT_NAME//\//-}" >> $GITHUB_OUTPUT
-
       - name: 'Upload generated output'
         uses: actions/upload-artifact@v4
         with:
@@ -120,16 +116,18 @@ jobs:
         run: |
           for dir in temp-artifacts/*; do
             if [ -d "$dir" ]; then
+              # 从 'generated-output-for-walls-spray_wall' 中提取出 'walls-spray_wall'
               dirty_path=$(basename "$dir" | sed -e 's/generated-output-for-//')
+              # 使用更稳健的 sed 语法，只将第一个 '-' 替换为 '/'
               original_path=$(echo "$dirty_path" | sed 's/-/\//')
               
-              echo "Merging files from $dir to $original_path/output"
+              echo "Moving files from $dir to $original_path/output"
+              # 确保目标目录存在
               mkdir -p "$original_path/output"
-              # 使用 'cp -a' 来合并目录内容，它会覆盖现有文件
-              cp -a "$dir"/. "$original_path/output/"
+              # 将下载的内容移动到它本该在的位置
+              mv "$dir"/* "$original_path/output/"
             fi
           done
-
       - name: 'Step 5: Commit all generated files'
         id: auto-commit-action
         uses: stefanzweifel/git-auto-commit-action@v5
