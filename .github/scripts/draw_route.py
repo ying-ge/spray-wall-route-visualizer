@@ -6,7 +6,7 @@ import argparse
 import re
 import sys
 
-# --- 样式配置 (保持不变) ---
+# --- 样式配置 (来自您的版本) ---
 STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
@@ -18,7 +18,6 @@ STYLE_CONFIG = {
     'radius': 18,
     'outline_width': 6,
     'text_offset': 25,
-    'font_size': 50,
     'text_outline_width': 3,
     'center_dot_radius': 4,
     'center_dot_color': (255, 255, 255, 220),
@@ -47,7 +46,7 @@ STYLE_CONFIG = {
     }
 }
 
-# --- 辅助函数 (保持不变) ---
+# --- 辅助函数 (来自您的版本) ---
 def draw_arrow(draw, start_xy, end_xy):
     x1, y1 = start_xy; x2, y2 = end_xy
     draw.line([start_xy, end_xy], fill=STYLE_CONFIG['arrow_color'], width=STYLE_CONFIG['arrow_width'])
@@ -74,6 +73,22 @@ def draw_hold(draw, center_xy, style, text=None, font=None):
         text_pos_x = x + STYLE_CONFIG['text_offset']; text_pos_y = y - STYLE_CONFIG['text_offset']
         draw_text_with_outline(draw, (text_pos_x, text_pos_y), text, font, fill_color=style['text_color'], outline_color=(0, 0, 0, 255), outline_width=STYLE_CONFIG['text_outline_width'])
 
+def get_variational_font(path, size, variation):
+    try:
+        font = ImageFont.truetype(path, size)
+        try:
+            font.set_variation_by_name("Bold")
+        except (AttributeError, TypeError):
+            try:
+                font.set_variation_by_axis_name('wght', variation)
+            except (AttributeError, TypeError):
+                 pass 
+        return font
+    except IOError:
+        print(f"错误: 字体 '{path}' 未在项目中找到! 将使用默认字体。", file=sys.stderr)
+        return ImageFont.load_default()
+
+# --- 核心绘图逻辑 (来自您的版本) ---
 def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_dir):
     image = base_image.copy()
     draw = ImageDraw.Draw(image, "RGBA")
@@ -84,7 +99,7 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     if 'holds' in route_data and 'foot' in route_data['holds']:
         style = STYLE_CONFIG['foot']
         for hold_id in route_data['holds']['foot']:
-            str_hold_id = str(hold_id)
+            str_hold_id = str(hold_id).lower()
             if str_hold_id in holds_coords:
                 center_xy = (holds_coords[str_hold_id]['x'] + offset_x, holds_coords[str_hold_id]['y'] + offset_y)
                 draw_hold(draw, center_xy, style)
@@ -92,14 +107,14 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     prev_coords = None
     if 'moves' in route_data:
         for move in route_data['moves']:
-            hold_id = str(move['hold_id'])
+            hold_id = str(move['hold_id']).lower()
             if hold_id not in holds_coords: continue
             current_coords = (holds_coords[hold_id]['x'] + offset_x, holds_coords[hold_id]['y'] + offset_y)
             if prev_coords: draw_arrow(draw, prev_coords, current_coords)
             prev_coords = current_coords
         
         for move in route_data['moves']:
-            hold_id = str(move['hold_id'])
+            hold_id = str(move['hold_id']).lower()
             if hold_id not in holds_coords: continue
             center_xy = (holds_coords[hold_id]['x'] + offset_x, holds_coords[hold_id]['y'] + offset_y)
             style_key = 'start' if move.get('type') == 'start' else 'finish' if move.get('type') == 'finish' else f"{move.get('hand')}_hand"
@@ -139,37 +154,32 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     quantized_image.save(output_path, 'PNG', optimize=True)
     print(f"  ✓ Saved (and compressed): {output_path}")
 
-def get_variational_font(path, size, variation):
-    font = ImageFont.truetype(path, size)
-    try:
-        font.set_variation_by_name("Bold")
-    except (AttributeError, TypeError):
-        try:
-            font.set_variation_by_axis_name('wght', variation)
-        except (AttributeError, TypeError):
-             pass 
-    return font
+# --- 主函数 (重构以适配多墙结构) ---
+def main(routes_db_path_str, holds_coords_path_str, base_image_path_str, output_dir_str):
+    routes_db_path = Path(routes_db_path_str)
+    holds_coords_path = Path(holds_coords_path_str)
+    base_image_path = Path(base_image_path_str)
+    output_dir = Path(output_dir_str)
 
-def process_all_routes(routes_db_path, holds_coords_path, base_image_path, output_dir):
+    # 检查输入文件是否存在
+    for p in [routes_db_path, holds_coords_path, base_image_path]:
+        if not p.exists():
+            print(f"错误: 输入文件不存在 '{p}'", file=sys.stderr)
+            sys.exit(1)
+
     print(f"Loading routes database: {routes_db_path}")
     with open(routes_db_path, 'r', encoding='utf-8') as f: all_routes_data = json.load(f).get('routes', [])
     print(f"Loading hold coordinates: {holds_coords_path}")
-    with open(holds_coords_path, 'r', encoding='utf-8') as f: holds_coords = json.load(f)
+    with open(holds_coords_path, 'r', encoding='utf-8') as f: holds_coords = {k.lower(): v for k, v in json.load(f).items()}
     print(f"Loading base image: {base_image_path}")
     base_image = Image.open(base_image_path).convert("RGBA")
     
+    # 加载字体
     fonts = {}
-    try:
-        main_style = STYLE_CONFIG['main_font_style']
-        fonts['main'] = get_variational_font(main_style['font_path'], main_style['font_size'], main_style['font_variation'])
-    except IOError:
-        print(f"错误: 主要字体 '{main_style['font_path']}' 未在项目中找到!", file=sys.stderr); sys.exit(1)
-
-    try:
-        title_style = STYLE_CONFIG['title_style']
-        fonts['title'] = get_variational_font(title_style['font_path'], title_style['font_size'], title_style['font_variation'])
-    except IOError:
-        print(f"错误: 标题字体 '{title_style['font_path']}' 未在项目中找到!", file=sys.stderr); sys.exit(1)
+    main_style = STYLE_CONFIG['main_font_style']
+    title_style = STYLE_CONFIG['title_style']
+    fonts['main'] = get_variational_font(main_style['font_path'], main_style['font_size'], main_style['font_variation'])
+    fonts['title'] = get_variational_font(title_style['font_path'], title_style['font_size'], title_style['font_variation'])
 
     output_dir.mkdir(parents=True, exist_ok=True)
     
@@ -180,17 +190,13 @@ def process_all_routes(routes_db_path, holds_coords_path, base_image_path, outpu
     
     print("\nAll routes processed successfully!")
 
-
+# --- 命令行接口 (重构以适配多墙结构) ---
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="从一个JSON数据库文件为所有攀岩路线生成图片。")
-    parser.add_argument("routes_database_file", help="包含所有路线的JSON文件的路径 (例如 routes/all_routes.json)")
+    parser = argparse.ArgumentParser(description="为指定墙体生成所有路线图。")
+    parser.add_argument("--routes_database_file", required=True, help="路线定义JSON文件的路径。")
+    parser.add_argument("--holds_coords_path", required=True, help="岩点坐标JSON文件的路径。")
+    parser.add_argument("--base_image_path", required=True, help="用于绘制的底图路径。")
+    parser.add_argument("--output_dir", required=True, help="生成的路线图的输出目录。")
     args = parser.parse_args()
 
-    project_root = Path(__file__).resolve().parents[2]
-    routes_db, holds_json = project_root / args.routes_database_file, project_root / 'data/holds.json'
-    original_image, output_folder = project_root / 'images/ori_image.png', project_root / 'generated_routes'
-
-    if not routes_db.exists(): print(f"错误: 路线数据库文件不存在 '{routes_db}'", file=sys.stderr)
-    elif not holds_json.exists(): print(f"错误: 岩点坐标文件 '{holds_json}' 不存在。", file=sys.stderr)
-    elif not original_image.exists(): print(f"错误: 原始图片 '{original_image}' 不存在。", file=sys.stderr)
-    else: process_all_routes(routes_db, holds_json, original_image, output_folder)
+    main(args.routes_database_file, args.holds_coords_path, args.base_image_path, args.output_dir)
