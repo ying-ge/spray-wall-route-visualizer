@@ -1,0 +1,11 @@
+{
+  "wall_name": "Spray Wall",
+  "expected_holds": {
+    "numeric_ranges": [
+      [1, 150]
+    ],
+    "alphabetic_ranges": [
+      ["a", "z"]
+    ]
+  }
+}
