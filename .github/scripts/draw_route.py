@@ -33,7 +33,7 @@ STYLE_CONFIG = {
     
     'title_style': {
         'font_path': "fonts/Oswald-Variable.ttf", 
-        'font_size': 75,
+        'font_size': 70,
         'font_variation': 700, 
         'fill_color': (255, 255, 255),
         'outline_color': (0, 0, 0),
