@@ -1,8 +1,8 @@
 {
   "wall_name": "Spray Wall",
-  "expected_holds": {
+  "valid_hold_ranges": {
     "numeric_ranges": [
-      [1, 150]
+      [1, 140]
     ],
     "alphabetic_ranges": [
       ["a", "z"]
