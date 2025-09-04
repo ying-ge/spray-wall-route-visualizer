@@ -22,8 +22,8 @@ jobs:
         id: get_walls
         run: |
           WALLS=$(find walls -mindepth 1 -maxdepth 1 -type d | jq -R . | jq -cs .)
-          echo "Found walls: $WALLS"
           echo "walls_json=$WALLS" >> $GITHUB_OUTPUT
+
   build:
     needs: list_walls
     if: fromJson(needs.list_walls.outputs.walls_json)[0] != null
@@ -69,6 +69,7 @@ jobs:
           else
             echo "File '$HOLDS_FILE' already exists. Skipping generation."
           fi
+
       - name: 'Step 2: Draw All Route Images'
         run: |
           python .github/scripts/draw_route.py \
@@ -76,6 +77,7 @@ jobs:
             --holds_coords_path "${{ matrix.wall_dir }}/output/data/holds.json" \
             --base_image_path "${{ matrix.wall_dir }}/image_base.png" \
             --output_dir "${{ matrix.wall_dir }}/output/generated_routes"
+
       - name: 'Step 3: Generate debug image'
         run: python .github/scripts/mark_all_holds.py --wall_dir "${{ matrix.wall_dir }}"
 
@@ -87,6 +89,7 @@ jobs:
         run: |
           ARTIFACT_NAME="generated-output-for-${{ matrix.wall_dir }}"
           echo "name=${ARTIFACT_NAME//\//-}" >> $GITHUB_OUTPUT
+
       - name: 'Upload generated output'
         uses: actions/upload-artifact@v4
         with:
@@ -104,30 +107,36 @@ jobs:
       - name: 'Checkout Repository'
         uses: actions/checkout@v4
         with:
+          # 检出完整的历史，以便进行合并
           fetch-depth: 0
+          # 使用一个 token，确保我们有权限推送
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 'Download all generated outputs'
         uses: actions/download-artifact@v4
         with:
           path: temp-artifacts/
 
-      # --- 核心修复点 ---
       - name: 'Move artifacts to correct locations'
         run: |
           for dir in temp-artifacts/*; do
             if [ -d "$dir" ]; then
-              # 从 'generated-output-for-walls-spray_wall' 中提取出 'walls-spray_wall'
               dirty_path=$(basename "$dir" | sed -e 's/generated-output-for-//')
-              # 使用更稳健的 sed 语法，只将第一个 '-' 替换为 '/'
               original_path=$(echo "$dirty_path" | sed 's/-/\//')
               
-              echo "Moving files from $dir to $original_path/output"
-              # 确保目标目录存在
+              echo "Merging files from $dir to $original_path/output"
               mkdir -p "$original_path/output"
-              # 将下载的内容移动到它本该在的位置
-              cp -a "$dir"/* "$original_path/output/"
+              cp -a "$dir"/. "$original_path/output/"
             fi
           done
+
+      # --- 核心修复点 ---
+      - name: 'Pull latest changes from main'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git pull origin main --rebase
+
       - name: 'Step 5: Commit all generated files'
         id: auto-commit-action
         uses: stefanzweifel/git-auto-commit-action@v5
