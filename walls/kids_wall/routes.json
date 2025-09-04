@@ -1,16 +1,70 @@
-{
-    "routes": [
-        {
-          "routeName": "My First Route",
-          "difficulty": "VB",
-          "author": "Admin",
-          "holds": {
-            "foot": []
-          },
-          "moves": [
-            { "hold_id": "1", "type": "start", "hand": "both" },
-            { "hold_id": "10", "type": "finish", "hand": "both" }
-          ]
-        }
+[
+  {
+    "routeName": "Beginner Warm-up",
+    "difficulty": "V0",
+    "author": "Copilot",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "261", "type": "start", "hand": "left" },
+      { "hold_id": "101", "type": "start", "hand": "right" },
+      { "hold_id": "102", "hand": "left" },
+      { "hold_id": "80", "hand": "right" },
+      { "hold_id": "79", "hand": "left" },
+      { "hold_id": "58", "hand": "right" },
+      { "hold_id": "39", "hand": "left" },
+      { "hold_id": "19", "hand": "right" },
+      { "hold_id": "82", "hand": "left" },
+      { "hold_id": "1", "type": "finish", "hand": "both" }
     ]
-}
+  },
+  {
+    "routeName": "Basic Skills Assessment",
+    "difficulty": "V1",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["245", "248", "225", "205", "185", "165", "145", "125", "105", "85", "65", "45", "25", "5"]
+    },
+    "moves": [
+      { "hold_id": "245", "type": "start", "hand": "left" },
+      { "hold_id": "248", "type": "start", "hand": "right" },
+      { "hold_id": "225", "hand": "left" },
+      { "hold_id": "205", "hand": "right" },
+      { "hold_id": "185", "hand": "left" },
+      { "hold_id": "165", "hand": "right" },
+      { "hold_id": "145", "hand": "left" },
+      { "hold_id": "125", "hand": "right" },
+      { "hold_id": "105", "hand": "left" },
+      { "hold_id": "85", "hand": "right" },
+      { "hold_id": "65", "hand": "left" },
+      { "hold_id": "45", "hand": "right" },
+      { "hold_id": "25", "hand": "left" },
+      { "hold_id": "5", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Advanced Challenge",
+    "difficulty": "V2",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["252", "254", "232", "212", "192", "172", "151", "130", "109", "88", "68", "48", "28", "8"]
+    },
+    "moves": [
+      { "hold_id": "252", "type": "start", "hand": "left" },
+      { "hold_id": "254", "type": "start", "hand": "right" },
+      { "hold_id": "232", "hand": "left" },
+      { "hold_id": "212", "hand": "right" },
+      { "hold_id": "192", "hand": "left" },
+      { "hold_id": "172", "hand": "right" },
+      { "hold_id": "151", "hand": "left" },
+      { "hold_id": "130", "hand": "right" },
+      { "hold_id": "109", "hand": "left" },
+      { "hold_id": "88", "hand": "right" },
+      { "hold_id": "68", "hand": "left" },
+      { "hold_id": "48", "hand": "right" },
+      { "hold_id": "28", "hand": "left" },
+      { "hold_id": "8", "type": "finish", "hand": "both" }
+    ]
+  }
+]
