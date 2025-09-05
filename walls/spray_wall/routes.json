@@ -7,9 +7,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "109", "type": "start", "hand": "left" },
-      { "hold_id": "101", "type": "start", "hand": "right" },
-      { "hold_id": "13", "hand": "left" },
+      { "hold_id": "13", "type": "start", "hand": "left" },
+      { "hold_id": "15", "type": "start", "hand": "right" },
       { "hold_id": "54", "hand": "right" },
       { "hold_id": "61", "hand": "left" },
       { "hold_id": "62", "hand": "right" },
@@ -25,9 +24,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "104", "type": "start", "hand": "left" },
+      { "hold_id": "31", "type": "start", "hand": "left" },
       { "hold_id": "39", "type": "start", "hand": "right" },
-      { "hold_id": "31", "hand": "left" },
       { "hold_id": "2", "hand": "right" },
       { "hold_id": "27", "hand": "left" },
       { "hold_id": "70", "hand": "right" },
@@ -44,8 +42,7 @@
     },
     "moves": [
       { "hold_id": "32", "type": "start", "hand": "left" },
-      { "hold_id": "32", "type": "start", "hand": "right" },
-      { "hold_id": "22", "hand": "left" },
+      { "hold_id": "22", "type": "start", "hand": "right" },
       { "hold_id": "78", "hand": "right" },
       { "hold_id": "5", "hand": "left" },
       { "hold_id": "52", "hand": "right" },
@@ -61,9 +58,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "105", "type": "start", "hand": "left" },
-      { "hold_id": "106", "type": "start", "hand": "right" },
-      { "hold_id": "1", "hand": "right" },
+      { "hold_id": "34", "type": "start", "hand": "left" },
+      { "hold_id": "1", "type": "start", "hand": "right" },
       { "hold_id": "35", "hand": "left" },
       { "hold_id": "53", "hand": "right" },
       { "hold_id": "51", "hand": "left" },
@@ -79,10 +75,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "102", "type": "start", "hand": "left" },
-      { "hold_id": "102", "type": "start", "hand": "right" },
-      { "hold_id": "21", "hand": "left" },
-      { "hold_id": "16", "hand": "right" },
+      { "hold_id": "21", "type": "start", "hand": "left" },
+      { "hold_id": "16", "type": "start", "hand": "right" },
       { "hold_id": "14", "hand": "left" },
       { "hold_id": "j", "hand": "right" },
       { "hold_id": "n", "hand": "left" },
@@ -98,10 +92,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "104", "type": "start", "hand": "left" },
-      { "hold_id": "104", "type": "start", "hand": "right" },
-      { "hold_id": "30", "hand": "left" },
-      { "hold_id": "24", "hand": "right" },
+      { "hold_id": "30", "type": "start", "hand": "left" },
+      { "hold_id": "24", "type": "start", "hand": "right" },
       { "hold_id": "3", "hand": "left" },
       { "hold_id": "28", "hand": "right" },
       { "hold_id": "78", "hand": "left" },
@@ -118,9 +110,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "101", "type": "start", "hand": "left" },
+      { "hold_id": "13", "type": "start", "hand": "left" },
       { "hold_id": "39", "type": "start", "hand": "right" },
-      { "hold_id": "13", "hand": "left" },
       { "hold_id": "c", "hand": "right" },
       { "hold_id": "19", "hand": "left" },
       { "hold_id": "40", "hand": "right" },
@@ -136,10 +127,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "122", "type": "start", "hand": "left" },
-      { "hold_id": "105", "type": "start", "hand": "right" },
-      { "hold_id": "b", "hand": "left" },
-      { "hold_id": "2", "hand": "right" },
+      { "hold_id": "b", "type": "start", "hand": "left" },
+      { "hold_id": "2", "type": "start", "hand": "right" },
       { "hold_id": "d", "hand": "left" },
       { "hold_id": "27", "hand": "right" },
       { "hold_id": "q", "hand": "left" },
@@ -154,10 +143,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "108", "type": "start", "hand": "left" },
-      { "hold_id": "107", "type": "start", "hand": "right" },
-      { "hold_id": "126", "hand": "left" },
-      { "hold_id": "36", "hand": "right" },
+      { "hold_id": "36", "type": "start", "hand": "left" },
+      { "hold_id": "36", "type": "start", "hand": "right" },
       { "hold_id": "47", "hand": "left" },
       { "hold_id": "48", "hand": "right" },
       { "hold_id": "91", "hand": "left" },
@@ -172,10 +159,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "32", "type": "start", "hand": "left" },
-      { "hold_id": "32", "type": "start", "hand": "right" },
-      { "hold_id": "22", "hand": "left" },
-      { "hold_id": "41", "hand": "right" },
+      { "hold_id": "22", "type": "start", "hand": "left" },
+      { "hold_id": "41", "type": "start", "hand": "right" },
       { "hold_id": "20", "hand": "left" },
       { "hold_id": "82", "hand": "right" },
       { "hold_id": "72", "hand": "left" },
@@ -191,10 +176,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "104", "type": "start", "hand": "left" },
-      { "hold_id": "104", "type": "start", "hand": "right" },
-      { "hold_id": "31", "hand": "left" },
-      { "hold_id": "16", "hand": "right" },
+      { "hold_id": "31", "type": "start", "hand": "left" },
+      { "hold_id": "16", "type": "start", "hand": "right" },
       { "hold_id": "e", "hand": "left" },
       { "hold_id": "4", "hand": "right" },
       { "hold_id": "f", "hand": "left" },
@@ -211,10 +194,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "106", "type": "start", "hand": "left" },
-      { "hold_id": "106", "type": "start", "hand": "right" },
-      { "hold_id": "1", "hand": "left" },
-      { "hold_id": "33", "hand": "right" },
+      { "hold_id": "1", "type": "start", "hand": "left" },
+      { "hold_id": "33", "type": "start", "hand": "right" },
       { "hold_id": "37", "hand": "left" },
       { "hold_id": "55", "hand": "right" },
       { "hold_id": "42", "hand": "left" },
@@ -230,10 +211,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "32", "type": "start", "hand": "left" },
-      { "hold_id": "32", "type": "start", "hand": "right" },
-      { "hold_id": "b", "hand": "left" },
-      { "hold_id": "2", "hand": "right" },
+      { "hold_id": "b", "type": "start", "hand": "left" },
+      { "hold_id": "2", "type": "start", "hand": "right" },
       { "hold_id": "d", "hand": "left" },
       { "hold_id": "27", "hand": "right" },
       { "hold_id": "h", "hand": "left" },
@@ -249,10 +228,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "101", "type": "start", "hand": "left" },
-      { "hold_id": "109", "type": "start", "hand": "right" },
-      { "hold_id": "15", "hand": "left" },
-      { "hold_id": "j", "hand": "right" },
+      { "hold_id": "15", "type": "start", "hand": "left" },
+      { "hold_id": "j", "type": "start", "hand": "right" },
       { "hold_id": "54", "hand": "left" },
       { "hold_id": "59", "hand": "right" },
       { "hold_id": "63", "hand": "left" },
@@ -267,10 +244,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "105", "type": "start", "hand": "left" },
-      { "hold_id": "124", "type": "start", "hand": "right" },
-      { "hold_id": "34", "hand": "left" },
-      { "hold_id": "35", "hand": "right" },
+      { "hold_id": "34", "type": "start", "hand": "left" },
+      { "hold_id": "35", "type": "start", "hand": "right" },
       { "hold_id": "x", "hand": "left" },
       { "hold_id": "53", "hand": "right" },
       { "hold_id": "z", "hand": "left" },
@@ -286,9 +261,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "103", "type": "start", "hand": "left" },
+      { "hold_id": "21", "type": "start", "hand": "left" },
       { "hold_id": "39", "type": "start", "hand": "right" },
-      { "hold_id": "21", "hand": "left" },
       { "hold_id": "16", "hand": "right" },
       { "hold_id": "c", "hand": "left" },
       { "hold_id": "19", "hand": "right" },
@@ -305,10 +279,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "108", "type": "start", "hand": "left" },
-      { "hold_id": "125", "type": "start", "hand": "right" },
-      { "hold_id": "12", "hand": "left" },
-      { "hold_id": "95", "hand": "right" },
+      { "hold_id": "12", "type": "start", "hand": "left" },
+      { "hold_id": "95", "type": "start", "hand": "right" },
       { "hold_id": "47", "hand": "left" },
       { "hold_id": "51", "hand": "right" },
       { "hold_id": "11", "hand": "left" },
@@ -340,9 +312,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "32", "type": "start", "hand": "left" },
-      { "hold_id": "22", "type": "start", "hand": "right" },
-      { "hold_id": "41", "hand": "left" },
+      { "hold_id": "22", "type": "start", "hand": "left" },
+      { "hold_id": "41", "type": "start", "hand": "right" },
       { "hold_id": "26", "hand": "right" },
       { "hold_id": "82", "hand": "left" },
       { "hold_id": "76", "hand": "right" },
@@ -381,10 +352,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "32", "type": "start", "hand": "left" },
-      { "hold_id": "32", "type": "start", "hand": "right" },
-      { "hold_id": "22", "hand": "left" },
-      { "hold_id": "30", "hand": "right" },
+      { "hold_id": "22", "type": "start", "hand": "left" },
+      { "hold_id": "30", "type": "start", "hand": "right" },
       { "hold_id": "78", "hand": "left" },
       { "hold_id": "y", "hand": "right" },
       { "hold_id": "5", "hand": "left" },
@@ -400,10 +369,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "39", "type": "start", "hand": "left" },
-      { "hold_id": "21", "type": "start", "hand": "right" },
-      { "hold_id": "16", "hand": "left" },
-      { "hold_id": "19", "hand": "right" },
+      { "hold_id": "16", "type": "start", "hand": "left" },
+      { "hold_id": "19", "type": "start", "hand": "right" },
       { "hold_id": "27", "hand": "left" },
       { "hold_id": "s", "hand": "right" },
       { "hold_id": "68", "hand": "left" },
@@ -418,10 +385,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "82", "type": "start", "hand": "left" },
-      { "hold_id": "82", "type": "start", "hand": "right" },
-      { "hold_id": "72", "hand": "left" },
-      { "hold_id": "8", "hand": "right" },
+      { "hold_id": "72", "type": "start", "hand": "left" },
+      { "hold_id": "8", "type": "start", "hand": "right" },
       { "hold_id": "77", "hand": "left" },
       { "hold_id": "g", "hand": "right" },
       { "hold_id": "74", "hand": "left" },
@@ -436,10 +401,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "58", "type": "start", "hand": "left" },
-      { "hold_id": "62", "type": "start", "hand": "right" },
-      { "hold_id": "64", "hand": "left" },
-      { "hold_id": "65", "hand": "right" },
+      { "hold_id": "64", "type": "start", "hand": "left" },
+      { "hold_id": "65", "type": "start", "hand": "right" },
       { "hold_id": "110", "hand": "left" },
       { "hold_id": "111", "hand": "right" },
       { "hold_id": "111", "type": "finish", "hand": "both" }
@@ -453,9 +416,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "109", "type": "start", "hand": "left" },
-      { "hold_id": "101", "type": "start", "hand": "right" },
-      { "hold_id": "13", "hand": "left" },
+      { "hold_id": "13", "type": "start", "hand": "left" },
+      { "hold_id": "13", "type": "start", "hand": "right" },
       { "hold_id": "54", "hand": "right" },
       { "hold_id": "54", "hand": "left" },
       { "hold_id": "60", "hand": "right" },
@@ -470,10 +432,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "104", "type": "start", "hand": "left" },
-      { "hold_id": "104", "type": "start", "hand": "right" },
-      { "hold_id": "30", "hand": "left" },
-      { "hold_id": "28", "hand": "right" },
+      { "hold_id": "30", "type": "start", "hand": "left" },
+      { "hold_id": "28", "type": "start", "hand": "right" },
       { "hold_id": "5", "hand": "left" },
       { "hold_id": "72", "hand": "right" },
       { "hold_id": "52", "type": "finish", "hand": "both" }
@@ -487,9 +447,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "106", "type": "start", "hand": "left" },
-      { "hold_id": "127", "type": "start", "hand": "right" },
-      { "hold_id": "35", "hand": "left" },
+      { "hold_id": "35", "type": "start", "hand": "left" },
+      { "hold_id": "35", "type": "start", "hand": "right" },
       { "hold_id": "51", "hand": "right" },
       { "hold_id": "11", "hand": "left" },
       { "hold_id": "87", "hand": "right" },
@@ -504,9 +463,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "109", "type": "start", "hand": "left" },
-      { "hold_id": "101", "type": "start", "hand": "right" },
-      { "hold_id": "54", "hand": "left" },
+      { "hold_id": "54", "type": "start", "hand": "left" },
+      { "hold_id": "54", "type": "start", "hand": "right" },
       { "hold_id": "59", "hand": "right" },
       { "hold_id": "63", "hand": "left" },
       { "hold_id": "65", "hand": "right" },
