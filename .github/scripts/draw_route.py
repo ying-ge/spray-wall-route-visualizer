@@ -8,7 +8,7 @@ import sys
 import textwrap
 
 # --- 样式配置 ---
-# beta_text_style 现在控制底部扩展区域的样式
+# 【修改】为 beta_text_style 添加了 font_variation
 STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
@@ -28,10 +28,9 @@ STYLE_CONFIG = {
         'font_path': "fonts/Oswald-Variable.ttf", 'font_size': 50, 'font_variation': 700 
     },
     'beta_text_style': {
-        'font_path': "fonts/NotoSansSC[wght].ttf", 'font_size': 40, 'fill_color': (255, 255, 255),
-        'background_color': (0, 0, 0), # 纯黑背景
-        'padding_x': 50, 'padding_y': 40, # 文本区域的水平和垂直内边距
-        'line_spacing': 15, 'wrap_width': 80 # 换行宽度可以更宽
+        'font_path': "fonts/NotoSansSC[wght].ttf", 'font_size': 40, 'font_variation': 700, # 700 是粗体
+        'fill_color': (255, 255, 255), 'background_color': (0, 0, 0),
+        'padding_x': 50, 'padding_y': 40, 'line_spacing': 15, 'wrap_width': 80
     }
 }
 
@@ -86,12 +85,10 @@ def draw_wrapped_title(draw, text, font, style, image_size):
         current_y += line_height + line_spacing
 
 def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_dir):
-    # 1. 在原始图上绘制所有内容（除了beta）
     image_part = base_image.copy()
     draw = ImageDraw.Draw(image_part, "RGBA")
     offset_x, offset_y = STYLE_CONFIG.get('center_offset_x', 0), STYLE_CONFIG.get('center_offset_y', 0)
     
-    # 绘制标题
     title_style = STYLE_CONFIG['title_style']
     route_name = route_data.get('routeName', route_data.get('name', 'N/A'))
     difficulty = route_data.get('difficulty', route_data.get('grade', 'N/A'))
@@ -99,13 +96,11 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     route_info_text = f"{route_name} | {difficulty} | by {author}"
     draw_wrapped_title(draw, route_info_text, fonts['title'], title_style, image_part.size)
 
-    # 绘制脚点
     if 'holds' in route_data and 'foot' in route_data['holds']:
         for hold_id in route_data['holds']['foot']:
             if str(hold_id).lower() in holds_coords:
                 draw_hold(draw, (holds_coords[str(hold_id).lower()]['x'] + offset_x, holds_coords[str(hold_id).lower()]['y'] + offset_y), STYLE_CONFIG['foot'])
     
-    # 绘制手点和箭头
     prev_coords = None
     if 'moves' in route_data:
         for move in route_data['moves']:
@@ -121,28 +116,22 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
                     draw_arrow(draw, prev_coords, center_xy)
                 prev_coords = center_xy
     
-    # 2. 如果有beta，则创建新画布并组合
     final_image = image_part
     beta_text = route_data.get('beta')
     if beta_text:
         beta_style = STYLE_CONFIG['beta_text_style']
         beta_font = fonts['beta']
         
-        # 计算beta文本需要的高度
-        # 创建一个临时draw对象来计算尺寸
         temp_draw = ImageDraw.Draw(Image.new('RGB', (1,1)))
         _, text_height = get_wrapped_text_size(temp_draw, beta_text, beta_font, beta_style['wrap_width'], beta_style['line_spacing'])
         extra_height = text_height + beta_style['padding_y'] * 2
         
-        # 创建一个带有黑色背景的新画布
         orig_width, orig_height = image_part.size
         new_width, new_height = orig_width, orig_height + int(extra_height)
         final_image = Image.new('RGB', (new_width, new_height), beta_style['background_color'])
         
-        # 将原始路线图粘贴到新画布的顶部
         final_image.paste(image_part, (0, 0))
         
-        # 在底部黑色区域绘制beta文本
         beta_draw = ImageDraw.Draw(final_image)
         current_y = orig_height + beta_style['padding_y']
         for line in textwrap.wrap(beta_text, width=beta_style['wrap_width']):
@@ -152,21 +141,26 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
             beta_draw.text((beta_style['padding_x'], current_y), line, font=beta_font, fill=beta_style['fill_color'])
             current_y += line_height + beta_style['line_spacing']
             
-    # 3. 保存最终图片
     safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_name)
     output_filename = f"{difficulty.replace(' ', '_')}_{safe_filename.replace(' ', '_')}.png"
     output_path = output_dir / output_filename
     final_image.save(output_path, 'PNG', optimize=True)
     print(f"  ✓ Saved: {output_path}")
 
-# --- (文件剩余部分与您提供的版本完全相同，无需修改) ---
+# --- 【修改】让 get_variational_font 同时处理 'wght' 轴 ---
 def get_variational_font(path, size, variation):
-    font = ImageFont.truetype(path, size);
-    try: font.set_variation_by_name("Bold")
+    font = ImageFont.truetype(path, size)
+    try:
+        # 尝试使用 'wght' 轴来设置粗细，这对于 NotoSansSC[wght].ttf 生效
+        font.set_variation_by_axis_name('wght', variation)
     except (AttributeError, TypeError):
-        try: font.set_variation_by_axis_name('wght', variation)
-        except (AttributeError, TypeError): pass 
+        try:
+            # 如果失败，回退到按名称设置（例如 "Bold"），对 Oswald 生效
+            font.set_variation_by_name("Bold")
+        except (AttributeError, TypeError):
+             pass # 如果都不支持，则返回默认粗细
     return font
+
 def process_all_routes(routes_db_path, holds_coords_path, base_image_path, output_dir):
     try:
         print(f"Loading routes database: {routes_db_path}");
@@ -183,7 +177,11 @@ def process_all_routes(routes_db_path, holds_coords_path, base_image_path, outpu
     try:
         main_style = STYLE_CONFIG['main_font_style']; fonts['main'] = get_variational_font(main_style['font_path'], main_style['font_size'], main_style['font_variation'])
         title_style = STYLE_CONFIG['title_style']; fonts['title'] = get_variational_font(title_style['font_path'], title_style['font_size'], title_style['font_variation'])
-        beta_style = STYLE_CONFIG['beta_text_style']; fonts['beta'] = ImageFont.truetype(beta_style['font_path'], beta_style['font_size'])
+        
+        # --- 【修改】使用通用的变体字体加载函数来加载 beta 字体 ---
+        beta_style = STYLE_CONFIG['beta_text_style']
+        fonts['beta'] = get_variational_font(beta_style['font_path'], beta_style['font_size'], beta_style['font_variation'])
+
     except IOError as e: print(f"错误: 字体文件未找到。请确保字体文件存在于 'fonts/' 目录下 - {e}", file=sys.stderr); sys.exit(1)
     output_dir.mkdir(parents=True, exist_ok=True)
     if not all_routes_data: print("数据库中没有找到任何线路。"); return
