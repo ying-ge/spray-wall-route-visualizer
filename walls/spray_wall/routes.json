@@ -120,11 +120,10 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "35", "type": "start", "hand": "left" },
-      { "hold_id": "2", "type": "start", "hand": "right" },
-      { "hold_id": "53", "hand": "right" },
-      { "hold_id": "51", "hand": "left" },
+      { "hold_id": "51", "type": "start", "hand": "left" },
+      { "hold_id": "53", "type": "start", "hand": "right" },
       { "hold_id": "87", "hand": "right" },
+      { "hold_id": "86", "hand": "left" },
       { "hold_id": "49", "type": "finish", "hand": "both" }
     ]
   },
