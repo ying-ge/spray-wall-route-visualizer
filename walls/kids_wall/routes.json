@@ -1,6 +1,6 @@
 [
   {
-    "routeName": "V0 - Diagonal Ladder",
+    "routeName": "V0 - Jug Ladder",
     "difficulty": "V0",
     "author": "Copilot",
     "holds": {
@@ -9,18 +9,49 @@
     "moves": [
       { "hold_id": "182", "type": "start", "hand": "left" },
       { "hold_id": "183", "type": "start", "hand": "right" },
-      { "hold_id": "164", "hand": "left" },
+      { "hold_id": "142", "hand": "left" },
       { "hold_id": "144", "hand": "right" },
-      { "hold_id": "126", "hand": "left" },
-      { "hold_id": "106", "hand": "right" },
-      { "hold_id": "87", "hand": "left" },
-      { "hold_id": "67", "hand": "right" },
-      { "hold_id": "46", "hand": "left" },
-      { "hold_id": "26", "type": "finish", "hand": "both" }
+      { "hold_id": "19", "hand": "left" },
+      { "hold_id": "82", "hand": "right" },
+      { "hold_id": "1", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "V0 - Right to Left Arc",
+    "routeName": "V0 - Right Traverse",
+    "difficulty": "V0",
+    "author": "Copilot",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "188", "type": "start", "hand": "left" },
+      { "hold_id": "168", "type": "start", "hand": "right" },
+      { "hold_id": "170", "hand": "left" },
+      { "hold_id": "172", "hand": "right" },
+      { "hold_id": "153", "hand": "left" },
+      { "hold_id": "133", "hand": "right" },
+      { "hold_id": "113", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V0 - Big Features",
+    "difficulty": "V0",
+    "author": "Copilot",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "58", "type": "start", "hand": "left" },
+      { "hold_id": "79", "type": "start", "hand": "right" },
+      { "hold_id": "39", "hand": "left" },
+      { "hold_id": "19", "hand": "right" },
+      { "hold_id": "103", "hand": "left" },
+      { "hold_id": "84", "hand": "right" },
+      { "hold_id": "64", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V0 - Pocket Fun",
     "difficulty": "V0",
     "author": "Copilot",
     "holds": {
@@ -29,363 +60,141 @@
     "moves": [
       { "hold_id": "199", "type": "start", "hand": "left" },
       { "hold_id": "179", "type": "start", "hand": "right" },
-      { "hold_id": "178", "hand": "left" },
-      { "hold_id": "157", "hand": "right" },
-      { "hold_id": "136", "hand": "left" },
-      { "hold_id": "114", "hand": "right" },
-      { "hold_id": "91", "hand": "left" },
-      { "hold_id": "70", "hand": "right" },
-      { "hold_id": "49", "hand": "left" },
-      { "hold_id": "28", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V0 - Center Zig-Zag",
-    "difficulty": "V0",
-    "author": "Copilot",
-    "holds": {
-      "foot": []
-    },
-    "moves": [
-      { "hold_id": "188", "type": "start", "hand": "left" },
-      { "hold_id": "189", "type": "start", "hand": "right" },
-      { "hold_id": "168", "hand": "left" },
-      { "hold_id": "170", "hand": "right" },
-      { "hold_id": "151", "hand": "left" },
-      { "hold_id": "130", "hand": "right" },
-      { "hold_id": "109", "hand": "left" },
-      { "hold_id": "88", "hand": "right" },
-      { "hold_id": "69", "hand": "left" },
-      { "hold_id": "48", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V0 - The Snake",
-    "difficulty": "V0",
-    "author": "Copilot",
-    "holds": {
-      "foot": []
-    },
-    "moves": [
-      { "hold_id": "79", "type": "start", "hand": "left" },
-      { "hold_id": "58", "type": "start", "hand": "right" },
-      { "hold_id": "39", "hand": "left" },
-      { "hold_id": "19", "hand": "right" },
-      { "hold_id": "103", "hand": "left" },
-      { "hold_id": "85", "hand": "right" },
-      { "hold_id": "66", "hand": "left" },
-      { "hold_id": "45", "hand": "right" },
-      { "hold_id": "25", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V0 - Right Curve",
-    "difficulty": "V0",
-    "author": "Copilot",
-    "holds": {
-      "foot": []
-    },
-    "moves": [
-      { "hold_id": "177", "type": "start", "hand": "left" },
-      { "hold_id": "197", "type": "start", "hand": "right" },
-      { "hold_id": "158", "hand": "left" },
+      { "hold_id": "159", "hand": "left" },
       { "hold_id": "138", "hand": "right" },
-      { "hold_id": "117", "hand": "left" },
-      { "hold_id": "116", "hand": "right" },
-      { "hold_id": "95", "hand": "left" },
-      { "hold_id": "88", "hand": "right" },
-      { "hold_id": "65", "hand": "left" },
-      { "hold_id": "44", "type": "finish", "hand": "both" }
+      { "hold_id": "118", "hand": "left" },
+      { "hold_id": "99", "hand": "right" },
+      { "hold_id": "80", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "V1 - Left-Side Weave",
+    "routeName": "V0 - Center Line",
+    "difficulty": "V0",
+    "author": "Copilot",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "189", "type": "start", "hand": "left" },
+      { "hold_id": "190", "type": "start", "hand": "right" },
+      { "hold_id": "170", "hand": "left" },
+      { "hold_id": "149", "hand": "right" },
+      { "hold_id": "129", "hand": "left" },
+      { "hold_id": "109", "hand": "right" },
+      { "hold_id": "88", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V1 - Pinch & Pull",
     "difficulty": "V1",
     "author": "Copilot",
     "holds": {
-      "foot": ["79", "80", "58", "142", "63", "41", "22", "21"]
+      "foot": ["268", "250", "230", "210", "190", "170", "150", "130"]
     },
     "moves": [
-      { "hold_id": "39", "type": "start", "hand": "left" },
-      { "hold_id": "182", "type": "start", "hand": "right" },
-      { "hold_id": "82", "hand": "left" },
-      { "hold_id": "64", "hand": "right" },
-      { "hold_id": "43", "hand": "left" },
-      { "hold_id": "23", "hand": "right" },
-      { "hold_id": "2", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V1 - Diagonal Express",
-    "difficulty": "V1",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["204", "205", "185", "145", "126", "108", "87", "70", "49", "27"]
-    },
-    "moves": [
-      { "hold_id": "164", "type": "start", "hand": "left" },
-      { "hold_id": "144", "type": "start", "hand": "right" },
-      { "hold_id": "105", "hand": "left" },
-      { "hold_id": "86", "hand": "right" },
-      { "hold_id": "68", "hand": "left" },
-      { "hold_id": "47", "hand": "right" },
-      { "hold_id": "28", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V1 - Meandering Right",
-    "difficulty": "V1",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["218", "238", "198", "178", "157", "138", "119", "97", "76", "55", "37"]
-    },
-    "moves": [
-      { "hold_id": "177", "type": "start", "hand": "left" },
-      { "hold_id": "158", "type": "start", "hand": "right" },
-      { "hold_id": "137", "hand": "left" },
-      { "hold_id": "118", "hand": "right" },
-      { "hold_id": "98", "hand": "left" },
-      { "hold_id": "77", "hand": "right" },
-      { "hold_id": "56", "hand": "left" },
-      { "hold_id": "36", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V1 - Central Cross",
-    "difficulty": "V1",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["212", "232", "192", "172", "153", "134", "116", "91", "68", "47", "28"]
-    },
-    "moves": [
-      { "hold_id": "193", "type": "start", "hand": "left" },
-      { "hold_id": "173", "type": "start", "hand": "right" },
-      { "hold_id": "152", "hand": "left" },
-      { "hold_id": "131", "hand": "right" },
-      { "hold_id": "112", "hand": "left" },
-      { "hold_id": "90", "hand": "right" },
-      { "hold_id": "69", "hand": "left" },
-      { "hold_id": "48", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V1 - Left to Right Arc",
-    "difficulty": "V1",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["203", "223", "183", "163", "144", "126", "108", "91", "72", "55", "36"]
-    },
-    "moves": [
-      { "hold_id": "182", "type": "start", "hand": "left" },
-      { "hold_id": "164", "type": "start", "hand": "right" },
-      { "hold_id": "125", "hand": "left" },
-      { "hold_id": "105", "hand": "right" },
-      { "hold_id": "88", "hand": "left" },
-      { "hold_id": "74", "hand": "right" },
-      { "hold_id": "54", "hand": "left" },
-      { "hold_id": "37", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V2 - Technical Slopers",
-    "difficulty": "V2",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["20", "38", "59", "79", "82", "64", "43", "24", "4"]
-    },
-    "moves": [
-      { "hold_id": "40", "type": "start", "hand": "left" },
-      { "hold_id": "18", "type": "start", "hand": "right" },
-      { "hold_id": "19", "hand": "left" },
-      { "hold_id": "63", "hand": "right" },
-      { "hold_id": "42", "hand": "left" },
-      { "hold_id": "23", "hand": "right" },
-      { "hold_id": "5", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V2 - Powerful Zig-Zag",
-    "difficulty": "V2",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["207", "228", "187", "166", "146", "106", "86", "46", "26"]
-    },
-    "moves": [
-      { "hold_id": "186", "type": "start", "hand": "left" },
-      { "hold_id": "145", "type": "start", "hand": "right" },
-      { "hold_id": "125", "hand": "left" },
-      { "hold_id": "85", "hand": "right" },
-      { "hold_id": "67", "hand": "left" },
-      { "hold_id": "27", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V2 - Gaston's Quest",
-    "difficulty": "V2",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["173", "193", "154", "134", "113", "93", "73", "53"]
-    },
-    "moves": [
-      { "hold_id": "152", "type": "start", "hand": "left" },
-      { "hold_id": "133", "type": "start", "hand": "right" },
-      { "hold_id": "112", "hand": "left" },
-      { "hold_id": "91", "hand": "right" },
-      { "hold_id": "72", "hand": "left" },
-      { "hold_id": "52", "hand": "right" },
-      { "hold_id": "32", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V2 - Blue Angel",
-    "difficulty": "V2",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["195", "175", "156", "136", "117", "97", "76", "56"]
-    },
-    "moves": [
-      { "hold_id": "176", "type": "start", "hand": "left" },
-      { "hold_id": "157", "type": "start", "hand": "right" },
-      { "hold_id": "138", "hand": "left" },
-      { "hold_id": "118", "hand": "right" },
-      { "hold_id": "99", "hand": "left" },
-      { "hold_id": "77", "hand": "right" },
-      { "hold_id": "57", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V2 - The Tiger",
-    "difficulty": "V2",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["190", "170", "150", "130", "110", "90", "70", "50"]
-    },
-    "moves": [
-      { "hold_id": "149", "type": "start", "hand": "left" },
-      { "hold_id": "129", "type": "start", "hand": "right" },
-      { "hold_id": "109", "hand": "left" },
-      { "hold_id": "88", "hand": "right" },
-      { "hold_id": "69", "hand": "left" },
-      { "hold_id": "49", "hand": "right" },
+      { "hold_id": "111", "type": "start", "hand": "left" },
+      { "hold_id": "91", "type": "start", "hand": "right" },
+      { "hold_id": "70", "hand": "left" },
+      { "hold_id": "69", "hand": "right" },
+      { "hold_id": "49", "hand": "left" },
       { "hold_id": "29", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "V3 - Left-Side Power",
-    "difficulty": "V3",
+    "routeName": "V1 - High Feet",
+    "difficulty": "V1",
     "author": "Copilot",
     "holds": {
-      "foot": ["59", "79", "39", "18", "1", "41", "21", "2"]
+      "foot": ["203", "183", "144", "103", "84", "64", "44"]
     },
     "moves": [
-      { "hold_id": "40", "type": "start", "hand": "left" },
-      { "hold_id": "38", "type": "start", "hand": "right" },
-      { "hold_id": "19", "hand": "left" },
-      { "hold_id": "82", "hand": "right" },
-      { "hold_id": "63", "hand": "left" },
-      { "hold_id": "42", "hand": "right" },
-      { "hold_id": "3", "type": "finish", "hand": "both" }
+      { "hold_id": "184", "type": "start", "hand": "left" },
+      { "hold_id": "164", "type": "start", "hand": "right" },
+      { "hold_id": "145", "hand": "left" },
+      { "hold_id": "105", "hand": "right" },
+      { "hold_id": "85", "hand": "left" },
+      { "hold_id": "65", "hand": "right" },
+      { "hold_id": "45", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "V3 - Cross-Body Crux",
-    "difficulty": "V3",
+    "routeName": "V1 - Sidepull Traverse",
+    "difficulty": "V1",
     "author": "Copilot",
     "holds": {
-      "foot": ["188", "168", "149", "131", "111", "91", "69", "49"]
+      "foot": ["188", "168", "149", "129", "109", "88", "68"]
     },
     "moves": [
-      { "hold_id": "170", "type": "start", "hand": "left" },
+      { "hold_id": "167", "type": "start", "hand": "left" },
+      { "hold_id": "147", "type": "start", "hand": "right" },
+      { "hold_id": "128", "hand": "left" },
+      { "hold_id": "108", "hand": "right" },
+      { "hold_id": "87", "hand": "left" },
+      { "hold_id": "67", "hand": "right" },
+      { "hold_id": "47", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V1 - Crimp Introduction",
+    "difficulty": "V1",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["194", "175", "155", "135", "113", "93", "73"]
+    },
+    "moves": [
+      { "hold_id": "195", "type": "start", "hand": "left" },
+      { "hold_id": "176", "type": "start", "hand": "right" },
+      { "hold_id": "156", "hand": "left" },
+      { "hold_id": "136", "hand": "right" },
+      { "hold_id": "114", "hand": "left" },
+      { "hold_id": "95", "hand": "right" },
+      { "hold_id": "75", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V1 - Gentle Slopers",
+    "difficulty": "V1",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["197", "177", "157", "137", "117", "97", "77"]
+    },
+    "moves": [
+      { "hold_id": "116", "type": "start", "hand": "left" },
+      { "hold_id": "96", "type": "start", "hand": "right" },
+      { "hold_id": "76", "hand": "left" },
+      { "hold_id": "56", "hand": "right" },
+      { "hold_id": "55", "hand": "left" },
+      { "hold_id": "36", "hand": "right" },
+      { "hold_id": "16", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V2 - Lock-Off Power",
+    "difficulty": "V2",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["192", "172", "152", "131", "111", "91", "70"]
+    },
+    "moves": [
+      { "hold_id": "171", "type": "start", "hand": "left" },
       { "hold_id": "151", "type": "start", "hand": "right" },
       { "hold_id": "130", "hand": "left" },
       { "hold_id": "110", "hand": "right" },
-      { "hold_id": "88", "hand": "left" },
-      { "hold_id": "70", "hand": "right" },
+      { "hold_id": "90", "hand": "left" },
+      { "hold_id": "69", "hand": "right" },
       { "hold_id": "48", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "V3 - Pocket Ladder",
-    "difficulty": "V3",
+    "routeName": "V2 - Flagging Practice",
+    "difficulty": "V2",
     "author": "Copilot",
     "holds": {
-      "foot": ["199", "179", "159", "139", "119", "99", "77", "57"]
+      "foot": ["186", "146", "106", "86", "66", "46", "26"]
     },
     "moves": [
-      { "hold_id": "178", "type": "start", "hand": "left" },
-      { "hold_id": "158", "type": "start", "hand": "right" },
-      { "hold_id": "138", "hand": "left" },
-      { "hold_id": "118", "hand": "right" },
-      { "hold_id": "98", "hand": "left" },
-      { "hold_id": "97", "hand": "right" },
-      { "hold_id": "80", "hand": "left" },
-      { "hold_id": "60", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V3 - The Scorpion",
-    "difficulty": "V3",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["146", "166", "186", "206", "87", "68", "49", "29"]
-    },
-    "moves": [
-      { "hold_id": "126", "type": "start", "hand": "left" },
-      { "hold_id": "106", "type": "start", "hand": "right" },
-      { "hold_id": "86", "hand": "left" },
-      { "hold_id": "67", "hand": "right" },
-      { "hold_id": "47", "hand": "left" },
-      { "hold_id": "28", "hand": "right" },
-      { "hold_id": "8", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V3 - Slap Happy",
-    "difficulty": "V3",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["135", "155", "175", "195", "76", "56", "36", "16"]
-    },
-    "moves": [
-      { "hold_id": "116", "type": "start", "hand": "left" },
-      { "hold_id": "114", "type": "start", "hand": "right" },
-      { "hold_id": "95", "hand": "left" },
-      { "hold_id": "75", "hand": "right" },
-      { "hold_id": "55", "hand": "left" },
-      { "hold_id": "37", "hand": "right" },
-      { "hold_id": "17", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V4 - The Crimper",
-    "difficulty": "V4",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["194", "176", "154", "134", "112", "92", "72", "52"]
-    },
-    "moves": [
-      { "hold_id": "175", "type": "start", "hand": "left" },
-      { "hold_id": "155", "type": "start", "hand": "right" },
-      { "hold_id": "135", "hand": "left" },
-      { "hold_id": "113", "hand": "right" },
-      { "hold_id": "93", "hand": "left" },
-      { "hold_id": "73", "hand": "right" },
-      { "hold_id": "53", "hand": "left" },
-      { "hold_id": "33", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V4 - Red and Black",
-    "difficulty": "V4",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["184", "164", "144", "103", "84", "64", "44", "24"]
-    },
-    "moves": [
-      { "hold_id": "165", "type": "start", "hand": "left" },
-      { "hold_id": "145", "type": "start", "hand": "right" },
-      { "hold_id": "125", "hand": "left" },
-      { "hold_id": "105", "hand": "right" },
+      { "hold_id": "166", "type": "start", "hand": "left" },
+      { "hold_id": "126", "type": "start", "hand": "right" },
       { "hold_id": "85", "hand": "left" },
       { "hold_id": "65", "hand": "right" },
       { "hold_id": "45", "hand": "left" },
@@ -393,145 +202,292 @@
     ]
   },
   {
-    "routeName": "V4 - Dyno to Sloper",
-    "difficulty": "V4",
+    "routeName": "V2 - Gaston & Sidepull",
+    "difficulty": "V2",
     "author": "Copilot",
     "holds": {
-      "foot": ["172", "152", "131", "111", "91", "70", "50", "32"]
+      "foot": ["40", "38", "19", "82", "63", "43", "23"]
+    },
+    "moves": [
+      { "hold_id": "59", "type": "start", "hand": "left" },
+      { "hold_id": "18", "type": "start", "hand": "right" },
+      { "hold_id": "1", "hand": "left" },
+      { "hold_id": "42", "hand": "right" },
+      { "hold_id": "22", "hand": "left" },
+      { "hold_id": "4", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V2 - Heel Hooking 101",
+    "difficulty": "V2",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["178", "158", "138", "118", "98", "80", "60"]
+    },
+    "moves": [
+      { "hold_id": "199", "type": "start", "hand": "left" },
+      { "hold_id": "117", "type": "start", "hand": "right" },
+      { "hold_id": "97", "hand": "left" },
+      { "hold_id": "77", "hand": "right" },
+      { "hold_id": "57", "hand": "left" },
+      { "hold_id": "37", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V2 - Dynamic Pop",
+    "difficulty": "V2",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["185", "164", "144", "105", "85", "65", "45"]
+    },
+    "moves": [
+      { "hold_id": "165", "type": "start", "hand": "left" },
+      { "hold_id": "125", "type": "start", "hand": "right" },
+      { "hold_id": "84", "hand": "left" },
+      { "hold_id": "44", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V3 - Undercling Traverse",
+    "difficulty": "V3",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["142", "163", "184", "165", "145", "125", "105", "85"]
+    },
+    "moves": [
+      { "hold_id": "103", "type": "start", "hand": "left" },
+      { "hold_id": "84", "type": "start", "hand": "right" },
+      { "hold_id": "86", "hand": "left" },
+      { "hold_id": "87", "hand": "right" },
+      { "hold_id": "88", "hand": "left" },
+      { "hold_id": "90", "hand": "right" },
+      { "hold_id": "92", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V3 - Heel & Toe Hooks",
+    "difficulty": "V3",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["58", "79", "39", "19", "82", "63", "43"]
+    },
+    "moves": [
+      { "hold_id": "182", "type": "start", "hand": "left" },
+      { "hold_id": "1", "type": "start", "hand": "right" },
+      { "hold_id": "41", "hand": "left" },
+      { "hold_id": "22", "hand": "right" },
+      { "hold_id": "3", "hand": "left" },
+      { "hold_id": "4", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V3 - Precise Footwork",
+    "difficulty": "V3",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["193", "173", "154", "134", "113", "93", "73"]
     },
     "moves": [
       { "hold_id": "153", "type": "start", "hand": "left" },
       { "hold_id": "133", "type": "start", "hand": "right" },
-      { "hold_id": "114", "hand": "left" },
-      { "hold_id": "96", "hand": "right" },
-      { "hold_id": "75", "hand": "left" },
-      { "hold_id": "54", "hand": "right" },
-      { "hold_id": "33", "type": "finish", "hand": "both" }
+      { "hold_id": "112", "hand": "left" },
+      { "hold_id": "92", "hand": "right" },
+      { "hold_id": "72", "hand": "left" },
+      { "hold_id": "52", "hand": "right" },
+      { "hold_id": "32", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "V4 - Full Wall Traverse",
-    "difficulty": "V4",
+    "routeName": "V3 - Body Tension",
+    "difficulty": "V3",
     "author": "Copilot",
     "holds": {
-      "foot": ["40", "18", "1", "41", "22", "3", "4", "25", "45", "65", "85", "117", "137", "157", "177"]
+      "foot": ["171", "151", "131", "111", "91", "70", "50"]
     },
     "moves": [
-      { "hold_id": "20", "type": "start", "hand": "left" },
-      { "hold_id": "38", "type": "start", "hand": "right" },
-      { "hold_id": "63", "hand": "left" },
-      { "hold_id": "84", "hand": "right" },
-      { "hold_id": "80", "hand": "left" },
-      { "hold_id": "97", "hand": "right" },
-      { "hold_id": "118", "hand": "left" },
-      { "hold_id": "139", "hand": "right" },
-      { "hold_id": "159", "hand": "left" },
-      { "hold_id": "179", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V4 - Up The Seam",
-    "difficulty": "V4",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["13", "14", "33", "53", "73", "93", "113", "133", "153", "173"]
-    },
-    "moves": [
-      { "hold_id": "12", "type": "start", "hand": "left" },
-      { "hold_id": "15", "type": "start", "hand": "right" },
-      { "hold_id": "32", "hand": "left" },
-      { "hold_id": "36", "hand": "right" },
-      { "hold_id": "54", "hand": "left" },
-      { "hold_id": "56", "hand": "right" },
-      { "hold_id": "75", "hand": "left" },
-      { "hold_id": "76", "hand": "right" },
-      { "hold_id": "96", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V5 - Desperado",
-    "difficulty": "V5",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["40", "39", "19", "82", "63", "43", "24", "4"]
-    },
-    "moves": [
-      { "hold_id": "20", "type": "start", "hand": "left" },
-      { "hold_id": "18", "type": "start", "hand": "right" },
-      { "hold_id": "1", "hand": "left" },
-      { "hold_id": "41", "hand": "right" },
-      { "hold_id": "22", "hand": "left" },
-      { "hold_id": "3", "hand": "right" },
-      { "hold_id": "5", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "V5 - Tiny Dancer",
-    "difficulty": "V5",
-    "author": "Copilot",
-    "holds": {
-      "foot": ["167", "148", "129", "109", "87", "68", "49", "29"]
-    },
-    "moves": [
-      { "hold_id": "128", "type": "start", "hand": "left" },
-      { "hold_id": "108", "type": "start", "hand": "right" },
+      { "hold_id": "149", "type": "start", "hand": "left" },
+      { "hold_id": "110", "type": "start", "hand": "right" },
       { "hold_id": "88", "hand": "left" },
-      { "hold_id": "67", "hand": "right" },
-      { "hold_id": "47", "hand": "left" },
-      { "hold_id": "28", "hand": "right" },
+      { "hold_id": "68", "hand": "right" },
+      { "hold_id": "48", "hand": "left" },
+      { "hold_id": "28", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V3 - Sloper Challenge",
+    "difficulty": "V3",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["196", "176", "156", "136", "116", "96", "76"]
+    },
+    "moves": [
+      { "hold_id": "114", "type": "start", "hand": "left" },
+      { "hold_id": "95", "type": "start", "hand": "right" },
+      { "hold_id": "75", "hand": "left" },
+      { "hold_id": "55", "hand": "right" },
+      { "hold_id": "54", "hand": "left" },
+      { "hold_id": "34", "hand": "right" },
+      { "hold_id": "15", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V4 - The Crimping Ladder",
+    "difficulty": "V4",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["187", "167", "147", "128", "108", "87", "67"]
+    },
+    "moves": [
+      { "hold_id": "66", "type": "start", "hand": "left" },
+      { "hold_id": "46", "type": "start", "hand": "right" },
+      { "hold_id": "26", "hand": "left" },
+      { "hold_id": "25", "hand": "right" },
+      { "hold_id": "24", "hand": "left" },
+      { "hold_id": "5", "hand": "right" },
+      { "hold_id": "6", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V4 - Powerful Shoulders",
+    "difficulty": "V4",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["1", "18", "38", "59", "79", "58", "39"]
+    },
+    "moves": [
+      { "hold_id": "82", "type": "start", "hand": "left" },
+      { "hold_id": "19", "type": "start", "hand": "right" },
+      { "hold_id": "63", "hand": "left" },
+      { "hold_id": "43", "hand": "right" },
+      { "hold_id": "23", "hand": "left" },
+      { "hold_id": "4", "hand": "right" },
+      { "hold_id": "2", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V4 - Heel-Toe Cam",
+    "difficulty": "V4",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["170", "150", "130", "110", "90", "70", "50"]
+    },
+    "moves": [
+      { "hold_id": "171", "type": "start", "hand": "left" },
+      { "hold_id": "109", "type": "start", "hand": "right" },
+      { "hold_id": "88", "hand": "left" },
+      { "hold_id": "69", "hand": "right" },
+      { "hold_id": "49", "hand": "left" },
+      { "hold_id": "29", "hand": "right" },
+      { "hold_id": "9", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V4 - Big Dyno",
+    "difficulty": "V4",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["157", "137", "117", "97", "80", "60"]
+    },
+    "moves": [
+      { "hold_id": "177", "type": "start", "hand": "left" },
+      { "hold_id": "178", "type": "start", "hand": "right" },
+      { "hold_id": "75", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V4 - Technical Traverse",
+    "difficulty": "V4",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["33", "34", "54", "75", "95", "114", "134"]
+    },
+    "moves": [
+      { "hold_id": "15", "type": "start", "hand": "left" },
+      { "hold_id": "14", "type": "start", "hand": "right" },
+      { "hold_id": "32", "hand": "left" },
+      { "hold_id": "52", "hand": "right" },
+      { "hold_id": "72", "hand": "left" },
+      { "hold_id": "92", "hand": "right" },
+      { "hold_id": "112", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V5 - Desperate Measures",
+    "difficulty": "V5",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["41", "42", "43", "23", "4", "5", "6"]
+    },
+    "moves": [
+      { "hold_id": "22", "type": "start", "hand": "left" },
+      { "hold_id": "24", "type": "start", "hand": "right" },
+      { "hold_id": "3", "hand": "left" },
+      { "hold_id": "7", "hand": "right" },
       { "hold_id": "8", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "V5 - Campus Party",
+    "routeName": "V5 - Pocket Power",
     "difficulty": "V5",
     "author": "Copilot",
     "holds": {
-      "foot": ["177", "178", "97", "45", "25", "5"]
+      "foot": ["159", "139", "119", "99", "77", "57", "37"]
     },
     "moves": [
-      { "hold_id": "157", "type": "start", "hand": "left" },
-      { "hold_id": "158", "type": "start", "hand": "right" },
-      { "hold_id": "117", "hand": "left" },
-      { "hold_id": "80", "hand": "right" },
-      { "hold_id": "45", "hand": "left" },
-      { "hold_id": "25", "hand": "right" },
-      { "hold_id": "5", "type": "finish", "hand": "both" }
+      { "hold_id": "118", "type": "start", "hand": "left" },
+      { "hold_id": "98", "type": "start", "hand": "right" },
+      { "hold_id": "80", "hand": "left" },
+      { "hold_id": "60", "hand": "right" },
+      { "hold_id": "36", "hand": "left" },
+      { "hold_id": "17", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "V5 - The Gauntlet",
+    "routeName": "V5 - The Tiny Traverse",
     "difficulty": "V5",
     "author": "Copilot",
     "holds": {
-      "foot": ["13", "14", "15", "16", "36", "56", "76", "96"]
+      "foot": ["47", "48", "49", "50", "52", "53", "54"]
     },
     "moves": [
-      { "hold_id": "33", "type": "start", "hand": "left" },
-      { "hold_id": "34", "type": "start", "hand": "right" },
-      { "hold_id": "54", "hand": "left" },
-      { "hold_id": "55", "hand": "right" },
-      { "hold_id": "75", "hand": "left" },
-      { "hold_id": "77", "hand": "right" },
-      { "hold_id": "97", "hand": "left" },
-      { "hold_id": "98", "type": "finish", "hand": "both" }
+      { "hold_id": "28", "type": "start", "hand": "left" },
+      { "hold_id": "29", "type": "start", "hand": "right" },
+      { "hold_id": "32", "hand": "left" },
+      { "hold_id": "33", "hand": "right" },
+      { "hold_id": "34", "hand": "left" },
+      { "hold_id": "35", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "V5 - Top Shelf",
+    "routeName": "V5 - Shoulder Buster",
     "difficulty": "V5",
     "author": "Copilot",
     "holds": {
-      "foot": ["25", "26", "27", "28", "29", "49", "48", "47", "46"]
+      "foot": ["129", "109", "88", "68", "48", "28", "8"]
     },
     "moves": [
-      { "hold_id": "45", "type": "start", "hand": "left" },
-      { "hold_id": "44", "type": "start", "hand": "right" },
-      { "hold_id": "24", "hand": "left" },
-      { "hold_id": "23", "hand": "right" },
-      { "hold_id": "4", "hand": "left" },
-      { "hold_id": "5", "hand": "right" },
-      { "hold_id": "6", "hand": "left" },
+      { "hold_id": "149", "type": "start", "hand": "left" },
+      { "hold_id": "128", "type": "start", "hand": "right" },
+      { "hold_id": "108", "hand": "left" },
+      { "hold_id": "87", "hand": "right" },
+      { "hold_id": "67", "hand": "left" },
+      { "hold_id": "47", "hand": "right" },
+      { "hold_id": "27", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "V5 - Final Project",
+    "difficulty": "V5",
+    "author": "Copilot",
+    "holds": {
+      "foot": ["103", "84", "65", "45", "25", "5"]
+    },
+    "moves": [
+      { "hold_id": "144", "type": "start", "hand": "left" },
+      { "hold_id": "85", "type": "start", "hand": "right" },
+      { "hold_id": "66", "hand": "left" },
+      { "hold_id": "46", "hand": "right" },
+      { "hold_id": "26", "hand": "left" },
       { "hold_id": "7", "type": "finish", "hand": "both" }
     ]
   }
