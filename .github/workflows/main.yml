@@ -79,7 +79,7 @@ jobs:
 
       - name: 'Step 2: Draw All Route Images'
         run: |
-          python .github/scripts/draw_route.py --routes_database_file "${{ matrix.wall_dir }}/routes.json" --holds_coords_path "${{ matrix.wall_dir }}/output/data/holds.json" --base_image_path "${{ matrix.wall_dir }}/image.png" --output_dir "${{ matrix.wall_dir }}/output/generated_routes"
+          python .github/scripts/draw_route.py --routes_database_file "${{ matrix.wall_dir }}/routes.json" --holds_coords_path "${{ matrix.wall_dir }}/output/data/holds.json" --base_image_path "${{ matrix.wall_dir }}/image_base.png" --output_dir "${{ matrix.wall_dir }}/output/generated_routes"
 
       # --- 核心修改点 2: 生成后立刻缩放图片 ---
       - name: 'Step 2.1: Resize generated route images'
