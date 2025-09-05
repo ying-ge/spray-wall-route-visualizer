@@ -48,34 +48,32 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
             
-      # --- 核心修改点 1: 在 build 作业中安装 imagemagick ---
       - name: 'Install dependencies'
         run: |
-          # 安装 Python 依赖
           python -m pip install --upgrade pip
           pip install --upgrade "Pillow>=9.2.0"
           pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
           pip install numpy opencv-python-headless easyocr
-          # 安装系统依赖
           echo "Installing ImageMagick..."
           sudo apt-get update
           sudo apt-get install -y imagemagick
           echo "ImageMagick installed."
 
+      # --- 核心修改点 ---
+      # 增加了对下载文件的验证，防止 "unknown file format" 错误
       - name: 'Download and Prepare Fonts'
         run: |
-          # 创建 fonts 目录
           mkdir -p fonts
-          
-          # 下载英文字体 Oswald (用于标题和手点标签)
           echo "Downloading Oswald font..."
           curl -L "https://github.com/google/fonts/raw/main/ofl/oswald/Oswald%5Bwght%5D.ttf" -o "fonts/Oswald-Variable.ttf"
           
-          # 下载中文字体 Noto Sans SC (用于指导建议文本框)
           echo "Downloading Noto Sans SC font..."
           curl -L "https://github.com/google/fonts/raw/main/ofl/notosanssc/NotoSansSC-Regular.ttf" -o "fonts/NotoSansSC-Regular.ttf"
           
-          echo "All fonts prepared successfully."
+          echo "Fonts downloaded. Verifying contents..."
+          # 检查文件大小，如果小于1KB，很可能是下载失败的错误页面，立即报错退出
+          find fonts -name "*.ttf" -size -1k -print -exec echo "::error::File {} is too small, likely a download error." \; -exec exit 1 \;
+          echo "All fonts seem valid and prepared successfully."
           
       - name: 'Step 1: Generate Hold Coordinates (if not exists)'
         run: |
@@ -87,17 +85,21 @@ jobs:
             echo "File '$HOLDS_FILE' already exists. Skipping generation."
           fi
 
+      # --- 核心修改点 ---
+      # 确认脚本路径和参数与您日志中的完全一致
       - name: 'Step 2: Draw All Route Images'
         run: |
-          python .github/scripts/draw_route.py --routes_database_file "${{ matrix.wall_dir }}/routes.json" --holds_coords_path "${{ matrix.wall_dir }}/output/data/holds.json" --base_image_path "${{ matrix.wall_dir }}/image_base.png" --output_dir "${{ matrix.wall_dir }}/output/generated_routes"
+          python .github/scripts/draw_route.py \
+            --routes_database_file "${{ matrix.wall_dir }}/routes.json" \
+            --holds_coords_path "${{ matrix.wall_dir }}/output/data/holds.json" \
+            --base_image_path "${{ matrix.wall_dir }}/image_base.png" \
+            --output_dir "${{ matrix.wall_dir }}/output/generated_routes"
 
-      # --- 核心修改点 2: 生成后立刻缩放图片 ---
       - name: 'Step 2.1: Resize generated route images'
         run: |
           ROUTE_DIR="${{ matrix.wall_dir }}/output/generated_routes"
           if [ -d "$ROUTE_DIR" ] && [ -n "$(ls -A "$ROUTE_DIR")" ]; then
             echo "Resizing images in $ROUTE_DIR to 50%..."
-            # -quality 85 会在缩放的同时进行有损压缩，进一步减小文件体积
             find "$ROUTE_DIR" -name "*.png" -exec mogrify -resize 50% -quality 85 {} +
             echo "Image resizing and compression complete."
           else
@@ -166,7 +168,6 @@ jobs:
           commit_message: "feat(walls): Auto-generate route and debug images"
           file_pattern: "walls/"
           
-      # --- 核心修改点 3: 简化打包步骤，不再需要图片处理 ---
       - name: 'Step 6: Compress all route images into a single ZIP'
         if: steps.auto-commit-action.outputs.changes_detected == 'true'
         run: |
