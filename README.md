@@ -162,11 +162,11 @@ GitHub Actions 会接管剩下的一切。稍等片刻，你就可以在仓库�
 
 下面是一张由本系统自动生成的Spray Wall V5路线图：
 
-![V5 Final_Boss 路线图示例](V5_V5_-_Final_Boss.png)
+![V5 Final_Boss 路线图示例](walls/spray_wall/output/generated_routes/V5_V5_-_Final_Boss.png)
 
 下面是一张由本系统自动生成的儿童训练墙路线图：
 
-![V0_Jug_Ladder 路线图示例](V0_V0_-_Jug_Ladder.png)
+![V0_Jug_Ladder 路线图示例](walls/kids_wall/output/generated_routes/V0_V0_-_Jug_Ladder.png)
 
 ## 许可协议 (License)
 
