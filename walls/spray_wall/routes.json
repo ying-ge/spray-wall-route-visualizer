@@ -1,5 +1,84 @@
 [
   {
+    "routeName": "Center Line",
+    "difficulty": "V0",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "31", "type": "start", "hand": "left" },
+      { "hold_id": "2", "type": "start", "hand": "right" },
+      { "hold_id": "27", "hand": "left" },
+      { "hold_id": "70", "hand": "right" },
+      { "hold_id": "66", "hand": "left" },
+      { "hold_id": "m", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "The Cross",
+    "difficulty": "V1",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "30", "type": "start", "hand": "left" },
+      { "hold_id": "c", "type": "start", "hand": "right" },
+      { "hold_id": "19", "hand": "left" },
+      { "hold_id": "40", "hand": "right" },
+      { "hold_id": "70", "hand": "left" },
+      { "hold_id": "p", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Precision",
+    "difficulty": "V1",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "c", "type": "start", "hand": "left" },
+      { "hold_id": "d", "type": "start", "hand": "right" },
+      { "hold_id": "27", "hand": "right" },
+      { "hold_id": "q", "hand": "left" },
+      { "hold_id": "m", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Foot Swap",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "c", "type": "start", "hand": "left" },
+      { "hold_id": "d", "type": "start", "hand": "right" },
+      { "hold_id": "27", "hand": "left" },
+      { "hold_id": "h", "hand": "right" },
+      { "hold_id": "75", "hand": "left" },
+      { "hold_id": "81", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "The Egyptian",
+    "difficulty": "V4",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "c", "type": "start", "hand": "left" },
+      { "hold_id": "19", "type": "start", "hand": "right" },
+      { "hold_id": "27", "hand": "left" },
+      { "hold_id": "s", "hand": "right" },
+      { "hold_id": "68", "hand": "left" },
+      { "hold_id": "128", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
     "routeName": "Up We Go",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
@@ -14,23 +93,6 @@
       { "hold_id": "62", "hand": "right" },
       { "hold_id": "58", "hand": "left" },
       { "hold_id": "64", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Center Line",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "holds": {
-      "foot": []
-    },
-    "moves": [
-      { "hold_id": "31", "type": "start", "hand": "left" },
-      { "hold_id": "39", "type": "start", "hand": "right" },
-      { "hold_id": "2", "hand": "right" },
-      { "hold_id": "27", "hand": "left" },
-      { "hold_id": "70", "hand": "right" },
-      { "hold_id": "66", "hand": "left" },
-      { "hold_id": "m", "type": "finish", "hand": "both" }
     ]
   },
   {
@@ -58,9 +120,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "34", "type": "start", "hand": "left" },
-      { "hold_id": "1", "type": "start", "hand": "right" },
-      { "hold_id": "35", "hand": "left" },
+      { "hold_id": "35", "type": "start", "hand": "left" },
+      { "hold_id": "2", "type": "start", "hand": "right" },
       { "hold_id": "53", "hand": "right" },
       { "hold_id": "51", "hand": "left" },
       { "hold_id": "87", "hand": "right" },
@@ -75,8 +136,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "21", "type": "start", "hand": "left" },
-      { "hold_id": "16", "type": "start", "hand": "right" },
+      { "hold_id": "32", "type": "start", "hand": "left" },
+      { "hold_id": "22", "type": "start", "hand": "right" },
       { "hold_id": "14", "hand": "left" },
       { "hold_id": "j", "hand": "right" },
       { "hold_id": "n", "hand": "left" },
@@ -100,39 +161,6 @@
       { "hold_id": "y", "hand": "right" },
       { "hold_id": "5", "hand": "left" },
       { "hold_id": "52", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "The Cross",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "holds": {
-      "foot": []
-    },
-    "moves": [
-      { "hold_id": "13", "type": "start", "hand": "left" },
-      { "hold_id": "39", "type": "start", "hand": "right" },
-      { "hold_id": "c", "hand": "right" },
-      { "hold_id": "19", "hand": "left" },
-      { "hold_id": "40", "hand": "right" },
-      { "hold_id": "70", "hand": "left" },
-      { "hold_id": "p", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Precision",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "holds": {
-      "foot": []
-    },
-    "moves": [
-      { "hold_id": "b", "type": "start", "hand": "left" },
-      { "hold_id": "2", "type": "start", "hand": "right" },
-      { "hold_id": "d", "hand": "left" },
-      { "hold_id": "27", "hand": "right" },
-      { "hold_id": "q", "hand": "left" },
-      { "hold_id": "m", "type": "finish", "hand": "both" }
     ]
   },
   {
@@ -204,23 +232,6 @@
     ]
   },
   {
-    "routeName": "Foot Swap",
-    "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "holds": {
-      "foot": []
-    },
-    "moves": [
-      { "hold_id": "b", "type": "start", "hand": "left" },
-      { "hold_id": "2", "type": "start", "hand": "right" },
-      { "hold_id": "d", "hand": "left" },
-      { "hold_id": "27", "hand": "right" },
-      { "hold_id": "h", "hand": "left" },
-      { "hold_id": "75", "hand": "right" },
-      { "hold_id": "81", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
     "routeName": "Diagonal",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
@@ -261,10 +272,8 @@
       "foot": []
     },
     "moves": [
-      { "hold_id": "21", "type": "start", "hand": "left" },
-      { "hold_id": "39", "type": "start", "hand": "right" },
-      { "hold_id": "16", "hand": "right" },
-      { "hold_id": "c", "hand": "left" },
+      { "hold_id": "c", "type": "start", "hand": "left" },
+      { "hold_id": "16", "type": "start", "hand": "right" },
       { "hold_id": "19", "hand": "right" },
       { "hold_id": "s", "hand": "left" },
       { "hold_id": "68", "hand": "right" },
@@ -359,22 +368,6 @@
       { "hold_id": "5", "hand": "left" },
       { "hold_id": "85", "hand": "right" },
       { "hold_id": "52", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "The Egyptian",
-    "difficulty": "V4",
-    "author": "Gemini 2.5 Pro",
-    "holds": {
-      "foot": []
-    },
-    "moves": [
-      { "hold_id": "16", "type": "start", "hand": "left" },
-      { "hold_id": "19", "type": "start", "hand": "right" },
-      { "hold_id": "27", "hand": "left" },
-      { "hold_id": "s", "hand": "right" },
-      { "hold_id": "68", "hand": "left" },
-      { "hold_id": "128", "type": "finish", "hand": "both" }
     ]
   },
   {
