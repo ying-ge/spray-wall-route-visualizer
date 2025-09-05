@@ -62,11 +62,21 @@ jobs:
           sudo apt-get install -y imagemagick
           echo "ImageMagick installed."
 
-      - name: 'Download and Prepare Font'
+      - name: 'Download and Prepare Fonts'
         run: |
+          # 创建 fonts 目录
           mkdir -p fonts
+          
+          # 下载英文字体 Oswald (用于标题和手点标签)
+          echo "Downloading Oswald font..."
           curl -L "https://github.com/google/fonts/raw/main/ofl/oswald/Oswald%5Bwght%5D.ttf" -o "fonts/Oswald-Variable.ttf"
-      
+          
+          # 下载中文字体 Noto Sans SC (用于指导建议文本框)
+          echo "Downloading Noto Sans SC font..."
+          curl -L "https://github.com/google/fonts/raw/main/ofl/notosanssc/NotoSansSC-Regular.ttf" -o "fonts/NotoSansSC-Regular.ttf"
+          
+          echo "All fonts prepared successfully."
+          
       - name: 'Step 1: Generate Hold Coordinates (if not exists)'
         run: |
           HOLDS_FILE="${{ matrix.wall_dir }}/output/data/holds.json"
