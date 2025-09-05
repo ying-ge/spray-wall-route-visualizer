@@ -4,15 +4,14 @@
     "difficulty": "V0",
     "author": "Copilot",
     "holds": {
-      "foot": []
+      "foot": ["222", "183", "203", "204"]
     },
     "moves": [
-      { "hold_id": "222", "type": "start", "hand": "left" },
-      { "hold_id": "183", "type": "start", "hand": "right" },
-      { "hold_id": "182", "hand": "left" },
-      { "hold_id": "142", "hand": "right" },
-      { "hold_id": "19", "hand": "left" },
-      { "hold_id": "82", "hand": "right" },
+      { "hold_id": "182", "type": "start", "hand": "left" },
+      { "hold_id": "163", "type": "start", "hand": "right" },
+      { "hold_id": "142", "hand": "left" },
+      { "hold_id": "19", "hand": "right" },
+      { "hold_id": "82", "hand": "left" },
       { "hold_id": "1", "type": "finish", "hand": "both" }
     ]
   },
@@ -21,16 +20,15 @@
     "difficulty": "V0",
     "author": "Copilot",
     "holds": {
-      "foot": []
+      "foot": ["237", "217", "216", "236"]
     },
     "moves": [
-      { "hold_id": "237", "type": "start", "hand": "left" },
-      { "hold_id": "217", "type": "start", "hand": "right" },
-      { "hold_id": "196", "hand": "left" },
-      { "hold_id": "177", "hand": "right" },
-      { "hold_id": "157", "hand": "left" },
-      { "hold_id": "137", "hand": "right" },
-      { "hold_id": "117", "hand": "left" },
+      { "hold_id": "196", "type": "start", "hand": "left" },
+      { "hold_id": "197", "type": "start", "hand": "right" },
+      { "hold_id": "177", "hand": "left" },
+      { "hold_id": "157", "hand": "right" },
+      { "hold_id": "137", "hand": "left" },
+      { "hold_id": "117", "hand": "right" },
       { "hold_id": "80", "type": "finish", "hand": "both" }
     ]
   },
@@ -39,16 +37,15 @@
     "difficulty": "V0",
     "author": "Copilot",
     "holds": {
-      "foot": []
+      "foot": ["207", "209", "228", "229"]
     },
     "moves": [
-      { "hold_id": "207", "type": "start", "hand": "left" },
-      { "hold_id": "209", "type": "start", "hand": "right" },
-      { "hold_id": "188", "hand": "left" },
-      { "hold_id": "168", "hand": "right" },
-      { "hold_id": "149", "hand": "left" },
-      { "hold_id": "129", "hand": "right" },
-      { "hold_id": "109", "hand": "left" },
+      { "hold_id": "188", "type": "start", "hand": "left" },
+      { "hold_id": "189", "type": "start", "hand": "right" },
+      { "hold_id": "168", "hand": "left" },
+      { "hold_id": "149", "hand": "right" },
+      { "hold_id": "129", "hand": "left" },
+      { "hold_id": "109", "hand": "right" },
       { "hold_id": "88", "type": "finish", "hand": "both" }
     ]
   },
@@ -57,7 +54,7 @@
     "difficulty": "V0",
     "author": "Copilot",
     "holds": {
-      "foot": []
+      "foot": ["204", "205", "224", "225"]
     },
     "moves": [
       { "hold_id": "184", "type": "start", "hand": "left" },
@@ -74,11 +71,11 @@
     "difficulty": "V0",
     "author": "Copilot",
     "holds": {
-      "foot": []
+      "foot": ["218", "220", "238", "239", "240"]
     },
     "moves": [
-      { "hold_id": "218", "type": "start", "hand": "left" },
-      { "hold_id": "200", "type": "start", "hand": "right" },
+      { "hold_id": "200", "type": "start", "hand": "left" },
+      { "hold_id": "199", "type": "start", "hand": "right" },
       { "hold_id": "180", "hand": "left" },
       { "hold_id": "160", "hand": "right" },
       { "hold_id": "140", "hand": "left" },
@@ -92,15 +89,14 @@
     "difficulty": "V1",
     "author": "Copilot",
     "holds": {
-      "foot": ["261", "81", "102", "223", "224", "225", "205", "204"]
+      "foot": ["261", "81", "102", "222", "223", "203"]
     },
     "moves": [
-      { "hold_id": "80", "type": "start", "hand": "left" },
-      { "hold_id": "79", "type": "start", "hand": "right" },
-      { "hold_id": "58", "hand": "left" },
-      { "hold_id": "182", "hand": "right" },
-      { "hold_id": "183", "hand": "left" },
-      { "hold_id": "164", "hand": "right" },
+      { "hold_id": "79", "type": "start", "hand": "left" },
+      { "hold_id": "58", "type": "start", "hand": "right" },
+      { "hold_id": "182", "hand": "left" },
+      { "hold_id": "183", "hand": "right" },
+      { "hold_id": "163", "hand": "left" },
       { "hold_id": "144", "type": "finish", "hand": "both" }
     ]
   },
@@ -109,16 +105,15 @@
     "difficulty": "V1",
     "author": "Copilot",
     "holds": {
-      "foot": ["248", "228", "208", "188", "167", "147", "128"]
+      "foot": ["247", "226", "206", "207", "187"]
     },
     "moves": [
-      { "hold_id": "207", "type": "start", "hand": "left" },
-      { "hold_id": "187", "type": "start", "hand": "right" },
-      { "hold_id": "166", "hand": "left" },
-      { "hold_id": "146", "hand": "right" },
-      { "hold_id": "126", "hand": "left" },
-      { "hold_id": "106", "hand": "right" },
-      { "hold_id": "86", "hand": "left" },
+      { "hold_id": "186", "type": "start", "hand": "left" },
+      { "hold_id": "166", "type": "start", "hand": "right" },
+      { "hold_id": "146", "hand": "left" },
+      { "hold_id": "126", "hand": "right" },
+      { "hold_id": "106", "hand": "left" },
+      { "hold_id": "86", "hand": "right" },
       { "hold_id": "66", "type": "finish", "hand": "both" }
     ]
   },
@@ -127,11 +122,11 @@
     "difficulty": "V1",
     "author": "Copilot",
     "holds": {
-      "foot": ["251", "231", "211", "191", "171", "151", "131"]
+      "foot": ["250", "230", "210", "190"]
     },
     "moves": [
-      { "hold_id": "190", "type": "start", "hand": "left" },
-      { "hold_id": "170", "type": "start", "hand": "right" },
+      { "hold_id": "170", "type": "start", "hand": "left" },
+      { "hold_id": "171", "type": "start", "hand": "right" },
       { "hold_id": "150", "hand": "left" },
       { "hold_id": "149", "hand": "right" },
       { "hold_id": "129", "hand": "left" },
@@ -144,14 +139,14 @@
     "difficulty": "V1",
     "author": "Copilot",
     "holds": {
-      "foot": ["235", "215", "195", "175", "155", "135", "116"]
+      "foot": ["235", "215", "195"]
     },
     "moves": [
-      { "hold_id": "216", "type": "start", "hand": "left" },
-      { "hold_id": "196", "type": "start", "hand": "right" },
-      { "hold_id": "176", "hand": "left" },
-      { "hold_id": "156", "hand": "right" },
-      { "hold_id": "136", "hand": "left" },
+      { "hold_id": "175", "type": "start", "hand": "left" },
+      { "hold_id": "176", "type": "start", "hand": "right" },
+      { "hold_id": "156", "hand": "left" },
+      { "hold_id": "136", "hand": "right" },
+      { "hold_id": "116", "hand": "left" },
       { "hold_id": "114", "hand": "right" },
       { "hold_id": "95", "hand": "left" },
       { "hold_id": "75", "type": "finish", "hand": "both" }
@@ -162,10 +157,10 @@
     "difficulty": "V1",
     "author": "Copilot",
     "holds": {
-      "foot": ["268", "250", "232", "212", "192", "172", "152"]
+      "foot": ["268", "251", "232", "212", "192"]
     },
     "moves": [
-      { "hold_id": "193", "type": "start", "hand": "left" },
+      { "hold_id": "172", "type": "start", "hand": "left" },
       { "hold_id": "173", "type": "start", "hand": "right" },
       { "hold_id": "153", "hand": "left" },
       { "hold_id": "133", "hand": "right" },
@@ -197,16 +192,15 @@
     "difficulty": "V2",
     "author": "Copilot",
     "holds": {
-      "foot": ["229", "230", "210", "189", "168", "149", "129"]
+      "foot": ["229", "210", "190", "189", "168", "149"]
     },
     "moves": [
-      { "hold_id": "190", "type": "start", "hand": "left" },
-      { "hold_id": "189", "type": "start", "hand": "right" },
-      { "hold_id": "151", "hand": "left" },
-      { "hold_id": "131", "hand": "right" },
-      { "hold_id": "111", "hand": "left" },
-      { "hold_id": "91", "hand": "right" },
-      { "hold_id": "70", "hand": "left" },
+      { "hold_id": "171", "type": "start", "hand": "left" },
+      { "hold_id": "151", "type": "start", "hand": "right" },
+      { "hold_id": "131", "hand": "left" },
+      { "hold_id": "111", "hand": "right" },
+      { "hold_id": "91", "hand": "left" },
+      { "hold_id": "70", "hand": "right" },
       { "hold_id": "69", "type": "finish", "hand": "both" }
     ]
   },
@@ -215,7 +209,7 @@
     "difficulty": "V2",
     "author": "Copilot",
     "holds": {
-      "foot": ["238", "218", "198", "178", "158", "138", "118", "98"]
+      "foot": ["238", "218", "198", "178"]
     },
     "moves": [
       { "hold_id": "199", "type": "start", "hand": "left" },
@@ -233,7 +227,7 @@
     "difficulty": "V2",
     "author": "Copilot",
     "holds": {
-      "foot": ["214", "194", "175", "155", "135", "113", "93"]
+      "foot": ["214", "194", "175", "155"]
     },
     "moves": [
       { "hold_id": "195", "type": "start", "hand": "left" },
@@ -251,7 +245,7 @@
     "difficulty": "V2",
     "author": "Copilot",
     "holds": {
-      "foot": ["203", "184", "165", "145", "125", "105", "85"]
+      "foot": ["203", "184", "165", "145", "125"]
     },
     "moves": [
       { "hold_id": "185", "type": "start", "hand": "left" },
@@ -306,13 +300,12 @@
       "foot": ["252", "233", "215", "196", "177", "157", "137", "117"]
     },
     "moves": [
-      { "hold_id": "216", "type": "start", "hand": "left" },
-      { "hold_id": "197", "type": "start", "hand": "right" },
-      { "hold_id": "178", "hand": "left" },
-      { "hold_id": "158", "hand": "right" },
-      { "hold_id": "138", "hand": "left" },
-      { "hold_id": "97", "hand": "right" },
-      { "hold_id": "76", "hand": "left" },
+      { "hold_id": "197", "type": "start", "hand": "left" },
+      { "hold_id": "178", "type": "start", "hand": "right" },
+      { "hold_id": "158", "hand": "left" },
+      { "hold_id": "138", "hand": "right" },
+      { "hold_id": "97", "hand": "left" },
+      { "hold_id": "76", "hand": "right" },
       { "hold_id": "56", "type": "finish", "hand": "both" }
     ]
   },
