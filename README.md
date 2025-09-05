@@ -33,7 +33,7 @@
         -   在手点右上角标注清晰的文字（L/R/S/F/B）。
         -   如果定义了 `holds.foot`，则标记出指定的脚点。
         -   绘制箭头，清晰地指示出动作的顺序和方向。
-        -   在图片右下角角添加标题，包含路线名、难度和作者。
+        -   在图片右下角添加可自动换行的标题，包含路线名、难度和作者。
         -   将最终生成的图片进行**量化压缩**，以减小文件体积。
         -   以 `[难度]_[路线名称].png` 的格式 (例如 `V3_Polygon_Puzzle.png`) 保存到 `output/generated_routes/` 目录下。
 
@@ -66,6 +66,7 @@
   "routeName": "路线名称",
   "difficulty": "难度",
   "author": "作者",
+  "beta": "关于这条路线的动作指导或有趣提示。",
   "holds": {
     "foot": ["脚点1", "脚点2", "..."]
   },
@@ -157,16 +158,6 @@ GitHub Actions 会接管剩下的一切。稍等片刻，你就可以在仓库�
 │
 └── README.md                      # 就是你正在看的这个文件
 ```
-
-## 🖼️ 路线图示例 (Example Route Image)
-
-下面是一张由本系统自动生成的Spray Wall V5路线图：
-
-![V5 Final_Boss 路线图示例](walls/spray_wall/output/generated_routes/V5_V5_-_Final_Boss.png)
-
-下面是一张由本系统自动生成的儿童训练墙路线图：
-
-![V0_Jug_Ladder 路线图示例](walls/kids_wall/output/generated_routes/V0_V0_-_Jug_Ladder.png)
 
 ## 许可协议 (License)
 
