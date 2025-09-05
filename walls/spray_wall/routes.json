@@ -1,288 +1,147 @@
 [
   {
-    "routeName": "Easy Ladder",
+    "routeName": "[V0] The Green Ladder",
     "difficulty": "V0",
     "author": "AI Route Setter",
-    "beta": "一条完美的入门路线，像爬梯子一样简单。\n- 1. 双手双脚起步，站稳。\n- 2. 向上交替出手，脚跟着手同步向上移动。\n- 3. 所有点都非常棒，大胆抓握！",
+    "beta": "一条完美的入门路线，专注于抓握大而舒适的把手 (Jugs)，并练习手脚协调向上。像爬梯子一样，先出手再跟脚，保持节奏。",
     "holds": {
-      "foot": ["J7", "K7"]
+      "foot": ["109", "101", "13", "15"]
     },
     "moves": [
-      { "hold_id": "J6", "type": "start", "hand": "left" },
-      { "hold_id": "K6", "type": "start", "hand": "right" },
-      { "hold_id": "J4", "hand": "left" },
-      { "hold_id": "K4", "hand": "right" },
-      { "hold_id": "J2", "hand": "left" },
-      { "hold_id": "K2", "type": "finish", "hand": "right" }
+      { "hold_id": "13", "type": "start", "hand": "left" },
+      { "hold_id": "15", "type": "start", "hand": "right" },
+      { "hold_id": "54", "hand": "left" },
+      { "hold_id": "63", "hand": "right" },
+      { "hold_id": "62", "hand": "left" },
+      { "hold_id": "64", "type": "finish", "hand": "right" }
     ]
   },
   {
-    "routeName": "Jug City",
+    "routeName": "[V0] Yellow Balance Walk",
     "difficulty": "V0",
     "author": "AI Route Setter",
-    "beta": "欢迎来到大把手之城！\n- 1. 起始点很稳，可以轻松匹配双手。\n- 2. 身体向右侧横移，先出右手再跟左手。\n- 3. 结束点是全场最好的把手之一，轻松完成。",
+    "beta": "练习静态平衡和身体控制。手点都是黄色的。动作要慢而稳，移动手或脚之前，确保身体重心已经转移到位。想象自己在一个很窄的平衡木上行走。",
     "holds": {
-      "foot": ["E8", "F8"]
+      "foot": ["104", "124", "32", "22"]
     },
     "moves": [
-      { "hold_id": "C7", "type": "start", "hand": "both" },
-      { "hold_id": "E6", "hand": "right" },
-      { "hold_id": "G5", "hand": "left" },
-      { "hold_id": "I4", "hand": "right" },
-      { "hold_id": "I2", "type": "finish", "hand": "both" }
+      { "hold_id": "22", "type": "start", "hand": "left" },
+      { "hold_id": "82", "type": "start", "hand": "right" },
+      { "hold_id": "51", "hand": "left" },
+      { "hold_id": "112", "hand": "right" },
+      { "hold_id": "115", "type": "finish", "hand": "left" }
     ]
   },
   {
-    "routeName": "First Steps",
-    "difficulty": "V0",
-    "author": "AI Route Setter",
-    "beta": "迈出攀登的第一步，享受向上攀爬的乐趣。\n- 核心提示：保持三点稳定，移动一点。\n- 记得多用脚发力，而不是只靠手臂拉。",
-    "holds": {
-      "foot": ["B9", "C10"]
-    },
-    "moves": [
-      { "hold_id": "B8", "type": "start", "hand": "left" },
-      { "hold_id": "C8", "type": "start", "hand": "right" },
-      { "hold_id": "A6", "hand": "left" },
-      { "hold_id": "C5", "hand": "right" },
-      { "hold_id": "B3", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "The Big Dipper",
-    "difficulty": "V0",
-    "author": "AI Route Setter",
-    "beta": "一条微微倾斜的对角线，像天上的北斗七星。\n- 1. 身体重心要随着移动方向略微倾斜。\n- 2. 最后一步距离稍远，大胆蹬脚发力！",
-    "holds": {
-      "foot": ["M8", "N9"]
-    },
-    "moves": [
-      { "hold_id": "M7", "type": "start", "hand": "left" },
-      { "hold_id": "N7", "type": "start", "hand": "right" },
-      { "hold_id": "L5", "hand": "left" },
-      { "hold_id": "K4", "hand": "right" },
-      { "hold_id": "J2", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Up and Away",
-    "difficulty": "V0",
-    "author": "AI Route Setter",
-    "beta": "简单直接，一路向上！\n- 提示：这是一个很好的练习，尝试在移动时保持手臂伸直，用身体的转动来够到下一个点。",
-    "holds": {
-      "foot": ["G10", "H10"]
-    },
-    "moves": [
-      { "hold_id": "G9", "type": "start", "hand": "left" },
-      { "hold_id": "H9", "type": "start", "hand": "right" },
-      { "hold_id": "G7", "hand": "left" },
-      { "hold_id": "H6", "hand": "right" },
-      { "hold_id": "G4", "hand": "left" },
-      { "hold_id": "H3", "type": "finish", "hand": "right" }
-    ]
-  },
-  {
-    "routeName": "Simple Zigzag",
-    "difficulty": "V0",
-    "author": "AI Route Setter",
-    "beta": "简单的Z字形路线，练习身体的左右摆荡。\n- 出左手时，右脚发力；出右手时，左脚发力。\n- 相信你的脚，它们很稳。",
-    "holds": {
-      "foot": ["E8", "F9"]
-    },
-    "moves": [
-      { "hold_id": "D8", "type": "start", "hand": "left" },
-      { "hold_id": "F8", "type": "start", "hand": "right" },
-      { "hold_id": "D6", "hand": "left" },
-      { "hold_id": "F5", "hand": "right" },
-      { "hold_id": "D3", "type": "finish", "hand": "left" }
-    ]
-  },
-  {
-    "routeName": "Side Step",
+    "routeName": "[V1] High-Step Rock-On",
     "difficulty": "V1",
     "author": "AI Route Setter",
-    "beta": "小小的横移考验你的平衡感。\n- 1. 起步后，先将右脚踩到 F7 脚点，方便向右移动。\n- 2. 出右手去抓 G6 时，身体重心要向右脚偏移。\n- 3. 最后一步向上，站起来即可完成。",
+    "beta": "专项训练高脚和侧身发力站起 (Rock On) 的技巧。关键在于将一只脚抬得很高，然后用那条腿发力，将身体侧向站起，从而轻松够到上方的点。",
     "holds": {
-      "foot": ["D8", "F7", "H6"]
+      "foot": ["101", "13", "14"]
     },
     "moves": [
-      { "hold_id": "C7", "type": "start", "hand": "left" },
-      { "hold_id": "D7", "type": "start", "hand": "right" },
-      { "hold_id": "G6", "hand": "right" },
-      { "hold_id": "I5", "hand": "left" },
-      { "hold_id": "I3", "type": "finish", "hand": "both" }
+      { "hold_id": "13", "type": "start", "hand": "left" },
+      { "hold_id": "15", "type": "start", "hand": "right" },
+      { "hold_id": "14", "hand": "left" },
+      { "hold_id": "59", "hand": "right" },
+      { "hold_id": "61", "type": "finish", "hand": "left" }
     ]
   },
   {
-    "routeName": "The Reach",
+    "routeName": "[V1] Side-Pull Traverse",
     "difficulty": "V1",
     "author": "AI Route Setter",
-    "beta": "有一步需要你伸展身体。\n- 1. 从 K8 到 J6 是一步常规移动。\n- 2. 关键在于从 J6 到 H4 这一步，需要你将右脚踩高，充分蹬脚，将身体送出去。\n- 3. H4 是个好点，抓稳后调整好身体再继续。",
+    "beta": "练习使用侧拉点 (Side-pull) 进行横渡。抓握侧拉点时，要利用身体的对侧脚来发力，形成一个对抗力，将身体稳定在墙上。保持手臂伸直，用脚来移动身体。",
     "holds": {
-      "foot": ["L9", "J7", "I5"]
+      "foot": ["125", "126", "36", "3", "24"]
     },
     "moves": [
-      { "hold_id": "L8", "type": "start", "hand": "left" },
-      { "hold_id": "K8", "type": "start", "hand": "right" },
-      { "hold_id": "J6", "hand": "left" },
-      { "hold_id": "H4", "hand": "right" },
-      { "hold_id": "G2", "type": "finish", "hand": "both" }
+      { "hold_id": "43", "type": "start", "hand": "right" },
+      { "hold_id": "53", "hand": "left" },
+      { "hold_id": "78", "hand": "right" },
+      { "hold_id": "28", "hand": "left" },
+      { "hold_id": "70", "type": "finish", "hand": "left" }
     ]
   },
-  {
-    "routeName": "Crossover",
+    {
+    "routeName": "[V1] Gaston Push",
     "difficulty": "V1",
     "author": "AI Route Setter",
-    "beta": "练习交叉手动作的入门路线。\n- 1. 起步后，左手去抓 F5。\n- 2. 关键动作：出右手，越过左手，去抓 D4！这是一个简单的交叉。\n- 3. 完成交叉后，身体会自然打开，出左手完成路线。",
+    "beta": "练习经典的反向侧推 (Gaston) 动作。你需要将手肘抬高，像要推开一扇门一样向外发力。利用这个对抗力稳定身体，然后向上移动。",
     "holds": {
-      "foot": ["E8", "F8", "E6"]
+      "foot": ["116", "35", "53"]
     },
     "moves": [
-      { "hold_id": "E7", "type": "start", "hand": "left" },
-      { "hold_id": "G7", "type": "start", "hand": "right" },
-      { "hold_id": "F5", "hand": "left" },
-      { "hold_id": "D4", "hand": "right" },
-      { "hold_id": "B3", "type": "finish", "hand": "left" }
+      { "hold_id": "72", "type": "start", "hand": "left" },
+      { "hold_id": "85", "type": "start", "hand": "right" },
+      { "hold_id": "50", "hand": "left" },
+      { "hold_id": "45", "hand": "right" },
+      { "hold_id": "70", "type": "finish", "hand": "left" }
     ]
   },
   {
-    "routeName": "Balance Beam",
-    "difficulty": "V1",
-    "author": "AI Route Setter",
-    "beta": "在点上行走，如同走在平衡木上。\n- 1. 这条路线的点都偏侧向，需要利用对侧脚来维持平衡。\n- 2. 抓 N6 时，左脚踩稳 M8；抓 L5 时，右脚踩稳 M6。\n- 3. 动作要轻柔，避免身体晃动。",
-    "holds": {
-      "foot": ["M8", "M6", "L7"]
-    },
-    "moves": [
-      { "hold_id": "O7", "type": "start", "hand": "right" },
-      { "hold_id": "N6", "hand": "left" },
-      { "hold_id": "L5", "hand": "right" },
-      { "hold_id": "K3", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Rock Up",
-    "difficulty": "V1",
-    "author": "AI Route Setter",
-    "beta": "练习高脚和侧身发力。\n- 1. 起步后，关键是把右脚高高踩在 B8 脚点上。\n- 2. 右脚用力蹬，身体侧向站起，出右手抓 C5。\n- 3. C5 是个侧拉点，抓稳后，左手即可轻松够到结束点。",
-    "holds": {
-      "foot": ["A9", "B8"]
-    },
-    "moves": [
-      { "hold_id": "A7", "type": "start", "hand": "left" },
-      { "hold_id": "B7", "type": "start", "hand": "right" },
-      { "hold_id": "C5", "hand": "right" },
-      { "hold_id": "A4", "type": "finish", "hand": "left" }
-    ]
-  },
-  {
-    "routeName": "Twist and Shout",
-    "difficulty": "V1",
-    "author": "AI Route Setter",
-    "beta": "需要一次小小的转体动作。\n- 1. 左手抓 H8, 右手抓 J8, 这是个开臂起始。\n- 2. 核心动作：左脚踩 I9，身体向右转体（屁股朝外），出左手去抓 H6。\n- 3. 完成转体后，身体回正，轻松向上完成。",
-    "holds": {
-      "foot": ["I9", "J9", "I7"]
-    },
-    "moves": [
-      { "hold_id": "H8", "type": "start", "hand": "left" },
-      { "hold_id": "J8", "type": "start", "hand": "right" },
-      { "hold_id": "H6", "hand": "left" },
-      { "hold_id": "I4", "hand": "right" },
-      { "hold_id": "H2", "type": "finish", "hand": "left" }
-    ]
-  },
-  {
-    "routeName": "The Sloper Problem",
+    "routeName": "[V2] The Undercling Challenge",
     "difficulty": "V2",
     "author": "AI Route Setter",
-    "beta": "欢迎来到坡面点 (Sloper) 的世界！\n- 1. F6 是个坡面点，要点是身体重心放低，手臂打直，靠摩擦力挂住。\n- 2. 去抓 D5 时，要利用身体的摆荡，顺势出手。\n- 3. 结束点 C3 也是坡面，同样需要控制重心，稳定地完成。",
+    "beta": "体验下手点 (Undercling) 的发力感。你需要从下方反手扣住岩点，然后将脚踩高，身体重心放低，用核心力量将身体“挂”在点上，再向上移动。",
     "holds": {
-      "foot": ["E8", "F9", "E6"]
+      "foot": ["104", "32", "24", "41"]
     },
     "moves": [
-      { "hold_id": "E7", "type": "start", "hand": "left" },
-      { "hold_id": "G7", "type": "start", "hand": "right" },
-      { "hold_id": "F6", "hand": "left" },
-      { "hold_id": "D5", "hand": "right" },
-      { "hold_id": "C3", "type": "finish", "hand": "both" }
+      { "hold_id": "30", "type": "start", "hand": "left" },
+      { "hold_id": "22", "type": "start", "hand": "right" },
+      { "hold_id": "28", "hand": "left" },
+      { "hold_id": "60", "hand": "right" },
+      { "hold_id": "63", "type": "finish", "hand": "right" }
     ]
   },
   {
-    "routeName": "Pinch Power",
+    "routeName": "[V2] Sloper Control",
     "difficulty": "V2",
     "author": "AI Route Setter",
-    "beta": "考验你的捏力 (Pinch)！\n- 1. K7 和 I6 都是捏点，发力方式是用拇指和其他四指相对发力，像钳子一样。\n- 2. 保持核心收紧，可以分担手指的力量。\n- 3. 最后去抓 G5 时，身体要向左侧倒，利用右手和右脚的对抗力。",
+    "beta": "专注于控制坡面点 (Sloper)。要点是身体重心放低，手臂打直，尽可能增加手掌与岩点的接触面积，靠摩擦力挂住。移动时动作要柔和，避免突然发力。",
     "holds": {
-      "foot": ["L9", "J8", "H7"]
+      "foot": ["116", "35", "53"]
     },
     "moves": [
-      { "hold_id": "L8", "type": "start", "hand": "left" },
-      { "hold_id": "K7", "hand": "right" },
-      { "hold_id": "I6", "hand": "left" },
-      { "hold_id": "G5", "type": "finish", "hand": "right" }
+      { "hold_id": "33", "type": "start", "hand": "left" },
+      { "hold_id": "116", "type": "start", "hand": "right" },
+      { "hold_id": "51", "hand": "right" },
+      { "hold_id": "85", "hand": "left" },
+      { "hold_id": "8", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Dynamic Start",
+    "routeName": "[V2] Crimpy Fingers",
     "difficulty": "V2",
     "author": "AI Route Setter",
-    "beta": "一个需要动态出发的有趣路线。\n- 1. 起始点双手都在 C9。身体下蹲，利用腿部力量向上爆发。\n- 2. 目标是动态地出右手，直接拍到 E6！\n- 3. 抓稳 E6 后，左手跟上，后续动作就很简单了。",
+    "beta": "一条考验指力的路线，手点都是很小的边或片 (Crimps)。使用半开指或全开指的抓法保护手指，保持核心收紧，用精准的脚法来减轻手指的负担。",
     "holds": {
-      "foot": ["C11", "D11"]
+      "foot": ["91", "120", "87"]
     },
     "moves": [
-      { "hold_id": "C9", "type": "start", "hand": "both" },
-      { "hold_id": "E6", "hand": "right" },
-      { "hold_id": "F4", "hand": "left" },
-      { "hold_id": "G2", "type": "finish", "hand": "right" }
+      { "hold_id": "91", "type": "start", "hand": "left" },
+      { "hold_id": "87", "type": "start", "hand": "right" },
+      { "hold_id": "49", "hand": "left" },
+      { "hold_id": "97", "hand": "right" },
+      { "hold_id": "118", "type": "finish", "hand": "right" }
     ]
   },
   {
-    "routeName": "Gaston's Move",
+    "routeName": "[V2] Heel Hook Power",
     "difficulty": "V2",
     "author": "AI Route Setter",
-    "beta": "包含一个经典的 Gaston (反向侧推) 动作。\n- 1. 左手抓 G8，右手抓 I8。身体在两点之间。\n- 2. 核心动作：左手抓 F6。这个点需要你手肘抬高，向外推，像要推开一扇门一样，这就是 Gaston。\n- 3. 利用 Gaston 的对抗力，稳定身体，出右手完成。",
+    "beta": "学习使用强大的脚后跟 (Heel Hook) 技巧。将你的脚后跟有力地挂在岩点上，用腿部力量将身体拉近岩壁或向上提升，能极大地节省手臂力量。",
     "holds": {
-      "foot": ["G10", "H10", "F8"]
+      "foot": ["105", "106", "34", "116"]
     },
     "moves": [
-      { "hold_id": "G8", "type": "start", "hand": "left" },
-      { "hold_id": "I8", "type": "start", "hand": "right" },
-      { "hold_id": "F6", "hand": "left" },
-      { "hold_id": "E4", "hand": "right" },
-      { "hold_id": "D2", "type": "finish", "hand": "left" }
-    ]
-  },
-  {
-    "routeName": "Heel Hook Traverse",
-    "difficulty": "V2",
-    "author": "AI Route Setter",
-    "beta": "学习使用脚后跟 (Heel Hook) 的好机会！\n- 1. 从 M7 到 L6 是正常移动。\n- 2. 关键点：将你的右脚脚后跟，挂在 L6 这个点上！\n- 3. 用挂住的脚后跟发力，将身体拉向左边，出右手去抓 J5。\n- 4. Heel Hook 是节省手臂力量的绝佳技巧。",
-    "holds": {
-      "foot": ["N8", "M9"]
-    },
-    "moves": [
-      { "hold_id": "N7", "type": "start", "hand": "right" },
-      { "hold_id": "M7", "hand": "left" },
-      { "hold_id": "L6", "hand": "left" },
-      { "hold_id": "J5", "hand": "right" },
-      { "hold_id": "I4", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "The Undercling",
-    "difficulty": "V2",
-    "author": "AI Route Setter",
-    "beta": "体验下手点 (Undercling) 的发力感。\n- 1. B6 是一个下手点，你需要从下方反手扣住它。\n- 2. 核心要领：脚要踩高（B8），身体重心要低，并保持核心收紧，将身体“挂”在下手点上。\n- 3. 利用下手点的对抗力将身体向上提，出右手抓 D5。",
-    "holds": {
-      "foot": ["A9", "C9", "B8"]
-    },
-    "moves": [
-      { "hold_id": "A7", "type": "start", "hand": "left" },
-      { "hold_id": "C7", "type": "start", "hand": "right" },
-      { "hold_id": "B6", "hand": "left" },
-      { "hold_id": "D5", "hand": "right" },
-      { "hold_id": "C3", "type": "finish", "hand": "both" }
+      { "hold_id": "33", "type": "start", "hand": "left" },
+      { "hold_id": "116", "type": "start", "hand": "right" },
+      { "hold_id": "82", "hand": "right" },
+      { "hold_id": "72", "hand": "left" },
+      { "hold_id": "85", "type": "finish", "hand": "left" }
     ]
   }
 ]
