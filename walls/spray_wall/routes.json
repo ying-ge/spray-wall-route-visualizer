@@ -444,5 +444,73 @@
       { "hold_id": "111", "hand": "right" },
       { "hold_id": "111", "type": "finish", "hand": "both" }
     ]
+  },
+  {
+    "routeName": "The Matchmaker",
+    "difficulty": "V0",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "109", "type": "start", "hand": "left" },
+      { "hold_id": "101", "type": "start", "hand": "right" },
+      { "hold_id": "13", "hand": "left" },
+      { "hold_id": "54", "hand": "right" },
+      { "hold_id": "54", "hand": "left" },
+      { "hold_id": "60", "hand": "right" },
+      { "hold_id": "56", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "The Flag",
+    "difficulty": "V1",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "104", "type": "start", "hand": "left" },
+      { "hold_id": "104", "type": "start", "hand": "right" },
+      { "hold_id": "30", "hand": "left" },
+      { "hold_id": "28", "hand": "right" },
+      { "hold_id": "5", "hand": "left" },
+      { "hold_id": "72", "hand": "right" },
+      { "hold_id": "52", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "The Rock-Over",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "106", "type": "start", "hand": "left" },
+      { "hold_id": "127", "type": "start", "hand": "right" },
+      { "hold_id": "35", "hand": "left" },
+      { "hold_id": "51", "hand": "right" },
+      { "hold_id": "11", "hand": "left" },
+      { "hold_id": "87", "hand": "right" },
+      { "hold_id": "76", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "The Squeezer",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "109", "type": "start", "hand": "left" },
+      { "hold_id": "101", "type": "start", "hand": "right" },
+      { "hold_id": "54", "hand": "left" },
+      { "hold_id": "59", "hand": "right" },
+      { "hold_id": "63", "hand": "left" },
+      { "hold_id": "65", "hand": "right" },
+      { "hold_id": "110", "type": "finish", "hand": "both" }
+    ]
   }
 ]
