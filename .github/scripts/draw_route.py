@@ -7,7 +7,8 @@ import re
 import sys
 import textwrap
 
-# --- 样式配置 (与上一版相同) ---
+# --- 样式配置 ---
+# beta_text_style 现在控制底部扩展区域的样式
 STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
@@ -28,11 +29,13 @@ STYLE_CONFIG = {
     },
     'beta_text_style': {
         'font_path': "fonts/NotoSansSC[wght].ttf", 'font_size': 40, 'fill_color': (255, 255, 255),
-        'background_color': (0, 0, 0, 160), 'margin': 50, 'line_spacing': 15, 'box_padding': 25, 'wrap_width': 35
+        'background_color': (0, 0, 0), # 纯黑背景
+        'padding_x': 50, 'padding_y': 40, # 文本区域的水平和垂直内边距
+        'line_spacing': 15, 'wrap_width': 80 # 换行宽度可以更宽
     }
 }
 
-# --- 辅助函数 (与上一版相同) ---
+# --- 辅助函数 ---
 def draw_arrow(draw, start_xy, end_xy):
     x1, y1 = start_xy; x2, y2 = end_xy; draw.line([start_xy, end_xy], fill=STYLE_CONFIG['arrow_color'], width=STYLE_CONFIG['arrow_width'])
     angle = math.atan2(y2 - y1, x2 - x1); length = STYLE_CONFIG['arrowhead_length']; head_angle = math.radians(STYLE_CONFIG['arrowhead_angle'])
@@ -68,38 +71,6 @@ def get_wrapped_text_size(draw, text, font, wrap_width, line_spacing):
     total_text_height += line_spacing * (len(lines) - 1)
     return max_line_width, total_text_height
 
-def find_best_position_for_text(image_size, route_holds_coords, text_box_size, title_area):
-    img_width, img_height = image_size; box_width, box_height = text_box_size; margin = STYLE_CONFIG['beta_text_style']['margin']
-    positions = {
-        'top_left': (margin, margin, margin + box_width, margin + box_height),
-        'top_right': (img_width - box_width - margin, margin, img_width - margin, margin + box_height),
-        'bottom_left': (margin, img_height - box_height - margin, margin + box_width, img_height - margin),
-    }
-    for name, (x0, y0, x1, y1) in positions.items():
-        is_empty = True
-        for hx, hy in route_holds_coords:
-            if x0 < hx < x1 and y0 < hy < y1: is_empty = False; break
-        if not is_empty: continue
-        if x0 < title_area[2] and x1 > title_area[0] and y0 < title_area[3] and y1 > title_area[1]: is_empty = False
-        if is_empty:
-            print(f"    - Beta box position: {name} (area is clear)"); return (x0, y0)
-    print("    - Warning: All available corners overlap, defaulting beta box to top-left."); return (positions['top_left'][0], positions['top_left'][1])
-
-def draw_wrapped_text_box(draw, text, font, style, image_size, route_holds_coords, title_area):
-    if not text: return
-    padding = style['box_padding']; line_spacing = style['line_spacing']
-    box_width, box_height = get_wrapped_text_size(draw, text, font, style['wrap_width'], line_spacing)
-    box_width += padding * 2; box_height += padding * 2
-    box_x0, box_y0 = find_best_position_for_text(image_size, route_holds_coords, (box_width, box_height), title_area)
-    draw.rectangle([box_x0, box_y0, box_x0 + box_width, box_y0 + box_height], fill=style['background_color'])
-    current_y = box_y0 + padding
-    for line in textwrap.wrap(text, width=style['wrap_width']):
-        try: line_bbox = draw.textbbox((0, 0), line, font=font)
-        except AttributeError: line_bbox = font.getbbox(line)
-        line_height = line_bbox[3] - line_bbox[1]
-        draw.text((box_x0 + padding, current_y), line, font=font, fill=style['fill_color'])
-        current_y += line_height + line_spacing
-
 def draw_wrapped_title(draw, text, font, style, image_size):
     img_width, img_height = image_size; margin = style['margin']; line_spacing = style['line_spacing']
     lines = textwrap.wrap(text, width=style['wrap_width'])
@@ -113,62 +84,79 @@ def draw_wrapped_title(draw, text, font, style, image_size):
         line_width = line_bbox[2] - line_bbox[0]; line_x = start_x + (block_width - line_width)
         draw_text_with_outline(draw, (line_x, current_y), line, font, style['fill_color'], style['outline_color'], style['outline_width'])
         current_y += line_height + line_spacing
-    return (start_x, start_y, start_x + block_width, start_y + block_height)
 
-# --- 【已升级】主绘制函数，集成所有新逻辑 ---
 def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_dir):
-    image = base_image.copy(); draw = ImageDraw.Draw(image, "RGBA")
+    # 1. 在原始图上绘制所有内容（除了beta）
+    image_part = base_image.copy()
+    draw = ImageDraw.Draw(image_part, "RGBA")
     offset_x, offset_y = STYLE_CONFIG.get('center_offset_x', 0), STYLE_CONFIG.get('center_offset_y', 0)
     
-    current_route_holds_coords = []
-    if 'holds' in route_data and 'foot' in route_data['holds']:
-        for hold_id in route_data['holds']['foot']:
-            if str(hold_id).lower() in holds_coords: current_route_holds_coords.append((holds_coords[str(hold_id).lower()]['x'] + offset_x, holds_coords[str(hold_id).lower()]['y'] + offset_y))
-    if 'moves' in route_data:
-        for move in route_data['moves']:
-            if str(move['hold_id']).lower() in holds_coords: current_route_holds_coords.append((holds_coords[str(move['hold_id']).lower()]['x'] + offset_x, holds_coords[str(move['hold_id']).lower()]['y'] + offset_y))
-
+    # 绘制标题
     title_style = STYLE_CONFIG['title_style']
-    route_name = route_data.get('routeName', route_data.get('name', 'N/A')); difficulty = route_data.get('difficulty', route_data.get('grade', 'N/A')); author = route_data.get('author', 'N/A')
+    route_name = route_data.get('routeName', route_data.get('name', 'N/A'))
+    difficulty = route_data.get('difficulty', route_data.get('grade', 'N/A'))
+    author = route_data.get('author', 'N/A')
     route_info_text = f"{route_name} | {difficulty} | by {author}"
-    title_area = draw_wrapped_title(draw, route_info_text, fonts['title'], title_style, image.size)
+    draw_wrapped_title(draw, route_info_text, fonts['title'], title_style, image_part.size)
 
-    beta_text = route_data.get('beta')
-    if beta_text:
-        draw_wrapped_text_box(draw, beta_text, fonts['beta'], STYLE_CONFIG['beta_text_style'], image.size, current_route_holds_coords, title_area)
-
+    # 绘制脚点
     if 'holds' in route_data and 'foot' in route_data['holds']:
         for hold_id in route_data['holds']['foot']:
-            if str(hold_id).lower() in holds_coords: draw_hold(draw, (holds_coords[str(hold_id).lower()]['x'] + offset_x, holds_coords[str(hold_id).lower()]['y'] + offset_y), STYLE_CONFIG['foot'])
+            if str(hold_id).lower() in holds_coords:
+                draw_hold(draw, (holds_coords[str(hold_id).lower()]['x'] + offset_x, holds_coords[str(hold_id).lower()]['y'] + offset_y), STYLE_CONFIG['foot'])
     
-    # --- 【箭头逻辑修复】---
-    # 将手点和箭头的绘制合并到一个循环中，以确保 prev_coords 被正确更新
+    # 绘制手点和箭头
     prev_coords = None
     if 'moves' in route_data:
         for move in route_data['moves']:
             hold_id_str = str(move['hold_id']).lower()
             if hold_id_str in holds_coords:
-                # 绘制手点
                 center_xy = (holds_coords[hold_id_str]['x'] + offset_x, holds_coords[hold_id_str]['y'] + offset_y)
                 style_key = 'start' if move.get('type') == 'start' else 'finish' if move.get('type') == 'finish' else f"{move.get('hand')}_hand"
                 style = STYLE_CONFIG.get(style_key)
                 text_to_draw = move.get('text') or (move.get('type') or move.get('hand', ''))[0].upper()
                 if style:
                     draw_hold(draw, center_xy, style, text_to_draw, fonts['main'])
-                
-                # 绘制箭头
                 if prev_coords:
                     draw_arrow(draw, prev_coords, center_xy)
-                
-                # 更新上一个点的位置
                 prev_coords = center_xy
     
-    # --- 【半透明修复】---
-    # 移除 .quantize()，直接保存带有Alpha通道的PNG图片
+    # 2. 如果有beta，则创建新画布并组合
+    final_image = image_part
+    beta_text = route_data.get('beta')
+    if beta_text:
+        beta_style = STYLE_CONFIG['beta_text_style']
+        beta_font = fonts['beta']
+        
+        # 计算beta文本需要的高度
+        # 创建一个临时draw对象来计算尺寸
+        temp_draw = ImageDraw.Draw(Image.new('RGB', (1,1)))
+        _, text_height = get_wrapped_text_size(temp_draw, beta_text, beta_font, beta_style['wrap_width'], beta_style['line_spacing'])
+        extra_height = text_height + beta_style['padding_y'] * 2
+        
+        # 创建一个带有黑色背景的新画布
+        orig_width, orig_height = image_part.size
+        new_width, new_height = orig_width, orig_height + int(extra_height)
+        final_image = Image.new('RGB', (new_width, new_height), beta_style['background_color'])
+        
+        # 将原始路线图粘贴到新画布的顶部
+        final_image.paste(image_part, (0, 0))
+        
+        # 在底部黑色区域绘制beta文本
+        beta_draw = ImageDraw.Draw(final_image)
+        current_y = orig_height + beta_style['padding_y']
+        for line in textwrap.wrap(beta_text, width=beta_style['wrap_width']):
+            try: line_bbox = beta_draw.textbbox((0, 0), line, font=beta_font)
+            except AttributeError: line_bbox = beta_font.getbbox(line)
+            line_height = line_bbox[3] - line_bbox[1]
+            beta_draw.text((beta_style['padding_x'], current_y), line, font=beta_font, fill=beta_style['fill_color'])
+            current_y += line_height + beta_style['line_spacing']
+            
+    # 3. 保存最终图片
     safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_name)
     output_filename = f"{difficulty.replace(' ', '_')}_{safe_filename.replace(' ', '_')}.png"
     output_path = output_dir / output_filename
-    image.save(output_path, 'PNG', optimize=True) # 直接保存 image 对象
+    final_image.save(output_path, 'PNG', optimize=True)
     print(f"  ✓ Saved: {output_path}")
 
 # --- (文件剩余部分与您提供的版本完全相同，无需修改) ---
