@@ -7,8 +7,7 @@ import re
 import sys
 import textwrap
 
-# --- 样式配置 ---
-# 【修改】为 title_style 添加了 wrap_width
+# --- 样式配置 (与上一版相同) ---
 STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
@@ -22,7 +21,7 @@ STYLE_CONFIG = {
     'title_style': {
         'font_path': "fonts/Oswald-Variable.ttf", 'font_size': 75, 'font_variation': 700, 
         'fill_color': (255, 255, 255), 'outline_color': (0, 0, 0), 'outline_width': 4, 'margin': 60,
-        'wrap_width': 45, 'line_spacing': 10 # 新增：标题的换行宽度和行间距
+        'wrap_width': 45, 'line_spacing': 10
     },
     'main_font_style': {
         'font_path': "fonts/Oswald-Variable.ttf", 'font_size': 50, 'font_variation': 700 
@@ -33,7 +32,7 @@ STYLE_CONFIG = {
     }
 }
 
-# --- 辅助函数 (保持不变) ---
+# --- 辅助函数 (与上一版相同) ---
 def draw_arrow(draw, start_xy, end_xy):
     x1, y1 = start_xy; x2, y2 = end_xy; draw.line([start_xy, end_xy], fill=STYLE_CONFIG['arrow_color'], width=STYLE_CONFIG['arrow_width'])
     angle = math.atan2(y2 - y1, x2 - x1); length = STYLE_CONFIG['arrowhead_length']; head_angle = math.radians(STYLE_CONFIG['arrowhead_angle'])
@@ -57,7 +56,6 @@ def draw_hold(draw, center_xy, style, text=None, font=None):
         text_pos_x = x + STYLE_CONFIG['text_offset']; text_pos_y = y - STYLE_CONFIG['text_offset']
         draw_text_with_outline(draw, (text_pos_x, text_pos_y), text, font, fill_color=style['text_color'], outline_color=(0, 0, 0, 255), outline_width=STYLE_CONFIG['text_outline_width'])
 
-# --- 【新增】辅助函数：计算换行文本的尺寸 ---
 def get_wrapped_text_size(draw, text, font, wrap_width, line_spacing):
     lines = textwrap.wrap(text, width=wrap_width)
     max_line_width, total_text_height = 0, 0
@@ -70,7 +68,6 @@ def get_wrapped_text_size(draw, text, font, wrap_width, line_spacing):
     total_text_height += line_spacing * (len(lines) - 1)
     return max_line_width, total_text_height
 
-# --- 【已升级】智能定位函数，现在会避开标题区域 ---
 def find_best_position_for_text(image_size, route_holds_coords, text_box_size, title_area):
     img_width, img_height = image_size; box_width, box_height = text_box_size; margin = STYLE_CONFIG['beta_text_style']['margin']
     positions = {
@@ -80,18 +77,14 @@ def find_best_position_for_text(image_size, route_holds_coords, text_box_size, t
     }
     for name, (x0, y0, x1, y1) in positions.items():
         is_empty = True
-        # 检查是否与岩点重叠
         for hx, hy in route_holds_coords:
             if x0 < hx < x1 and y0 < hy < y1: is_empty = False; break
         if not is_empty: continue
-        # 检查是否与标题区域重叠 (AABB-AABB collision detection)
-        if x0 < title_area[2] and x1 > title_area[0] and y0 < title_area[3] and y1 > title_area[1]:
-            is_empty = False
+        if x0 < title_area[2] and x1 > title_area[0] and y0 < title_area[3] and y1 > title_area[1]: is_empty = False
         if is_empty:
             print(f"    - Beta box position: {name} (area is clear)"); return (x0, y0)
     print("    - Warning: All available corners overlap, defaulting beta box to top-left."); return (positions['top_left'][0], positions['top_left'][1])
 
-# --- 【已升级】文本框函数，调用升级后的智能定位 ---
 def draw_wrapped_text_box(draw, text, font, style, image_size, route_holds_coords, title_area):
     if not text: return
     padding = style['box_padding']; line_spacing = style['line_spacing']
@@ -107,26 +100,19 @@ def draw_wrapped_text_box(draw, text, font, style, image_size, route_holds_coord
         draw.text((box_x0 + padding, current_y), line, font=font, fill=style['fill_color'])
         current_y += line_height + line_spacing
 
-# --- 【新增】绘制换行标题的函数 ---
 def draw_wrapped_title(draw, text, font, style, image_size):
     img_width, img_height = image_size; margin = style['margin']; line_spacing = style['line_spacing']
     lines = textwrap.wrap(text, width=style['wrap_width'])
     block_width, block_height = get_wrapped_text_size(draw, text, font, style['wrap_width'], line_spacing)
-    start_x = img_width - block_width - margin
-    start_y = img_height - block_height - margin
-    
+    start_x = img_width - block_width - margin; start_y = img_height - block_height - margin
     current_y = start_y
     for line in lines:
         try: line_bbox = draw.textbbox((0, 0), line, font=font)
         except AttributeError: line_bbox = font.getbbox(line)
         line_height = line_bbox[3] - line_bbox[1]
-        # 右对齐绘制
-        line_width = line_bbox[2] - line_bbox[0]
-        line_x = start_x + (block_width - line_width) # 右对齐的关键
+        line_width = line_bbox[2] - line_bbox[0]; line_x = start_x + (block_width - line_width)
         draw_text_with_outline(draw, (line_x, current_y), line, font, style['fill_color'], style['outline_color'], style['outline_width'])
         current_y += line_height + line_spacing
-    
-    # 返回标题占据的区域 (x0, y0, x1, y1)
     return (start_x, start_y, start_x + block_width, start_y + block_height)
 
 # --- 【已升级】主绘制函数，集成所有新逻辑 ---
@@ -134,7 +120,6 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     image = base_image.copy(); draw = ImageDraw.Draw(image, "RGBA")
     offset_x, offset_y = STYLE_CONFIG.get('center_offset_x', 0), STYLE_CONFIG.get('center_offset_y', 0)
     
-    # 1. 收集所有岩点坐标
     current_route_holds_coords = []
     if 'holds' in route_data and 'foot' in route_data['holds']:
         for hold_id in route_data['holds']['foot']:
@@ -143,38 +128,48 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
         for move in route_data['moves']:
             if str(move['hold_id']).lower() in holds_coords: current_route_holds_coords.append((holds_coords[str(move['hold_id']).lower()]['x'] + offset_x, holds_coords[str(move['hold_id']).lower()]['y'] + offset_y))
 
-    # 2. 绘制标题并获取其占据的区域
     title_style = STYLE_CONFIG['title_style']
     route_name = route_data.get('routeName', route_data.get('name', 'N/A')); difficulty = route_data.get('difficulty', route_data.get('grade', 'N/A')); author = route_data.get('author', 'N/A')
     route_info_text = f"{route_name} | {difficulty} | by {author}"
     title_area = draw_wrapped_title(draw, route_info_text, fonts['title'], title_style, image.size)
 
-    # 3. 绘制指导建议，并传入标题区域以供避让
     beta_text = route_data.get('beta')
     if beta_text:
         draw_wrapped_text_box(draw, beta_text, fonts['beta'], STYLE_CONFIG['beta_text_style'], image.size, current_route_holds_coords, title_area)
 
-    # 4. 绘制岩点和箭头 (这部分逻辑不变)
     if 'holds' in route_data and 'foot' in route_data['holds']:
         for hold_id in route_data['holds']['foot']:
             if str(hold_id).lower() in holds_coords: draw_hold(draw, (holds_coords[str(hold_id).lower()]['x'] + offset_x, holds_coords[str(hold_id).lower()]['y'] + offset_y), STYLE_CONFIG['foot'])
+    
+    # --- 【箭头逻辑修复】---
+    # 将手点和箭头的绘制合并到一个循环中，以确保 prev_coords 被正确更新
     prev_coords = None
     if 'moves' in route_data:
         for move in route_data['moves']:
-            if str(move['hold_id']).lower() in holds_coords:
-                current_coords = (holds_coords[str(move['hold_id']).lower()]['x'] + offset_x, holds_coords[str(move['hold_id']).lower()]['y'] + offset_y)
-                if prev_coords: draw_arrow(draw, prev_coords, current_coords); prev_coords = current_coords
-        for move in route_data['moves']:
-            if str(move['hold_id']).lower() in holds_coords:
-                center_xy = (holds_coords[str(move['hold_id']).lower()]['x'] + offset_x, holds_coords[str(move['hold_id']).lower()]['y'] + offset_y)
+            hold_id_str = str(move['hold_id']).lower()
+            if hold_id_str in holds_coords:
+                # 绘制手点
+                center_xy = (holds_coords[hold_id_str]['x'] + offset_x, holds_coords[hold_id_str]['y'] + offset_y)
                 style_key = 'start' if move.get('type') == 'start' else 'finish' if move.get('type') == 'finish' else f"{move.get('hand')}_hand"
-                style = STYLE_CONFIG.get(style_key); text_to_draw = move.get('text') or (move.get('type') or move.get('hand', ''))[0].upper()
-                if style: draw_hold(draw, center_xy, style, text_to_draw, fonts['main'])
+                style = STYLE_CONFIG.get(style_key)
+                text_to_draw = move.get('text') or (move.get('type') or move.get('hand', ''))[0].upper()
+                if style:
+                    draw_hold(draw, center_xy, style, text_to_draw, fonts['main'])
+                
+                # 绘制箭头
+                if prev_coords:
+                    draw_arrow(draw, prev_coords, center_xy)
+                
+                # 更新上一个点的位置
+                prev_coords = center_xy
     
-    # 5. 保存图片
-    quantized_image = image.quantize(colors=256, dither=Image.Dither.NONE); safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_name)
-    output_filename = f"{difficulty.replace(' ', '_')}_{safe_filename.replace(' ', '_')}.png"; output_path = output_dir / output_filename
-    quantized_image.save(output_path, 'PNG', optimize=True); print(f"  ✓ Saved (and compressed): {output_path}")
+    # --- 【半透明修复】---
+    # 移除 .quantize()，直接保存带有Alpha通道的PNG图片
+    safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_name)
+    output_filename = f"{difficulty.replace(' ', '_')}_{safe_filename.replace(' ', '_')}.png"
+    output_path = output_dir / output_filename
+    image.save(output_path, 'PNG', optimize=True) # 直接保存 image 对象
+    print(f"  ✓ Saved: {output_path}")
 
 # --- (文件剩余部分与您提供的版本完全相同，无需修改) ---
 def get_variational_font(path, size, variation):
