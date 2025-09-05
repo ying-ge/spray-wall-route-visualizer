@@ -6,7 +6,7 @@
 
 - **AI辅助定线**：可使用大语言模型（如ChatGPT, Copilot等）辅助创造路线，并直接生成标准JSON格式。
 - **自动化**：只需修改路线定义文件并推送到 `main` 分支，所有图片的生成、压缩和提交过程将自动完成。
-- **集中管理**：所有路线都定义在单一的 `routes/all_routes.json` 文件中，管理和维护极为方便。
+- **集中管理**：所有路线都定义在单一的 `routes.json` 文件中，管理和维护极为方便。
 - **智能识别**：自动从攀岩墙图片中识别岩点编号，并生成坐标文件。
 - **交互式补充**：提供本地工具，通过简单的鼠标点击即可轻松补充未被自动识别的岩点。
 - **精美绘图**：为每条路线生成带起止点、手点顺序、脚点、路线信息和动作流箭头的图片。
@@ -15,7 +15,7 @@
 
 ## 🚀 工作流程 (How it Works)
 
-本项目的核心是一个 GitHub Actions 工作流 (`.github/workflows/main.yml`)，当 `routes/all_routes.json` 文件或相关脚本被修改并推送到 `main` 分支时，该工作流会被自动触发。
+本项目的核心是一个 GitHub Actions 工作流 (`.github/workflows/main.yml`)，当 `routes.json` 文件或相关脚本被修改并推送到 `main` 分支时，该工作流会被自动触发。
 
 整个流程如下：
 
@@ -25,24 +25,24 @@
     -   生成一份包含所有岩点ID及其(x, y)坐标的 `data/holds.json` 文件。这是后续所有绘图步骤的基础。
 
 2.  **路线图绘制 (`draw_route.py`)**
-    -   脚本读取 `routes/all_routes.json` 文件，获取所有路线的定义列表。
+    -   脚本读取 `routes.json` 文件，获取所有路线的定义列表。
     -   对于列表中的**每一条路线**：
-        -   在 `images/ori_image.png` (原始底图) 的副本上开始绘制。
-        -   根据路线定义中的 `moves` 数组，查找 `data/holds.json` 中对应的手点坐标。
+        -   在 `image_base.png` (原始底图) 的副本上开始绘制。
+        -   根据路线定义中的 `moves` 数组，查找 `output/data/holds.json` 中对应的手点坐标。
         -   使用不同颜色和形状的圆圈/方框标记出手点、起始点(S)和结束点(F)。
         -   在手点右上角标注清晰的文字（L/R/S/F/B）。
         -   如果定义了 `holds.foot`，则标记出指定的脚点。
         -   绘制箭头，清晰地指示出动作的顺序和方向。
-        -   在图片左上角添加标题，包含路线名、难度和作者。
+        -   在图片右下角角添加标题，包含路线名、难度和作者。
         -   将最终生成的图片进行**量化压缩**，以减小文件体积。
-        -   以 `[难度]_[路线名称].png` 的格式 (例如 `V3_Polygon_Puzzle.png`) 保存到 `generated_routes/` 目录下。
+        -   以 `[难度]_[路线名称].png` 的格式 (例如 `V3_Polygon_Puzzle.png`) 保存到 `output/generated_routes/` 目录下。
 
 3.  **自动提交 (`git-auto-commit-action`)**
     -   工作流会自动将新生成的 `data/holds.json` 文件和 `generated_routes/` 目录下的所有 `.png` 图片提交到你的GitHub仓库。
     -   提交信息为 `"feat(routes): 自动生成所有路线图"`。
 
 4.  **打包与上传 (`zip` & `upload-artifact`)**
-    -   将 `generated_routes/` 目录下的所有图片压缩成一个名为 `climbing_routes.zip` 的文件。
+    -   将 `generated_routes/` 目录下的所有图片压缩成一个名为 `climbing_routes_all_walls.zip` 的文件。
     -   将这个ZIP文件作为工作流的**产物 (Artifact)** 上传。
 
 ## 📖 如何使用
@@ -56,17 +56,9 @@
 #### 提示 (Prompt) 模板
 
 ```text
-你是一名专业的攀岩定线员。请为我设计一条难度为 **V4** 的攀岩路线，风格偏向**动态和核心力量 (dynamic and core-intensive)**。
-路线名称定为 **'Crimpy Concerto'**，作者是 **'ying-ge'**。
+你是一名专业的攀岩定线员。请为身高140cm的儿童设计一系列难度为 **V0-V5** 的攀岩路线各5条，包含各种风格。
 
-请遵循以下规则：
-1. 起始点 (start) 应该有两个，左右手各一个。
-2. 结束点 (finish) 应该是一个双手合并的点。
-3. 路线的动作序列 (moves) 应该包含 5 到 8 个手点。
-4. 你可以自由选择岩点ID (例如 '61', 'k', '128')。
-5. 你可以为这条路线指定 3 个额外的脚点 (foot holds)。
-
-最后，请**严格按照**以下JSON格式输出你的定线方案，不要添加任何额外的解释或文字，直接给出JSON代码块：
+请**严格按照**以下JSON格式输出你的定线方案，英文，直接给出JSON代码块：
 
 {
   "routeName": "路线名称",
@@ -87,7 +79,7 @@
 
 ### 第1步：添加或修改路线定义
 
-将AI生成的JSON代码，或者你自己手动编写的路线，添加到 `routes/all_routes.json` 文件的 `routes` 数组中。
+将AI生成的JSON代码，或者你自己手动编写的路线，添加到 `walls/kids_wall/routes.json` 文件的 `routes` 数组中。
 
 ---
 
@@ -105,7 +97,8 @@
 2.  **运行自动识别**:
     首先，像往常一样运行自动识别脚本，让它完成大部分工作。
     ```bash
-    python .github/scripts/generate_coords.py
+    conda activate py39-wall
+    python .github/scripts/generate_coords.py --image_path images/image_marked.png --output_path data/holds.json
     ```
 3.  **运行交互式补充工具**:
     现在，运行新的 `add_missing_coords.py` 脚本来处理所有缺失的岩点。
@@ -161,26 +154,6 @@ GitHub Actions 会接管剩下的一切。稍等片刻，你就可以在仓库�
 │       └── ... (结构同上)
 │
 └── README.md                      # 就是你正在看的这个文件
-```
-
-## 🎨 外观定制
-
-想要修改路线图的样式（如颜色、大小、字体）？
-
-所有样式都定义在 `.github/scripts/draw_route.py` 文件顶部的 `STYLE_CONFIG` 字典中。你可以直接修改里面的值来改变最终图片的视觉效果。
-
-```python
-# .github/scripts/draw_route.py
-
-STYLE_CONFIG = {
-    'start':       {'outline': (76, 175, 80, 255), ...},
-    'finish':      {'outline': (244, 67, 54, 255), ...},
-    # ...
-    'radius': 18,
-    'outline_width': 6,
-    'font_size': 100, # 岩点文字大小
-    # ...
-}
 ```
 
 ## 🖼️ 路线图示例 (Example Route Image)
