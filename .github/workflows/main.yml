@@ -1,4 +1,4 @@
-name: Generate Route Images for All Walls
+name: Generate Route Images for Changed Walls
 
 on:
   push:
@@ -11,27 +11,60 @@ on:
   workflow_dispatch:
 
 jobs:
-  list_walls:
+  detect_changes:
+    name: Detect Changed Walls
     runs-on: ubuntu-latest
     outputs:
-      walls_json: ${{ steps.get_walls.outputs.walls_json }}
+      walls_json: ${{ steps.get_changed_walls.outputs.walls_json }}
     steps:
       - name: 'Checkout Repository'
         uses: actions/checkout@v4
-      - name: 'List all wall directories'
-        id: get_walls
+        # fetch-depth: 0 is required to get the full history for git diff
+        with:
+          fetch-depth: 0
+
+      - name: 'Get changed wall directories'
+        id: get_changed_walls
         run: |
-          WALLS=$(find walls -mindepth 1 -maxdepth 1 -type d | jq -R . | jq -cs .)
-          echo "walls_json=$WALLS" >> $GITHUB_OUTPUT
+          # --- Logic to determine which walls to process ---
+          
+          # 1. Default to an empty list
+          CHANGED_WALLS_LIST="[]"
+          
+          # 2. For manual triggers (workflow_dispatch), or if common scripts/workflows change, process ALL walls.
+          # We get the list of all changed files between the last two commits.
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "Workflow was manually dispatched, processing all walls."
+            CHANGED_WALLS_LIST=$(find walls -mindepth 1 -maxdepth 1 -type d | jq -R . | jq -sc .)
+          else
+            # Get list of changed files for the push event
+            CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})
+            
+            # Check if any common script or the workflow file itself has changed
+            if echo "$CHANGED_FILES" | grep -q -E '(\.github/scripts/|\.github/workflows/)'; then
+              echo "Common scripts or workflow changed, processing all walls."
+              CHANGED_WALLS_LIST=$(find walls -mindepth 1 -maxdepth 1 -type d | jq -R . | jq -sc .)
+            else
+              echo "Detecting changes only within wall directories..."
+              # Filter for changed files under 'walls/', extract the wall directory, and get a unique list
+              CHANGED_WALLS_LIST=$(echo "$CHANGED_FILES" | grep -oE 'walls/[^/]+' | sort -u | jq -R . | jq -sc .)
+            fi
+          fi
+          
+          echo "List of walls to process: $CHANGED_WALLS_LIST"
+          echo "walls_json=$CHANGED_WALLS_LIST" >> $GITHUB_OUTPUT
 
   build:
-    needs: list_walls
-    if: fromJson(needs.list_walls.outputs.walls_json)[0] != null
+    needs: detect_changes
+    # Only run this job if the list of walls to process is not empty
+    if: fromJson(needs.detect_changes.outputs.walls_json)[0] != null
+    name: Generate for ${{ matrix.wall_dir }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        wall_dir: ${{ fromJson(needs.list_walls.outputs.walls_json) }}
+        # The matrix is now dynamically populated by the output of the 'detect_changes' job
+        wall_dir: ${{ fromJson(needs.detect_changes.outputs.walls_json) }}
         
     steps:
       - name: 'Checkout Repository'
@@ -48,19 +81,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
             
-      # --- 核心修改点 1: 在 build 作业中安装 imagemagick ---
       - name: 'Install dependencies'
         run: |
-          # 安装 Python 依赖
           python -m pip install --upgrade pip
           pip install --upgrade "Pillow>=9.2.0"
           pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
           pip install numpy opencv-python-headless easyocr
-          # 安装系统依赖
-          echo "Installing ImageMagick..."
-          sudo apt-get update
-          sudo apt-get install -y imagemagick
-          echo "ImageMagick installed."
+          sudo apt-get update && sudo apt-get install -y imagemagick
 
       - name: 'Download and Prepare Font'
         run: |
@@ -79,15 +106,13 @@ jobs:
 
       - name: 'Step 2: Draw All Route Images'
         run: |
-          python .github/scripts/draw_route.py --routes_database_file "${{ matrix.wall_dir }}/routes.json" --holds_coords_path "${{ matrix.wall_dir }}/output/data/holds.json" --base_image_path "${{ matrix.wall_dir }}/image_base.png" --output_dir "${{ matrix.wall_dir }}/output/generated_routes"
+          python .github/scripts/draw_route.py --routes_database_file "${{ matrix.wall_dir }}/routes.json" --holds_coords_path "${{ matrix.wall_dir }}/output/data/holds.json" --base_image_path "${{ matrix.wall_dir }}/image.png" --font_path "fonts/Oswald-Variable.ttf" --output_dir "${{ matrix.wall_dir }}/output/generated_routes"
 
-      # --- 核心修改点 2: 生成后立刻缩放图片 ---
       - name: 'Step 2.1: Resize generated route images'
         run: |
           ROUTE_DIR="${{ matrix.wall_dir }}/output/generated_routes"
           if [ -d "$ROUTE_DIR" ] && [ -n "$(ls -A "$ROUTE_DIR")" ]; then
             echo "Resizing images in $ROUTE_DIR to 50%..."
-            # -quality 85 会在缩放的同时进行有损压缩，进一步减小文件体积
             find "$ROUTE_DIR" -name "*.png" -exec mogrify -resize 50% -quality 85 {} +
             echo "Image resizing and compression complete."
           else
@@ -115,7 +140,8 @@ jobs:
 
   commit_and_package:
     needs: build
-    if: always() && needs.build.result == 'success'
+    # This job will only run if the build job ran and succeeded.
+    if: success()
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -133,13 +159,23 @@ jobs:
 
       - name: 'Move artifacts to correct locations'
         run: |
+          # The git clean command removes any untracked files in the specific wall's output directory.
+          # This is the key to preventing the merge conflict. It ensures we start with a clean slate
+          # for the directories we are about to update.
+          echo "Cleaning generated file directories before applying new artifacts..."
           for dir in temp-artifacts/*; do
             if [ -d "$dir" ]; then
               dirty_path=$(basename "$dir" | sed -e 's/generated-output-for-//')
               original_path=$(echo "$dirty_path" | sed 's/-/\//')
+              
+              # Clean the target directories before copying over the new files
+              git clean -fdx "$original_path/output/generated_routes"
+              git clean -fdx "$original_path/output/debug"
+              
               echo "Merging files from $dir to $original_path/output"
               mkdir -p "$original_path/output"
-              cp -a "$dir"/. "$original_path/output/"
+              # Use cp -a to preserve file attributes, and . to copy contents
+              cp -a "$dir/." "$original_path/output/"
             fi
           done
 
@@ -147,6 +183,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          # Autostash is still a good safety measure, but conflicts should no longer happen
           git pull origin main --rebase --autostash
 
       - name: 'Step 5: Commit all generated files'
@@ -156,7 +193,6 @@ jobs:
           commit_message: "feat(walls): Auto-generate route and debug images"
           file_pattern: "walls/"
           
-      # --- 核心修改点 3: 简化打包步骤，不再需要图片处理 ---
       - name: 'Step 6: Compress all route images into a single ZIP'
         if: steps.auto-commit-action.outputs.changes_detected == 'true'
         run: |
