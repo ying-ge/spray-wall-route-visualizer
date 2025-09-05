@@ -5,8 +5,9 @@ from pathlib import Path
 import argparse
 import re
 import sys
+import textwrap # <--- 新增: 导入文本换行模块
 
-# --- 样式配置 (保持不变) ---
+# --- 样式配置 ---
 STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
@@ -44,6 +45,17 @@ STYLE_CONFIG = {
         'font_path': "fonts/Oswald-Variable.ttf", 
         'font_size': 50,
         'font_variation': 700 
+    },
+    # <--- 新增: 指导建议文本框的样式 ---
+    'beta_text_style': {
+        'font_path': "fonts/NotoSansSC-Regular.ttf", # 使用思源黑体
+        'font_size': 40,
+        'fill_color': (255, 255, 255),
+        'background_color': (0, 0, 0, 160), # 半透明黑色背景
+        'margin': 50, # 文本框距离图片边缘的距离
+        'line_spacing': 15, # 行间距
+        'box_padding': 25, # 文字距离背景框边缘的距离
+        'wrap_width': 35 # 每行大约的字符数
     }
 }
 
@@ -74,6 +86,50 @@ def draw_hold(draw, center_xy, style, text=None, font=None):
         text_pos_x = x + STYLE_CONFIG['text_offset']; text_pos_y = y - STYLE_CONFIG['text_offset']
         draw_text_with_outline(draw, (text_pos_x, text_pos_y), text, font, fill_color=style['text_color'], outline_color=(0, 0, 0, 255), outline_width=STYLE_CONFIG['text_outline_width'])
 
+# <--- 新增: 绘制带背景和自动换行的文本框 ---
+def draw_wrapped_text_box(draw, text, font, style, image_size):
+    if not text: return
+    
+    img_width, img_height = image_size
+    margin = style['margin']
+    padding = style['box_padding']
+    line_spacing = style['line_spacing']
+    
+    # 使用textwrap模块进行文本换行
+    wrapper = textwrap.TextWrapper(width=style['wrap_width'])
+    wrapped_lines = wrapper.wrap(text)
+    
+    # 计算文本块的总高度和最大宽度
+    max_line_width = 0
+    total_text_height = 0
+    line_heights = []
+    for line in wrapped_lines:
+        try: line_bbox = draw.textbbox((0, 0), line, font=font)
+        except AttributeError: line_bbox = font.getbbox(line)
+        line_width = line_bbox[2] - line_bbox[0]
+        line_height = line_bbox[3] - line_bbox[1]
+        
+        if line_width > max_line_width: max_line_width = line_width
+        total_text_height += line_height
+        line_heights.append(line_height)
+        
+    total_text_height += line_spacing * (len(wrapped_lines) - 1)
+    
+    # 计算背景框的位置和大小
+    box_width = max_line_width + padding * 2
+    box_height = total_text_height + padding * 2
+    box_x0 = margin
+    box_y0 = margin
+    
+    # 绘制半透明背景
+    draw.rectangle([box_x0, box_y0, box_x0 + box_width, box_y0 + box_height], fill=style['background_color'])
+    
+    # 逐行绘制文本
+    current_y = box_y0 + padding
+    for i, line in enumerate(wrapped_lines):
+        draw.text((box_x0 + padding, current_y), line, font=font, fill=style['fill_color'])
+        current_y += line_heights[i] + line_spacing
+
 def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_dir):
     image = base_image.copy()
     draw = ImageDraw.Draw(image, "RGBA")
@@ -81,25 +137,28 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     offset_x = STYLE_CONFIG.get('center_offset_x', 0)
     offset_y = STYLE_CONFIG.get('center_offset_y', 0)
 
+    # 绘制指定脚点
     if 'holds' in route_data and 'foot' in route_data['holds']:
         style = STYLE_CONFIG['foot']
         for hold_id in route_data['holds']['foot']:
-            str_hold_id = str(hold_id).lower() # 增加 .lower()
+            str_hold_id = str(hold_id).lower()
             if str_hold_id in holds_coords:
                 center_xy = (holds_coords[str_hold_id]['x'] + offset_x, holds_coords[str_hold_id]['y'] + offset_y)
                 draw_hold(draw, center_xy, style)
 
+    # 绘制箭头
     prev_coords = None
     if 'moves' in route_data:
         for move in route_data['moves']:
-            hold_id = str(move['hold_id']).lower() # 增加 .lower()
+            hold_id = str(move['hold_id']).lower()
             if hold_id not in holds_coords: continue
             current_coords = (holds_coords[hold_id]['x'] + offset_x, holds_coords[hold_id]['y'] + offset_y)
             if prev_coords: draw_arrow(draw, prev_coords, current_coords)
             prev_coords = current_coords
         
+        # 绘制手点
         for move in route_data['moves']:
-            hold_id = str(move['hold_id']).lower() # 增加 .lower()
+            hold_id = str(move['hold_id']).lower()
             if hold_id not in holds_coords: continue
             center_xy = (holds_coords[hold_id]['x'] + offset_x, holds_coords[hold_id]['y'] + offset_y)
             style_key = 'start' if move.get('type') == 'start' else 'finish' if move.get('type') == 'finish' else f"{move.get('hand')}_hand"
@@ -113,9 +172,10 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
                 elif move.get('hand') == 'both': text_to_draw = 'B'
             if style: draw_hold(draw, center_xy, style, text_to_draw, fonts['main'])
 
+    # 绘制标题
     title_style = STYLE_CONFIG['title_style']
-    route_name = route_data.get('routeName', route_data.get('name', 'N/A')) # 兼容两种 key
-    difficulty = route_data.get('difficulty', route_data.get('grade', 'N/A')) # 兼容两种 key
+    route_name = route_data.get('routeName', route_data.get('name', 'N/A'))
+    difficulty = route_data.get('difficulty', route_data.get('grade', 'N/A'))
     author = route_data.get('author', 'N/A')
     route_info_text = f"{route_name} | {difficulty} | by {author}"
     
@@ -133,12 +193,16 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
                            outline_color=title_style['outline_color'], 
                            outline_width=title_style['outline_width'])
     
+    # <--- 新增: 绘制指导建议文本框 ---
+    beta_text = route_data.get('beta')
+    if beta_text:
+        draw_wrapped_text_box(draw, beta_text, fonts['beta'], STYLE_CONFIG['beta_text_style'], image.size)
+
+    # 保存图片
     quantized_image = image.quantize(colors=256, dither=Image.Dither.NONE)
-    
     safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_name)
     output_filename = f"{difficulty.replace(' ', '_')}_{safe_filename.replace(' ', '_')}.png"
     output_path = output_dir / output_filename
-    
     quantized_image.save(output_path, 'PNG', optimize=True)
     print(f"  ✓ Saved (and compressed): {output_path}")
 
@@ -159,16 +223,11 @@ def process_all_routes(routes_db_path, holds_coords_path, base_image_path, outpu
         with open(routes_db_path, 'r', encoding='utf-8') as f: 
             raw_data = json.load(f)
         
-        # 兼容旧的 "routes" key 和新的直接是列表的格式
-        if isinstance(raw_data, dict):
-            all_routes_data = raw_data.get('routes', [])
-        elif isinstance(raw_data, list):
-            all_routes_data = raw_data
-        else:
-            all_routes_data = []
+        if isinstance(raw_data, dict): all_routes_data = raw_data.get('routes', [])
+        elif isinstance(raw_data, list): all_routes_data = raw_data
+        else: all_routes_data = []
 
         print(f"Loading hold coordinates: {holds_coords_path}")
-        # 将所有岩点ID转为小写，以便不区分大小写匹配
         with open(holds_coords_path, 'r', encoding='utf-8') as f: 
             holds_coords = {k.lower(): v for k, v in json.load(f).items()}
         
@@ -183,12 +242,18 @@ def process_all_routes(routes_db_path, holds_coords_path, base_image_path, outpu
 
     fonts = {}
     try:
+        # 加载英文字体
         main_style = STYLE_CONFIG['main_font_style']
         fonts['main'] = get_variational_font(main_style['font_path'], main_style['font_size'], main_style['font_variation'])
         title_style = STYLE_CONFIG['title_style']
         fonts['title'] = get_variational_font(title_style['font_path'], title_style['font_size'], title_style['font_variation'])
+        
+        # <--- 新增: 加载中文字体 ---
+        beta_style = STYLE_CONFIG['beta_text_style']
+        fonts['beta'] = ImageFont.truetype(beta_style['font_path'], beta_style['font_size'])
+    
     except IOError as e:
-        print(f"错误: 字体文件未找到。请确保 'fonts/Oswald-Variable.ttf' 存在于工作流中 - {e}", file=sys.stderr)
+        print(f"错误: 字体文件未找到。请确保字体文件存在于 'fonts/' 目录下 - {e}", file=sys.stderr)
         sys.exit(1)
 
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -205,8 +270,7 @@ def process_all_routes(routes_db_path, holds_coords_path, base_image_path, outpu
     
     print("\nAll routes processed successfully!")
 
-
-# --- 核心修复点: 修正了之前版本中的语法错误 ---
+# --- 主程序入口 (保持不变) ---
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="在攀岩墙底图上绘制线路并保存为图片。")
     parser.add_argument("--routes_database_file", required=True, help="包含所有线路定义的 JSON 文件路径。")
