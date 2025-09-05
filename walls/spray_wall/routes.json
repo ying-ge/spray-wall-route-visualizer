@@ -3,6 +3,7 @@
     "routeName": "First Steps",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
+    "beta": "像爬梯子一样，专注于踩稳脚点，每次移动前先看好下一个手点。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "32", "type": "start", "hand": "left" },
@@ -18,6 +19,7 @@
     "routeName": "Yellow Brick Road",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
+    "beta": "跟着黄点走就行！起步后先出右手，再出左手，最后双手合并到结束点。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "51", "type": "start", "hand": "left" },
@@ -31,6 +33,7 @@
     "routeName": "The Ladder",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
+    "beta": "保持身体正对墙面，手脚交替向上，像爬一个直上直下的梯子。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "31", "type": "start", "hand": "left" },
@@ -45,6 +48,7 @@
     "routeName": "Big Grips",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
+    "beta": "所有点都很好抓！大胆地移动，相信你的握力，轻松完成。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "54", "type": "start", "hand": "left" },
@@ -58,6 +62,7 @@
     "routeName": "Easy Up",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
+    "beta": "起步后先出左手，然后右手，用腿发力向上推，而不是只用胳膊拉。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "30", "type": "start", "hand": "left" },
@@ -72,6 +77,7 @@
     "routeName": "The Matchmaker",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
+    "beta": "起步和结束时需要双手合并在同一个点上。移动时注意为下一只手留出空间。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "36", "type": "start", "hand": "left" },
@@ -87,6 +93,7 @@
     "routeName": "Jug Haul",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
+    "beta": "这是一条全是好点的路线，让你体验力量攀爬的乐趣。大胆发力向上冲！",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "35", "type": "start", "hand": "left" },
@@ -101,6 +108,7 @@
     "routeName": "Side Shuffle",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
+    "beta": "起步后身体向右侧移动，注意利用侧拉的力量保持平衡，最后回到中间结束。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "30", "type": "start", "hand": "left" },
@@ -115,6 +123,7 @@
     "routeName": "First Cross",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
+    "beta": "体验第一个简单的交叉动作。起步后，左手越过右手去抓上方的手点。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "c", "type": "start", "hand": "left" },
@@ -129,6 +138,7 @@
     "routeName": "Pocket Play",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
+    "beta": "练习抓握口袋点。用中指和食指稳定地抓住点，保持手臂伸直以节省力量。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "33", "type": "start", "hand": "left" },
@@ -143,6 +153,7 @@
     "routeName": "Gaston's Easy Day",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
+    "beta": "练习基础的侧推发力。抓握路线上需要手肘向外的两个点时，像要推开一扇门。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "22", "type": "start", "hand": "left" },
@@ -158,6 +169,7 @@
     "routeName": "The Flag",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
+    "beta": "在向大跨度点移动时，为了保持平衡，可以将不用的一只脚伸到侧后方，像一面旗子。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "54", "type": "start", "hand": "left" },
@@ -172,6 +184,7 @@
     "routeName": "Low Traverse",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
+    "beta": "在较低的高度进行横向移动，注意脚下的交换和移动，保持重心平稳。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "32", "type": "start", "hand": "left" },
@@ -187,6 +200,7 @@
     "routeName": "Reach High",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
+    "beta": "练习向上或向侧面的大跨度抓点，需要身体的充分伸展。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "35", "type": "start", "hand": "left" },
@@ -202,6 +216,7 @@
     "routeName": "Crimpy Beginnings",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
+    "beta": "开始接触小点（Crimp）。起步时用指尖捏住岩点，感受指力。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "c", "type": "start", "hand": "left" },
@@ -217,6 +232,7 @@
     "routeName": "The Diagonal",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
+    "beta": "路线呈对角线走向，需要持续调整身体重心，以保持在岩点上的平衡。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "j", "type": "start", "hand": "left" },
@@ -231,6 +247,7 @@
     "routeName": "First Heel Hook",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
+    "beta": "在抓较高的手点时，尝试用右脚跟勾住你右下方的那个大点，能省很多力气。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "x", "type": "start", "hand": "left" },
@@ -245,6 +262,7 @@
     "routeName": "Rock-Over",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
+    "beta": "抓到左手边的大点后，把脚踩高，然后将重心完全转移到这只脚上，站起来去抓下一个点。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "35", "type": "start", "hand": "left" },
@@ -259,6 +277,7 @@
     "routeName": "The Squeezer",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
+    "beta": "在抓握那两个方向相对的侧拉点时，利用双手向内的挤压力来稳定身体，这需要核心力量的参与。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "54", "type": "start", "hand": "left" },
@@ -273,6 +292,7 @@
     "routeName": "Foot Swap",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
+    "beta": "在路线中段的移动需要精准的换脚，来为下一步腾出最佳的脚点位置。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "c", "type": "start", "hand": "left" },
@@ -287,6 +307,7 @@
     "routeName": "Finger Buster",
     "difficulty": "V3",
     "author": "Gemini 2.5 Pro",
+    "beta": "这是一条纯粹考验指力的路线，所有点都很小。保持冷静，稳住呼吸，相信你的指尖。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "c", "type": "start", "hand": "left" },
@@ -301,6 +322,7 @@
     "routeName": "Sloper Master",
     "difficulty": "V3",
     "author": "Gemini 2.5 Pro",
+    "beta": "练习摩擦力抓法。抓斜面点时，要将重心压低，整个手掌贴合岩点。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "47", "type": "start", "hand": "left" },
@@ -315,6 +337,7 @@
     "routeName": "The Scorpion",
     "difficulty": "V3",
     "author": "Gemini 2.5 Pro",
+    "beta": "路线中有一个大跨度的交叉动作，非常考验核心和协调性，身体会像蝎子一样扭转。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "22", "type": "start", "hand": "left" },
@@ -329,6 +352,7 @@
     "routeName": "Precision Dyno",
     "difficulty": "V3",
     "author": "Gemini 2.5 Pro",
+    "beta": "从路线倒数第二个点，需要一个精准、控制力很强的动态跳跃去抓结束点。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "36", "type": "start", "hand": "left" },
@@ -341,6 +365,7 @@
     "routeName": "The Leap",
     "difficulty": "V4",
     "author": "Gemini 2.5 Pro",
+    "beta": "一个经典的动态路线。从路线中途的大手点需要果断起跳，双手同时去抓遥远的结束点。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "78", "type": "start", "hand": "left" },
@@ -353,6 +378,7 @@
     "routeName": "Lock-Off King",
     "difficulty": "V4",
     "author": "Gemini 2.5 Pro",
+    "beta": "路线后半段需要强大的单臂锁死力量，来控制身体，抓住下一个遥远的点。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "22", "type": "start", "hand": "left" },
@@ -367,6 +393,7 @@
     "routeName": "The Egyptian",
     "difficulty": "V4",
     "author": "Gemini 2.5 Pro",
+    "beta": "在抓握那个大斜面点时，需要将一侧臀部贴近墙面，膝盖朝外，做出“埃及人”动作来增加伸展距离。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "c", "type": "start", "hand": "left" },
@@ -379,6 +406,7 @@
     "routeName": "Underworld",
     "difficulty": "V5",
     "author": "Gemini 2.5 Pro",
+    "beta": "全程在屋檐下行进，对核心力量、肩部力量和身体张力是极大的考验。",
     "holds": { "foot": [] },
     "moves": [
       { "hold_id": "72", "type": "start", "hand": "left" },
