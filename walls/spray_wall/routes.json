@@ -372,5 +372,77 @@
       { "hold_id": "94", "hand": "right" },
       { "hold_id": "98", "type": "finish", "hand": "both" }
     ]
+  },
+  {
+    "routeName": "The Scorpion",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "32", "type": "start", "hand": "left" },
+      { "hold_id": "32", "type": "start", "hand": "right" },
+      { "hold_id": "22", "hand": "left" },
+      { "hold_id": "30", "hand": "right" },
+      { "hold_id": "78", "hand": "left" },
+      { "hold_id": "y", "hand": "right" },
+      { "hold_id": "5", "hand": "left" },
+      { "hold_id": "85", "hand": "right" },
+      { "hold_id": "52", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "The Egyptian",
+    "difficulty": "V4",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "39", "type": "start", "hand": "left" },
+      { "hold_id": "21", "type": "start", "hand": "right" },
+      { "hold_id": "16", "hand": "left" },
+      { "hold_id": "19", "hand": "right" },
+      { "hold_id": "27", "hand": "left" },
+      { "hold_id": "s", "hand": "right" },
+      { "hold_id": "68", "hand": "left" },
+      { "hold_id": "128", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Underworld",
+    "difficulty": "V5",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "82", "type": "start", "hand": "left" },
+      { "hold_id": "82", "type": "start", "hand": "right" },
+      { "hold_id": "72", "hand": "left" },
+      { "hold_id": "8", "hand": "right" },
+      { "hold_id": "77", "hand": "left" },
+      { "hold_id": "g", "hand": "right" },
+      { "hold_id": "74", "hand": "left" },
+      { "hold_id": "88", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Mantle Shelf",
+    "difficulty": "V5",
+    "author": "Gemini 2.5 Pro",
+    "holds": {
+      "foot": []
+    },
+    "moves": [
+      { "hold_id": "58", "type": "start", "hand": "left" },
+      { "hold_id": "62", "type": "start", "hand": "right" },
+      { "hold_id": "64", "hand": "left" },
+      { "hold_id": "65", "hand": "right" },
+      { "hold_id": "110", "hand": "left" },
+      { "hold_id": "111", "hand": "right" },
+      { "hold_id": "111", "type": "finish", "hand": "both" }
+    ]
   }
 ]
