@@ -1,254 +1,312 @@
 [
   {
-    "routeName": "Jug Ladder",
+    "routeName": "基础爬梯 (The Ladder)",
     "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "我们来爬一个大把手的梯子！\n手抓得稳稳的，脚跟着一步一步往上踩。",
-    "holds": { "foot": ["109", "101", "13", "15"] },
+    "author": "Copilot",
+    "beta": "这是最基础的路线，像爬梯子一样。目标是练习“三点稳定”原则，即移动一只手或一只脚时，另外三点要牢牢接触岩壁。指导她缓慢、有控制地移动，先看好下一个点再伸手或抬脚。",
+    "holds": {
+      "foot": ["#103", "#104", "#32", "#b"]
+    },
     "moves": [
-      { "hold_id": "13", "type": "start", "hand": "left" },
-      { "hold_id": "15", "type": "start", "hand": "right" },
-      { "hold_id": "54", "hand": "left" },
-      { "hold_id": "60", "hand": "right" },
-      { "hold_id": "63", "type": "finish", "hand": "left" }
+      { "hold_id": "#21", "type": "start", "hand": "left" },
+      { "hold_id": "#a", "type": "start", "hand": "right" },
+      { "hold_id": "#13", "hand": "left" },
+      { "hold_id": "#31", "hand": "right" },
+      { "hold_id": "#15", "hand": "left" },
+      { "hold_id": "#14", "hand": "right" },
+      { "hold_id": "#54", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "The Little Traverse",
+    "routeName": "重心转移 (Weight Shift)",
     "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "像小螃蟹一样横着走！\n身体稍微蹲低一点，一步一步地挪过去。",
-    "holds": { "foot": ["125", "126", "36", "37"] },
+    "author": "Copilot",
+    "beta": "这条路线的核心是学习如何平稳地转移重心。在出手抓下一个点之前，引导她先将臀部（重心）移动到发力脚的正上方。例如，当右手准备移动时，重心应该先压到右脚上。身体会感觉更轻盈。",
+    "holds": {
+      "foot": ["#105", "#124", "#20", "#26"]
+    },
     "moves": [
-      { "hold_id": "37", "type": "start", "hand": "left" },
-      { "hold_id": "36", "type": "start", "hand": "right" },
-      { "hold_id": "53", "hand": "left" },
-      { "hold_id": "23", "hand": "right" },
-      { "hold_id": "40", "type": "finish", "hand": "left" }
+      { "hold_id": "#93", "type": "start", "hand": "left" },
+      { "hold_id": "#34", "type": "start", "hand": "right" },
+      { "hold_id": "#22", "hand": "left" },
+      { "hold_id": "#30", "hand": "right" },
+      { "hold_id": "#28", "hand": "left" },
+      { "hold_id": "#78", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Up and Over",
+    "routeName": "高脚练习 (High Step)",
     "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "爬上这个小小的山坡！\n手点都很大，大胆地抓，然后站起来。",
-    "holds": { "foot": ["104", "124", "32", "22"] },
+    "author": "Copilot",
+    "beta": "目标是练习将脚抬到较高的脚点上。在去抓#36之前，指导她先将右脚稳稳地踩在#18上，然后用大腿发力，像上台阶一样把身体“顶”上去，而不是用手硬拉。这能极大地节省臂力。",
+    "holds": {
+      "foot": ["#106", "#127", "#18", "#33"]
+    },
     "moves": [
-      { "hold_id": "32", "type": "start", "hand": "left" },
-      { "hold_id": "22", "type": "start", "hand": "right" },
-      { "hold_id": "28", "hand": "left" },
-      { "hold_id": "48", "hand": "right" },
-      { "hold_id": "51", "type": "finish", "hand": "right" }
+      { "hold_id": "#1", "type": "start", "hand": "left" },
+      { "hold_id": "#125", "type": "start", "hand": "right" },
+      { "hold_id": "#35", "hand": "left" },
+      { "hold_id": "#36", "hand": "right" },
+      { "hold_id": "#53", "hand": "left" },
+      { "hold_id": "#51", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Matching Hands",
+    "routeName": "侧拉入门 (Intro to Sidepulls)",
     "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "来练习并手！\n在那个黄色大圈圈上，先把一只手放上去，再把另一只手也放上去。",
-    "holds": { "foot": ["127", "34", "116"] },
+    "author": "Copilot",
+    "beta": "手点#30和#40是侧向的。指导她在使用这类点时，身体要向相反方向“挂”，形成对抗力。例如，右手抓#30时，身体重心要靠向左边，手臂可以伸得更直，利用身体重量而不是肌肉去稳定。",
+    "holds": {
+      "foot": ["#105", "#124", "#20", "#23"]
+    },
     "moves": [
-      { "hold_id": "34", "type": "start", "hand": "left" },
-      { "hold_id": "116", "type": "start", "hand": "right" },
-      { "hold_id": "82", "hand": "both" },
-      { "hold_id": "72", "hand": "left" },
-      { "hold_id": "85", "type": "finish", "hand": "left" }
+      { "hold_id": "#93", "type": "start", "hand": "left" },
+      { "hold_id": "#34", "type": "start", "hand": "right" },
+      { "hold_id": "#30", "hand": "left" },
+      { "hold_id": "#22", "hand": "right" },
+      { "hold_id": "#40", "hand": "left" },
+      { "hold_id": "#29", "hand": "right" },
+      { "hold_id": "#60", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Zig-Zag Climb",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "走一个“之”字形！\n先向左上，再向右上，身体也跟着轻轻地晃动。",
-    "holds": { "foot": ["121", "122", "42"] },
-    "moves": [
-      { "hold_id": "42", "type": "start", "hand": "left" },
-      { "hold_id": "83", "type": "start", "hand": "right" },
-      { "hold_id": "48", "hand": "left" },
-      { "hold_id": "92", "hand": "right" },
-      { "hold_id": "117", "type": "finish", "hand": "right" }
-    ]
-  },
-  {
-    "routeName": "Find The Pockets",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "找一找那些“小口袋”！\n这些点上有小洞洞，正好可以把手指放进去，抓得很稳。",
-    "holds": { "foot": ["94", "87", "91"] },
-    "moves": [
-      { "hold_id": "94", "type": "start", "hand": "left" },
-      { "hold_id": "87", "type": "start", "hand": "right" },
-      { "hold_id": "91", "hand": "left" },
-      { "hold_id": "89", "hand": "right" },
-      { "hold_id": "114", "type": "finish", "hand": "right" }
-    ]
-  },
-  {
-    "routeName": "High Step",
+    "routeName": "换手练习 (Matching)",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "练习高抬腿！\n像上一个很高的台阶一样，把脚用力抬高，然后蹬直腿站起来。",
-    "holds": { "foot": ["101", "109", "13", "14"] },
+    "author": "Copilot",
+    "beta": "手点#22是个比较大的点，是练习换手的绝佳机会。当一只手抓住#22后，指导她将另一只手也放到这个点上（并排），然后再移动第一只手去抓#28。这个技巧对调整节奏和准备下一个动作很重要。",
+    "holds": {
+      "foot": ["#105", "#124", "#32", "#2"]
+    },
     "moves": [
-      { "hold_id": "13", "type": "start", "hand": "left" },
-      { "hold_id": "14", "type": "start", "hand": "right" },
-      { "hold_id": "59", "hand": "right" },
-      { "hold_id": "61", "hand": "left" },
-      { "hold_id": "65", "type": "finish", "hand": "left" }
+      { "hold_id": "#93", "type": "start", "hand": "left" },
+      { "hold_id": "#34", "type": "start", "hand": "right" },
+      { "hold_id": "#22", "hand": "left" },
+      { "hold_id": "#22", "hand": "right" }, 
+      { "hold_id": "#28", "hand": "left" },
+      { "hold_id": "#40", "hand": "right" },
+      { "hold_id": "#70", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Side Pull",
+    "routeName": "交叉手 (Cross-through)",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "抓住侧面的点！\n抓这种只能从旁边用力的点时，身体要向另一边靠，找到平衡。",
-    "holds": { "foot": ["126", "36", "3"] },
+    "author": "Copilot",
+    "beta": "从#13到#10的移动需要做一次交叉。指导她用右手越过左臂，去抓#10。完成这个动作的关键是转动身体和臀部，为手臂创造出移动的空间。提醒她保持脚点稳定。",
+    "holds": {
+      "foot": ["#101", "#109", "#32"]
+    },
     "moves": [
-      { "hold_id": "36", "type": "start", "hand": "left" },
-      { "hold_id": "3", "type": "start", "hand": "right" },
-      { "hold_id": "43", "hand": "right" },
-      { "hold_id": "28", "hand": "left" },
-      { "hold_id": "70", "type": "finish", "hand": "left" }
+      { "hold_id": "#21", "type": "start", "hand": "left" },
+      { "hold_id": "#a", "type": "start", "hand": "right" },
+      { "hold_id": "#13", "hand": "left" },
+      { "hold_id": "#10", "hand": "right" }, 
+      { "hold_id": "#15", "hand": "left" },
+      { "hold_id": "#54", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Rock On",
+    "routeName": "内旗 (Inside Flag)",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "练习侧身站起！\n把脚踩在身体侧面，然后像开关一样，把屁股转向墙，身体就站起来了。",
-    "holds": { "foot": ["124", "32", "22", "28"] },
+    "author": "Copilot",
+    "beta": "在从#35移动到#53时，为了防止身体向外甩开（开门效应），可以教她使用内旗。指导她将右脚（自由脚）交叉到左脚内侧，轻轻蹬在墙面上，以提供额外的支撑和平衡。",
+    "holds": {
+      "foot": ["#106", "#127", "#18", "#33"]
+    },
     "moves": [
-      { "hold_id": "22", "type": "start", "hand": "left" },
-      { "hold_id": "28", "type": "start", "hand": "right" },
-      { "hold_id": "60", "hand": "left" },
-      { "hold_id": "56", "hand": "right" },
-      { "hold_id": "64", "type": "finish", "hand": "right" }
+      { "hold_id": "#1", "type": "start", "hand": "left" },
+      { "hold_id": "#125", "type": "start", "hand": "right" },
+      { "hold_id": "#35", "hand": "left" },
+      { "hold_id": "#53", "hand": "right" },
+      { "hold_id": "#72", "hand": "left" },
+      { "hold_id": "#51", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Gaston Push",
+    "routeName": "外旗 (Outside Flag)",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "试试反向推！\n抓那个绿色点时，要像推开一扇很重的门一样，用手肘向外用力。",
-    "holds": { "foot": ["127", "34", "35"] },
+    "author": "Copilot",
+    "beta": "当双手都在#43上，准备去抓#91时，身体会向左摆动。这时指导她将左脚向身体左后方伸出，像一面旗帜一样靠在墙上，以稳定身体。这能锻炼她的核心控制和身体意识。",
+    "holds": {
+      "foot": ["#108", "#42", "#55"]
+    },
     "moves": [
-      { "hold_id": "34", "type": "start", "hand": "left" },
-      { "hold_id": "35", "type": "start", "hand": "right" },
-      { "hold_id": "72", "hand": "left" },
-      { "hold_id": "50", "hand": "right" },
-      { "hold_id": "45", "type": "finish", "hand": "left" }
+      { "hold_id": "#46", "type": "start", "hand": "left" },
+      { "hold_id": "#44", "type": "start", "hand": "right" },
+      { "hold_id": "#43", "hand": "left" },
+      { "hold_id": "#43", "hand": "right" },
+      { "hold_id": "#91", "hand": "left" },
+      { "hold_id": "#94", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Volume Feet",
+    "routeName": "正蹬 (Rock Over)",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "在黑色大方块上找脚点！\n你的脚可以踩在方块上的任何白色小点上，来帮助你爬得更高。",
-    "holds": { "foot": ["101", "109", "c", "e"] },
+    "author": "Copilot",
+    "beta": "从#44到#83的移动是经典的正蹬。指导她将右脚踩在#42上，然后将重心完全压实，臀部贴近墙，感觉像是要从脚上“站”起来一样，同时伸手去够#83。这个动作能让她体会到腿部力量的强大。",
+    "holds": {
+      "foot": ["#107", "#108", "#42", "#55"]
+    },
     "moves": [
-      { "hold_id": "14", "type": "start", "hand": "left" },
-      { "hold_id": "j", "type": "start", "hand": "right" },
-      { "hold_id": "23", "hand": "left" },
-      { "hold_id": "29", "hand": "right" },
-      { "hold_id": "4", "type": "finish", "hand": "left" }
+      { "hold_id": "#46", "type": "start", "hand": "left" },
+      { "hold_id": "#44", "type": "start", "hand": "right" },
+      { "hold_id": "#83", "hand": "right" },
+      { "hold_id": "#48", "hand": "left" },
+      { "hold_id": "#71", "hand": "right" },
+      { "hold_id": "#91", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Tiny Crimp",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "挑战小小的点！\n这些点很小，要用指尖的力量。相信你的脚，让脚多分担一些力气。",
-    "holds": { "foot": ["94", "87", "49"] },
-    "moves": [
-      { "hold_id": "94", "type": "start", "hand": "left" },
-      { "hold_id": "87", "type": "start", "hand": "right" },
-      { "hold_id": "49", "hand": "left" },
-      { "hold_id": "76", "hand": "right" },
-      { "hold_id": "73", "type": "finish", "hand": "right" }
-    ]
-  },
-  {
-    "routeName": "Undercling",
+    "routeName": "底抓入门 (Intro to Underclings)",
     "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "挑战下手点！\n手要从下面反过来勾住它。身体蹲低，屁股向外，就能把它拉得很稳。",
-    "holds": { "foot": ["124", "32", "30"] },
+    "author": "Copilot",
+    "beta": "手点#22是一个温和的底抓点。指导她手心向上抓住它，然后把脚抬高（踩#2），身体向上站，利用核心张力把身体“挤”向岩壁。她会感觉到身体被牢牢锁住，这样就能轻松地腾出手去抓#19。",
+    "holds": {
+      "foot": ["#104", "#32", "#2"]
+    },
     "moves": [
-      { "hold_id": "32", "type": "start", "hand": "left" },
-      { "hold_id": "30", "type": "start", "hand": "right" },
-      { "hold_id": "20", "hand": "right" },
-      { "hold_id": "41", "hand": "left" },
-      { "hold_id": "26", "type": "finish", "hand": "right" }
+      { "hold_id": "#b", "type": "start", "hand": "left" },
+      { "hold_id": "#22", "type": "start", "hand": "right" },
+      { "hold_id": "#31", "hand": "left" },
+      { "hold_id": "#19", "hand": "left" },
+      { "hold_id": "#23", "hand": "right" },
+      { "hold_id": "#40", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Sloper Control",
+    "routeName": "降膝 (Drop Knee)",
     "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "控制滑滑的坡面点！\n对付这种圆滚滚的点，要把身体重心放得很低，手臂伸直，用整个手掌去包住它。",
-    "holds": { "foot": ["127", "34", "33"] },
+    "author": "Copilot",
+    "beta": "在从#28到#60的移动中，可以练习降膝。当左手抓#28，右脚踩#20时，将右膝向内、向下转动，直到膝盖指向地面。这个动作能将臀部更贴近墙，并能伸展身体以够到更远的点#60。",
+    "holds": {
+      "foot": ["#32", "#b", "#20"]
+    },
     "moves": [
-      { "hold_id": "34", "type": "start", "hand": "left" },
-      { "hold_id": "33", "type": "start", "hand": "right" },
-      { "hold_id": "51", "hand": "right" },
-      { "hold_id": "72", "hand": "left" },
-      { "hold_id": "85", "type": "finish", "hand": "left" }
+      { "hold_id": "#21", "type": "start", "hand": "left" },
+      { "hold_id": "#30", "type": "start", "hand": "right" },
+      { "hold_id": "#28", "hand": "left" },
+      { "hold_id": "#29", "hand": "right" },
+      { "hold_id": "#60", "hand": "left" },
+      { "hold_id": "#56", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Heel Hook",
+    "routeName": "反向侧拉 (Gaston)",
     "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "用上你的脚后跟！\n把脚后跟像钩子一样挂在那个大红点上，用力一拉，身体就过去了，超级省力！",
-    "holds": { "foot": ["127", "34", "116"] },
+    "author": "Copilot",
+    "beta": "手点#60是个温和的Gaston点。指导孩子用右手抓住它，手肘抬高，拇指向下，像推开一扇门一样向外发力。这需要肩部力量来维持身体与墙面的距离，从而让左手能移动到#63。",
+    "holds": {
+      "foot": ["#23", "#d", "#n"]
+    },
     "moves": [
-      { "hold_id": "34", "type": "start", "hand": "left" },
-      { "hold_id": "116", "type": "start", "hand": "right" },
-      { "hold_id": "82", "hand": "right" },
-      { "hold_id": "72", "hand": "left" },
-      { "hold_id": "85", "type": "finish", "hand": "left" }
+      { "hold_id": "#29", "type": "start", "hand": "left" },
+      { "hold_id": "#40", "type": "start", "hand": "right" },
+      { "hold_id": "#60", "hand": "right" },
+      { "hold_id": "#63", "hand": "left" },
+      { "hold_id": "#65", "hand": "right" },
+      { "hold_id": "#110", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Dynamic Pop",
+    "routeName": "斜面初体验 (First Slopers)",
     "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "来个小小的动态跳跃！\n双脚用力一蹬，身体向上“冲”一下，去抓那个远一点的绿色点。要勇敢！",
-    "holds": { "foot": ["101", "109", "13", "14"] },
+    "author": "Copilot",
+    "beta": "手点#78和#70是斜面点。成功的关键是最大化接触面积。指导她用整个手掌（尤其是掌根）贴合岩点，身体重心放低，手臂伸直，靠身体的对压力来抓住它们，而不是用力去捏。",
+    "holds": {
+      "foot": ["#20", "#26", "#y"]
+    },
     "moves": [
-      { "hold_id": "13", "type": "start", "hand": "left" },
-      { "hold_id": "14", "type": "start", "hand": "right" },
-      { "hold_id": "59", "hand": "left" },
-      { "hold_id": "67", "hand": "right" },
-      { "hold_id": "68", "type": "finish", "hand": "right" }
+      { "hold_id": "#30", "type": "start", "hand": "left" },
+      { "hold_id": "#22", "type": "start", "hand": "right" },
+      { "hold_id": "#78", "hand": "right" },
+      { "hold_id": "#28", "hand": "left" },
+      { "hold_id": "#70", "hand": "left" },
+      { "hold_id": "#56", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Pinch Power",
+    "routeName": "挂脚跟 (Heel Hook)",
     "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "练习捏力！\n抓那个红色捏点时，要像个大钳子一样，用大拇指和其它手指一起用力捏住它。",
-    "holds": { "foot": ["122", "46", "83"] },
+    "author": "Copilot",
+    "beta": "在抓#62后，可以尝试用右脚跟挂在#59上。指导她将脚跟牢牢卡住，然后收缩臀部和大腿后侧肌肉，像做引体向上一样将身体拉起来。这能极大地节省手臂力量，并帮助身体向上移动。",
+    "holds": {
+      "foot": ["#10", "#16", "#c"]
+    },
     "moves": [
-      { "hold_id": "46", "type": "start", "hand": "left" },
-      { "hold_id": "83", "type": "start", "hand": "right" },
-      { "hold_id": "48", "hand": "left" },
-      { "hold_id": "71", "hand": "right" },
-      { "hold_id": "96", "type": "finish", "hand": "right" }
+      { "hold_id": "#15", "type": "start", "hand": "left" },
+      { "hold_id": "#14", "type": "start", "hand": "right" },
+      { "hold_id": "#54", "hand": "left" },
+      { "hold_id": "#59", "hand": "right" },
+      { "hold_id": "#62", "hand": "left" },
+      { "hold_id": "#64", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Flagging",
+    "routeName": "挂脚尖 (Toehook)",
     "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "学习用“旗式”来平衡！\n当两只手都在身体一侧时，把另一条腿伸出去，像一面旗子一样，来防止身体晃动。",
-    "holds": { "foot": ["124", "22", "28"] },
+    "author": "Copilot",
+    "beta": "当左手抓#43，右手抓#91时，为了稳定身体去抓#99，可以尝试用左脚尖勾住#48的下边缘。指导她用脚尖和脚背发力，将身体“拉”向岩壁。这是一个进阶技巧，能有效对抗身体的摆荡。",
+    "holds": {
+      "foot": ["#55", "#42", "#48"]
+    },
     "moves": [
-      { "hold_id": "22", "type": "start", "hand": "left" },
-      { "hold_id": "28", "type": "start", "hand": "right" },
-      { "hold_id": "60", "hand": "left" },
-      { "hold_id": "56", "hand": "right" },
-      { "hold_id": "70", "type": "finish", "hand": "left" }
+      { "hold_id": "#46", "type": "start", "hand": "left" },
+      { "hold_id": "#44", "type": "start", "hand": "right" },
+      { "hold_id": "#43", "hand": "left" },
+      { "hold_id": "#91", "hand": "right" },
+      { "hold_id": "#99", "hand": "right" },
+      { "hold_id": "#98", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "小动态 (Small Dyno)",
+    "difficulty": "V2",
+    "author": "Copilot",
+    "beta": "从#51到#120的移动需要一点小小的动态。指导孩子双脚踩稳，身体下沉蓄力，然后快速向上发力，利用冲力去抓#120。重点是时机和身体协调，而不是单纯的跳跃。可以先做几次“预摆”来找感觉。",
+    "holds": {
+      "foot": ["#33", "#36", "#y"]
+    },
+    "moves": [
+      { "hold_id": "#53", "type": "start", "hand": "left" },
+      { "hold_id": "#51", "type": "start", "hand": "right" },
+      { "hold_id": "#47", "hand": "left" },
+      { "hold_id": "#120", "hand": "right" },
+      { "hold_id": "#87", "hand": "left" },
+      { "hold_id": "#117", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "捏点 (Pinches)",
+    "difficulty": "V2",
+    "author": "Copilot",
+    "beta": "手点#65是这条路线的关键捏点。指导她用拇指在一侧，其他四指在另一侧，像钳子一样用力捏住。保持手臂微曲，利用核心力量将身体拉近墙面，可以增加捏的效率。",
+    "holds": {
+      "foot": ["#23", "#d", "#n", "#p"]
+    },
+    "moves": [
+      { "hold_id": "#29", "type": "start", "hand": "left" },
+      { "hold_id": "#40", "type": "start", "hand": "right" },
+      { "hold_id": "#60", "hand": "right" },
+      { "hold_id": "#63", "hand": "left" },
+      { "hold_id": "#65", "hand": "right" },
+      { "hold_id": "#111", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "身体张力 (Body Tension)",
+    "difficulty": "V2",
+    "author": "Copilot",
+    "beta": "这条横移路线非常考验身体张力。指导她收紧腹部和臀部，感觉脚和手之间有一股力量在互相拉扯，让身体像一块绷紧的木板。这在从#78到#50的大跨步中尤为重要。",
+    "holds": {
+      "foot": ["#20", "#26", "#y", "#z"]
+    },
+    "moves": [
+      { "hold_id": "#22", "type": "start", "hand": "left" },
+      { "hold_id": "#30", "type": "start", "hand": "right" },
+      { "hold_id": "#78", "hand": "left" },
+      { "hold_id": "#72", "hand": "right" },
+      { "hold_id": "#50", "hand": "left" },
+      { "hold_id": "#45", "hand": "right" },
+      { "hold_id": "#m", "type": "finish", "hand": "both" }
     ]
   }
 ]
