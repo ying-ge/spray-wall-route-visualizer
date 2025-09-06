@@ -1,323 +1,325 @@
 [
   {
-    "routeName": "Static-Movement",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "专注于缓慢、有控制的移动。鼓励她保持手臂伸直，用腿部肌肉发力向上推，从一个点移动到下一个点。目标是像爬梯子一样移动，尽可能保持三点接触，以建立自信和基础的身体意识。",
-    "holds": {
-      "foot": ["101", "39", "104", "21", "32"]
-    },
-    "moves": [
-      { "hold_id": "15", "type": "start", "hand": "left" },
-      { "hold_id": "13", "type": "start", "hand": "right" },
-      { "hold_id": "54", "hand": "left" },
-      { "hold_id": "29", "hand": "right" },
-      { "hold_id": "61", "hand": "left" },
-      { "hold_id": "70", "hand": "right" },
-      { "hold_id": "65", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Sidepull",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "这条路线引入了侧拉点。引导她将脚放在与拉力相反的方向以产生张力。例如，对于左手的侧拉点，右脚应该向右侧外摆以保持平衡。这能教会她对抗发力的概念。",
-    "holds": {
-      "foot": ["103", "104", "32", "93"]
-    },
-    "moves": [
-      { "hold_id": "16", "type": "start", "hand": "left" },
-      { "hold_id": "22", "type": "start", "hand": "right" },
-      { "hold_id": "40", "hand": "left" },
-      { "hold_id": "28", "hand": "right" },
-      { "hold_id": "62", "hand": "left" },
-      { "hold_id": "60", "hand": "right" },
-      { "hold_id": "63", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Undercling",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "底拉点需要从下方发力向上拉。关键是把脚踩得高一些，身体贴近岩壁，通过脚推和手拉来制造张力。鼓励她相信自己的脚，向后倾，并利用核心力量保持稳定。",
-    "holds": {
-      "foot": ["39", "104", "124", "32"]
-    },
-    "moves": [
-      { "hold_id": "13", "type": "start", "hand": "left" },
-      { "hold_id": "30", "type": "start", "hand": "right" },
-      { "hold_id": "22", "hand": "left" },
-      { "hold_id": "20", "hand": "right" },
-      { "hold_id": "82", "hand": "left" },
-      { "hold_id": "72", "hand": "right" },
-      { "hold_id": "85", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Gaston",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Gaston（侧推）动作就像推开一扇门，手肘向外。在这条路线上，她需要像抓侧拉点一样，但拇指朝下。这个动作非常依赖肩部力量和身体姿态。告诉她要让身体与正在做Gaston动作的手臂保持在一条线上。",
-    "holds": {
-      "foot": ["109", "101", "21", "31"]
-    },
-    "moves": [
-      { "hold_id": "14", "type": "start", "hand": "left" },
-      { "hold_id": "10", "type": "start", "hand": "right" },
-      { "hold_id": "j", "hand": "left" },
-      { "hold_id": "19", "hand": "right" },
-      { "hold_id": "59", "hand": "left" },
-      { "hold_id": "29", "hand": "right" },
-      { "hold_id": "60", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Flagging",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Flagging（旗子腿）是指用一条腿作为配重来防止身体荡开，尤其是在手脚点都在身体一侧时。鼓励她将空闲的腿向外侧伸出，以便在伸手去抓下一个点时保持重心稳定。",
-    "holds": {
-      "foot": ["105", "106", "127", "1"]
-    },
-    "moves": [
-      { "hold_id": "30", "type": "start", "hand": "left" },
-      { "hold_id": "22", "type": "start", "hand": "right" },
-      { "hold_id": "35", "hand": "left" },
-      { "hold_id": "53", "hand": "right" },
-      { "hold_id": "51", "hand": "left" },
-      { "hold_id": "49", "hand": "right" },
-      { "hold_id": "76", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Mantel",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Mantel（翻上）动作就像没有梯子时从游泳池里爬出来。她需要向下按压一个点，同时把脚提到相同的高度。这条路线的结束点足够大，可以练习这个动作。指导她从拉的动作过渡到推的动作，转动手和手肘，让自己站到支点上。",
-    "holds": {
-      "foot": ["108", "107", "125", "18"]
-    },
-    "moves": [
-      { "hold_id": "46", "type": "start", "hand": "left" },
-      { "hold_id": "42", "type": "start", "hand": "right" },
-      { "hold_id": "83", "hand": "left" },
-      { "hold_id": "43", "hand": "right" },
-      { "hold_id": "94", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Rock-Over",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "这个技巧需要将一只脚高高地踩在一个点上，然后将重心完全压在这只脚上站起来。引导她将脚稳稳地放在点上，然后移动臀部和身体重心到那只脚上，以便做出下一个手的动作。这是一个强大的由腿部驱动的动作。",
-    "holds": {
-      "foot": ["104", "32", "93", "b"]
-    },
-    "moves": [
-      { "hold_id": "22", "type": "start", "hand": "left" },
-      { "hold_id": "30", "type": "start", "hand": "right" },
-      { "hold_id": "28", "hand": "left" },
-      { "hold_id": "78", "hand": "right" },
-      { "hold_id": "50", "hand": "left" },
-      { "hold_id": "45", "hand": "right" },
-      { "hold_id": "75", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Drop-Knee",
+    "routeName": "Body-Tension-Swing",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "Drop-knee（别膝）有助于在陡峭的岩壁上让臀部更贴近墙壁，从而获得更长的伸展距离。指导她把脚踩在一个点上，然后向内旋转髋部，使膝盖朝下。这个旋转会把她的身体带向岩壁，并增加对侧手臂的伸展范围。",
+    "beta": "这条路线有几个需要身体摆动的动作。关键不是用手臂硬拉，而是要学会利用核心力量控制摆动，让脚平稳地回到岩壁上。这是一个练习身体控制和核心张力的好机会。",
     "holds": {
-      "foot": ["101", "39", "102", "a"]
+      "foot": ["#101", "#104", "#32"]
     },
     "moves": [
-      { "hold_id": "15", "type": "start", "hand": "left" },
-      { "hold_id": "10", "type": "start", "hand": "right" },
-      { "hold_id": "54", "hand": "left" },
-      { "hold_id": "19", "hand": "right" },
-      { "hold_id": "61", "hand": "left" },
-      { "hold_id": "60", "hand": "right" },
-      { "hold_id": "68", "type": "finish", "hand": "both" }
+      { "hold_id": "#13", "type": "start", "hand": "left" },
+      { "hold_id": "#31", "type": "start", "hand": "right" },
+      { "hold_id": "#40", "hand": "left" },
+      { "hold_id": "#5", "hand": "right" },
+      { "hold_id": "#62", "hand": "left" },
+      { "hold_id": "#45", "hand": "right" },
+      { "hold_id": "#66", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Pinch",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "捏力是攀岩的基础。这条路线使用需要用拇指和手指共同发力挤压的支点。鼓励她使用全掌握法，并主动使用拇指。这能锻炼手部和前臂的力量。关键是让拇指和其他手指一样参与发力。",
-    "holds": {
-      "foot": ["106", "123", "124", "34"]
-    },
-    "moves": [
-      { "hold_id": "33", "type": "start", "hand": "left" },
-      { "hold_id": "116", "type": "start", "hand": "right" },
-      { "hold_id": "35", "hand": "left" },
-      { "hold_id": "52", "hand": "right" },
-      { "hold_id": "85", "hand": "left" },
-      { "hold_id": "11", "hand": "right" },
-      { "hold_id": "76", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Crimping",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "这条路线引入了需要Crimp（扣点）握法的小但很积极的边。先教她'开指'握法，即手指弯曲但拇指不扣在食指上。这是建立手指力量更安全的方式。同时要专注于精准的脚法来减轻手上的重量。",
-    "holds": {
-      "foot": ["103", "39", "102", "21"]
-    },
-    "moves": [
-      { "hold_id": "16", "type": "start", "hand": "left" },
-      { "hold_id": "c", "type": "start", "hand": "right" },
-      { "hold_id": "e", "hand": "left" },
-      { "hold_id": "d", "hand": "right" },
-      { "hold_id": "4", "hand": "left" },
-      { "hold_id": "29", "hand": "right" },
-      { "hold_id": "56", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Sloper",
+    "routeName": "Twist-and-Shout",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "Sloper（斜面点）是圆滑且没有明确发力点的支点。技巧是最大化接触面积。告诉她保持身体重心低，并置于支点正下方，手臂伸直，并收紧核心。这关乎摩擦力和身体张力，而不是拉力。信任支点是关键。",
+    "beta": "专注于身体的转动。这条路线需要频繁地使用别膝（Drop-Knee）和转体来让身体贴近墙壁，以便更轻松地做出下一个动作。把它想象成在墙上跳舞，身体越灵活，攀爬就越省力。",
     "holds": {
-      "foot": ["107", "106", "125", "1"]
+      "foot": ["#39", "#102", "#124", "#a"]
     },
     "moves": [
-      { "hold_id": "35", "type": "start", "hand": "left" },
-      { "hold_id": "36", "type": "start", "hand": "right" },
-      { "hold_id": "53", "hand": "left" },
-      { "hold_id": "95", "hand": "right" },
-      { "hold_id": "48", "hand": "left" },
-      { "hold_id": "91", "hand": "right" },
-      { "hold_id": "117", "type": "finish", "hand": "both" }
+      { "hold_id": "#14", "type": "start", "hand": "left" },
+      { "hold_id": "#16", "type": "start", "hand": "right" },
+      { "hold_id": "#19", "hand": "left" },
+      { "hold_id": "#40", "hand": "right" },
+      { "hold_id": "#60", "hand": "left" },
+      { "hold_id": "#70", "hand": "right" },
+      { "hold_id": "#s", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Foot-Swap",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "在一个支点上高效地交换双脚是一项至关重要的技巧。这条路线会强制她在较大的脚点上进行换脚练习。指导她将要换上的脚放在当前脚的旁边，然后在保持双手稳定的同时，快速而平稳地完成切换。这能提高她脚法的精准度和平衡能力。",
-    "holds": {
-      "foot": ["104", "32", "124"]
-    },
-    "moves": [
-      { "hold_id": "30", "type": "start", "hand": "left" },
-      { "hold_id": "24", "type": "start", "hand": "right" },
-      { "hold_id": "28", "hand": "left" },
-      { "hold_id": "78", "hand": "right" },
-      { "hold_id": "50", "hand": "left" },
-      { "hold_id": "72", "hand": "right" },
-      { "hold_id": "52", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Heel-Hook",
+    "routeName": "Pocket-Play",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "挂脚跟可以让你用腿部力量向上或向侧面拉动身体。在那个红色的大点上，指导她稳稳地挂上脚跟，然后主动用大腿后侧肌肉发力，以减轻手臂的负重并帮助自己向上移动。这能教会她使用整个身体而不仅仅是手臂。",
+    "beta": "这条路线引入了口袋点（Pocket）。对于儿童来说，手指力量可能不足，所以指导她用最强壮的两根手指（中指和无名指）伸入点内。精准的脚法和身体平衡比单纯的手指力量更重要。",
     "holds": {
-      "foot": ["104", "122", "105"]
+      "foot": ["#107", "#106", "#125", "#18"]
     },
     "moves": [
-      { "hold_id": "22", "type": "start", "hand": "left" },
-      { "hold_id": "30", "type": "start", "hand": "right" },
-      { "hold_id": "116", "hand": "left" },
-      { "hold_id": "82", "hand": "right" },
-      { "hold_id": "72", "hand": "left" },
-      { "hold_id": "86", "type": "finish", "hand": "both" }
+      { "hold_id": "#37", "type": "start", "hand": "left" },
+      { "hold_id": "#55", "type": "start", "hand": "right" },
+      { "hold_id": "#42", "hand": "left" },
+      { "hold_id": "#95", "hand": "right" },
+      { "hold_id": "#49", "hand": "left" },
+      { "hold_id": "#97", "hand": "right" },
+      { "hold_id": "#89", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Traverse",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "这条路线专注于横向移动。它有助于建立耐力，并教授高效的身体姿态以进行水平移动。鼓励她向前看，规划好手脚的顺序，并保持臀部靠近墙壁以节省能量。",
-    "holds": {
-      "foot": ["101", "39", "104", "32", "93", "127"]
-    },
-    "moves": [
-      { "hold_id": "15", "type": "start", "hand": "left" },
-      { "hold_id": "14", "type": "start", "hand": "right" },
-      { "hold_id": "10", "hand": "left" },
-      { "hold_id": "31", "hand": "right" },
-      { "hold_id": "22", "hand": "left" },
-      { "hold_id": "30", "hand": "right" },
-      { "hold_id": "33", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "High-Step",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "这条路线需要把脚抬得非常高，接近腰部。这能增强柔韧性和腿部力量。指导她在抬脚时将髋部向外转，以获得额外的高度。重点是用高抬的腿用力蹬，来完成下一个动作。",
-    "holds": {
-      "foot": ["109", "101", "21"]
-    },
-    "moves": [
-      { "hold_id": "13", "type": "start", "hand": "left" },
-      { "hold_id": "16", "type": "start", "hand": "right" },
-      { "hold_id": "54", "hand": "left" },
-      { "hold_id": "19", "hand": "right" },
-      { "hold_id": "59", "hand": "left" },
-      { "hold_id": "70", "hand": "right" },
-      { "hold_id": "p", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Matching-Hands",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "这条路线的特点是使用了较大的支点，允许并手——即将双手放在同一个点上，为下一个动作重新调整姿势。这是安排动作顺序和重新定位身体的基础技巧。引导她平稳地完成并手，为伸向下一个更远的点做好准备。",
-    "holds": {
-      "foot": ["108", "107", "106", "1"]
-    },
-    "moves": [
-      { "hold_id": "44", "type": "start", "hand": "left" },
-      { "hold_id": "42", "type": "start", "hand": "right" },
-      { "hold_id": "48", "hand": "left" },
-      { "hold_id": "91", "hand": "right" },
-      { "hold_id": "120", "hand": "left" },
-      { "hold_id": "87", "hand": "right" },
-      { "hold_id": "117", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Dynamic-Movement",
+    "routeName": "Layback-Corner",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "对于这条路线，有些动作最好是动态完成，或者说带一点“悠”一下的感觉。教她利用腿部和臀部产生动力，将手推向下一个点，而不是试图静态地把自己拉上去。从小的、有控制的动态移动开始。这关乎时机，而不是胡乱跳跃。",
+    "beta": "利用#61和#62这两个点来练习“侧身拉”（Layback）。指导她将脚踩在墙上，身体向外倾斜，与手臂形成对抗力。这个动作能让她体会到如何利用全身的张力来攀爬，而不仅仅是手臂。",
     "holds": {
-      "foot": ["39", "104", "32"]
+      "foot": ["#101", "#21", "#31"]
     },
     "moves": [
-      { "hold_id": "31", "type": "start", "hand": "left" },
-      { "hold_id": "24", "type": "start", "hand": "right" },
-      { "hold_id": "78", "hand": "left" },
-      { "hold_id": "72", "hand": "right" },
-      { "hold_id": "8", "hand": "left" },
-      { "hold_id": "11", "hand": "right" },
-      { "hold_id": "80", "type": "finish", "hand": "both" }
+      { "hold_id": "#59", "type": "start", "hand": "left" },
+      { "hold_id": "#60", "type": "start", "hand": "right" },
+      { "hold_id": "#61", "hand": "left" },
+      { "hold_id": "#62", "hand": "right" },
+      { "hold_id": "#58", "hand": "left" },
+      { "hold_id": "#64", "hand": "right" },
+      { "hold_id": "#110", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Core-Tension",
+    "routeName": "Momentum-Builder",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "在仰角墙上，防止双脚脱落的关键在于核心张力。这条路线的动作会试图将她的身体拉离墙面。指导她收紧腹部和背部肌肉，在手和脚之间建立一个刚性连接。这是攀爬陡峭地形的关键。",
+    "beta": "这是一条练习小幅度动态（Momentum）的路线。指导她通过连续、流畅的动作来建立动能，而不是在每个点都停下来。关键在于动作之间的衔接，让上一个动作的能量自然地过渡到下一个动作。",
     "holds": {
-      "foot": ["104", "32", "93"]
+      "foot": ["#104", "#32", "#93"]
     },
     "moves": [
-      { "hold_id": "30", "type": "start", "hand": "left" },
-      { "hold_id": "20", "type": "start", "hand": "right" },
-      { "hold_id": "82", "hand": "left" },
-      { "hold_id": "5", "hand": "right" },
-      { "hold_id": "85", "hand": "left" },
-      { "hold_id": "69", "hand": "right" },
-      { "hold_id": "88", "type": "finish", "hand": "both" }
+      { "hold_id": "#22", "type": "start", "hand": "left" },
+      { "hold_id": "#30", "type": "start", "hand": "right" },
+      { "hold_id": "#28", "hand": "left" },
+      { "hold_id": "#72", "hand": "right" },
+      { "hold_id": "#51", "hand": "left" },
+      { "hold_id": "#49", "hand": "right" },
+      { "hold_id": "#73", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Precise-Footwork",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "beta": "这条路线的手点很好，但脚点却很小或不明显。这迫使她必须仔细观察、精准放置双脚，并相信脚上的摩擦力。告诉她：“用眼睛爬，用脚发力”，这能培养她细致的攀爬风格。",
+    "holds": {
+      "foot": ["#103", "#122", "#123", "#127"]
+    },
+    "moves": [
+      { "hold_id": "#30", "type": "start", "hand": "left" },
+      { "hold_id": "#116", "type": "start", "hand": "right" },
+      { "hold_id": "#20", "hand": "left" },
+      { "hold_id": "#82", "hand": "right" },
+      { "hold_id": "#85", "hand": "left" },
+      { "hold_id": "#69", "hand": "right" },
+      { "hold_id": "#74", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Power-Gaston",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "这条路线需要连续做两个Gaston（侧推）动作，非常考验肩部和背部的力量。关键在于每次发力时，核心都要收紧，并且快速地移动身体，以减少在力竭姿势下停留的时间。",
+    "holds": {
+      "foot": ["#109", "#101", "#a"]
+    },
+    "moves": [
+      { "hold_id": "#14", "type": "start", "hand": "left" },
+      { "hold_id": "#c", "type": "start", "hand": "right" },
+      { "hold_id": "#j", "hand": "left" },
+      { "hold_id": "#4", "hand": "right" },
+      { "hold_id": "#n", "hand": "left" },
+      { "hold_id": "#56", "hand": "right" },
+      { "hold_id": "#k", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Campus-Start",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "一个温和的Campus（腾挪）入门练习。前两个手的移动距离稍远，鼓励她用一个小的动态启动，让双脚短暂离开岩壁，然后再重新放回脚点上。这能锻炼她的上肢爆发力和身体协调性。",
+    "holds": {
+      "foot": ["#104", "#32"]
+    },
+    "moves": [
+      { "hold_id": "#22", "type": "start", "hand": "left" },
+      { "hold_id": "#24", "type": "start", "hand": "right" },
+      { "hold_id": "#50", "hand": "left" },
+      { "hold_id": "#72", "hand": "right" },
+      { "hold_id": "#85", "hand": "left" },
+      { "hold_id": "#77", "hand": "right" },
+      { "hold_id": "#81", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Off-Balance",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "这条路线故意设计了一些让人感觉“失去平衡”的动作。她需要学会通过反向压力（比如用手推墙）或者夸张的旗子腿（Flagging）来对抗旋转的力。这能极大地提升她的平衡感和解决问题的能力。",
+    "holds": {
+      "foot": ["#106", "#125", "#1"]
+    },
+    "moves": [
+      { "hold_id": "#33", "type": "start", "hand": "left" },
+      { "hold_id": "#44", "type": "start", "hand": "right" },
+      { "hold_id": "#36", "hand": "left" },
+      { "hold_id": "#47", "hand": "right" },
+      { "hold_id": "#51", "hand": "left" },
+      { "hold_id": "#92", "hand": "right" },
+      { "hold_id": "#117", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "The-Big-Lock",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "“锁死”（Lock-off）能力是攀爬的关键。这条路线有一个距离较远的手点，需要她用一只手臂将身体锁定在一个位置，然后另一只手去抓点。可以指导她先弯曲手臂拉近身体，然后保持肌肉紧张，稳定地出手。",
+    "holds": {
+      "foot": ["#101", "#39", "#104"]
+    },
+    "moves": [
+      { "hold_id": "#13", "type": "start", "hand": "left" },
+      { "hold_id": "#30", "type": "start", "hand": "right" },
+      { "hold_id": "#54", "hand": "left" },
+      { "hold_id": "#78", "hand": "right" },
+      { "hold_id": "#63", "hand": "left" },
+      { "hold_id": "#75", "hand": "right" },
+      { "hold_id": "#m", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Heel-Hook-Traverse",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "在横移路线上加入挂脚跟（Heel-Hook）。她需要用脚跟钩住支点来帮助身体横向移动，这比单纯用手拉要省力得多。这个练习能让她明白，脚跟不仅可以向上发力，也可以水平发力。",
+    "holds": {
+      "foot": ["#104", "#32", "#93"]
+    },
+    "moves": [
+      { "hold_id": "#31", "type": "start", "hand": "left" },
+      { "hold_id": "#116", "type": "start", "hand": "right" },
+      { "hold_id": "#82", "hand": "left" },
+      { "hold_id": "#5", "hand": "right" },
+      { "hold_id": "#51", "hand": "left" },
+      { "hold_id": "#47", "hand": "right" },
+      { "hold_id": "#48", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Crimpy-Overhang",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "在仰角上使用小扣点（Crimp）对核心和手指都是巨大的挑战。关键是脚要踩得高，身体贴近墙壁，用核心张力把重量尽可能多地分配给脚。手臂应尽量伸直以节省力量。",
+    "holds": {
+      "foot": ["#102", "#a", "#b"]
+    },
+    "moves": [
+      { "hold_id": "#16", "type": "start", "hand": "left" },
+      { "hold_id": "#c", "type": "start", "hand": "right" },
+      { "hold_id": "#4", "hand": "left" },
+      { "hold_id": "#f", "hand": "right" },
+      { "hold_id": "#p", "hand": "left" },
+      { "hold_id": "#s", "hand": "right" },
+      { "hold_id": "#128", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Dyno-to-Sloper",
+    "difficulty": "V4",
+    "author": "Gemini 2.5 Pro",
+    "beta": "这是对动态和控制力的终极考验：动态跳到一个斜面点（Sloper）上。起跳要果断，但接触到点的瞬间，全身肌肉要立刻收紧，吸收冲击力，防止滑脱。失败是正常的，鼓励她多次尝试，找到感觉。",
+    "holds": {
+      "foot": ["#104", "#32"]
+    },
+    "moves": [
+      { "hold_id": "#24", "type": "start", "hand": "left" },
+      { "hold_id": "#41", "type": "start", "hand": "right" },
+      { "hold_id": "#78", "hand": "left" },
+      { "hold_id": "#91", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "The-Crux-Sequence",
+    "difficulty": "V4",
+    "author": "Gemini 2.5 Pro",
+    "beta": "这条路线中间有一段连续的、困难的动作序列（Crux）。它可能包含了一个坏点、一个大跨度或一个复杂的身体姿态转换。这考验的是她在压力下解决问题的能力和力量耐力。鼓励她将序列拆解，逐个攻破。",
+    "holds": {
+      "foot": ["#39", "#102", "#93"]
+    },
+    "moves": [
+      { "hold_id": "#31", "type": "start", "hand": "left" },
+      { "hold_id": "#20", "type": "start", "hand": "right" },
+      { "hold_id": "#5", "hand": "left" },
+      { "hold_id": "#y", "hand": "right" },
+      { "hold_id": "#8", "hand": "left" },
+      { "hold_id": "#77", "hand": "right" },
+      { "hold_id": "#88", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Bicycle-Maneuver",
+    "difficulty": "V4",
+    "author": "Gemini 2.5 Pro",
+    "beta": "“自行车”技巧是指用一只脚踩住一个点，同时用另一只脚的脚尖从反向推同一个点，形成一个锁定的力。这条路线的#116号点很适合练习这个动作，它能提供极强的稳定性来完成大跨度的移动。",
+    "holds": {
+      "foot": ["#104", "#124"]
+    },
+    "moves": [
+      { "hold_id": "#30", "type": "start", "hand": "left" },
+      { "hold_id": "#116", "type": "start", "hand": "right" },
+      { "hold_id": "#72", "hand": "left" },
+      { "hold_id": "#69", "hand": "right" },
+      { "hold_id": "#r", "hand": "left" },
+      { "hold_id": "#80", "hand": "right" },
+      { "hold_id": "#115", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Power-Endurance",
+    "difficulty": "V4",
+    "author": "Gemini 2.5 Pro",
+    "beta": "这是一条长且持续困难的路线，没有明显的休息点。它纯粹地考验力量耐力——即在力竭状态下持续做出有力动作的能力。攀爬节奏很重要，既不能太快导致过早力竭，也不能太慢导致无谓消耗。",
+    "holds": {
+      "foot": ["#101", "#39", "#104", "#32", "#93"]
+    },
+    "moves": [
+      { "hold_id": "#15", "type": "start", "hand": "left" },
+      { "hold_id": "#10", "type": "start", "hand": "right" },
+      { "hold_id": "#j", "hand": "left" },
+      { "hold_id": "#23", "hand": "right" },
+      { "hold_id": "#60", "hand": "left" },
+      { "hold_id": "#28", "hand": "right" },
+      { "hold_id": "#68", "hand": "left" },
+      { "hold_id": "#75", "hand": "right" },
+      { "hold_id": "#112", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "One-Hand-Finish",
+    "difficulty": "V4",
+    "author": "Gemini 2.5 Pro",
+    "beta": "一个有趣且有挑战性的结束：最终的结束点需要单手完成。这要求在完成前一个动作后，身体姿态和平衡都调整得非常好，才能稳定地将另一只手也匹配到结束点上。这是一个对综合能力的小测验。",
+    "holds": {
+      "foot": ["#108", "#107", "#125", "#1"]
+    },
+    "moves": [
+      { "hold_id": "#46", "type": "start", "hand": "left" },
+      { "hold_id": "#44", "type": "start", "hand": "right" },
+      { "hold_id": "#83", "hand": "left" },
+      { "hold_id": "#92", "hand": "right" },
+      { "hold_id": "#96", "hand": "left" },
+      { "hold_id": "#98", "hand": "right" },
+      { "hold_id": "#118", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Shoulder-Breaker",
+    "difficulty": "V4",
+    "author": "Gemini 2.5 Pro",
+    "beta": "这条路线有一个对肩部力量要求极高的“铁十字”类动作，需要在一个大开大合的姿态下锁死并发力。这非常考验肩部的稳定性和力量。请确保她已充分热身，并指导她发力时沉肩，以保护肩关节。",
+    "holds": {
+      "foot": ["#39", "#104", "#32", "#1"]
+    },
+    "moves": [
+      { "hold_id": "#22", "type": "start", "hand": "left" },
+      { "hold_id": "#35", "type": "start", "hand": "right" },
+      { "hold_id": "#50", "hand": "left" },
+      { "hold_id": "#52", "hand": "right" },
+      { "hold_id": "#w", "hand": "left" },
+      { "hold_id": "#t", "hand": "right" },
+      { "hold_id": "#114", "type": "finish", "hand": "both" }
     ]
   }
 ]
