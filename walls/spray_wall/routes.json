@@ -4,14 +4,13 @@
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
     "beta": "我们来爬一个大把手的梯子！\n手抓得稳稳的，脚跟着一步一步往上踩。",
-    "holds": { "foot": ["109", "101", "13"] },
+    "holds": { "foot": ["109", "101", "13", "15"] },
     "moves": [
-      { "hold_id": "109", "type": "start", "hand": "left" },
-      { "hold_id": "101", "type": "start", "hand": "right" },
-      { "hold_id": "13", "hand": "left" },
-      { "hold_id": "15", "hand": "right" },
+      { "hold_id": "13", "type": "start", "hand": "left" },
+      { "hold_id": "15", "type": "start", "hand": "right" },
       { "hold_id": "54", "hand": "left" },
-      { "hold_id": "63", "type": "finish", "hand": "right" }
+      { "hold_id": "60", "hand": "right" },
+      { "hold_id": "63", "type": "finish", "hand": "left" }
     ]
   },
   {
@@ -19,13 +18,13 @@
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
     "beta": "像小螃蟹一样横着走！\n身体稍微蹲低一点，一步一步地挪过去。",
-    "holds": { "foot": ["125", "126", "1", "36"] },
+    "holds": { "foot": ["125", "126", "36", "37"] },
     "moves": [
-      { "hold_id": "125", "type": "start", "hand": "left" },
-      { "hold_id": "126", "type": "start", "hand": "right" },
-      { "hold_id": "37", "hand": "left" },
-      { "hold_id": "36", "hand": "right" },
-      { "hold_id": "53", "type": "finish", "hand": "right" }
+      { "hold_id": "37", "type": "start", "hand": "left" },
+      { "hold_id": "36", "type": "start", "hand": "right" },
+      { "hold_id": "53", "hand": "left" },
+      { "hold_id": "23", "hand": "right" },
+      { "hold_id": "40", "type": "finish", "hand": "left" }
     ]
   },
   {
@@ -33,13 +32,13 @@
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
     "beta": "爬上这个小小的山坡！\n手点都很大，大胆地抓，然后站起来。",
-    "holds": { "foot": ["104", "124", "32"] },
+    "holds": { "foot": ["104", "124", "32", "22"] },
     "moves": [
-      { "hold_id": "104", "type": "start", "hand": "left" },
-      { "hold_id": "124", "type": "start", "hand": "right" },
-      { "hold_id": "32", "hand": "left" },
-      { "hold_id": "22", "hand": "right" },
-      { "hold_id": "51", "type": "finish", "hand": "left" }
+      { "hold_id": "32", "type": "start", "hand": "left" },
+      { "hold_id": "22", "type": "start", "hand": "right" },
+      { "hold_id": "28", "hand": "left" },
+      { "hold_id": "48", "hand": "right" },
+      { "hold_id": "51", "type": "finish", "hand": "right" }
     ]
   },
   {
@@ -47,13 +46,12 @@
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
     "beta": "来练习并手！\n在那个黄色大圈圈上，先把一只手放上去，再把另一只手也放上去。",
-    "holds": { "foot": ["106", "34", "127"] },
+    "holds": { "foot": ["127", "34", "116"] },
     "moves": [
-      { "hold_id": "106", "type": "start", "hand": "left" },
-      { "hold_id": "127", "type": "start", "hand": "right" },
-      { "hold_id": "34", "hand": "left" },
-      { "hold_id": "116", "hand": "right" },
+      { "hold_id": "34", "type": "start", "hand": "left" },
+      { "hold_id": "116", "type": "start", "hand": "right" },
       { "hold_id": "82", "hand": "both" },
+      { "hold_id": "72", "hand": "left" },
       { "hold_id": "85", "type": "finish", "hand": "left" }
     ]
   },
@@ -62,13 +60,13 @@
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
     "beta": "走一个“之”字形！\n先向左上，再向右上，身体也跟着轻轻地晃动。",
-    "holds": { "foot": ["102", "121", "122"] },
+    "holds": { "foot": ["121", "122", "42"] },
     "moves": [
-      { "hold_id": "121", "type": "start", "hand": "left" },
-      { "hold_id": "122", "type": "start", "hand": "right" },
-      { "hold_id": "42", "hand": "left" },
-      { "hold_id": "83", "hand": "right" },
-      { "hold_id": "92", "type": "finish", "hand": "right" }
+      { "hold_id": "42", "type": "start", "hand": "left" },
+      { "hold_id": "83", "type": "start", "hand": "right" },
+      { "hold_id": "48", "hand": "left" },
+      { "hold_id": "92", "hand": "right" },
+      { "hold_id": "117", "type": "finish", "hand": "right" }
     ]
   },
   {
@@ -76,10 +74,10 @@
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
     "beta": "找一找那些“小口袋”！\n这些点上有小洞洞，正好可以把手指放进去，抓得很稳。",
-    "holds": { "foot": ["108", "94", "107"] },
+    "holds": { "foot": ["94", "87", "91"] },
     "moves": [
-      { "hold_id": "108", "type": "start", "hand": "left" },
-      { "hold_id": "94", "type": "start", "hand": "right" },
+      { "hold_id": "94", "type": "start", "hand": "left" },
+      { "hold_id": "87", "type": "start", "hand": "right" },
       { "hold_id": "91", "hand": "left" },
       { "hold_id": "89", "hand": "right" },
       { "hold_id": "114", "type": "finish", "hand": "right" }
@@ -90,13 +88,13 @@
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
     "beta": "练习高抬腿！\n像上一个很高的台阶一样，把脚用力抬高，然后蹬直腿站起来。",
-    "holds": { "foot": ["109", "101", "13"] },
+    "holds": { "foot": ["101", "109", "13", "14"] },
     "moves": [
-      { "hold_id": "101", "type": "start", "hand": "left" },
-      { "hold_id": "109", "type": "start", "hand": "right" },
-      { "hold_id": "13", "hand": "left" },
-      { "hold_id": "14", "hand": "right" },
-      { "hold_id": "59", "type": "finish", "hand": "right" }
+      { "hold_id": "13", "type": "start", "hand": "left" },
+      { "hold_id": "14", "type": "start", "hand": "right" },
+      { "hold_id": "59", "hand": "right" },
+      { "hold_id": "61", "hand": "left" },
+      { "hold_id": "65", "type": "finish", "hand": "left" }
     ]
   },
   {
@@ -118,13 +116,13 @@
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
     "beta": "练习侧身站起！\n把脚踩在身体侧面，然后像开关一样，把屁股转向墙，身体就站起来了。",
-    "holds": { "foot": ["104", "124", "32"] },
+    "holds": { "foot": ["124", "32", "22", "28"] },
     "moves": [
-      { "hold_id": "104", "type": "start", "hand": "left" },
-      { "hold_id": "124", "type": "start", "hand": "right" },
-      { "hold_id": "22", "hand": "right" },
-      { "hold_id": "28", "hand": "left" },
-      { "hold_id": "60", "type": "finish", "hand": "right" }
+      { "hold_id": "22", "type": "start", "hand": "left" },
+      { "hold_id": "28", "type": "start", "hand": "right" },
+      { "hold_id": "60", "hand": "left" },
+      { "hold_id": "56", "hand": "right" },
+      { "hold_id": "64", "type": "finish", "hand": "right" }
     ]
   },
   {
@@ -132,13 +130,13 @@
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
     "beta": "试试反向推！\n抓那个绿色点时，要像推开一扇很重的门一样，用手肘向外用力。",
-    "holds": { "foot": ["127", "34", "116"] },
+    "holds": { "foot": ["127", "34", "35"] },
     "moves": [
-      { "hold_id": "127", "type": "start", "hand": "left" },
-      { "hold_id": "34", "type": "start", "hand": "right" },
-      { "hold_id": "35", "hand": "left" },
-      { "hold_id": "72", "hand": "right" },
-      { "hold_id": "50", "type": "finish", "hand": "left" }
+      { "hold_id": "34", "type": "start", "hand": "left" },
+      { "hold_id": "35", "type": "start", "hand": "right" },
+      { "hold_id": "72", "hand": "left" },
+      { "hold_id": "50", "hand": "right" },
+      { "hold_id": "45", "type": "finish", "hand": "left" }
     ]
   },
   {
@@ -148,11 +146,11 @@
     "beta": "在黑色大方块上找脚点！\n你的脚可以踩在方块上的任何白色小点上，来帮助你爬得更高。",
     "holds": { "foot": ["101", "109", "c", "e"] },
     "moves": [
-      { "hold_id": "109", "type": "start", "hand": "left" },
-      { "hold_id": "e", "type": "start", "hand": "right" },
-      { "hold_id": "14", "hand": "left" },
-      { "hold_id": "23", "hand": "right" },
-      { "hold_id": "29", "type": "finish", "hand": "right" }
+      { "hold_id": "14", "type": "start", "hand": "left" },
+      { "hold_id": "j", "type": "start", "hand": "right" },
+      { "hold_id": "23", "hand": "left" },
+      { "hold_id": "29", "hand": "right" },
+      { "hold_id": "4", "type": "finish", "hand": "left" }
     ]
   },
   {
@@ -160,7 +158,7 @@
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
     "beta": "挑战小小的点！\n这些点很小，要用指尖的力量。相信你的脚，让脚多分担一些力气。",
-    "holds": { "foot": ["94", "87", "120"] },
+    "holds": { "foot": ["94", "87", "49"] },
     "moves": [
       { "hold_id": "94", "type": "start", "hand": "left" },
       { "hold_id": "87", "type": "start", "hand": "right" },
@@ -174,13 +172,13 @@
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
     "beta": "挑战下手点！\n手要从下面反过来勾住它。身体蹲低，屁股向外，就能把它拉得很稳。",
-    "holds": { "foot": ["104", "124", "32"] },
+    "holds": { "foot": ["124", "32", "30"] },
     "moves": [
-      { "hold_id": "104", "type": "start", "hand": "left" },
-      { "hold_id": "124", "type": "start", "hand": "right" },
-      { "hold_id": "30", "hand": "right" },
-      { "hold_id": "20", "hand": "left" },
-      { "hold_id": "26", "type": "finish", "hand": "left" }
+      { "hold_id": "32", "type": "start", "hand": "left" },
+      { "hold_id": "30", "type": "start", "hand": "right" },
+      { "hold_id": "20", "hand": "right" },
+      { "hold_id": "41", "hand": "left" },
+      { "hold_id": "26", "type": "finish", "hand": "right" }
     ]
   },
   {
@@ -188,12 +186,12 @@
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
     "beta": "控制滑滑的坡面点！\n对付这种圆滚滚的点，要把身体重心放得很低，手臂伸直，用整个手掌去包住它。",
-    "holds": { "foot": ["106", "127", "34"] },
+    "holds": { "foot": ["127", "34", "33"] },
     "moves": [
-      { "hold_id": "106", "type": "start", "hand": "left" },
-      { "hold_id": "127", "type": "start", "hand": "right" },
-      { "hold_id": "33", "hand": "left" },
+      { "hold_id": "34", "type": "start", "hand": "left" },
+      { "hold_id": "33", "type": "start", "hand": "right" },
       { "hold_id": "51", "hand": "right" },
+      { "hold_id": "72", "hand": "left" },
       { "hold_id": "85", "type": "finish", "hand": "left" }
     ]
   },
@@ -202,13 +200,13 @@
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
     "beta": "用上你的脚后跟！\n把脚后跟像钩子一样挂在那个大红点上，用力一拉，身体就过去了，超级省力！",
-    "holds": { "foot": ["105", "106", "127"] },
+    "holds": { "foot": ["127", "34", "116"] },
     "moves": [
-      { "hold_id": "105", "type": "start", "hand": "left" },
-      { "hold_id": "123", "type": "start", "hand": "right" },
-      { "hold_id": "34", "hand": "left" },
+      { "hold_id": "34", "type": "start", "hand": "left" },
+      { "hold_id": "116", "type": "start", "hand": "right" },
       { "hold_id": "82", "hand": "right" },
-      { "hold_id": "72", "type": "finish", "hand": "left" }
+      { "hold_id": "72", "hand": "left" },
+      { "hold_id": "85", "type": "finish", "hand": "left" }
     ]
   },
   {
@@ -216,13 +214,13 @@
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
     "beta": "来个小小的动态跳跃！\n双脚用力一蹬，身体向上“冲”一下，去抓那个远一点的绿色点。要勇敢！",
-    "holds": { "foot": ["101", "109", "13"] },
+    "holds": { "foot": ["101", "109", "13", "14"] },
     "moves": [
-      { "hold_id": "109", "type": "start", "hand": "left" },
-      { "hold_id": "13", "type": "start", "hand": "right" },
+      { "hold_id": "13", "type": "start", "hand": "left" },
+      { "hold_id": "14", "type": "start", "hand": "right" },
       { "hold_id": "59", "hand": "left" },
-      { "hold_id": "61", "hand": "right" },
-      { "hold_id": "67", "type": "finish", "hand": "left" }
+      { "hold_id": "67", "hand": "right" },
+      { "hold_id": "68", "type": "finish", "hand": "right" }
     ]
   },
   {
@@ -230,11 +228,11 @@
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
     "beta": "练习捏力！\n抓那个红色捏点时，要像个大钳子一样，用大拇指和其它手指一起用力捏住它。",
-    "holds": { "foot": ["102", "122", "46"] },
+    "holds": { "foot": ["122", "46", "83"] },
     "moves": [
-      { "hold_id": "122", "type": "start", "hand": "left" },
-      { "hold_id": "46", "type": "start", "hand": "right" },
-      { "hold_id": "83", "hand": "left" },
+      { "hold_id": "46", "type": "start", "hand": "left" },
+      { "hold_id": "83", "type": "start", "hand": "right" },
+      { "hold_id": "48", "hand": "left" },
       { "hold_id": "71", "hand": "right" },
       { "hold_id": "96", "type": "finish", "hand": "right" }
     ]
@@ -244,13 +242,13 @@
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
     "beta": "学习用“旗式”来平衡！\n当两只手都在身体一侧时，把另一条腿伸出去，像一面旗子一样，来防止身体晃动。",
-    "holds": { "foot": ["104", "124", "22"] },
+    "holds": { "foot": ["124", "22", "28"] },
     "moves": [
-      { "hold_id": "104", "type": "start", "hand": "left" },
-      { "hold_id": "124", "type": "start", "hand": "right" },
-      { "hold_id": "22", "hand": "left" },
-      { "hold_id": "28", "hand": "right" },
-      { "hold_id": "60", "type": "finish", "hand": "left" }
+      { "hold_id": "22", "type": "start", "hand": "left" },
+      { "hold_id": "28", "type": "start", "hand": "right" },
+      { "hold_id": "60", "hand": "left" },
+      { "hold_id": "56", "hand": "right" },
+      { "hold_id": "70", "type": "finish", "hand": "left" }
     ]
   }
 ]
