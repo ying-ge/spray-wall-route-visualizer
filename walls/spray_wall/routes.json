@@ -3,7 +3,7 @@
     "routeName": "Static-Movement",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
-    "beta": "Focus on slow, controlled movements. Encourage keeping arms straight and using leg muscles to push upwards from one hold to the next. The goal is to move like climbing a ladder, maintaining three points of contact whenever possible to build confidence and basic body awareness.",
+    "beta": "专注于缓慢、有控制的移动。鼓励她保持手臂伸直，用腿部肌肉发力向上推，从一个点移动到下一个点。目标是像爬梯子一样移动，尽可能保持三点接触，以建立自信和基础的身体意识。",
     "holds": {
       "foot": ["101", "39", "104", "21", "32"]
     },
@@ -21,7 +21,7 @@
     "routeName": "Sidepull",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
-    "beta": "This route introduces using holds that are pulled from the side. Guide her to position her feet opposite to the pull direction to create tension. For a left-hand sidepull, the right foot should be flagged out to the right to maintain balance. This teaches the concept of opposition.",
+    "beta": "这条路线引入了侧拉点。引导她将脚放在与拉力相反的方向以产生张力。例如，对于左手的侧拉点，右脚应该向右侧外摆以保持平衡。这能教会她对抗发力的概念。",
     "holds": {
       "foot": ["103", "104", "32", "93"]
     },
@@ -39,7 +39,7 @@
     "routeName": "Undercling",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
-    "beta": "Underclings require pulling up on holds from underneath. The key is to get feet up high and keep the body close to the wall, creating tension by pushing with the feet and pulling with the hands. Encourage her to trust her feet and lean back, using her core to stay stable.",
+    "beta": "底拉点需要从下方发力向上拉。关键是把脚踩得高一些，身体贴近岩壁，通过脚推和手拉来制造张力。鼓励她相信自己的脚，向后倾，并利用核心力量保持稳定。",
     "holds": {
       "foot": ["39", "104", "124", "32"]
     },
@@ -57,7 +57,7 @@
     "routeName": "Gaston",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
-    "beta": "A gaston move is like pushing a door open, with your elbow pointing out. On this route, she will use a hold as a sidepull but with her thumb pointing down. This move heavily relies on shoulder strength and body positioning. Tell her to keep her body aligned with the arm that is performing the gaston.",
+    "beta": "Gaston（侧推）动作就像推开一扇门，手肘向外。在这条路线上，她需要像抓侧拉点一样，但拇指朝下。这个动作非常依赖肩部力量和身体姿态。告诉她要让身体与正在做Gaston动作的手臂保持在一条线上。",
     "holds": {
       "foot": ["109", "101", "21", "31"]
     },
@@ -75,7 +75,7 @@
     "routeName": "Flagging",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
-    "beta": "Flagging involves using one leg as a counterbalance to prevent swinging out, especially when hand and foot holds are on one side of the body. Encourage her to extend her free leg out to the side to keep her center of gravity stable as she reaches for the next hold.",
+    "beta": "Flagging（旗子腿）是指用一条腿作为配重来防止身体荡开，尤其是在手脚点都在身体一侧时。鼓励她将空闲的腿向外侧伸出，以便在伸手去抓下一个点时保持重心稳定。",
     "holds": {
       "foot": ["105", "106", "127", "1"]
     },
@@ -93,7 +93,7 @@
     "routeName": "Mantel",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
-    "beta": "A mantel is like getting out of a swimming pool without a ladder. She will need to push down on a hold, bringing her feet up to the same level. The final hold on this route is large enough to practice this. Coach her to transition from pulling to pushing, rotating her hand and elbow to get on top of the hold.",
+    "beta": "Mantel（翻上）动作就像没有梯子时从游泳池里爬出来。她需要向下按压一个点，同时把脚提到相同的高度。这条路线的结束点足够大，可以练习这个动作。指导她从拉的动作过渡到推的动作，转动手和手肘，让自己站到支点上。",
     "holds": {
       "foot": ["108", "107", "125", "18"]
     },
@@ -109,7 +109,7 @@
     "routeName": "Rock-Over",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
-    "beta": "This technique involves placing a foot high on a hold and committing weight onto that foot to stand up. Guide her to place her foot securely on the hold, then shift her hips and body weight over that foot to make the next hand move. It's a powerful leg-driven movement.",
+    "beta": "这个技巧需要将一只脚高高地踩在一个点上，然后将重心完全压在这只脚上站起来。引导她将脚稳稳地放在点上，然后移动臀部和身体重心到那只脚上，以便做出下一个手的动作。这是一个强大的由腿部驱动的动作。",
     "holds": {
       "foot": ["104", "32", "93", "b"]
     },
@@ -127,7 +127,7 @@
     "routeName": "Drop-Knee",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "A drop-knee helps to bring the hips closer to the wall for a longer reach on steep terrain. Instruct her to place a foot on a hold, then rotate her hip inwards so her knee points down. This rotation will bring her body into the wall and extend her reach with the opposite arm.",
+    "beta": "Drop-knee（别膝）有助于在陡峭的岩壁上让臀部更贴近墙壁，从而获得更长的伸展距离。指导她把脚踩在一个点上，然后向内旋转髋部，使膝盖朝下。这个旋转会把她的身体带向岩壁，并增加对侧手臂的伸展范围。",
     "holds": {
       "foot": ["101", "39", "102", "a"]
     },
@@ -145,7 +145,7 @@
     "routeName": "Pinch",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
-    "beta": "Pinch strength is fundamental. This route uses holds that must be squeezed between the thumb and fingers. Encourage a full grip, using the thumb actively. This builds hand and forearm strength. The key is to engage the thumb as much as the other fingers.",
+    "beta": "捏力是攀岩的基础。这条路线使用需要用拇指和手指共同发力挤压的支点。鼓励她使用全掌握法，并主动使用拇指。这能锻炼手部和前臂的力量。关键是让拇指和其他手指一样参与发力。",
     "holds": {
       "foot": ["106", "123", "124", "34"]
     },
@@ -163,7 +163,7 @@
     "routeName": "Crimping",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
-    "beta": "This route introduces small but positive edges that require a crimp grip. Teach her the 'open-hand' crimp first, where the fingers are bent but the thumb isn't wrapped over. This is a safer way to build finger strength. Focus on precise footwork to take weight off the hands.",
+    "beta": "这条路线引入了需要Crimp（扣点）握法的小但很积极的边。先教她'开指'握法，即手指弯曲但拇指不扣在食指上。这是建立手指力量更安全的方式。同时要专注于精准的脚法来减轻手上的重量。",
     "holds": {
       "foot": ["103", "39", "102", "21"]
     },
@@ -181,7 +181,7 @@
     "routeName": "Sloper",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "Slopers are rounded holds with no positive edge. The technique is to maximize surface contact. Tell her to keep her body weight low and directly under the hold, arms straight, and engage her core. It's about friction and body tension, not pulling power. Trusting the hold is key.",
+    "beta": "Sloper（斜面点）是圆滑且没有明确发力点的支点。技巧是最大化接触面积。告诉她保持身体重心低，并置于支点正下方，手臂伸直，并收紧核心。这关乎摩擦力和身体张力，而不是拉力。信任支点是关键。",
     "holds": {
       "foot": ["107", "106", "125", "1"]
     },
@@ -199,7 +199,7 @@
     "routeName": "Foot-Swap",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
-    "beta": "Efficiently swapping feet on a hold is a crucial skill. This route forces foot swaps on larger foot holds. Guide her to bring the new foot next to the one on the hold, then quickly and smoothly make the switch while keeping her hands stable. This improves footwork precision and balance.",
+    "beta": "在一个支点上高效地交换双脚是一项至关重要的技巧。这条路线会强制她在较大的脚点上进行换脚练习。指导她将要换上的脚放在当前脚的旁边，然后在保持双手稳定的同时，快速而平稳地完成切换。这能提高她脚法的精准度和平衡能力。",
     "holds": {
       "foot": ["104", "32", "124"]
     },
@@ -217,7 +217,7 @@
     "routeName": "Heel-Hook",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "A heel hook allows you to use your leg to pull your body upwards or sideways. On the big red hold, instruct her to place her heel securely, then actively pull with her hamstring to take weight off her arms and help her move up. This teaches her to use her whole body, not just her arms.",
+    "beta": "挂脚跟可以让你用腿部力量向上或向侧面拉动身体。在那个红色的大点上，指导她稳稳地挂上脚跟，然后主动用大腿后侧肌肉发力，以减轻手臂的负重并帮助自己向上移动。这能教会她使用整个身体而不仅仅是手臂。",
     "holds": {
       "foot": ["104", "122", "105"]
     },
@@ -234,7 +234,7 @@
     "routeName": "Traverse",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
-    "beta": "This route focuses on moving sideways. It helps build endurance and teaches efficient body positioning for horizontal movement. Encourage her to look ahead, plan her foot and hand sequences, and keep her hips close to the wall to conserve energy.",
+    "beta": "这条路线专注于横向移动。它有助于建立耐力，并教授高效的身体姿态以进行水平移动。鼓励她向前看，规划好手脚的顺序，并保持臀部靠近墙壁以节省能量。",
     "holds": {
       "foot": ["101", "39", "104", "32", "93", "127"]
     },
@@ -252,7 +252,7 @@
     "routeName": "High-Step",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
-    "beta": "This route requires bringing a foot up very high, close to the waist. This enhances flexibility and leg strength. Coach her to turn her hip out as she brings her foot up to gain extra height. The focus is on pushing hard with the high leg to make the next move.",
+    "beta": "这条路线需要把脚抬得非常高，接近腰部。这能增强柔韧性和腿部力量。指导她在抬脚时将髋部向外转，以获得额外的高度。重点是用高抬的腿用力蹬，来完成下一个动作。",
     "holds": {
       "foot": ["109", "101", "21"]
     },
@@ -270,7 +270,7 @@
     "routeName": "Matching-Hands",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
-    "beta": "This route features larger holds that allow for matching – placing both hands on the same hold to readjust for the next move. This is a fundamental skill for sequencing and repositioning. Guide her to make the match smoothly to set up for the reach to the next, more distant hold.",
+    "beta": "这条路线的特点是使用了较大的支点，允许并手——即将双手放在同一个点上，为下一个动作重新调整姿势。这是安排动作顺序和重新定位身体的基础技巧。引导她平稳地完成并手，为伸向下一个更远的点做好准备。",
     "holds": {
       "foot": ["108", "107", "106", "1"]
     },
@@ -288,7 +288,7 @@
     "routeName": "Dynamic-Movement",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "For this route, some moves are best done dynamically, or with a little 'pop'. Teach her to generate momentum from her legs and hips to propel her hand to the next hold, rather than trying to pull up statically. Start with small, controlled dynamic moves. It's about timing, not jumping wildly.",
+    "beta": "对于这条路线，有些动作最好是动态完成，或者说带一点“悠”一下的感觉。教她利用腿部和臀部产生动力，将手推向下一个点，而不是试图静态地把自己拉上去。从小的、有控制的动态移动开始。这关乎时机，而不是胡乱跳跃。",
     "holds": {
       "foot": ["39", "104", "32"]
     },
@@ -306,7 +306,7 @@
     "routeName": "Core-Tension",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "On an overhanging wall, keeping your feet from cutting loose is all about core tension. This route has moves that will try to pull her body away from the wall. Coach her to tighten her stomach and back muscles, creating a rigid link between her hands and feet. This is the key to climbing steep terrain.",
+    "beta": "在仰角墙上，防止双脚脱落的关键在于核心张力。这条路线的动作会试图将她的身体拉离墙面。指导她收紧腹部和背部肌肉，在手和脚之间建立一个刚性连接。这是攀爬陡峭地形的关键。",
     "holds": {
       "foot": ["104", "32", "93"]
     },
