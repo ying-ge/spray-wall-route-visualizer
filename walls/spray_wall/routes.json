@@ -1,5 +1,4 @@
 [
-  // ---------------- V0 Routes (6条) - 建立基础与乐趣 ----------------
   {
     "routeName": "Jug Ladder",
     "difficulty": "V0",
@@ -84,7 +83,6 @@
       { "hold_id": "114", "type": "finish", "hand": "right" }
     ]
   },
-  // ---------------- V1 Routes (6条) - 学习基本技巧 ----------------
   {
     "routeName": "High Step",
     "difficulty": "V1",
@@ -169,7 +167,6 @@
       { "hold_id": "73", "type": "finish", "hand": "right" }
     ]
   },
-  // ---------------- V2 Routes (6条) - 学习高级技巧 ----------------
   {
     "routeName": "Undercling",
     "difficulty": "V2",
