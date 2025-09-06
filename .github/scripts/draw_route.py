@@ -8,7 +8,7 @@ import sys
 import textwrap
 
 # --- 样式配置 ---
-# 【修改】为 beta_text_style 添加了 font_variation
+# 【修改】减小了 beta_text_style 的 wrap_width
 STYLE_CONFIG = {
     'start':       {'outline': (76, 175, 80, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
     'finish':      {'outline': (244, 67, 54, 255),  'shape': 'rectangle', 'text_color': (255, 255, 255)},
@@ -28,9 +28,9 @@ STYLE_CONFIG = {
         'font_path': "fonts/Oswald-Variable.ttf", 'font_size': 50, 'font_variation': 700 
     },
     'beta_text_style': {
-        'font_path': "fonts/NotoSansSC[wght].ttf", 'font_size': 40, 'font_variation': 700, # 700 是粗体
+        'font_path': "fonts/NotoSansSC[wght].ttf", 'font_size': 40, 'font_variation': 700,
         'fill_color': (255, 255, 255), 'background_color': (0, 0, 0),
-        'padding_x': 50, 'padding_y': 40, 'line_spacing': 15, 'wrap_width': 80
+        'padding_x': 50, 'padding_y': 40, 'line_spacing': 15, 'wrap_width': 35 # 从 80 减小到 35
     }
 }
 
@@ -59,28 +59,37 @@ def draw_hold(draw, center_xy, style, text=None, font=None):
         draw_text_with_outline(draw, (text_pos_x, text_pos_y), text, font, fill_color=style['text_color'], outline_color=(0, 0, 0, 255), outline_width=STYLE_CONFIG['text_outline_width'])
 
 def get_wrapped_text_size(draw, text, font, wrap_width, line_spacing):
-    lines = textwrap.wrap(text, width=wrap_width)
+    all_lines = []
+    for part in text.split('\n'):
+        all_lines.extend(textwrap.wrap(part, width=wrap_width, replace_whitespace=False))
+    
     max_line_width, total_text_height = 0, 0
-    for line in lines:
+    if not all_lines: return 0, 0
+
+    for line in all_lines:
         try: line_bbox = draw.textbbox((0, 0), line, font=font)
         except AttributeError: line_bbox = font.getbbox(line)
         line_width = line_bbox[2] - line_bbox[0]; line_height = line_bbox[3] - line_bbox[1]
         if line_width > max_line_width: max_line_width = line_width
         total_text_height += line_height
-    total_text_height += line_spacing * (len(lines) - 1)
+    total_text_height += line_spacing * (len(all_lines) - 1)
     return max_line_width, total_text_height
 
 def draw_wrapped_title(draw, text, font, style, image_size):
-    img_width, img_height = image_size; margin = style['margin']; line_spacing = style['line_spacing']
-    lines = textwrap.wrap(text, width=style['wrap_width'])
+    img_width, _ = image_size; margin = style['margin']; line_spacing = style['line_spacing']
+    
+    lines = []
+    for part in text.split('\n'):
+        lines.extend(textwrap.wrap(part, width=style['wrap_width'], replace_whitespace=False))
+
     block_width, block_height = get_wrapped_text_size(draw, text, font, style['wrap_width'], line_spacing)
-    start_x = img_width - block_width - margin; start_y = img_height - block_height - margin
+    start_x = img_width - block_width - margin; start_y = margin
     current_y = start_y
     for line in lines:
         try: line_bbox = draw.textbbox((0, 0), line, font=font)
         except AttributeError: line_bbox = font.getbbox(line)
         line_height = line_bbox[3] - line_bbox[1]
-        line_width = line_bbox[2] - line_bbox[0]; line_x = start_x + (block_width - line_width)
+        line_width = line_bbox[2] - line_bbox[0]; line_x = start_x + (block_width - line_width) # Right align
         draw_text_with_outline(draw, (line_x, current_y), line, font, style['fill_color'], style['outline_color'], style['outline_width'])
         current_y += line_height + line_spacing
 
@@ -94,7 +103,8 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     difficulty = route_data.get('difficulty', route_data.get('grade', 'N/A'))
     author = route_data.get('author', 'N/A')
     route_info_text = f"{route_name} | {difficulty} | by {author}"
-    draw_wrapped_title(draw, route_info_text, fonts['title'], title_style, image_part.size)
+    
+    # 标题现在画在底部扩展区域，所以这里先不画
 
     if 'holds' in route_data and 'foot' in route_data['holds']:
         for hold_id in route_data['holds']['foot']:
@@ -116,49 +126,77 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
                     draw_arrow(draw, prev_coords, center_xy)
                 prev_coords = center_xy
     
+    # --- 组合最终图片 ---
     final_image = image_part
-    beta_text = route_data.get('beta')
-    if beta_text:
-        beta_style = STYLE_CONFIG['beta_text_style']
-        beta_font = fonts['beta']
+    beta_text = route_data.get('beta', "")
+    
+    # 创建一个临时的画布来计算所有文本需要的高度
+    temp_draw = ImageDraw.Draw(Image.new('RGB', (1,1)))
+    title_style = STYLE_CONFIG['title_style']
+    beta_style = STYLE_CONFIG['beta_text_style']
+    
+    _, title_height = get_wrapped_text_size(temp_draw, route_info_text, fonts['title'], title_style['wrap_width'], title_style['line_spacing'])
+    _, beta_height = get_wrapped_text_size(temp_draw, beta_text, fonts['beta'], beta_style['wrap_width'], beta_style['line_spacing'])
+    
+    padding_top = beta_style['padding_y']
+    padding_bottom = beta_style['padding_y']
+    title_beta_spacing = 30 # 标题和beta之间的额外间距
+    
+    extra_height = title_height + beta_height + padding_top + padding_bottom + title_beta_spacing
+    
+    orig_width, orig_height = image_part.size
+    new_width, new_height = orig_width, orig_height + int(extra_height)
+    final_image = Image.new('RGB', (new_width, new_height), beta_style['background_color'])
+    
+    final_image.paste(image_part, (0, 0))
+    
+    # 在底部黑色区域绘制标题和beta
+    text_draw = ImageDraw.Draw(final_image)
+    
+    # 绘制标题 (居中)
+    current_y = orig_height + padding_top
+    title_lines = []
+    for part in route_info_text.split('\n'):
+        title_lines.extend(textwrap.wrap(part, width=title_style['wrap_width']))
+    
+    for line in title_lines:
+        try: line_bbox = text_draw.textbbox((0, 0), line, font=fonts['title'])
+        except AttributeError: line_bbox = fonts['title'].getbbox(line)
+        line_width = line_bbox[2] - line_bbox[0]
+        line_height = line_bbox[3] - line_bbox[1]
+        pos_x = (new_width - line_width) / 2
+        draw_text_with_outline(text_draw, (pos_x, current_y), line, fonts['title'], title_style['fill_color'], title_style['outline_color'], title_style['outline_width'])
+        current_y += line_height + title_style['line_spacing']
         
-        temp_draw = ImageDraw.Draw(Image.new('RGB', (1,1)))
-        _, text_height = get_wrapped_text_size(temp_draw, beta_text, beta_font, beta_style['wrap_width'], beta_style['line_spacing'])
-        extra_height = text_height + beta_style['padding_y'] * 2
-        
-        orig_width, orig_height = image_part.size
-        new_width, new_height = orig_width, orig_height + int(extra_height)
-        final_image = Image.new('RGB', (new_width, new_height), beta_style['background_color'])
-        
-        final_image.paste(image_part, (0, 0))
-        
-        beta_draw = ImageDraw.Draw(final_image)
-        current_y = orig_height + beta_style['padding_y']
-        for line in textwrap.wrap(beta_text, width=beta_style['wrap_width']):
-            try: line_bbox = beta_draw.textbbox((0, 0), line, font=beta_font)
-            except AttributeError: line_bbox = beta_font.getbbox(line)
-            line_height = line_bbox[3] - line_bbox[1]
-            beta_draw.text((beta_style['padding_x'], current_y), line, font=beta_font, fill=beta_style['fill_color'])
-            current_y += line_height + beta_style['line_spacing']
-            
+    current_y += title_beta_spacing
+    
+    # 【修改】绘制Beta文本（支持手动和自动换行）
+    beta_lines = []
+    for part in beta_text.split('\n'):
+        beta_lines.extend(textwrap.wrap(part, width=beta_style['wrap_width'], replace_whitespace=False))
+
+    for line in beta_lines:
+        try: line_bbox = text_draw.textbbox((0, 0), line, font=fonts['beta'])
+        except AttributeError: line_bbox = fonts['beta'].getbbox(line)
+        line_height = line_bbox[3] - line_bbox[1]
+        text_draw.text((beta_style['padding_x'], current_y), line, font=fonts['beta'], fill=beta_style['fill_color'])
+        current_y += line_height + beta_style['line_spacing']
+
     safe_filename = re.sub(r'[\\/*?:"<>|]', "", route_name)
     output_filename = f"{difficulty.replace(' ', '_')}_{safe_filename.replace(' ', '_')}.png"
     output_path = output_dir / output_filename
     final_image.save(output_path, 'PNG', optimize=True)
     print(f"  ✓ Saved: {output_path}")
 
-# --- 【修改】让 get_variational_font 同时处理 'wght' 轴 ---
 def get_variational_font(path, size, variation):
     font = ImageFont.truetype(path, size)
     try:
-        # 尝试使用 'wght' 轴来设置粗细，这对于 NotoSansSC[wght].ttf 生效
         font.set_variation_by_axis_name('wght', variation)
     except (AttributeError, TypeError):
         try:
-            # 如果失败，回退到按名称设置（例如 "Bold"），对 Oswald 生效
             font.set_variation_by_name("Bold")
         except (AttributeError, TypeError):
-             pass # 如果都不支持，则返回默认粗细
+             pass
     return font
 
 def process_all_routes(routes_db_path, holds_coords_path, base_image_path, output_dir):
@@ -177,11 +215,7 @@ def process_all_routes(routes_db_path, holds_coords_path, base_image_path, outpu
     try:
         main_style = STYLE_CONFIG['main_font_style']; fonts['main'] = get_variational_font(main_style['font_path'], main_style['font_size'], main_style['font_variation'])
         title_style = STYLE_CONFIG['title_style']; fonts['title'] = get_variational_font(title_style['font_path'], title_style['font_size'], title_style['font_variation'])
-        
-        # --- 【修改】使用通用的变体字体加载函数来加载 beta 字体 ---
-        beta_style = STYLE_CONFIG['beta_text_style']
-        fonts['beta'] = get_variational_font(beta_style['font_path'], beta_style['font_size'], beta_style['font_variation'])
-
+        beta_style = STYLE_CONFIG['beta_text_style']; fonts['beta'] = get_variational_font(beta_style['font_path'], beta_style['font_size'], beta_style['font_variation'])
     except IOError as e: print(f"错误: 字体文件未找到。请确保字体文件存在于 'fonts/' 目录下 - {e}", file=sys.stderr); sys.exit(1)
     output_dir.mkdir(parents=True, exist_ok=True)
     if not all_routes_data: print("数据库中没有找到任何线路。"); return
@@ -190,6 +224,7 @@ def process_all_routes(routes_db_path, holds_coords_path, base_image_path, outpu
         route_name = route_data.get('routeName', route_data.get('name', 'N/A')); print(f"[{i+1}/{len(all_routes_data)}] Drawing route: '{route_name}'")
         draw_single_route_image(route_data, holds_coords, base_image, fonts, output_dir)
     print("\nAll routes processed successfully!")
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="在攀岩墙底图上绘制线路并保存为图片。"); parser.add_argument("--routes_database_file", required=True, help="包含所有线路定义的 JSON 文件路径。"); parser.add_argument("--holds_coords_path", required=True, help="包含岩点坐标的 JSON 文件路径。"); parser.add_argument("--base_image_path", required=True, help="作为背景的攀岩墙图片路径。"); parser.add_argument("--output_dir", required=True, help="保存生成线路图片的目录。")
     args = parser.parse_args(); routes_db_path = Path(args.routes_database_file); holds_coords_path = Path(args.holds_coords_path); base_image_path = Path(args.base_image_path); output_dir = Path(args.output_dir)
