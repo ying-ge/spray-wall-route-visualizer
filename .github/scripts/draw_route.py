@@ -102,7 +102,7 @@ def draw_single_route_image(route_data, holds_coords, base_image, fonts, output_
     route_name = route_data.get('routeName', route_data.get('name', 'N/A'))
     difficulty = route_data.get('difficulty', route_data.get('grade', 'N/A'))
     author = route_data.get('author', 'N/A')
-    route_info_text = f"{route_name} | {difficulty} | by {author}"
+    route_info_text = f"{route_name} | {difficulty}"
     
     # 标题现在画在底部扩展区域，所以这里先不画
 
