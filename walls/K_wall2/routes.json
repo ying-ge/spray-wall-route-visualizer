@@ -3,54 +3,54 @@
     "routeName": "Flagging",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
-    "beta": "Practice outside flagging by letting the free leg swing for balance while moving left to right. Pay attention to body position and keep hips close to the wall. Focus on steady, balanced movement.",
+    "beta": "Practice outside flagging as you traverse from right to left and upward. Keep your hips close to the wall and use your free leg to balance when reaching across to the next hold. Focus on controlled, balanced movements.",
     "holds": {
-      "foot": ["51", "87", "92", "97", "100"]
+      "foot": ["56", "87", "93", "104", "109"]
     },
     "moves": [
-      { "hold_id": "42", "type": "start", "hand": "left" },
-      { "hold_id": "51", "type": "start", "hand": "right" },
-      { "hold_id": "48", "hand": "left" },
-      { "hold_id": "54", "hand": "right" },
-      { "hold_id": "74", "hand": "left" },
-      { "hold_id": "82", "hand": "right" },
-      { "hold_id": "83", "type": "finish", "hand": "both" }
+      { "hold_id": "51", "type": "start", "hand": "left" },
+      { "hold_id": "52", "type": "start", "hand": "right" },
+      { "hold_id": "56", "hand": "left" },
+      { "hold_id": "74", "hand": "right" },
+      { "hold_id": "78", "hand": "left" },
+      { "hold_id": "79", "hand": "right" },
+      { "hold_id": "14", "type": "finish", "hand": "both" }
     ]
   },
   {
     "routeName": "Matching",
-    "difficulty": "V0",
+    "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
-    "beta": "Work on matching hands on the same hold. Emphasize balance and smooth weight transitions as you match. Always keep three points of contact for stability.",
+    "beta": "Practice matching hands on the same hold while gradually moving upward. Try to keep three points of contact as you match and push through your legs to stand tall. Finish close to the top for a sense of accomplishment.",
     "holds": {
-      "foot": ["44", "55", "80", "91", "96"]
+      "foot": ["55", "92", "99", "110", "114"]
     },
     "moves": [
-      { "hold_id": "29", "type": "start", "hand": "left" },
-      { "hold_id": "36", "type": "start", "hand": "right" },
-      { "hold_id": "38", "hand": "left" },
-      { "hold_id": "74", "hand": "right" },
-      { "hold_id": "74", "hand": "left" },
-      { "hold_id": "81", "hand": "right" },
-      { "hold_id": "81", "type": "finish", "hand": "both" }
+      { "hold_id": "53", "type": "start", "hand": "left" },
+      { "hold_id": "54", "type": "start", "hand": "right" },
+      { "hold_id": "59", "hand": "left" },
+      { "hold_id": "73", "hand": "right" },
+      { "hold_id": "73", "hand": "left" },
+      { "hold_id": "13", "hand": "right" },
+      { "hold_id": "13", "type": "finish", "hand": "both" }
     ]
   },
   {
     "routeName": "Backstep",
-    "difficulty": "V1",
+    "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "Practice backstepping by rotating hips toward the wall and using the outside edge of the foot. Moves are close together and on the same side to ensure a natural flow.",
+    "beta": "Focus on using the backstep position by turning your hip toward the wall as you move upward and diagonally. This will help you conserve energy and maintain good balance. The finish is high to encourage a full extension.",
     "holds": {
-      "foot": ["53", "85", "92", "99", "104"]
+      "foot": ["62", "91", "98", "100", "116"]
     },
     "moves": [
-      { "hold_id": "32", "type": "start", "hand": "left" },
-      { "hold_id": "44", "type": "start", "hand": "right" },
-      { "hold_id": "41", "hand": "left" },
-      { "hold_id": "52", "hand": "right" },
-      { "hold_id": "73", "hand": "left" },
-      { "hold_id": "79", "hand": "right" },
-      { "hold_id": "85", "type": "finish", "hand": "both" }
+      { "hold_id": "62", "type": "start", "hand": "left" },
+      { "hold_id": "63", "type": "start", "hand": "right" },
+      { "hold_id": "67", "hand": "left" },
+      { "hold_id": "76", "hand": "right" },
+      { "hold_id": "78", "hand": "left" },
+      { "hold_id": "11", "hand": "right" },
+      { "hold_id": "11", "type": "finish", "hand": "both" }
     ]
   }
 ]
