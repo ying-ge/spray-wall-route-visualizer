@@ -1,314 +1,367 @@
 [
   {
-    "routeName": "Upward_Movement",
-    "difficulty": "V0",
+    "routeName": "The_Bridge",
+    "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
-    "beta": "This route focuses on fundamental upward movement. Encourage her to look for the next handhold before moving, and to use her legs to push up, rather than pulling with her arms. The holds are large and easy to grip, building confidence.",
+    "beta": "This route teaches how to transition between walls of different angles. The key move is crossing from the large yellow hold on the right to the hold on the left wall. Instruct her to get her feet high first, then twist her body and use the extension to get across the corner. This move is excellent for developing body coordination.",
     "holds": {
-      "foot": ["132", "124", "116", "109", "104"]
+      "foot": ["120", "113", "107", "104", "97"]
     },
     "moves": [
-      { "hold_id": "110", "type": "start", "hand": "left" },
-      { "hold_id": "103", "type": "start", "hand": "right" },
-      { "hold_id": "97", "hand": "left" },
-      { "hold_id": "90", "hand": "left" },
-      { "hold_id": "84", "hand": "right" },
-      { "hold_id": "80", "hand": "left" },
-      { "hold_id": "75", "hand": "right" },
+      { "hold_id": "34", "type": "start", "hand": "left" },
+      { "hold_id": "35", "type": "start", "hand": "right" },
+      { "hold_id": "26", "hand": "left" },
+      { "hold_id": "19", "hand": "right" },
+      { "hold_id": "73", "hand": "left" },
+      { "hold_id": "72", "hand": "right" },
       { "hold_id": "71", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Side_Traversal",
-    "difficulty": "V0",
+    "routeName": "Precision_Feet",
+    "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
-    "beta": "This line teaches basic side-to-side movement. Guide her to match hands on the larger hold mid-way, and to shift her hips over her feet to stay balanced as she moves sideways. It's a great introduction to traversing.",
+    "beta": "This route emphasizes precise footwork. The handholds are good, but the footholds are smaller. Coach her to look at her foot until it's perfectly placed on the hold. This teaches trust in her feet and improves balance.",
     "holds": {
-      "foot": ["128", "129", "136", "137", "138"]
+      "foot": ["139", "131", "122", "69", "67"]
     },
     "moves": [
-      { "hold_id": "113", "type": "start", "hand": "left" },
-      { "hold_id": "108", "type": "start", "hand": "right" },
-      { "hold_id": "107", "hand": "left" },
-      { "hold_id": "106", "hand": "right" },
-      { "hold_id": "105", "hand": "left" },
-      { "hold_id": "99", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Weight_Shifting",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Focus on teaching her to shift her body weight from one foot to the other. Before each hand move, she should make sure her weight is securely on the opposite foot, making it feel easier to reach the next hold.",
-    "holds": {
-      "foot": ["129", "130", "131", "68", "69"]
-    },
-    "moves": [
-      { "hold_id": "63", "type": "start", "hand": "left" },
+      { "hold_id": "65", "type": "start", "hand": "left" },
       { "hold_id": "64", "type": "start", "hand": "right" },
-      { "hold_id": "58", "hand": "left" },
-      { "hold_id": "61", "hand": "right" },
-      { "hold_id": "54", "hand": "left" },
+      { "hold_id": "59", "hand": "left" },
       { "hold_id": "55", "hand": "right" },
-      { "hold_id": "49", "type": "finish", "hand": "both" }
+      { "hold_id": "49", "hand": "left" },
+      { "hold_id": "44", "hand": "right" },
+      { "hold_id": "38", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "High_Steps",
-    "difficulty": "V0",
+    "routeName": "Corner_Crossing",
+    "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "This route encourages lifting the feet high. Coach her to trust her feet on small-looking but positive holds and to drive up powerfully with her legs. This builds leg strength and flexibility.",
+    "beta": "This route traverses from the steeper left wall to the right wall, posing a good challenge for core strength and balance. When reaching from the large blue hold on the left to the hold on the right, guide her to keep her center of gravity close to the wall and use one leg to 'flag' for balance, preventing her body from swinging outward like a barn door.",
     "holds": {
-      "foot": ["145", "146", "137", "129", "122"]
+      "foot": ["109", "103", "97", "98", "99"]
     },
     "moves": [
-      { "hold_id": "114", "type": "start", "hand": "left" },
-      { "hold_id": "66", "type": "start", "hand": "right" },
-      { "hold_id": "62", "hand": "left" },
-      { "hold_id": "59", "hand": "right" },
-      { "hold_id": "53", "hand": "left" },
-      { "hold_id": "48", "type": "finish", "hand": "both" }
+      { "hold_id": "80", "type": "start", "hand": "left" },
+      { "hold_id": "81", "type": "start", "hand": "right" },
+      { "hold_id": "83", "hand": "left" },
+      { "hold_id": "87", "hand": "right" },
+      { "hold_id": "50", "hand": "left" },
+      { "hold_id": "45", "hand": "right" },
+      { "hold_id": "35", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Reaching_Practice",
-    "difficulty": "V0",
+    "routeName": "Diagonal_Shift",
+    "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "Designed to practice reaching moves. The holds are good, but slightly farther apart. Remind her to straighten her arms, turn her hip into the wall, and reach with her whole body, not just her arm.",
+    "beta": "This is a diagonal route that requires a key 'Heel Hook' technique. When she reaches the large blue hold (#83), guide her to hook her heel on it and pull hard. This will significantly unweight her arms and help her move stably to the right wall. It's an excellent opportunity to learn how to use leg power to complete difficult moves.",
     "holds": {
-      "foot": ["143", "144", "135", "127"]
-    },
-    "moves": [
-      { "hold_id": "111", "type": "start", "hand": "left" },
-      { "hold_id": "112", "type": "start", "hand": "right" },
-      { "hold_id": "101", "hand": "left" },
-      { "hold_id": "95", "hand": "right" },
-      { "hold_id": "88", "hand": "left" },
-      { "hold_id": "89", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Mantling_Intro",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "This route introduces the concept of a mantle, or 'press-up' move. On the large green hold, she'll need to press down with her hands to bring her feet up, similar to getting out of a swimming pool. It's a key skill for topping out.",
-    "holds": {
-      "foot": ["141", "132", "125", "117"]
-    },
-    "moves": [
-      { "hold_id": "40", "type": "start", "hand": "left" },
-      { "hold_id": "41", "type": "start", "hand": "right" },
-      { "hold_id": "39", "hand": "left" },
-      { "hold_id": "36", "hand": "right" },
-      { "hold_id": "29", "hand": "left" },
-      { "hold_id": "31", "hand": "right" },
-      { "hold_id": "24", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Flagging",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "The diagonal nature of this route is perfect for practicing 'flagging'—using one leg as a counterbalance. Encourage her to swing her free leg out to the side to prevent her body from swinging away from the wall (barn-dooring).",
-    "holds": {
-      "foot": ["124", "115", "103", "98"]
+      "foot": ["115", "109", "104", "105", "100"]
     },
     "moves": [
       { "hold_id": "92", "type": "start", "hand": "left" },
       { "hold_id": "91", "type": "start", "hand": "right" },
+      { "hold_id": "83", "hand": "left" },
+      { "hold_id": "51", "hand": "right" },
+      { "hold_id": "48", "hand": "left" },
+      { "hold_id": "44", "hand": "right" },
+      { "hold_id": "25", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Sustained_Overhang",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "beta": "A longer route on the steeper left wall to build endurance. Encourage her to climb at a steady pace and to look for resting positions, like straightening her arms. This will teach her how to manage energy on overhanging terrain.",
+    "holds": {
+      "foot": ["124", "116", "109", "104", "97"]
+    },
+    "moves": [
+      { "hold_id": "90", "type": "start", "hand": "left" },
+      { "hold_id": "92", "type": "start", "hand": "right" },
       { "hold_id": "85", "hand": "left" },
+      { "hold_id": "81", "hand": "right" },
+      { "hold_id": "78", "hand": "left" },
+      { "hold_id": "76", "hand": "right" },
+      { "hold_id": "72", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Gaston_Press",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This route features a challenging 'gaston' move, where you push against a side-facing hold. Guide her to keep her elbow high and her body close to the wall, using shoulder power to press into the move.",
+    "holds": {
+      "foot": ["126", "119", "112", "107", "101"]
+    },
+    "moves": [
+      { "hold_id": "100", "type": "start", "hand": "left" },
+      { "hold_id": "96", "type": "start", "hand": "right" },
+      { "hold_id": "94", "hand": "left" },
+      { "hold_id": "89", "hand": "right" },
+      { "hold_id": "43", "hand": "left" },
+      { "hold_id": "34", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Sloper_Traverse",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "beta": "A tricky traverse using slopy holds. The key is body position. Coach her to keep her weight directly under the holds, stay low, and engage her core to maximize friction and prevent her hands from slipping.",
+    "holds": {
+      "foot": ["121", "130", "138", "148", "149"]
+    },
+    "moves": [
+      { "hold_id": "57", "type": "start", "hand": "left" },
+      { "hold_id": "56", "type": "start", "hand": "right" },
+      { "hold_id": "36", "hand": "left" },
+      { "hold_id": "22", "hand": "right" },
+      { "hold_id": "21", "hand": "left" },
+      { "hold_id": "13", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "High_Heel_Hook",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This route requires a high and flexible heel hook to progress. Guide her to bring her heel up onto the large hold, then to pull with her hamstring to rock her body upwards, making the next reach feel effortless.",
+    "holds": {
+      "foot": ["115", "124"]
+    },
+    "moves": [
+      { "hold_id": "103", "type": "start", "hand": "left" },
+      { "hold_id": "98", "type": "start", "hand": "right" },
+      { "hold_id": "93", "hand": "left" },
       { "hold_id": "83", "hand": "right" },
       { "hold_id": "76", "hand": "left" },
       { "hold_id": "73", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Twist_Lock",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "This route teaches the 'twist-lock' or 'drop-knee' technique. To make the reach to the next hold, guide her to turn her hip towards the wall and drop the same-side knee down. This brings her center of gravity closer to the wall and extends her reach.",
-    "holds": {
-      "foot": ["133", "126", "118", "107"]
-    },
-    "moves": [
-      { "hold_id": "100", "type": "start", "hand": "left" },
-      { "hold_id": "102", "type": "start", "hand": "right" },
-      { "hold_id": "94", "hand": "left" },
-      { "hold_id": "87", "hand": "right" },
-      { "hold_id": "82", "hand": "left" },
-      { "hold_id": "79", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Undercling",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "This route introduces underclings. Coach her to get her feet high and her body low to use the undercling hold effectively. The goal is to pull outwards and upwards on the hold, creating tension that keeps her on the wall.",
-    "holds": {
-      "foot": ["120", "128", "122", "67"]
-    },
-    "moves": [
-      { "hold_id": "63", "type": "start", "hand": "left" },
-      { "hold_id": "65", "type": "start", "hand": "right" },
-      { "hold_id": "60", "hand": "left" },
-      { "hold_id": "51", "hand": "right" },
-      { "hold_id": "52", "hand": "left" },
-      { "hold_id": "47", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Sidepull",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "This route focuses on using sidepulls. Teach her to maintain tension by leaning away from the hold, creating an opposing force. Body position is key; she needs to keep her center of gravity low and to the side.",
-    "holds": {
-      "foot": ["134", "125", "116", "110"]
-    },
-    "moves": [
-      { "hold_id": "103", "type": "start", "hand": "left" },
-      { "hold_id": "104", "type": "start", "hand": "right" },
-      { "hold_id": "96", "hand": "left" },
-      { "hold_id": "93", "hand": "right" },
-      { "hold_id": "78", "hand": "left" },
-      { "hold_id": "74", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Gaston",
+    "routeName": "Toe_Hook_Catch",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "Here we introduce the 'gaston' move, which feels like prying open an elevator door. She will use a side-facing hold with her thumb down, pushing away from it. This move relies on shoulder strength and body tension.",
+    "beta": "This line introduces a toe hook to control a potential swing. As she moves across, she can hook her toe around the side of a large hold to keep her body from swinging out. It's a subtle but powerful technique.",
     "holds": {
-      "foot": ["121", "130", "68", "66"]
+      "foot": ["120", "128", "136"]
     },
     "moves": [
-      { "hold_id": "57", "type": "start", "hand": "left" },
-      { "hold_id": "56", "type": "start", "hand": "right" },
-      { "hold_id": "50", "hand": "left" },
-      { "hold_id": "43", "hand": "right" },
-      { "hold_id": "45", "hand": "left" },
-      { "hold_id": "35", "type": "finish", "hand": "both" }
+      { "hold_id": "114", "type": "start", "hand": "left" },
+      { "hold_id": "113", "type": "start", "hand": "right" },
+      { "hold_id": "57", "hand": "left" },
+      { "hold_id": "52", "hand": "right" },
+      { "hold_id": "47", "hand": "left" },
+      { "hold_id": "46", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Dynamic_Movement",
+    "routeName": "Advanced_Drop_Knee",
     "difficulty": "V2",
     "author": "Gemini 2.5 Pro",
-    "beta": "This route encourages a more dynamic style. The holds are spaced to promote a small, controlled jump or 'pop'. Coach her to bend her knees and explode upwards, coordinating the push from her legs with the pull from her arms.",
+    "beta": "This route requires a deep drop-knee (or 'twist-lock') to unlock a long reach. Encourage her to really pivot her hip into the wall and drop her knee down low. This rotation is key to extending her reach significantly.",
     "holds": {
-      "foot": ["117", "125", "133"]
-    },
-    "moves": [
-      { "hold_id": "32", "type": "start", "hand": "left" },
-      { "hold_id": "33", "type": "start", "hand": "right" },
-      { "hold_id": "26", "hand": "left" },
-      { "hold_id": "19", "hand": "right" },
-      { "hold_id": "10", "hand": "left" },
-      { "hold_id": "9", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Pinch_Strength",
-    "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "A great route for developing pinch strength. The holds require squeezing with the thumb against the fingers. Remind her to wrap her thumb as much as possible and engage her core to stop from swinging out.",
-    "holds": {
-      "foot": ["142", "133", "126", "119"]
+      "foot": ["143", "134", "126", "118"]
     },
     "moves": [
       { "hold_id": "111", "type": "start", "hand": "left" },
       { "hold_id": "110", "type": "start", "hand": "right" },
-      { "hold_id": "28", "hand": "left" },
-      { "hold_id": "27", "hand": "right" },
+      { "hold_id": "95", "hand": "left" },
+      { "hold_id": "88", "hand": "right" },
+      { "hold_id": "82", "hand": "left" },
+      { "hold_id": "19", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Cross_Body_Tension",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This route involves 'cross-through' moves where one hand crosses over the other. This requires core tension to control the body's rotation. Remind her to keep her core tight to prevent swinging.",
+    "holds": {
+      "foot": ["135", "127", "120", "113"]
+    },
+    "moves": [
+      { "hold_id": "108", "type": "start", "hand": "left" },
+      { "hold_id": "102", "type": "start", "hand": "right" },
+      { "hold_id": "95", "hand": "left" },
+      { "hold_id": "50", "hand": "right" },
+      { "hold_id": "45", "hand": "left" },
+      { "hold_id": "41", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Lock_Off_Strength",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This route is designed to build lock-off strength: the ability to hold the body in place with one bent arm while reaching with the other. The moves are spaced to encourage this. Short, powerful movements are key.",
+    "holds": {
+      "foot": ["140", "131", "123", "68"]
+    },
+    "moves": [
+      { "hold_id": "62", "type": "start", "hand": "left" },
+      { "hold_id": "61", "type": "start", "hand": "right" },
+      { "hold_id": "29", "hand": "left" },
+      { "hold_id": "24", "hand": "right" },
+      { "hold_id": "16", "hand": "left" },
+      { "hold_id": "17", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Stemming_Corner",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This route forces the use of the corner by 'stemming'—pushing with feet and hands on opposing walls. Coach her to create pressure in opposite directions to stay balanced in the corner before moving up.",
+    "holds": {
+      "foot": ["125", "117", "118", "106", "107"]
+    },
+    "moves": [
+      { "hold_id": "33", "type": "start", "hand": "left" },
+      { "hold_id": "34", "type": "start", "hand": "right" },
       { "hold_id": "20", "hand": "left" },
-      { "hold_id": "16", "hand": "right" },
+      { "hold_id": "73", "hand": "right" },
+      { "hold_id": "10", "hand": "left" },
+      { "hold_id": "72", "hand": "right" },
+      { "hold_id": "1", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Campus_Bump",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This introduces a 'campus bump', a hand-over-hand move on the same hold. She will need to match hands on the hold, then move one hand up again to a higher hold. It requires coordination and upper body strength.",
+    "holds": {
+      "foot": ["142", "133", "125"]
+    },
+    "moves": [
+      { "hold_id": "112", "type": "start", "hand": "left" },
+      { "hold_id": "101", "type": "start", "hand": "right" },
+      { "hold_id": "95", "hand": "left" },
+      { "hold_id": "89", "hand": "right" },
+      { "hold_id": "83", "hand": "left" },
+      { "hold_id": "83", "hand": "right" },
+      { "hold_id": "19", "hand": "right" },
+      { "hold_id": "11", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Dyno_Commit",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This route culminates in a dynamic move ('dyno') to a large finishing hold. Coach her to aim for the target, bend her legs deeply, and then explode upwards with full commitment. It's about timing and power, not just reach.",
+    "holds": {
+      "foot": ["145", "137", "129"]
+    },
+    "moves": [
+      { "hold_id": "60", "type": "start", "hand": "left" },
+      { "hold_id": "58", "type": "start", "hand": "right" },
+      { "hold_id": "51", "hand": "left" },
+      { "hold_id": "43", "hand": "right" },
+      { "hold_id": "36", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Compression_Power",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This route requires 'compression' climbing, which involves squeezing holds on either side of a feature. Teach her to engage her chest and back muscles to squeeze the holds together, creating the stability needed to move up.",
+    "holds": {
+      "foot": ["109", "104", "97"]
+    },
+    "moves": [
+      { "hold_id": "91", "type": "start", "hand": "left" },
+      { "hold_id": "85", "type": "start", "hand": "right" },
+      { "hold_id": "82", "hand": "left" },
+      { "hold_id": "79", "hand": "right" },
+      { "hold_id": "74", "hand": "left" },
+      { "hold_id": "18", "hand": "right" },
+      { "hold_id": "73", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Bicycle_Balance",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This route teaches the 'bicycle' technique, using both feet on a hold by pushing with one and pulling with the other. This creates immense stability on steep terrain. Guide her to place both the toe and the heel of her shoes on the large hold to lock her body in place.",
+    "holds": {
+      "foot": ["116", "124"]
+    },
+    "moves": [
+      { "hold_id": "103", "type": "start", "hand": "left" },
+      { "hold_id": "105", "type": "start", "hand": "right" },
+      { "hold_id": "99", "hand": "left" },
+      { "hold_id": "83", "hand": "right" },
+      { "hold_id": "76", "hand": "left" },
+      { "hold_id": "19", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Arete_Mastery",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This line forces climbing on the arete (the outside corner), using a combination of slaps, pinches, and compression. The key is to keep the body's center of gravity on the opposite side of the arete to maintain balance.",
+    "holds": {
+      "foot": ["141", "132", "124", "115"]
+    },
+    "moves": [
+      { "hold_id": "32", "type": "start", "hand": "left" },
+      { "hold_id": "26", "type": "start", "hand": "right" },
+      { "hold_id": "18", "hand": "left" },
+      { "hold_id": "11", "hand": "right" },
+      { "hold_id": "9", "hand": "left" },
+      { "hold_id": "2", "hand": "right" },
+      { "hold_id": "1", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Power_Undercling",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "A powerful move revolving around a difficult undercling. She will need to get her feet very high and generate a lot of body tension to pull through the move. It's a test of core strength and belief in the hold.",
+    "holds": {
+      "foot": ["128", "120", "114", "63"]
+    },
+    "moves": [
+      { "hold_id": "57", "type": "start", "hand": "left" },
+      { "hold_id": "56", "type": "start", "hand": "right" },
+      { "hold_id": "51", "hand": "left" },
+      { "hold_id": "29", "hand": "right" },
+      { "hold_id": "22", "hand": "left" },
+      { "hold_id": "14", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Pocket_Dyno",
+    "difficulty": "V3",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This combines pocket pulling with dynamic movement. The goal is a precise, dynamic move to a pocket. Coach her to be accurate with her hand placement and to generate power from her legs, not just her arms.",
+    "holds": {
+      "foot": ["137", "130", "68"]
+    },
+    "moves": [
+      { "hold_id": "61", "type": "start", "hand": "left" },
+      { "hold_id": "53", "type": "start", "hand": "right" },
+      { "hold_id": "42", "hand": "left" },
+      { "hold_id": "31", "hand": "right" },
       { "hold_id": "7", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Sloper_Control",
-    "difficulty": "V2",
+    "routeName": "The_Rose_Move",
+    "difficulty": "V3",
     "author": "Gemini 2.5 Pro",
-    "beta": "This one is all about slopers. Teach her to find the best part of the hold, keep her body weight directly underneath it, and maintain a bent arm to maximize friction. It's more about body position than pure finger strength.",
+    "beta": "An advanced cross-body move where the body turns almost completely sideways to make a long reach. It requires significant core strength and body awareness. She'll need to pivot on her feet and twist her torso through the move.",
     "holds": {
-      "foot": ["147", "138", "130", "121"]
+      "foot": ["116", "110", "104", "98"]
     },
     "moves": [
-      { "hold_id": "65", "type": "start", "hand": "left" },
-      { "hold_id": "62", "type": "start", "hand": "right" },
-      { "hold_id": "57", "hand": "left" },
-      { "hold_id": "36", "hand": "right" },
-      { "hold_id": "22", "hand": "left" },
-      { "hold_id": "14", "hand": "right" },
-      { "hold_id": "6", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Heel_Hook_Basics",
-    "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "An introduction to the heel hook. The large blue hold is perfect for this. Guide her to place her heel on the hold and pull with her leg. This will help her take weight off her arms and easily reach the next hold.",
-    "holds": {
-      "foot": ["124", "115"]
-    },
-    "moves": [
-      { "hold_id": "91", "type": "start", "hand": "left" },
-      { "hold_id": "93", "type": "start", "hand": "right" },
-      { "hold_id": "83", "hand": "left" },
-      { "hold_id": "78", "hand": "right" },
-      { "hold_id": "72", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Pocket_Pulling",
-    "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "This route features pockets. Teach her to use her strongest fingers (usually middle and ring) and to pull straight down. It's important to build finger strength gradually and listen to her body to avoid injury.",
-    "holds": {
-      "foot": ["136", "129", "122", "68"]
-    },
-    "moves": [
-      { "hold_id": "61", "type": "start", "hand": "left" },
-      { "hold_id": "58", "type": "start", "hand": "right" },
-      { "hold_id": "53", "hand": "left" },
-      { "hold_id": "46", "hand": "right" },
-      { "hold_id": "42", "hand": "left" },
-      { "hold_id": "38", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Crimp_Control",
-    "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "This route introduces small but positive crimps. Encourage an 'open-hand' grip rather than a 'full crimp' (thumb over index finger) to build strength safely. The focus is on precise footwork and body tension to make the holds feel bigger.",
-    "holds": {
-      "foot": ["148", "140", "131", "69"]
-    },
-    "moves": [
-      { "hold_id": "67", "type": "start", "hand": "left" },
-      { "hold_id": "66", "type": "start", "hand": "right" },
-      { "hold_id": "37", "hand": "left" },
-      { "hold_id": "30", "hand": "right" },
-      { "hold_id": "23", "hand": "left" },
-      { "hold_id": "15", "hand": "right" },
-      { "hold_id": "8", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Body_Tension_Traverse",
-    "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "A challenging traverse on the steeper wall that requires constant body tension. Coach her to keep her core tight and her feet pressed into the wall. This prevents her feet from cutting loose on the overhang.",
-    "holds": {
-      "foot": ["132", "124", "116", "109"]
-    },
-    "moves": [
-      { "hold_id": "104", "type": "start", "hand": "left" },
-      { "hold_id": "98", "type": "start", "hand": "right" },
-      { "hold_id": "92", "hand": "left" },
-      { "hold_id": "85", "hand": "right" },
-      { "hold_id": "81", "hand": "left" },
-      { "hold_id": "77", "type": "finish", "hand": "both" }
+      { "hold_id": "92", "type": "start", "hand": "left" },
+      { "hold_id": "85", "type": "start", "hand": "right" },
+      { "hold_id": "27", "hand": "left" },
+      { "hold_id": "12", "hand": "right" },
+      { "hold_id": "4", "hand": "left" },
+      { "hold_id": "5", "type": "finish", "hand": "both" }
     ]
   }
 ]
