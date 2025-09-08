@@ -1,116 +1,155 @@
 [
   {
-    "routeName": "Crimson_Dynamite",
-    "difficulty": "V3-V4",
+    "routeName": "Smearing_101",
+    "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
-    "beta": "This is a route that tests finger strength and explosive power. After starting, you need to handle several small crimps in a row, then make a small dynamic move from hold #29 to grab #22. The key is to stabilize the body before launching, using leg power to push precisely, rather than just pulling with the arms. This is great for training her ability to release power in a controlled manner.",
+    "beta": "This route teaches 'smearing,' the art of trusting your shoe's rubber on the wall itself when no footholds are available. The handholds are great, but the footholds are intentionally sparse. Encourage her to press her foot flat against the wall surface, creating friction. This is a fundamental skill for balance and is crucial for climbing on slabs.",
     "holds": {
-      "foot": ["147", "139", "131", "122"]
+      "foot": ["140", "131"]
     },
     "moves": [
-      { "hold_id": "67", "type": "start", "hand": "left" },
-      { "hold_id": "66", "type": "start", "hand": "right" },
-      { "hold_id": "59", "hand": "left" },
-      { "hold_id": "53", "hand": "right" },
-      { "hold_id": "29", "hand": "left" },
-      { "hold_id": "22", "hand": "right" },
-      { "hold_id": "14", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Core_Lock_Overhang",
-    "difficulty": "V4",
-    "author": "Gemini 2.5 Pro",
-    "beta": "This line is on the 20-degree overhanging wall and is a major test of core strength and lock-off power. The move from #91 to #82 is the first crux, requiring strong body tension to control any swing. The move from #82 to #19 is the main crux of the route, demanding a powerful lock-off from the left arm, while using a high heel hook on #92 or #98 to assist the move.",
-    "holds": {
-      "foot": ["115", "109", "104", "98", "92"]
-    },
-    "moves": [
-      { "hold_id": "90", "type": "start", "hand": "left" },
-      { "hold_id": "91", "type": "start", "hand": "right" },
-      { "hold_id": "82", "hand": "left" },
-      { "hold_id": "78", "hand": "right" },
-      { "hold_id": "19", "hand": "left" },
-      { "hold_id": "10", "hand": "right" },
-      { "hold_id": "9", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Sloper_Compression",
-    "difficulty": "V4-V5",
-    "author": "Gemini 2.5 Pro",
-    "beta": "This is the hardest line so far, combining a roof transition with very poor-friction slopers. The key is to use compression to 'squeeze' holds #36 and #21. She needs to fully trust her body position, keep her center of gravity low, and use her entire palm on the slopers to maximize friction. Completing this move requires top-tier body tension and technique.",
-    "holds": {
-      "foot": ["128", "121", "130", "138"]
-    },
-    "moves": [
-      { "hold_id": "57", "type": "start", "hand": "left" },
-      { "hold_id": "56", "type": "start", "hand": "right" },
-      { "hold_id": "51", "hand": "left" },
-      { "hold_id": "36", "hand": "right" },
-      { "hold_id": "21", "hand": "left" },
-      { "hold_id": "13", "hand": "right" },
-      { "hold_id": "6", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "The_Guillotine",
-    "difficulty": "V5",
-    "author": "Gemini 2.5 Pro",
-    "beta": "This route is a pure power-endurance test on the 20-degree wall. The crux involves a powerful, committing move from the small holds (#77, #82) to the big yellow pinch (#19). Success requires a huge lock-off or a precisely timed dynamic lunge. Controlling the swing after catching the pinch is key. A well-placed heel hook on #83 might be the secret to unlocking the sequence.",
-    "holds": {
-      "foot": ["115", "109", "104", "98", "92"]
-    },
-    "moves": [
-      { "hold_id": "90", "type": "start", "hand": "left" },
-      { "hold_id": "92", "type": "start", "hand": "right" },
-      { "hold_id": "81", "hand": "left" },
-      { "hold_id": "82", "hand": "right" },
-      { "hold_id": "77", "hand": "left" },
-      { "hold_id": "19", "hand": "right" },
-      { "hold_id": "11", "hand": "left" },
-      { "hold_id": "4", "hand": "right" },
-      { "hold_id": "5", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Balance_of_Power",
-    "difficulty": "V4",
-    "author": "Gemini 2.5 Pro",
-    "beta": "A technical masterpiece on the 15-degree wall that will test her balance and finger strength. The route flows through a series of slopers and sidepulls. The crux is a delicate dance involving poor footholds and body positioning to navigate the slopers around #49 and #47. It's less about raw power and more about finesse and trusting friction.",
-    "holds": {
-      "foot": ["121", "130", "69", "70", "139"]
-    },
-    "moves": [
-      { "hold_id": "64", "type": "start", "hand": "left" },
-      { "hold_id": "65", "type": "start", "hand": "right" },
-      { "hold_id": "61", "hand": "left" },
-      { "hold_id": "59", "hand": "right" },
-      { "hold_id": "54", "hand": "left" },
+      { "hold_id": "62", "type": "start", "hand": "left" },
+      { "hold_id": "61", "type": "start", "hand": "right" },
+      { "hold_id": "55", "hand": "left" },
       { "hold_id": "49", "hand": "right" },
-      { "hold_id": "47", "hand": "left" },
-      { "hold_id": "44", "hand": "right" },
-      { "hold_id": "25", "type": "finish", "hand": "both" }
+      { "hold_id": "44", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "World_Ender",
-    "difficulty": "V5-V6",
+    "routeName": "Rock_Over_Drill",
+    "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
-    "beta": "This is the ultimate challenge on this wall—a low, powerful, and long traverse from the far right to the far left. It demands supreme power endurance and a full toolkit of techniques. The crux is a desperate, barn-dooring move crossing the central corner, transitioning from the sloper (#36) to the sidepull (#87). Maintaining body tension and finding micro-rests will be the only way to survive this epic journey.",
+    "beta": "The focus here is the 'rock-over' move. This involves placing a foot high on a hold and then committing your body weight over that foot to stand up. The crux is moving from #63 to #58. Guide her to place her foot high on #129, then straighten that leg to 'rock' her body upwards, making the reach to #58 feel easy. It's about commitment and balance.",
     "holds": {
-      "foot": ["129", "136", "127", "135", "133", "124", "116"]
+      "foot": ["137", "129", "122", "68"]
     },
     "moves": [
-      { "hold_id": "70", "type": "start", "hand": "left" },
-      { "hold_id": "69", "type": "start", "hand": "right" },
-      { "hold_id": "63", "hand": "left" },
-      { "hold_id": "36", "hand": "right" },
-      { "hold_id": "87", "hand": "left" },
-      { "hold_id": "83", "hand": "right" },
+      { "hold_id": "63", "type": "start", "hand": "left" },
+      { "hold_id": "64", "type": "start", "hand": "right" },
+      { "hold_id": "58", "hand": "left" },
+      { "hold_id": "52", "hand": "right" },
+      { "hold_id": "48", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Layback_Intro",
+    "difficulty": "V1",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This route introduces the 'layback' technique. The holds #27 and #28 form a vertical feature like a crack. Teach her to pull sideways on these holds with her hands while pushing against the wall with her feet in opposition. The key is to keep her arms straight and her body away from the wall, creating a balanced tension.",
+    "holds": {
+      "foot": ["126", "119", "112"]
+    },
+    "moves": [
+      { "hold_id": "33", "type": "start", "hand": "left" },
+      { "hold_id": "34", "type": "start", "hand": "right" },
+      { "hold_id": "27", "hand": "left" },
+      { "hold_id": "28", "hand": "right" },
+      { "hold_id": "20", "hand": "left" },
+      { "hold_id": "12", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Static_Control",
+    "difficulty": "V1",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Unlike dynamic moves, this route is all about slow, controlled, and precise 'static' movement. The holds are smaller but positive. The goal is to move with zero momentum, twisting the hips and shifting weight carefully between each move. This builds immense body awareness and control.",
+    "holds": {
+      "foot": ["110", "104", "98", "91"]
+    },
+    "moves": [
+      { "hold_id": "85", "type": "start", "hand": "left" },
+      { "hold_id": "84", "type": "start", "hand": "right" },
+      { "hold_id": "81", "hand": "left" },
+      { "hold_id": "79", "hand": "right" },
+      { "hold_id": "78", "hand": "left" },
+      { "hold_id": "74", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Down_Climbing",
+    "difficulty": "V1",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Climbing down is a crucial and often overlooked skill. This route is designed to be climbed up and then safely down. When downclimbing, the focus is on looking down for your footholds first, maintaining three points of contact, and using your legs to absorb the movement. It's a great way to build confidence and endurance.",
+    "holds": {
+      "foot": ["124", "116", "109", "103", "97"]
+    },
+    "moves": [
+      { "hold_id": "90", "type": "start", "hand": "left" },
+      { "hold_id": "84", "type": "start", "hand": "right" },
       { "hold_id": "80", "hand": "left" },
       { "hold_id": "75", "hand": "right" },
       { "hold_id": "71", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Knee_Bar_Crux",
+    "difficulty": "V4",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This problem introduces the 'knee bar'. The crux involves getting from the green sloper (#36) to the high crimp (#15). The secret is to wedge the top of her knee under the blue hold (#34) while her foot is on a low hold (#127). This creates a solid 'lock', taking all the weight off her arms and allowing her to make the long, difficult reach. It's a game-changer for resting and stability.",
+    "holds": {
+      "foot": ["135", "127", "121"]
+    },
+    "moves": [
+      { "hold_id": "57", "type": "start", "hand": "left" },
+      { "hold_id": "51", "type": "start", "hand": "right" },
+      { "hold_id": "36", "hand": "left" },
+      { "hold_id": "34", "hand": "right" },
+      { "hold_id": "15", "hand": "left" },
+      { "hold_id": "17", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Pogo_Power",
+    "difficulty": "V5",
+    "author": "Gemini 2.5 Pro",
+    "beta": "This route forces a 'pogo' or 'moon kick'. The sequence puts her hands matched on the big blue hold (#83) with poor feet. To reach the distant hold #11, a normal dyno won't work. She must use one foot on a hold like #98 to launch her entire body upwards in a pogo-like motion. It's a highly dynamic and coordinated move that generates huge upward momentum.",
+    "holds": {
+      "foot": ["104", "98", "99"]
+    },
+    "moves": [
+      { "hold_id": "85", "type": "start", "hand": "left" },
+      { "hold_id": "87", "type": "start", "hand": "right" },
+      { "hold_id": "83", "hand": "left" },
+      { "hold_id": "83", "hand": "right" },
+      { "hold_id": "11", "hand": "right" },
+      { "hold_id": "10", "hand": "left" },
+      { "hold_id": "2", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Figure_Four_Escape",
+    "difficulty": "V6",
+    "author": "Gemini 2.5 Pro",
+    "beta": "A competition-style problem that might require a 'Figure Four'. The move from the sharp sidepull (#51) to the distant pocket (#73) is massive, and swinging out is a major issue. A possible, albeit extreme, solution is to swing the left leg over the right forearm while holding #51. This locks the body in place and allows for a massive extension of the left arm. It's the definition of 'next-level' climbing.",
+    "holds": {
+      "foot": ["120", "113", "108"]
+    },
+    "moves": [
+      { "hold_id": "56", "type": "start", "hand": "left" },
+      { "hold_id": "50", "type": "start", "hand": "right" },
+      { "hold_id": "51", "hand": "right" },
+      { "hold_id": "88", "hand": "left" },
+      { "hold_id": "73", "hand": "left" },
+      { "hold_id": "72", "hand": "right" },
+      { "hold_id": "1", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Bat_Hang_Rest",
+    "difficulty": "V6",
+    "author": "Gemini 2.5 Pro",
+    "beta": "The ultimate test of body tension and technical wizardry. This route on the steep wall forces a 'bat hang' to get a no-hands rest before the final moves. After reaching #72, she can throw a heel over it and a toe-hook on #76, allowing her to hang upside down. This rests the arms completely but requires immense core strength. From the bat hang, she can reposition for the final, powerful moves to the top.",
+    "holds": {
+      "foot": ["116", "109", "103"]
+    },
+    "moves": [
+      { "hold_id": "97", "type": "start", "hand": "left" },
+      { "hold_id": "99", "type": "start", "hand": "right" },
+      { "hold_id": "76", "hand": "left" },
+      { "hold_id": "72", "hand": "right" },
+      { "hold_id": "9", "hand": "left" },
+      { "hold_id": "6", "hand": "right" },
+      { "hold_id": "5", "type": "finish", "hand": "both" }
     ]
   }
 ]
