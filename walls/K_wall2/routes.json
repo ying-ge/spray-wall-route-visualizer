@@ -2,289 +2,289 @@
   {
     "routeName": "Flagging",
     "difficulty": "V0",
-    "author": "",
-    "beta": "This route is designed to help practice outside flagging. Encourage her to use her free leg to balance her center of gravity as she moves between holds. Remind her to keep her hips close to the wall for better stability.",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice outside flagging by swinging your free leg out to the side for balance as you move across the wall. Focus on using your hips to control your center of gravity and reduce arm fatigue.",
     "holds": {
-      "foot": ["86", "90", "95", "102", "106"]
+      "foot": ["#51", "#56", "#82", "#87", "#92"]
     },
     "moves": [
-      { "hold_id": "88", "type": "start", "hand": "left" },
-      { "hold_id": "87", "type": "start", "hand": "right" },
-      { "hold_id": "90", "hand": "left" },
-      { "hold_id": "95", "hand": "right" },
-      { "hold_id": "102", "type": "finish", "hand": "both" }
+      { "hold_id": "#32", "type": "start", "hand": "left" },
+      { "hold_id": "#81", "type": "start", "hand": "right" },
+      { "hold_id": "#37", "hand": "left" },
+      { "hold_id": "#89", "hand": "right" },
+      { "hold_id": "#45", "type": "finish", "hand": "both" }
     ]
   },
   {
     "routeName": "HighStep",
     "difficulty": "V1",
-    "author": "",
-    "beta": "This route focuses on high stepping. Guide her to bring her foot high onto the next foothold and push up strongly. Emphasize using her legs to stand rather than pulling up with her arms.",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Focus on high stepping by confidently bringing your foot up high and pushing upward with your legs. Keep your body close to the wall and press through your leg for upward movement.",
     "holds": {
-      "foot": ["109", "110", "100", "105", "111"]
+      "foot": ["#48", "#54", "#93", "#101", "#107"]
     },
     "moves": [
-      { "hold_id": "100", "type": "start", "hand": "left" },
-      { "hold_id": "111", "type": "start", "hand": "right" },
-      { "hold_id": "105", "hand": "left" },
-      { "hold_id": "109", "hand": "right" },
-      { "hold_id": "110", "type": "finish", "hand": "both" }
+      { "hold_id": "#25", "type": "start", "hand": "left" },
+      { "hold_id": "#78", "type": "start", "hand": "right" },
+      { "hold_id": "#29", "hand": "left" },
+      { "hold_id": "#98", "hand": "right" },
+      { "hold_id": "#38", "type": "finish", "hand": "both" }
     ]
   },
   {
     "routeName": "Backstep",
-    "difficulty": "V1",
-    "author": "",
-    "beta": "This climb practices the backstep technique. Encourage her to turn her hip into the wall and push off the outside edge of her foot for each move.",
-    "holds": {
-      "foot": ["82", "86", "92", "96", "99"]
-    },
-    "moves": [
-      { "hold_id": "86", "type": "start", "hand": "left" },
-      { "hold_id": "92", "type": "start", "hand": "right" },
-      { "hold_id": "96", "hand": "left" },
-      { "hold_id": "99", "hand": "right" },
-      { "hold_id": "82", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Mantle",
-    "difficulty": "V2",
-    "author": "",
-    "beta": "This route teaches the mantle movement. Guide her to press down and shift her weight over the finishing hold, pushing with her palm and rocking her body up.",
-    "holds": {
-      "foot": ["106", "111", "114", "117", "119"]
-    },
-    "moves": [
-      { "hold_id": "111", "type": "start", "hand": "left" },
-      { "hold_id": "106", "type": "start", "hand": "right" },
-      { "hold_id": "114", "hand": "left" },
-      { "hold_id": "117", "hand": "right" },
-      { "hold_id": "119", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Balance",
     "difficulty": "V0",
-    "author": "",
-    "beta": "The focus here is on footwork and body positioning. Encourage her to move quietly and slowly, emphasizing control and balance rather than speed.",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice backstepping by turning your hip toward the wall and placing your foot in a backstep position. This helps you stay close to the wall and move efficiently.",
     "holds": {
-      "foot": ["95", "96", "99", "100", "103"]
+      "foot": ["#41", "#44", "#83", "#99", "#105"]
     },
     "moves": [
-      { "hold_id": "99", "type": "start", "hand": "left" },
-      { "hold_id": "96", "type": "start", "hand": "right" },
-      { "hold_id": "100", "hand": "left" },
-      { "hold_id": "103", "hand": "right" },
-      { "hold_id": "95", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "StraightArms",
-    "difficulty": "V0",
-    "author": "",
-    "beta": "This climb encourages straight-armed climbing for endurance. Remind her to hang from her skeleton rather than flexing her arms, and to move quickly between holds to save energy.",
-    "holds": {
-      "foot": ["109", "110", "115", "117", "120"]
-    },
-    "moves": [
-      { "hold_id": "115", "type": "start", "hand": "left" },
-      { "hold_id": "120", "type": "start", "hand": "right" },
-      { "hold_id": "117", "hand": "left" },
-      { "hold_id": "110", "hand": "right" },
-      { "hold_id": "109", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "TwistLock",
-    "difficulty": "V1",
-    "author": "",
-    "beta": "This route is set to practice twist-lock movement. Guide her to rotate her hips and shoulders as she reaches across her body, optimizing reach and stability.",
-    "holds": {
-      "foot": ["92", "93", "97", "98", "102"]
-    },
-    "moves": [
-      { "hold_id": "93", "type": "start", "hand": "left" },
-      { "hold_id": "92", "type": "start", "hand": "right" },
-      { "hold_id": "98", "hand": "left" },
-      { "hold_id": "102", "hand": "right" },
-      { "hold_id": "97", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Crossover",
-    "difficulty": "V1",
-    "author": "",
-    "beta": "This climb practices hand crossover moves. Help her plan which hand crosses over, and keep her body close to the wall to maintain balance.",
-    "holds": {
-      "foot": ["87", "89", "94", "97", "101"]
-    },
-    "moves": [
-      { "hold_id": "87", "type": "start", "hand": "left" },
-      { "hold_id": "94", "type": "start", "hand": "right" },
-      { "hold_id": "97", "hand": "left" },
-      { "hold_id": "101", "hand": "right" },
-      { "hold_id": "89", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Sidepull",
-    "difficulty": "V0",
-    "author": "",
-    "beta": "This route encourages the use of sidepulls, which build grip and body awareness. Remind her to press her feet in the opposite direction to the pull for stability.",
-    "holds": {
-      "foot": ["84", "85", "91", "93", "95"]
-    },
-    "moves": [
-      { "hold_id": "84", "type": "start", "hand": "left" },
-      { "hold_id": "85", "type": "start", "hand": "right" },
-      { "hold_id": "91", "hand": "left" },
-      { "hold_id": "93", "hand": "right" },
-      { "hold_id": "95", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Undercling",
-    "difficulty": "V1",
-    "author": "",
-    "beta": "Undercling technique is key here. Coach her to pull up while pushing her feet down and keep her hips low to maximize upward movement.",
-    "holds": {
-      "foot": ["101", "102", "105", "110", "119"]
-    },
-    "moves": [
-      { "hold_id": "101", "type": "start", "hand": "left" },
-      { "hold_id": "105", "type": "start", "hand": "right" },
-      { "hold_id": "119", "hand": "left" },
-      { "hold_id": "110", "hand": "right" },
-      { "hold_id": "102", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Matching",
-    "difficulty": "V0",
-    "author": "",
-    "beta": "This climb focuses on matching hands on one hold. Remind her to maintain three points of contact and use her feet to shift weight when switching hands.",
-    "holds": {
-      "foot": ["84", "87", "90", "91", "92"]
-    },
-    "moves": [
-      { "hold_id": "84", "type": "start", "hand": "left" },
-      { "hold_id": "91", "type": "start", "hand": "right" },
-      { "hold_id": "90", "hand": "left" },
-      { "hold_id": "92", "hand": "right" },
-      { "hold_id": "91", "type": "finish", "hand": "both" }
+      { "hold_id": "#19", "type": "start", "hand": "left" },
+      { "hold_id": "#71", "type": "start", "hand": "right" },
+      { "hold_id": "#34", "hand": "left" },
+      { "hold_id": "#77", "hand": "right" },
+      { "hold_id": "#28", "type": "finish", "hand": "both" }
     ]
   },
   {
     "routeName": "DropKnee",
     "difficulty": "V1",
-    "author": "",
-    "beta": "This route is to practice drop-knee technique. Encourage her to twist her knee inward and use the increased reach for the next hold, keeping her hips close to the wall.",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice drop knee technique by twisting your knee in and dropping it toward the wall. This will help you maximize reach and maintain balance.",
     "holds": {
-      "foot": ["99", "103", "105", "107", "113"]
+      "foot": ["#47", "#53", "#84", "#96", "#100"]
     },
     "moves": [
-      { "hold_id": "99", "type": "start", "hand": "left" },
-      { "hold_id": "103", "type": "start", "hand": "right" },
-      { "hold_id": "107", "hand": "left" },
-      { "hold_id": "113", "hand": "right" },
-      { "hold_id": "105", "type": "finish", "hand": "both" }
+      { "hold_id": "#23", "type": "start", "hand": "left" },
+      { "hold_id": "#72", "type": "start", "hand": "right" },
+      { "hold_id": "#35", "hand": "left" },
+      { "hold_id": "#88", "hand": "right" },
+      { "hold_id": "#31", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Smearing",
+    "routeName": "Mantle",
     "difficulty": "V2",
-    "author": "",
-    "beta": "This climb helps practice smearing, using friction against the wall. Encourage her to trust her feet and press with the balls of her feet when there are fewer footholds.",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice mantle technique by pushing down hard on the hold at the top and shifting your weight over your hand, like climbing onto a ledge.",
     "holds": {
-      "foot": ["114", "117", "119", "120", "122"]
+      "foot": ["#52", "#58", "#86", "#95", "#109"]
     },
     "moves": [
-      { "hold_id": "114", "type": "start", "hand": "left" },
-      { "hold_id": "117", "type": "start", "hand": "right" },
-      { "hold_id": "120", "hand": "left" },
-      { "hold_id": "122", "hand": "right" },
-      { "hold_id": "119", "type": "finish", "hand": "both" }
+      { "hold_id": "#18", "type": "start", "hand": "left" },
+      { "hold_id": "#74", "type": "start", "hand": "right" },
+      { "hold_id": "#39", "hand": "left" },
+      { "hold_id": "#83", "hand": "right" },
+      { "hold_id": "#24", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Edging",
-    "difficulty": "V0",
-    "author": "",
-    "beta": "This route encourages careful use of foothold edges. Focus her attention on placing the toe precisely on the edge and pressing down gently.",
+    "routeName": "Undercling",
+    "difficulty": "V1",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice undercling technique by grabbing the hold palm-up and pulling up while pushing your feet down. Lower your hips to get more upward force.",
     "holds": {
-      "foot": ["95", "98", "100", "105", "106"]
+      "foot": ["#43", "#55", "#85", "#97", "#111"]
     },
     "moves": [
-      { "hold_id": "98", "type": "start", "hand": "left" },
-      { "hold_id": "105", "type": "start", "hand": "right" },
-      { "hold_id": "100", "hand": "left" },
-      { "hold_id": "106", "hand": "right" },
-      { "hold_id": "95", "type": "finish", "hand": "both" }
+      { "hold_id": "#21", "type": "start", "hand": "left" },
+      { "hold_id": "#75", "type": "start", "hand": "right" },
+      { "hold_id": "#41", "hand": "left" },
+      { "hold_id": "#92", "hand": "right" },
+      { "hold_id": "#26", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "OpenHand",
+    "routeName": "Sidepull",
     "difficulty": "V0",
-    "author": "",
-    "beta": "This climb works on open-handed grip strength. Encourage her to keep her fingers open and rely on friction rather than crimping tightly.",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice sidepulls by using your feet to push in the opposite direction of your hands. Keep your body close to the wall and use your legs to stabilize.",
     "holds": {
-      "foot": ["110", "113", "114", "116", "120"]
+      "foot": ["#50", "#62", "#94", "#104", "#113"]
     },
     "moves": [
-      { "hold_id": "110", "type": "start", "hand": "left" },
-      { "hold_id": "113", "type": "start", "hand": "right" },
-      { "hold_id": "114", "hand": "left" },
-      { "hold_id": "120", "hand": "right" },
-      { "hold_id": "116", "type": "finish", "hand": "both" }
+      { "hold_id": "#27", "type": "start", "hand": "left" },
+      { "hold_id": "#81", "type": "start", "hand": "right" },
+      { "hold_id": "#36", "hand": "left" },
+      { "hold_id": "#90", "hand": "right" },
+      { "hold_id": "#30", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Matching",
+    "difficulty": "V0",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice matching by placing both hands on the same hold. Keep at least three points of contact and move smoothly when switching hands.",
+    "holds": {
+      "foot": ["#46", "#60", "#91", "#102", "#110"]
+    },
+    "moves": [
+      { "hold_id": "#22", "type": "start", "hand": "left" },
+      { "hold_id": "#80", "type": "start", "hand": "right" },
+      { "hold_id": "#38", "hand": "left" },
+      { "hold_id": "#85", "hand": "right" },
+      { "hold_id": "#33", "type": "finish", "hand": "both" }
     ]
   },
   {
     "routeName": "Crimp",
     "difficulty": "V1",
-    "author": "",
-    "beta": "Crimping is practiced on this route. Teach her to use a half-crimp position for safety, with the thumb over the top of her fingers, and to relax when possible.",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice using a half crimp grip on small holds. Keep your thumb over your fingers for safety and relax your grip when possible to avoid fatigue.",
     "holds": {
-      "foot": ["115", "117", "120", "122", "123"]
+      "foot": ["#49", "#61", "#87", "#103", "#112"]
     },
     "moves": [
-      { "hold_id": "115", "type": "start", "hand": "left" },
-      { "hold_id": "120", "type": "start", "hand": "right" },
-      { "hold_id": "122", "hand": "left" },
-      { "hold_id": "123", "hand": "right" },
-      { "hold_id": "117", "type": "finish", "hand": "both" }
+      { "hold_id": "#20", "type": "start", "hand": "left" },
+      { "hold_id": "#77", "type": "start", "hand": "right" },
+      { "hold_id": "#40", "hand": "left" },
+      { "hold_id": "#84", "hand": "right" },
+      { "hold_id": "#35", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Reach",
-    "difficulty": "V1",
-    "author": "",
-    "beta": "This route helps practice maximum reach. Guide her to fully extend while keeping one foot high, and to push through her legs for extra reach.",
+    "routeName": "OpenHand",
+    "difficulty": "V0",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice open hand gripping by keeping your fingers open and relying on friction. This protects your finger joints and builds different strength.",
     "holds": {
-      "foot": ["84", "86", "89", "94", "97"]
+      "foot": ["#45", "#57", "#95", "#108", "#116"]
     },
     "moves": [
-      { "hold_id": "84", "type": "start", "hand": "left" },
-      { "hold_id": "89", "type": "start", "hand": "right" },
-      { "hold_id": "97", "hand": "left" },
-      { "hold_id": "94", "hand": "right" },
-      { "hold_id": "86", "type": "finish", "hand": "both" }
+      { "hold_id": "#24", "type": "start", "hand": "left" },
+      { "hold_id": "#79", "type": "start", "hand": "right" },
+      { "hold_id": "#43", "hand": "left" },
+      { "hold_id": "#91", "hand": "right" },
+      { "hold_id": "#36", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Edging",
+    "difficulty": "V0",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice edging by standing on the very edge of each foothold with your toes. This will help improve your foot precision and balance.",
+    "holds": {
+      "foot": ["#42", "#59", "#90", "#106", "#114"]
+    },
+    "moves": [
+      { "hold_id": "#26", "type": "start", "hand": "left" },
+      { "hold_id": "#76", "type": "start", "hand": "right" },
+      { "hold_id": "#44", "hand": "left" },
+      { "hold_id": "#86", "hand": "right" },
+      { "hold_id": "#21", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Smearing",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice smearing by using the sole of your climbing shoe against the wall when no foothold is available. Trust your feet and feel the friction.",
+    "holds": {
+      "foot": ["#55", "#63", "#89", "#105", "#115"]
+    },
+    "moves": [
+      { "hold_id": "#28", "type": "start", "hand": "left" },
+      { "hold_id": "#82", "type": "start", "hand": "right" },
+      { "hold_id": "#47", "hand": "left" },
+      { "hold_id": "#94", "hand": "right" },
+      { "hold_id": "#34", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "CrossOver",
+    "difficulty": "V1",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice crossover moves by planning which hand will cross over the other to reach the next hold. Keep your body close to the wall for balance.",
+    "holds": {
+      "foot": ["#53", "#66", "#97", "#104", "#117"]
+    },
+    "moves": [
+      { "hold_id": "#33", "type": "start", "hand": "left" },
+      { "hold_id": "#73", "type": "start", "hand": "right" },
+      { "hold_id": "#42", "hand": "left" },
+      { "hold_id": "#95", "hand": "right" },
+      { "hold_id": "#31", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "StraightArms",
+    "difficulty": "V0",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice climbing with straight arms to save energy. Hang from your skeleton, not your muscles, and move efficiently between holds.",
+    "holds": {
+      "foot": ["#54", "#65", "#92", "#103", "#118"]
+    },
+    "moves": [
+      { "hold_id": "#30", "type": "start", "hand": "left" },
+      { "hold_id": "#85", "type": "start", "hand": "right" },
+      { "hold_id": "#49", "hand": "left" },
+      { "hold_id": "#99", "hand": "right" },
+      { "hold_id": "#27", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "TwistLock",
+    "difficulty": "V1",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice twist lock movement by rotating your hips and shoulders to reach further holds. This will help you optimize your reach and stay balanced.",
+    "holds": {
+      "foot": ["#57", "#67", "#96", "#106", "#119"]
+    },
+    "moves": [
+      { "hold_id": "#35", "type": "start", "hand": "left" },
+      { "hold_id": "#78", "type": "start", "hand": "right" },
+      { "hold_id": "#48", "hand": "left" },
+      { "hold_id": "#102", "hand": "right" },
+      { "hold_id": "#22", "type": "finish", "hand": "both" }
     ]
   },
   {
     "routeName": "MantleTraverse",
     "difficulty": "V2",
-    "author": "",
-    "beta": "This route combines traversing and mantling. Encourage her to move laterally and then press up and over at the finish, using palm pressure and shifting weight.",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Combine traversing and mantling. Move laterally first, then finish by pressing down and rocking over the finishing hold like climbing onto a ledge.",
     "holds": {
-      "foot": ["105", "109", "112", "114", "118"]
+      "foot": ["#60", "#68", "#98", "#112", "#120"]
     },
     "moves": [
-      { "hold_id": "112", "type": "start", "hand": "left" },
-      { "hold_id": "109", "type": "start", "hand": "right" },
-      { "hold_id": "114", "hand": "left" },
-      { "hold_id": "118", "hand": "right" },
-      { "hold_id": "105", "type": "finish", "hand": "both" }
+      { "hold_id": "#38", "type": "start", "hand": "left" },
+      { "hold_id": "#91", "type": "start", "hand": "right" },
+      { "hold_id": "#53", "hand": "left" },
+      { "hold_id": "#110", "hand": "right" },
+      { "hold_id": "#40", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Balance",
+    "difficulty": "V0",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Focus on controlling your body balance by moving slowly and quietly. Pay attention to smooth and controlled movements at each step.",
+    "holds": {
+      "foot": ["#58", "#69", "#100", "#113", "#121"]
+    },
+    "moves": [
+      { "hold_id": "#41", "type": "start", "hand": "left" },
+      { "hold_id": "#80", "type": "start", "hand": "right" },
+      { "hold_id": "#55", "hand": "left" },
+      { "hold_id": "#115", "hand": "right" },
+      { "hold_id": "#25", "type": "finish", "hand": "both" }
+    ]
+  },
+  {
+    "routeName": "Reach",
+    "difficulty": "V2",
+    "author": "Gemini 2.5 Pro",
+    "beta": "Practice maximum reach by fully extending your body. Step high and use the push from your legs to increase your reach.",
+    "holds": {
+      "foot": ["#56", "#64", "#99", "#108", "#122"]
+    },
+    "moves": [
+      { "hold_id": "#36", "type": "start", "hand": "left" },
+      { "hold_id": "#83", "type": "start", "hand": "right" },
+      { "hold_id": "#50", "hand": "left" },
+      { "hold_id": "#111", "hand": "right" },
+      { "hold_id": "#29", "type": "finish", "hand": "both" }
     ]
   }
 ]
