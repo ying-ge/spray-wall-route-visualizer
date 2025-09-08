@@ -2,7 +2,7 @@
   {
     "routeName": "Flagging",
     "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This route is designed to help practice outside flagging. Encourage her to use her free leg to balance her center of gravity as she moves between holds. Remind her to keep her hips close to the wall for better stability.",
     "holds": {
       "foot": ["86", "90", "95", "102", "106"]
@@ -18,7 +18,7 @@
   {
     "routeName": "HighStep",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This route focuses on high stepping. Guide her to bring her foot high onto the next foothold and push up strongly. Emphasize using her legs to stand rather than pulling up with her arms.",
     "holds": {
       "foot": ["109", "110", "100", "105", "111"]
@@ -34,7 +34,7 @@
   {
     "routeName": "Backstep",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This climb practices the backstep technique. Encourage her to turn her hip into the wall and push off the outside edge of her foot for each move.",
     "holds": {
       "foot": ["82", "86", "92", "96", "99"]
@@ -50,7 +50,7 @@
   {
     "routeName": "Mantle",
     "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This route teaches the mantle movement. Guide her to press down and shift her weight over the finishing hold, pushing with her palm and rocking her body up.",
     "holds": {
       "foot": ["106", "111", "114", "117", "119"]
@@ -66,7 +66,7 @@
   {
     "routeName": "Balance",
     "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "The focus here is on footwork and body positioning. Encourage her to move quietly and slowly, emphasizing control and balance rather than speed.",
     "holds": {
       "foot": ["95", "96", "99", "100", "103"]
@@ -82,7 +82,7 @@
   {
     "routeName": "StraightArms",
     "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This climb encourages straight-armed climbing for endurance. Remind her to hang from her skeleton rather than flexing her arms, and to move quickly between holds to save energy.",
     "holds": {
       "foot": ["109", "110", "115", "117", "120"]
@@ -98,7 +98,7 @@
   {
     "routeName": "TwistLock",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This route is set to practice twist-lock movement. Guide her to rotate her hips and shoulders as she reaches across her body, optimizing reach and stability.",
     "holds": {
       "foot": ["92", "93", "97", "98", "102"]
@@ -114,7 +114,7 @@
   {
     "routeName": "Crossover",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This climb practices hand crossover moves. Help her plan which hand crosses over, and keep her body close to the wall to maintain balance.",
     "holds": {
       "foot": ["87", "89", "94", "97", "101"]
@@ -130,7 +130,7 @@
   {
     "routeName": "Sidepull",
     "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This route encourages the use of sidepulls, which build grip and body awareness. Remind her to press her feet in the opposite direction to the pull for stability.",
     "holds": {
       "foot": ["84", "85", "91", "93", "95"]
@@ -146,7 +146,7 @@
   {
     "routeName": "Undercling",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "Undercling technique is key here. Coach her to pull up while pushing her feet down and keep her hips low to maximize upward movement.",
     "holds": {
       "foot": ["101", "102", "105", "110", "119"]
@@ -162,7 +162,7 @@
   {
     "routeName": "Matching",
     "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This climb focuses on matching hands on one hold. Remind her to maintain three points of contact and use her feet to shift weight when switching hands.",
     "holds": {
       "foot": ["84", "87", "90", "91", "92"]
@@ -178,7 +178,7 @@
   {
     "routeName": "DropKnee",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This route is to practice drop-knee technique. Encourage her to twist her knee inward and use the increased reach for the next hold, keeping her hips close to the wall.",
     "holds": {
       "foot": ["99", "103", "105", "107", "113"]
@@ -194,7 +194,7 @@
   {
     "routeName": "Smearing",
     "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This climb helps practice smearing, using friction against the wall. Encourage her to trust her feet and press with the balls of her feet when there are fewer footholds.",
     "holds": {
       "foot": ["114", "117", "119", "120", "122"]
@@ -210,7 +210,7 @@
   {
     "routeName": "Edging",
     "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This route encourages careful use of foothold edges. Focus her attention on placing the toe precisely on the edge and pressing down gently.",
     "holds": {
       "foot": ["95", "98", "100", "105", "106"]
@@ -226,7 +226,7 @@
   {
     "routeName": "OpenHand",
     "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This climb works on open-handed grip strength. Encourage her to keep her fingers open and rely on friction rather than crimping tightly.",
     "holds": {
       "foot": ["110", "113", "114", "116", "120"]
@@ -242,7 +242,7 @@
   {
     "routeName": "Crimp",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "Crimping is practiced on this route. Teach her to use a half-crimp position for safety, with the thumb over the top of her fingers, and to relax when possible.",
     "holds": {
       "foot": ["115", "117", "120", "122", "123"]
@@ -258,7 +258,7 @@
   {
     "routeName": "Reach",
     "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This route helps practice maximum reach. Guide her to fully extend while keeping one foot high, and to push through her legs for extra reach.",
     "holds": {
       "foot": ["84", "86", "89", "94", "97"]
@@ -274,7 +274,7 @@
   {
     "routeName": "MantleTraverse",
     "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
+    "author": "",
     "beta": "This route combines traversing and mantling. Encourage her to move laterally and then press up and over at the finish, using palm pressure and shifting weight.",
     "holds": {
       "foot": ["105", "109", "112", "114", "118"]
