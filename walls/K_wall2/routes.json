@@ -3,288 +3,54 @@
     "routeName": "Flagging",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
-    "beta": "Practice outside flagging by swinging your free leg out to the side for balance as you move across the wall. Focus on using your hips to control your center of gravity and reduce arm fatigue.",
+    "beta": "Practice outside flagging by letting the free leg swing for balance while moving left to right. Pay attention to body position and keep hips close to the wall. Focus on steady, balanced movement.",
     "holds": {
-      "foot": ["51", "56", "82", "87", "92"]
+      "foot": ["51", "87", "92", "97", "100"]
     },
     "moves": [
-      { "hold_id": "32", "type": "start", "hand": "left" },
-      { "hold_id": "81", "type": "start", "hand": "right" },
-      { "hold_id": "37", "hand": "left" },
-      { "hold_id": "89", "hand": "right" },
-      { "hold_id": "45", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "HighStep",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Focus on high stepping by confidently bringing your foot up high and pushing upward with your legs. Keep your body close to the wall and press through your leg for upward movement.",
-    "holds": {
-      "foot": ["48", "54", "93", "101", "107"]
-    },
-    "moves": [
-      { "hold_id": "25", "type": "start", "hand": "left" },
-      { "hold_id": "78", "type": "start", "hand": "right" },
-      { "hold_id": "29", "hand": "left" },
-      { "hold_id": "98", "hand": "right" },
-      { "hold_id": "38", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Backstep",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Practice backstepping by turning your hip toward the wall and placing your foot in a backstep position. This helps you stay close to the wall and move efficiently.",
-    "holds": {
-      "foot": ["41", "44", "83", "99", "105"]
-    },
-    "moves": [
-      { "hold_id": "19", "type": "start", "hand": "left" },
-      { "hold_id": "71", "type": "start", "hand": "right" },
-      { "hold_id": "34", "hand": "left" },
-      { "hold_id": "77", "hand": "right" },
-      { "hold_id": "28", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "DropKnee",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Practice drop knee technique by twisting your knee in and dropping it toward the wall. This will help you maximize reach and maintain balance.",
-    "holds": {
-      "foot": ["47", "53", "84", "96", "100"]
-    },
-    "moves": [
-      { "hold_id": "23", "type": "start", "hand": "left" },
-      { "hold_id": "72", "type": "start", "hand": "right" },
-      { "hold_id": "35", "hand": "left" },
-      { "hold_id": "88", "hand": "right" },
-      { "hold_id": "31", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Mantle",
-    "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Practice mantle technique by pushing down hard on the hold at the top and shifting your weight over your hand, like climbing onto a ledge.",
-    "holds": {
-      "foot": ["52", "58", "86", "95", "109"]
-    },
-    "moves": [
-      { "hold_id": "18", "type": "start", "hand": "left" },
-      { "hold_id": "74", "type": "start", "hand": "right" },
-      { "hold_id": "39", "hand": "left" },
-      { "hold_id": "83", "hand": "right" },
-      { "hold_id": "24", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Undercling",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Practice undercling technique by grabbing the hold palm-up and pulling up while pushing your feet down. Lower your hips to get more upward force.",
-    "holds": {
-      "foot": ["43", "55", "85", "97", "111"]
-    },
-    "moves": [
-      { "hold_id": "21", "type": "start", "hand": "left" },
-      { "hold_id": "75", "type": "start", "hand": "right" },
-      { "hold_id": "41", "hand": "left" },
-      { "hold_id": "92", "hand": "right" },
-      { "hold_id": "26", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Sidepull",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Practice sidepulls by using your feet to push in the opposite direction of your hands. Keep your body close to the wall and use your legs to stabilize.",
-    "holds": {
-      "foot": ["50", "62", "94", "104", "113"]
-    },
-    "moves": [
-      { "hold_id": "27", "type": "start", "hand": "left" },
-      { "hold_id": "81", "type": "start", "hand": "right" },
-      { "hold_id": "36", "hand": "left" },
-      { "hold_id": "90", "hand": "right" },
-      { "hold_id": "30", "type": "finish", "hand": "both" }
+      { "hold_id": "42", "type": "start", "hand": "left" },
+      { "hold_id": "51", "type": "start", "hand": "right" },
+      { "hold_id": "48", "hand": "left" },
+      { "hold_id": "54", "hand": "right" },
+      { "hold_id": "74", "hand": "left" },
+      { "hold_id": "82", "hand": "right" },
+      { "hold_id": "83", "type": "finish", "hand": "both" }
     ]
   },
   {
     "routeName": "Matching",
     "difficulty": "V0",
     "author": "Gemini 2.5 Pro",
-    "beta": "Practice matching by placing both hands on the same hold. Keep at least three points of contact and move smoothly when switching hands.",
+    "beta": "Work on matching hands on the same hold. Emphasize balance and smooth weight transitions as you match. Always keep three points of contact for stability.",
     "holds": {
-      "foot": ["46", "60", "91", "102", "110"]
+      "foot": ["44", "55", "80", "91", "96"]
     },
     "moves": [
-      { "hold_id": "22", "type": "start", "hand": "left" },
-      { "hold_id": "80", "type": "start", "hand": "right" },
+      { "hold_id": "29", "type": "start", "hand": "left" },
+      { "hold_id": "36", "type": "start", "hand": "right" },
       { "hold_id": "38", "hand": "left" },
-      { "hold_id": "85", "hand": "right" },
-      { "hold_id": "33", "type": "finish", "hand": "both" }
+      { "hold_id": "74", "hand": "right" },
+      { "hold_id": "74", "hand": "left" },
+      { "hold_id": "81", "hand": "right" },
+      { "hold_id": "81", "type": "finish", "hand": "both" }
     ]
   },
   {
-    "routeName": "Crimp",
+    "routeName": "Backstep",
     "difficulty": "V1",
     "author": "Gemini 2.5 Pro",
-    "beta": "Practice using a half crimp grip on small holds. Keep your thumb over your fingers for safety and relax your grip when possible to avoid fatigue.",
+    "beta": "Practice backstepping by rotating hips toward the wall and using the outside edge of the foot. Moves are close together and on the same side to ensure a natural flow.",
     "holds": {
-      "foot": ["49", "61", "87", "103", "112"]
+      "foot": ["53", "85", "92", "99", "104"]
     },
     "moves": [
-      { "hold_id": "20", "type": "start", "hand": "left" },
-      { "hold_id": "77", "type": "start", "hand": "right" },
-      { "hold_id": "40", "hand": "left" },
-      { "hold_id": "84", "hand": "right" },
-      { "hold_id": "35", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "OpenHand",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Practice open hand gripping by keeping your fingers open and relying on friction. This protects your finger joints and builds different strength.",
-    "holds": {
-      "foot": ["45", "57", "95", "108", "116"]
-    },
-    "moves": [
-      { "hold_id": "24", "type": "start", "hand": "left" },
-      { "hold_id": "79", "type": "start", "hand": "right" },
-      { "hold_id": "43", "hand": "left" },
-      { "hold_id": "91", "hand": "right" },
-      { "hold_id": "36", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Edging",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Practice edging by standing on the very edge of each foothold with your toes. This will help improve your foot precision and balance.",
-    "holds": {
-      "foot": ["42", "59", "90", "106", "114"]
-    },
-    "moves": [
-      { "hold_id": "26", "type": "start", "hand": "left" },
-      { "hold_id": "76", "type": "start", "hand": "right" },
-      { "hold_id": "44", "hand": "left" },
-      { "hold_id": "86", "hand": "right" },
-      { "hold_id": "21", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Smearing",
-    "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Practice smearing by using the sole of your climbing shoe against the wall when no foothold is available. Trust your feet and feel the friction.",
-    "holds": {
-      "foot": ["55", "63", "89", "105", "115"]
-    },
-    "moves": [
-      { "hold_id": "28", "type": "start", "hand": "left" },
-      { "hold_id": "82", "type": "start", "hand": "right" },
-      { "hold_id": "47", "hand": "left" },
-      { "hold_id": "94", "hand": "right" },
-      { "hold_id": "34", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "CrossOver",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Practice crossover moves by planning which hand will cross over the other to reach the next hold. Keep your body close to the wall for balance.",
-    "holds": {
-      "foot": ["53", "66", "97", "104", "117"]
-    },
-    "moves": [
-      { "hold_id": "33", "type": "start", "hand": "left" },
-      { "hold_id": "73", "type": "start", "hand": "right" },
-      { "hold_id": "42", "hand": "left" },
-      { "hold_id": "95", "hand": "right" },
-      { "hold_id": "31", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "StraightArms",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Practice climbing with straight arms to save energy. Hang from your skeleton, not your muscles, and move efficiently between holds.",
-    "holds": {
-      "foot": ["54", "65", "92", "103", "118"]
-    },
-    "moves": [
-      { "hold_id": "30", "type": "start", "hand": "left" },
-      { "hold_id": "85", "type": "start", "hand": "right" },
-      { "hold_id": "49", "hand": "left" },
-      { "hold_id": "99", "hand": "right" },
-      { "hold_id": "27", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "TwistLock",
-    "difficulty": "V1",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Practice twist lock movement by rotating your hips and shoulders to reach further holds. This will help you optimize your reach and stay balanced.",
-    "holds": {
-      "foot": ["57", "67", "96", "106", "119"]
-    },
-    "moves": [
-      { "hold_id": "35", "type": "start", "hand": "left" },
-      { "hold_id": "78", "type": "start", "hand": "right" },
-      { "hold_id": "48", "hand": "left" },
-      { "hold_id": "102", "hand": "right" },
-      { "hold_id": "22", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "MantleTraverse",
-    "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Combine traversing and mantling. Move laterally first, then finish by pressing down and rocking over the finishing hold like climbing onto a ledge.",
-    "holds": {
-      "foot": ["60", "68", "98", "112", "120"]
-    },
-    "moves": [
-      { "hold_id": "38", "type": "start", "hand": "left" },
-      { "hold_id": "91", "type": "start", "hand": "right" },
-      { "hold_id": "53", "hand": "left" },
-      { "hold_id": "110", "hand": "right" },
-      { "hold_id": "40", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Balance",
-    "difficulty": "V0",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Focus on controlling your body balance by moving slowly and quietly. Pay attention to smooth and controlled movements at each step.",
-    "holds": {
-      "foot": ["58", "69", "100", "113", "121"]
-    },
-    "moves": [
-      { "hold_id": "41", "type": "start", "hand": "left" },
-      { "hold_id": "80", "type": "start", "hand": "right" },
-      { "hold_id": "55", "hand": "left" },
-      { "hold_id": "115", "hand": "right" },
-      { "hold_id": "25", "type": "finish", "hand": "both" }
-    ]
-  },
-  {
-    "routeName": "Reach",
-    "difficulty": "V2",
-    "author": "Gemini 2.5 Pro",
-    "beta": "Practice maximum reach by fully extending your body. Step high and use the push from your legs to increase your reach.",
-    "holds": {
-      "foot": ["56", "64", "99", "108", "122"]
-    },
-    "moves": [
-      { "hold_id": "36", "type": "start", "hand": "left" },
-      { "hold_id": "83", "type": "start", "hand": "right" },
-      { "hold_id": "50", "hand": "left" },
-      { "hold_id": "111", "hand": "right" },
-      { "hold_id": "29", "type": "finish", "hand": "both" }
+      { "hold_id": "32", "type": "start", "hand": "left" },
+      { "hold_id": "44", "type": "start", "hand": "right" },
+      { "hold_id": "41", "hand": "left" },
+      { "hold_id": "52", "hand": "right" },
+      { "hold_id": "73", "hand": "left" },
+      { "hold_id": "79", "hand": "right" },
+      { "hold_id": "85", "type": "finish", "hand": "both" }
     ]
   }
 ]
