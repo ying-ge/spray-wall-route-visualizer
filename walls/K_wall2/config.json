@@ -1,0 +1,9 @@
+{
+  "wall_name": "K Wall 2",
+  "valid_hold_ranges": {
+    "numeric_ranges": [
+      [1, 149]
+    ],
+    "alphabetic_ranges": []
+  }
+}
